@@ -1,0 +1,423 @@
+<meta charset="utf-8">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>ACL2 map-symbol-name Blueprint</title>
+<style>/* Layout: a single column of nodes, each node a theorem with its ACL2 source and Lean statement. */
+:root {
+  --bg: #f5f4ef; --fg: #1c2230; --muted: #5d6578; --rule: #d9d6cc;
+  --panel: #ffffff; --accent: #1f6b67; --code-bg: #eceae2;
+  color-scheme: light;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121417; --fg: #e4e2dc; --muted: #9aa1b0; --rule: #2c313a;
+    --panel: #181b21; --accent: #7fd0c9; --code-bg: #20242c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121417; --fg: #e4e2dc; --muted: #9aa1b0; --rule: #2c313a;
+  --panel: #181b21; --accent: #7fd0c9; --code-bg: #20242c; color-scheme: dark;
+}
+html, body { margin: 0; }
+body {
+  background: var(--bg); color: var(--fg);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+  font-size: 14px;
+}
+main { max-width: 760px; margin: 0 auto; }
+h1 { font-size: 1.6rem; margin: 0 0 4px; text-wrap: balance; }
+h2 { font-size: 1.05rem; margin: 32px 0 12px; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0 0 20px; }
+.label { text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); }
+.status {
+  display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 12px 14px;
+  border: 1px solid var(--rule); border-radius: 6px; background: var(--panel);
+}
+.status div { min-width: 0; }
+.status b { display: block; font-weight: 600; font-variant-numeric: tabular-nums; }
+.ok { color: var(--accent); }
+.node {
+  background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+  padding: 12px 14px; margin: 0 0 12px; min-width: 0;
+}
+.node-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; align-items: baseline; }
+.node-name { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 600; overflow-wrap: anywhere; }
+.src { color: var(--muted); font-size: 0.8rem; white-space: nowrap; }
+pre {
+  background: var(--code-bg); color: var(--fg); border-radius: 4px;
+  padding: 8px 10px; margin: 10px 0 0; overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem;
+}
+.defs { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.def { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.def code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.85rem; }
+.def span { color: var(--muted); font-size: 0.85rem; }
+footer { margin-top: 32px; color: var(--muted); font-size: 0.8rem; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details.decisions { margin: 12px 0 0; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details.decisions { margin: 12px 0 0; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details.decisions { margin: 12px 0 0; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.bad { color: #b3261e; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bad { color: #ff8a80; } }
+:root[data-theme="dark"] .bad { color: #ff8a80; }
+</style>
+<style>
+:root {
+  --bg: #fafaf9; --panel: #ffffff; --ink: #1c1c1e; --muted: #6b6b70; --line: #e4e4e7;
+  --accent: #2f5bd3; --ok: #15803d; --bad: #b42318; --code: #f4f4f5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111114; --panel: #18181c; --ink: #ececf0; --muted: #9a9aa3; --line: #2a2a30;
+    --accent: #8ea8ff; --ok: #4ade80; --bad: #f97066; --code: #1f1f25;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111114; --panel: #18181c; --ink: #ececf0; --muted: #9a9aa3; --line: #2a2a30;
+  --accent: #8ea8ff; --ok: #4ade80; --bad: #f97066; --code: #1f1f25;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.layout { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; }
+.toc { position: sticky; top: 0; height: 100vh; overflow-y: auto; border-right: 1px solid var(--line);
+  background: var(--panel); padding: 20px 16px; }
+.toc h1 { font-size: 15px; margin: 0 0 4px; }
+.toc .sub { color: var(--muted); font-size: 12px; margin-bottom: 16px; }
+.toc input { width: 100%; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--bg); color: var(--ink); margin-bottom: 12px; }
+.toc a { color: var(--ink); text-decoration: none; display: block; padding: 4px 8px; border-radius: 6px; }
+.toc a:hover { background: var(--code); }
+.toc .group { margin-top: 10px; }
+.toc .group > a { font-weight: 600; }
+.toc .group ul { list-style: none; margin: 2px 0 0 10px; padding: 0; border-left: 1px solid var(--line); }
+.toc .group li a { font-size: 13px; color: var(--muted); padding: 2px 8px; }
+.toc .count { color: var(--muted); font-weight: 400; font-size: 12px; }
+
+.toc li.current a { background: var(--code); color: var(--accent); font-weight: 600; }
+.toc ul { list-style: none; margin: 2px 0 0 10px; padding: 0; border-left: 1px solid var(--line); }
+.layout main { min-width: 0; }
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .toc { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
+}
+</style>
+<div class="layout">
+<aside class="toc"><h1>ACL2 to Lean blueprint</h1><div class="sub">42 modules, 250 axioms</div><input id="filter" type="search" placeholder="Filter books"><div><a href="index.html">Overview</a></div><div><a href="index.html#rules">Embedding rules</a></div><div class="group"><a href="index.html#d-acl2s">acl2s <span class="count">(1)</span></a><ul><li><a href="acl2s__portcullis-blueprint.html">portcullis</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic">arithmetic <span class="count">(3)</span></a><ul><li><a href="arithmetic__rational-listp-blueprint.html">rational-listp</a></li><li><a href="arithmetic__real-listp-blueprint.html">real-listp</a></li><li><a href="arithmetic__sumlist-blueprint.html">sumlist</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic-2">arithmetic-2 <span class="count">(12)</span></a><ul><li><a href="arithmetic-2__meta__cancel-terms-helper-blueprint.html">meta/cancel-terms-helper</a></li><li><a href="arithmetic-2__meta__non-linear-blueprint.html">meta/non-linear</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-helper-blueprint.html">pass1/basic-arithmetic-helper</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-blueprint.html">pass1/basic-arithmetic</a></li><li><a href="arithmetic-2__pass1__expt-helper-blueprint.html">pass1/expt-helper</a></li><li><a href="arithmetic-2__pass1__expt-blueprint.html">pass1/expt</a></li><li><a href="arithmetic-2__pass1__inequalities-blueprint.html">pass1/inequalities</a></li><li><a href="arithmetic-2__pass1__mini-theories-blueprint.html">pass1/mini-theories</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-helper-blueprint.html">pass1/numerator-and-denominator-helper</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-blueprint.html">pass1/numerator-and-denominator</a></li><li><a href="arithmetic-2__pass1__prefer-times-blueprint.html">pass1/prefer-times</a></li><li><a href="arithmetic-2__pass1__top-blueprint.html">pass1/top</a></li></ul></div><div class="group"><a href="index.html#d-kestrel">kestrel <span class="count">(5)</span></a><ul><li><a href="kestrel__strings-light__char-blueprint.html">strings-light/char</a></li><li><a href="kestrel__utilities__equal-of-booleans-blueprint.html">utilities/equal-of-booleans</a></li><li class="current"><a href="kestrel__utilities__map-symbol-name-blueprint.html">utilities/map-symbol-name</a></li><li><a href="kestrel__utilities__member-symbol-name-blueprint.html">utilities/member-symbol-name</a></li><li><a href="kestrel__utilities__update-acl2-oracle-blueprint.html">utilities/update-acl2-oracle</a></li></ul></div><div class="group"><a href="index.html#d-misc">misc <span class="count">(1)</span></a><ul><li><a href="misc__character-encoding-test-blueprint.html">character-encoding-test</a></li></ul></div><div class="group"><a href="index.html#d-std">std <span class="count">(20)</span></a><ul><li><a href="std__alists__assoc-blueprint.html">alists/assoc</a></li><li><a href="std__basic__code-char-char-code-with-force-blueprint.html">basic/code-char-char-code-with-force</a></li><li><a href="std__basic__fix-blueprint.html">basic/fix</a></li><li><a href="std__basic__ifix-blueprint.html">basic/ifix</a></li><li><a href="std__basic__member-symbol-name-blueprint.html">basic/member-symbol-name</a></li><li><a href="std__basic__nfix-blueprint.html">basic/nfix</a></li><li><a href="std__basic__realfix-blueprint.html">basic/realfix</a></li><li><a href="std__basic__rfix-blueprint.html">basic/rfix</a></li><li><a href="std__basic__symbol-name-lst-blueprint.html">basic/symbol-name-lst</a></li><li><a href="std__lists__add-to-set-blueprint.html">lists/add-to-set</a></li><li><a href="std__lists__union-blueprint.html">lists/union</a></li><li><a href="std__strings__digit-to-char-blueprint.html">strings/digit-to-char</a></li><li><a href="std__system__arglistp-blueprint.html">system/arglistp</a></li><li><a href="std__system__arity-blueprint.html">system/arity</a></li><li><a href="std__system__dumb-negate-lit-blueprint.html">system/dumb-negate-lit</a></li><li><a href="std__system__getprops-blueprint.html">system/getprops</a></li><li><a href="std__system__implicate-blueprint.html">system/implicate</a></li><li><a href="std__system__primitivep-blueprint.html">system/primitivep</a></li><li><a href="std__system__pseudo-event-form-listp-blueprint.html">system/pseudo-event-form-listp</a></li><li><a href="std__system__pseudo-event-formp-blueprint.html">system/pseudo-event-formp</a></li></ul></div></aside>
+<main>
+  <p class="label">Blueprint, kestrel/utilities/map-symbol-name</p>
+  <h1>ACL2 map-symbol-name, shallow embedding</h1>
+  <p class="sub">The theorems of the ACL2 book kestrel/utilities/map-symbol-name, each shown as the ACL2 source and as its Lean axiom.</p>
+  
+
+  <div class="status">
+    <div><span class="label">Book</span><b>kestrel/utilities/map-symbol-name.lisp</b></div>
+    <div><span class="label">Axioms</span><b>2</b></div>
+    <div><span class="label">Embedding</span><b>Shallow, Rat</b></div>
+    <div><span class="label">ACL2 certificate</span><b class="ok">map-symbol-name.cert present</b></div>
+    <div><span class="label">Lean build</span><b class="">lake build not run</b></div>
+  </div>
+
+  <details class="decisions">
+    <summary>Embedding decisions, general</summary>
+  <div class="prose">
+<p>Every deviation from the ACL2 source in the Lean axioms is listed here or under its element.</p>
+<h3>General decisions</h3>
+<ol>
+<li>The embedding is shallow. Each ACL2 theorem or lemma becomes a Lean proposition over Lean types, not over a deep syntax of ACL2 terms.</li>
+<li>Every ACL2 number is a <code>Rat</code>. Integer arguments are tested with <code>integerp</code>, which is <code>den = 1</code>.</li>
+<li>ACL2 truth values become Lean <code>Prop</code>. The connectives <code>implies</code>, <code>and</code>, <code>or</code>, <code>not</code> and <code>equal</code> become the corresponding Lean connectives.</li>
+<li>ACL2 primitives and definitions used in the books are interpreted by Lean functions, listed in the interpretation table. A definition of a book is a Lean <code>def</code> with the ACL2 name in guillemets.</li>
+<li>Quantified variables range over <code>Rat</code> or <code>List Rat</code>, not over all ACL2 objects. A theorem with no hypothesis therefore holds in Lean only for rational arguments.</li>
+<li>Support definitions live in <code>Lean/ACL2/Base.lean</code>, outside the mirror of the books directory tree.</li>
+<li>Hyphens in ACL2 names are kept with Lean guillemets, for example <code>«abs-*»</code>.</li>
+<li>Each ACL2 theorem is an <code>axiom</code>. The <code>:rule-classes</code>, hints and proofs are not represented.</li>
+<li>A module does not import the modules of a <code>local</code> <code>include-book</code>. Non-local includes are imported when their module exists.</li>
+<li>A recursive ACL2 definition is a Lean <code>def</code> on <code>Rat</code>, with <code>termination_by</code> on a natural measure. An integer argument is a <code>Rat</code> that satisfies <code>integerp</code>, and the measure is taken from its numerator, so no <code>Int</code> helper is used.</li>
+<li>Local theorems and lemmas are axioms too.</li>
+<li>ACL2 complex rationals are the Lean type <code>CRat</code>, pairs of <code>Rat</code> with the field operations. A real <code>Rat</code> embeds in <code>CRat</code> with imaginary part 0. Theorems over the reals keep <code>Rat</code>, and theorems over numbers that may be complex use <code>CRat</code>.</li>
+<li>The order <code>&lt;</code> on <code>CRat</code> is the lexicographic order of <code>completion-of-&lt;</code> (axioms.lisp, lines 25364 to 25374): <code>x &lt; y</code> holds when <code>realpart x &lt; realpart y</code>, or when the real parts are equal and <code>imagpart x &lt; imagpart y</code>. On real arguments it coincides with the order on <code>Rat</code>.</li>
+<li>No Mathlib dependency is used. The <code>CRat</code> type is defined in core Lean, so the shallow embedding needs no <code>require</code>.</li>
+<li>Unconstrained ACL2 variables of the cancel-terms-helper book range over <code>CRat</code>. A variable under <code>real/rationalp</code> ranges over <code>Rat</code>, and is coerced to <code>CRat</code> with <code>↑</code> when used with complex values.</li>
+<li><code>real/rationalp</code> of a complex rational is true exactly when its imaginary part is 0, because <code>(complex x 0)</code> is the rational <code>x</code>.</li>
+<li>A <code>cond</code> with no true clause returns <code>False</code>, as ACL2 returns <code>nil</code>.</li>
+<li><code>helper-9</code> in the <code>#| |#</code> block at the end of cancel-terms-helper.lisp is a comment, and no axiom is written for it.</li>
+<li>ACL2 <code>&lt;=</code> on complex rationals is <code>(not (&lt; y x))</code>, the definition of <code>&lt;=?</code> in axioms.lisp (lines 11614 to 11618). It is the Lean predicate <code>acl2le</code>. On real arguments it coincides with <code>≤</code> on <code>Rat</code>.</li>
+<li>A variable name that contains <code>+</code>, such as <code>y+</code>, is not a Lean identifier. It is renamed <code>yp</code> in the module. The renaming does not change the statement.</li>
+<li>Theorems of non-linear.lisp that state the property for real variables use <code>Rat</code>, and those that state it for numbers that may be complex use <code>CRat</code>.</li>
+<li><code>encapsulate</code> is transparent. The theorems inside it are axioms of the module, and the local ones are included (decision 11). The statements of basic-arithmetic-helper.lisp range over <code>CRat</code>, because ACL2 numbers there include complex values, and <code>(/ x)</code> is <code>CRat.inv x</code>.</li>
+<li><code>quotep</code> and <code>syntaxp</code> hypotheses are represented as always-inhabited types, <code>quotepC x : Type := PUnit</code> and <code>syntaxpW : Type := PUnit</code>. A hypothesis of this type imposes no condition, so an axiom with such a hypothesis is stated without a condition. The representation of <code>quotep</code> and <code>syntaxp</code> is DEFERRED: the user will decide how to represent them properly, for example in the deep embedding. Until then this is a deviation, because the ACL2 statements are conditional on properties of all objects.</li>
+<li><code>numerator</code> on a complex rational is <code>numeratorC</code>. It is the numerator of the real part when the imaginary part is 0, and 0 otherwise, as <code>completion-of-numerator</code> (axioms.lisp, line 25668) states.</li>
+<li><code>syntaxp</code> hypotheses are kept as <code>syntaxpW</code> (decision 25). <code>(syntaxp form)</code> expands to <code>(and form t)</code> (axioms.lisp, line 4558). The representation is deferred with decision 25.</li>
+<li>The macro <code>fc</code> in expt.lisp (line 15) is the identity, <code>(defmacro fc (x) x)</code>. Each <code>(fc e)</code> is written as <code>e</code>.</li>
+<li><code>expt</code> on complex rationals is <code>exptC r i</code>, with a rational exponent. It follows <code>expt</code> in axioms.lisp (line 9073): <code>exptCInt</code> for an integer exponent, and 1 for a non-integer exponent. The helpers <code>zipR</code>, <code>ifixR</code> and <code>integerpC</code> follow <code>zip</code>, <code>ifix</code> and <code>integerp</code> on complex values. <code>expt</code> on rationals keeps its earlier definition in <code>Base.lean</code>.</li>
+<li>Visibility follows ACL2. Each module uses the Lean module system. A non-local <code>include-book</code> is a <code>public import</code>, so its exported names reach the importers, as in ACL2. A <code>local</code> <code>include-book</code> is a plain <code>import</code>, which the module can use in its own declarations but does not re-export. An exported axiom is <code>public axiom</code>. A local axiom is <code>private axiom</code>, which is usable in the module and invisible to importers. <code>ACL2.Base</code> is a <code>public import</code>, and its declarations are public. Local includes are imported only when their module exists. Until then the module records them as pending in a comment. Tests with a scratch project confirmed each of these visibility rules.</li>
+<li>The modules cancel-terms-helper, non-linear, basic-arithmetic-helper, basic-arithmetic and expt were generated before decision 30. Their local includes are pending (the comment at the top of each module lists them). Their local imports must be added once those modules exist. The order file ORDER.txt now includes local edges, so these books come after their local dependencies.</li>
+<li>Each book&#x27;s declarations live in the namespace <code>ACL2.&lt;book path&gt;</code>, for example <code>ACL2.«arithmetic-2».pass1.«basic-arithmetic»</code>. A local include can bring in public names that share an ACL2 name with the book&#x27;s own axioms (for example <code>equal-/</code> in basic-arithmetic-helper and basic-arithmetic). The book namespace keeps the two apart, as the book namespaces of ACL2 do. The shared <code>Base.lean</code> stays in namespace <code>ACL2</code>.</li>
+<li>The local includes that exist are now imported: basic-arithmetic imports basic-arithmetic-helper, non-linear imports cancel-terms-helper, and expt imports basic-arithmetic. Pending local includes remain: ../pass1/top for cancel-terms-helper and non-linear, and inequalities, prefer-times and expt-helper for expt. Decision 31 still lists the modules generated before decision 30.</li>
+<li>inequalities.lisp is generated after basic-arithmetic, which it includes locally. Its local include is imported. Its <code>iff-equal</code> is a local theorem and is <code>private</code>. The <code>fc</code> macro is inlined (decision 28). All variables are real, so they range over <code>Rat</code>.</li>
+<li>Every module depends only on modules that exist. <code>scripts/check_deps.py</code> checks this: each include of the book must be an imported module, and each module must exist. A module with a missing dependency is moved to <code>staged/</code>, outside <code>Lean/</code>, and its manifest status says what it waits for. Staged modules are regenerated once their dependencies exist. Currently staged: cancel-terms-helper and non-linear (waiting for arithmetic-2/pass1/top), and expt (waiting for expt-helper and prefer-times). The import of inequalities was added to expt.</li>
+<li>prefer-times.lisp is generated after basic-arithmetic and inequalities, which it includes locally, and both are imported. The equalities over all numbers use <code>CRat</code> and <code>CRat.inv</code>, and the <code>&lt;</code> normalizations over reals use <code>Rat</code> and <code>⁻¹</code>. Its local theorems iff-equal, times-one and times-minus-one are <code>private</code>.</li>
+<li>The local defun <code>Math-induction-start-at-k</code> (expt-helper.lisp, line 22) is an induction scheme used only in hints. It is not a theorem, and no statement uses it, so it is not generated. The local theorem <code>justify-induction</code> is <code>private</code>.</li>
+<li>expt.lisp is restored from <code>staged/</code> once its local dependencies exist: expt-helper and prefer-times are generated. Its imports are basic-arithmetic, inequalities, prefer-times and expt-helper, all plain imports.</li>
+<li>mini-theories.lisp: its rule-set forms are not generated (decision 40). Its local lemma <code>Uniqueness-of-*-inverses-lemma-2</code> is <code>private</code>. Its local includes basic-arithmetic, inequalities, prefer-times and expt are imported.</li>
+<li>A function defined by a book (<code>defun</code>) is an opaque constant with its type signature and no body, for example <code>opaque nonneg-int-gcd : Rat → Rat → Rat</code>. The axioms about it are stated, not proved. Its name and namespace follow the same rules as the axioms (decisions 30 and 32), and its uses in statements refer to the constant. Functions of <code>Lean/ACL2/Base.lean</code> keep their interpretations, because they give the ACL2 primitives their meaning. Decision 37 is revised: the local defun <code>Math-induction-start-at-k</code> is generated as an opaque signature, with result type <code>Prop</code>.</li>
+<li><code>denominator</code> on a complex rational is <code>denominatorC</code>: the denominator of the real part when the imaginary part is 0, and 1 otherwise (<code>completion-of-denominator</code>, axioms.lisp, line 25561). The system function <code>nonnegative-integer-quotient</code> (axioms.lisp, line 6889) is an opaque signature in <code>Base.lean</code>, as decision 41 gives for book functions.</li>
+<li>numerator-and-denominator-helper.lisp: its functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code>, <code>nonneg-int-gcd-multiplier1</code>, <code>nonneg-int-gcd-multiplier2</code> and the local <code>induct-on-nonneg-int</code> are opaque signatures (decisions 37 and 41). It has no local includes that need a Lean import beyond basic-arithmetic, inequalities and prefer-times, which are imported as plain imports. Its statements over the integers use <code>Rat</code>, and <code>Nonneg-int-gcd-numerator-denominator</code> ranges over <code>CRat</code>, because its ACL2 statement has no integer hypothesis.</li>
+<li>numerator-and-denominator.lisp: its variables range over <code>CRat</code>, with <code>rationalp</code> as <code>realrationalpC</code>, <code>integerp</code> as <code>integerpC</code>, <code>numerator</code> as <code>numeratorC</code> and <code>denominator</code> as <code>denominatorC</code> (decisions 26 and 42). The local lemmas numerator-integerp-lemma-1 and numerator-integerp-lemma are <code>private</code>. Its local includes are imported as plain imports. Base.lean gains one decidability instance, for <code>realrationalpC</code>, which the <code>if</code> in <code>*-r-denominator-r</code> needs. <code>integerpC</code> needs no instance, because it occurs only in a disjunction.</li>
+<li>Decidability of the complex predicates in <code>if</code> expressions. The chosen representation is a computable instance, <code>Decidable (realrationalpC c)</code>, defined as <code>c.im = 0</code> (Base.lean). The alternative is to axiomatize decidability, either as <code>axiom</code> of type <code>∀ c : CRat, Decidable (realrationalpC c)</code> or through <code>Classical.propDecidable</code>. The two alternatives are logically equivalent to the chosen one, and they do not change any statement. They are not chosen, because they make the <code>if</code> depend on a non-computable choice, which ACL2&#x27;s <code>real/rationalp</code> test does not have. The alternative is recorded for the user&#x27;s decision.</li>
+<li>pass1/top.lisp has no theorem outside a <code>#| |#</code> block comment. Its module imports its non-local includes as <code>public import</code>, and it has no axioms. Its statements are not generated, because the book has none.</li>
+<li>cancel-terms-helper and non-linear are restored from <code>staged/</code>, now that <code>pass1/top</code> exists. Their local imports are plain imports: <code>pass1/top</code> for both, and <code>cancel-terms-helper</code> for non-linear.</li>
+<li>Block comments of the ACL2 book (<code>#| |#</code>) are recorded verbatim as Lean <code>--</code> comments at the end of the module, before the namespace closes. They state no axiom. This keeps the removed material, such as the commented-out theorems of pass1/top, visible next to the module.</li>
+<li>Alists. An ACL2 alist is a list of pairs, the key as the first component and the value as the second. The Lean type is <code>AList α β := List (α × β)</code> (ACL2.Base). The predicate <code>alistp</code> (axioms.lisp, line 2515) holds of every element of this type, because each element is a pair, so <code>alistp</code> is <code>True</code> on <code>AList</code>. <code>assoc-equal</code> is <code>assocEqual</code>, which returns the first pair with the given key, or <code>none</code> for <code>nil</code>. Keys and values are type parameters, not <code>Rat</code>, because ACL2 objects are untyped (a deviation from the shallow <code>Rat</code> domain, recorded here). The alist is not a <code>Finmap</code>, because <code>alistp</code> does not require unique keys. The finite-map view is the first-match lookup, and no axiom uses a <code>Finmap</code>.</li>
+<li>Shared primitives of ACL2.Base, merged from the pilot fragments. There is one symbol type, <code>ACLSymbol</code>, a structure with the <code>symbol-name</code> as field <code>name</code> (axioms.lisp, lines 5615 to 5697). <code>memberSymbolName</code> is <code>member-symbol-name</code> (axioms.lisp, line 5717). <code>trueListp</code> is <code>True</code>, because every Lean list is a true list. <code>arglistp</code> is an opaque signature, because it is defined in the ACL2 system (basis-a.lisp, line 856) and not in a book. <code>stringp</code> is <code>True</code> on <code>String</code>, and <code>length</code> on a string is its character count. <code>char</code> returns <code>Option Char</code> (deviation D1: <code>nil</code> for an index out of range, so the value may be <code>nil</code>). <code>characterp</code> takes <code>Option Char</code>, true for <code>some</code> (deviation D1). <code>code-char</code> is total, <code>Char.ofNat</code>, so for a code outside the range of ACL2 characters it differs from ACL2 (deviation D2, not resolved by the user). <code>char-code</code> is the code of the character as a rational.</li>
+<li>Why <code>characterp</code> takes <code>Option Char</code>. ACL2 <code>characterp</code> is a predicate on every object, and <code>char</code> returns <code>nil</code> for an index out of range. The statement <code>characterp-of-char</code>, <code>(characterp (char s n))</code> equivalent to <code>(stringp s ∧ nfix n &lt; length s)</code>, requires <code>characterp</code> to be false on that <code>nil</code>. A <code>characterp</code> on <code>Char</code> alone has no value for <code>char</code> to return, so <code>Option Char</code> is the carrier, with <code>none</code> for <code>nil</code>. This is the consequence of deviation D1 in decision 50, and it is open for the user&#x27;s decision together with D1.</li>
+<li>Batch primitives merged into ACL2.Base. <code>natp</code>, <code>realfix</code>, <code>rfix</code>, <code>stringListp</code>, <code>addToSetEqual</code>, <code>consp</code>, <code>function-symbolp</code> and <code>arity</code> (opaque, basis-b.lisp line 2255), <code>symbolp</code> (abbrev, <code>True</code>, deviation D3) and <code>primitivep</code> (opaque) are declared once in Base.lean. The module files of the batch keep only their own axioms. <code>arity-iff</code> ranges over symbols, so the cons case is excluded (deviation). <code>rfix</code> and <code>realfix</code> axioms sit in their book namespaces, as decision 32 requires. The <code>arithmetic/real-listp</code> book has no axioms, because both theorems sit under <code>#+:non-standard-analysis</code> (decision 12).</li>
+<li>Rule-set bookkeeping forms are not generated. These are <code>in-theory</code>, <code>deftheory</code>, <code>theory-invariant</code>, and the <code>enable</code> and <code>disable</code> forms they contain. They select which rewrite rules the ACL2 prover uses, and they state no theorem about values. Each theorem they refer to is still generated as its own axiom.</li>
+<li>A reader conditional that excludes a form in standard ACL2 excludes its axiom, and the exclusion is recorded.</li>
+</ol>
+<h3>Excluded books: metaprogramming</h3>
+<p>Interpretation rows: <code>std/system/dumb-negate-lit</code> and <code>std/system/implicate</code> are excluded as metaprogramming, with status <code>excluded: metaprogramming</code> in <code>manifest.json</code>. Both books state properties of ACL2 terms as data (<code>pseudo-termp</code>, <code>dumb-negate-lit</code>, <code>implicate</code>). No module is written.</p>
+<h3>Interpretation table</h3>
+<div class="tablewrap"><table>
+<tr><th>ACL2</th><th>Lean (<code>ACL2</code> namespace)</th></tr>
+<tr><td><code>CRat (ACL2 complex rational)</code></td><td><code>structure CRat with re, im : Rat, field operations, Coe from Rat</code></td></tr>
+<tr><td><code>realpart, imagpart</code></td><td><code>CRat.realpart, CRat.imagpart</code></td></tr>
+<tr><td><code>&lt; on complex arguments</code></td><td><code>CRat.lt: lexicographic on (realpart, imagpart), from completion-of-&lt; (axioms.lisp 25364 to 25374)</code></td></tr>
+<tr><td><code>acl2-numberp on CRat</code></td><td><code>acl2NumberPC, constant True</code></td></tr>
+<tr><td><code>/ on CRat</code></td><td><code>CRat.inv and Div, 0 for a zero argument, as (/ 0) in ACL2</code></td></tr>
+<tr><td><code>complex</code></td><td><code>complex x y, the value ⟨x, y⟩ of CRat</code></td></tr>
+<tr><td><code>real/rationalp on CRat</code></td><td><code>realrationalpC c, c.im = 0</code></td></tr>
+<tr><td><code>fix on CRat</code></td><td><code>fixC, identity</code></td></tr>
+<tr><td><code>cond without a true clause</code></td><td><code>False</code></td></tr>
+<tr><td><code>&lt;= on CRat</code></td><td><code>acl2le x y, ¬ (y &lt; x)</code></td></tr>
+<tr><td><code>quotep on CRat</code></td><td><code>quotepC, always-inhabited Type (decision 25, deferred)</code></td></tr>
+<tr><td><code>syntaxp</code></td><td><code>syntaxpW, always-inhabited Type (decision 25, deferred)</code></td></tr>
+<tr><td><code>numerator on CRat</code></td><td><code>numeratorC (decision 26)</code></td></tr>
+<tr><td><code>expt on CRat</code></td><td><code>exptC r i, exptCInt for an integer exponent, else 1 (decision 29)</code></td></tr>
+<tr><td><code>fc</code></td><td><code>identity, inlined (decision 28)</code></td></tr>
+<tr><td><code>zip, ifix, integerp on CRat</code></td><td><code>zipR, ifixR, integerpC (decision 29)</code></td></tr>
+<tr><td><code>alistp on an alist</code></td><td><code>alistp, constant True on AList (decision 49)</code></td></tr>
+<tr><td><code>assoc-equal</code></td><td><code>assocEqual, first match, none for nil (decision 49)</code></td></tr>
+<tr><td><code>getprops</code></td><td><code>opaque «getprops» over ACLSymbol, World, result AList ACLSymbol β (decision 41)</code></td></tr>
+</table></div>
+  </div>
+  </details>
+
+
+
+  <h2>Theorems and axioms</h2>
+  <section class="node">
+    <div class="node-head"><span class="node-name">string-listp-of-map-symbol-name</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/kestrel/utilities/map-symbol-name.lisp#L21" target="_blank" rel="noopener">map-symbol-name.lisp line 21</a> · <span class="">lake build not run</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm string-listp-of-map-symbol-name
+  (string-listp (map-symbol-name syms))
+  :hints ((&quot;Goal&quot; :in-theory (enable map-symbol-name))))</pre></div>
+      <div><p class="lbl">Lean axiom</p><pre>axiom «string-listp-of-map-symbol-name» : ∀ (syms : List ACLSymbol), stringListp («map-symbol-name» syms)</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><p>Decision 52. <code>string-listp</code> is <code>stringListp</code> of ACL2.Base, <code>True</code> on <code>List String</code>. <code>map-symbol-name</code> is an opaque signature (decision 41).</p></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">map-symbol-name-of-cons</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/kestrel/utilities/map-symbol-name.lisp#L25" target="_blank" rel="noopener">map-symbol-name.lisp line 25</a> · <span class="">lake build not run</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm map-symbol-name-of-cons
+  (equal (map-symbol-name (cons sym syms))
+         (cons (symbol-name sym) (map-symbol-name syms)))
+  :hints ((&quot;Goal&quot; :in-theory (enable map-symbol-name))))</pre></div>
+      <div><p class="lbl">Lean axiom</p><pre>axiom «map-symbol-name-of-cons» : ∀ (sym : ACLSymbol) (syms : List ACLSymbol), «map-symbol-name» (sym :: syms) = sym.name :: «map-symbol-name» syms</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><p>Decision 52. <code>map-symbol-name</code> is an opaque signature (decision 41). The statement uses <code>sym.name</code>, the <code>symbol-name</code> of <code>ACLSymbol</code>.</p></div></details>
+  </section>
+
+  <details>
+    <summary>Certificate file map-symbol-name.cert (ACL2 book certificate)</summary>
+    <p class="sub2">The file is binary, so the page shows its full content as a hex dump (979 bytes).</p>
+    <pre class="acl2">00000000: 0a23 5aac 120b c905 0000 0000 0108 4143  .#Z...........AC
+00000010: 4c32 0116 434f 4d4d 4f4e 2d4c 4953 5001  L2..COMMON-LISP.
+00000020: 1449 4e2d 5041 434b 4147 4502 0400 0604  .IN-PACKAGE.....
+00000030: 00ac 120b c90a 235a ac12 0bc9 0200 0000  ......#Z........
+00000040: 0001 2041 434c 3220 5665 7273 696f 6e20  .. ACL2 Version 
+00000050: 382e 3700 0000 ac12 0bc9 0a23 5aac 120b  8.7........#Z...
+00000060: c902 0000 0000 0001 0e4b 4559 574f 5244  .........KEYWORD
+00000070: 012a 4245 4749 4e2d 504f 5254 4355 4c4c  .*BEGIN-PORTCULL
+00000080: 4953 2d43 4d44 5300 00ac 120b c90a 235a  IS-CMDS.......#Z
+00000090: ac12 0bc9 0200 0000 0000 010e 4b45 5957  ............KEYW
+000000a0: 4f52 4401 2645 4e44 2d50 4f52 5443 554c  ORD.&amp;END-PORTCUL
+000000b0: 4c49 532d 434d 4453 0000 ac12 0bc9 0a23  LIS-CMDS.......#
+000000c0: 5aac 120b c902 0000 0000 0001 0e4b 4559  Z............KEY
+000000d0: 574f 5244 0112 4345 5254 2d44 4154 4100  WORD..CERT-DATA.
+000000e0: 00ac 120b c90a 235a ac12 0bc9 7902 f72b  ......#Z....y..+
+000000f0: 8009 0000 0000 0316 434f 4d4d 4f4e 2d4c  ........COMMON-L
+00000100: 4953 5008 0643 4452 0643 4152 0a51 554f  ISP..CDR.CAR.QUO
+00000110: 5445 0845 4e44 5004 4946 1653 594d 424f  TE.ENDP.IF.SYMBO
+00000120: 4c2d 4e41 4d45 0843 4f4e 530a 4551 5541  L-NAME.CONS.EQUA
+00000130: 4c08 4143 4c32 0718 5354 5249 4e47 2d4c  L.ACL2..STRING-L
+00000140: 4953 5450 3e53 5452 494e 472d 4c49 5354  ISTP&gt;STRING-LIST
+00000150: 502d 4f46 2d4d 4150 2d53 594d 424f 4c2d  P-OF-MAP-SYMBOL-
+00000160: 4e41 4d45 0653 594d 2e4d 4150 2d53 594d  NAME.SYM.MAP-SYM
+00000170: 424f 4c2d 4e41 4d45 2d4f 462d 434f 4e53  BOL-NAME-OF-CONS
+00000180: 1454 5255 452d 4c49 5354 5008 5359 4d53  .TRUE-LISTP.SYMS
+00000190: 1e4d 4150 2d53 594d 424f 4c2d 4e41 4d45  .MAP-SYMBOL-NAME
+000001a0: 0e4b 4559 574f 5244 0420 5452 414e 534c  .KEYWORD. TRANSL
+000001b0: 4154 452d 424f 4449 4553 0c44 4546 5448  ATE-BODIES.DEFTH
+000001c0: 4d12 5452 414e 534c 4154 4522 5459 5045  M.TRANSLATE&quot;TYPE
+000001d0: 2d50 5245 5343 5249 5054 494f 4e63 2200  -PRESCRIPTIONc&quot;.
+000001e0: 2417 0418 0000 2400 2c1b 001c 3000 201e  $.....$.,...0. .
+000001f0: 3a1f 3420 3221 0622 2423 4800 2c25 280f  :.4 2!.&quot;$#H.,%(.
+00000200: 2200 1c28 1429 5400 242b 1c00 122d 2200  &quot;..(.)T.$+...-&quot;.
+00000210: 242f 6000 5c31 1432 6600 5834 1635 1600  $/`.\1.2f.X4.5..
+00000220: 1437 2438 1239 7400 6c3b 4e3c 7a00 1e3e  .7$8.9t.l;N&lt;z..&gt;
+00000230: 280d 2200 2441 8401 0018 4318 0024 458c  (.&quot;.$A....C..$E.
+00000240: 0100 8801 4780 0148 9201 001a 4a24 0026  ....G..H....J$.&amp;
+00000250: 4c22 000e 4e00 000c 5022 000a 52a6 0100  L&quot;..N...P&quot;..R...
+00000260: 1254 2200 0856 ae01 0024 58b2 0100 aa01  .T&quot;..V...$X.....
+00000270: 5a14 5bb8 0100 a201 5d9e 015e 105f c001  Z.[.....]..^._..
+00000280: 0000 0024 6224 12c8 0100 c601 65c2 0166  ...$b$......e..f
+00000290: 1000 1468 2469 086a 126b 0a6c 0e6d dc01  ...h$i.j.k.l.m..
+000002a0: 00ce 016f 9a01 70e2 0100 2472 e601 0096  ...o..p...$r....
+000002b0: 0174 7e75 2a76 ee01 004c 7825 0176 0300  .t~u*v...Lx%.v..
+000002c0: ac12 0bc9 0a23 5aac 120b c900 0000 0000  .....#Z.........
+000002d0: 0000 0000 ac12 0bc9 0a23 5aac 120b c91c  .........#Z.....
+000002e0: 029c 99af eb0e e706 0000 0003 1e6d 6170  .............map
+000002f0: 2d73 796d 626f 6c2d 6e61 6d65 1e6d 6170  -symbol-name.map
+00000300: 2d73 796d 626f 6c2d 6e61 6d65 4c6b 6573  -symbol-nameLkes
+00000310: 7472 656c 2f75 7469 6c69 7469 6573 2f6d  trel/utilities/m
+00000320: 6170 2d73 796d 626f 6c2d 6e61 6d65 2e6c  ap-symbol-name.l
+00000330: 6973 7001 0e4b 4559 574f 5244 061e 424f  isp..KEYWORD..BO
+00000340: 4f4b 2d57 5249 5445 2d44 4154 4516 424f  OK-WRITE-DATE.BO
+00000350: 4f4b 2d4c 454e 4754 480a 5454 4147 530e  OK-LENGTH.TTAGS.
+00000360: 4158 494f 4d53 501e 534b 4950 5045 442d  AXIOMSP.SKIPPED-
+00000370: 5052 4f4f 4653 500c 5359 5354 454d 1018  PROOFSP.SYSTEM..
+00000380: 0616 0014 0012 0020 001e 111c 1210 030e  ....... ........
+00000390: 022a 0028 1626 1708 180a 191a 1a36 0000  .*.(.&amp;.......6..
+000003a0: ac12 0bc9 0a23 5aac 120b c902 0000 0000  .....#Z.........
+000003b0: 0001 0e4b 4559 574f 5244 0122 5452 4956  ...KEYWORD.&quot;TRIV
+000003c0: 4941 4c2d 424f 4f4b 2d48 4153 4800 00ac  IAL-BOOK-HASH...
+000003d0: 120b c9                                  ...</pre>
+  </details>
+</main>
+</div>
+<script>
+const q = document.getElementById('filter');
+q.addEventListener('input', () => {
+  const v = q.value.toLowerCase();
+  document.querySelectorAll('.toc li').forEach(li => {
+    li.style.display = li.textContent.toLowerCase().includes(v) ? '' : 'none';
+  });
+});
+</script>
