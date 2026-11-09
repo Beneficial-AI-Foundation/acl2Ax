@@ -230,7 +230,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
     <div><span class="label">Axioms</span><b>5</b></div>
     <div><span class="label">Embedding</span><b>Shallow, Rat</b></div>
     <div><span class="label">ACL2 certificate</span><b class="ok">mini-theories.cert present</b></div>
-    <div><span class="label">Lean build</span><b class="">lake build not run</b></div>
+    <div><span class="label">Lean build</span><b class="ok">lake build passes</b></div>
   </div>
 
   <details class="decisions">
@@ -288,6 +288,8 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 <li>Shared primitives of ACL2.Base, merged from the pilot fragments. There is one symbol type, <code>ACLSymbol</code>, a structure with the <code>symbol-name</code> as field <code>name</code> (axioms.lisp, lines 5615 to 5697). <code>memberSymbolName</code> is <code>member-symbol-name</code> (axioms.lisp, line 5717). <code>trueListp</code> is <code>True</code>, because every Lean list is a true list. <code>arglistp</code> is an opaque signature, because it is defined in the ACL2 system (basis-a.lisp, line 856) and not in a book. <code>stringp</code> is <code>True</code> on <code>String</code>, and <code>length</code> on a string is its character count. <code>char</code> returns <code>Option Char</code> (deviation D1: <code>nil</code> for an index out of range, so the value may be <code>nil</code>). <code>characterp</code> takes <code>Option Char</code>, true for <code>some</code> (deviation D1). <code>code-char</code> is total, <code>Char.ofNat</code>, so for a code outside the range of ACL2 characters it differs from ACL2 (deviation D2, not resolved by the user). <code>char-code</code> is the code of the character as a rational.</li>
 <li>Why <code>characterp</code> takes <code>Option Char</code>. ACL2 <code>characterp</code> is a predicate on every object, and <code>char</code> returns <code>nil</code> for an index out of range. The statement <code>characterp-of-char</code>, <code>(characterp (char s n))</code> equivalent to <code>(stringp s ∧ nfix n &lt; length s)</code>, requires <code>characterp</code> to be false on that <code>nil</code>. A <code>characterp</code> on <code>Char</code> alone has no value for <code>char</code> to return, so <code>Option Char</code> is the carrier, with <code>none</code> for <code>nil</code>. This is the consequence of deviation D1 in decision 50, and it is open for the user&#x27;s decision together with D1.</li>
 <li>Batch primitives merged into ACL2.Base. <code>natp</code>, <code>realfix</code>, <code>rfix</code>, <code>stringListp</code>, <code>addToSetEqual</code>, <code>consp</code>, <code>function-symbolp</code> and <code>arity</code> (opaque, basis-b.lisp line 2255), <code>symbolp</code> (abbrev, <code>True</code>, deviation D3) and <code>primitivep</code> (opaque) are declared once in Base.lean. The module files of the batch keep only their own axioms. <code>arity-iff</code> ranges over symbols, so the cons case is excluded (deviation). <code>rfix</code> and <code>realfix</code> axioms sit in their book namespaces, as decision 32 requires. The <code>arithmetic/real-listp</code> book has no axioms, because both theorems sit under <code>#+:non-standard-analysis</code> (decision 12).</li>
+<li>Deviations from the untyped ACL2 domain in the batch modules. Each of the following is a recorded deviation, and each is a faithful statement over the stated type. (a) List and alist variables range over <code>List α</code> with <code>α</code> a type parameter, and <code>rationalListp</code> is <code>True</code>, so statements over <code>List Rat</code> have no content in Lean (<code>arithmetic/rational-listp</code>, <code>arithmetic/sumlist</code>). (b) <code>booleanp</code> is <code>True</code> on <code>Prop</code>, which is a larger carrier than the ACL2 truth values (D4, <code>equal-of-booleans</code>). (c) <code>update-acl2-oracle</code> takes an oracle over <code>List α</code>, and <code>State</code>, <code>InputChannels</code>, <code>w</code> and <code>open-input-channels</code> are opaque types with a <code>Nonempty</code> placeholder, because Lean&#x27;s <code>opaque</code> needs an inhabitant. The placeholders are <code>Prop</code> axioms that assert nonemptiness only. (d) <code>test-2</code> is an opaque <code>String</code>, because its value depends on the file encoding, which this embedding does not represent. (e) Variables of <code>digit-to-char</code> and <code>zero-digit-to-char</code> range over <code>Rat</code>, not over every ACL2 object. (f) <code>unionEqual</code>, <code>symbolNameLst</code> and <code>len</code> are declared in <code>Base.lean</code> as the ACL2 functions on lists.</li>
+<li><code>car</code> on a nonempty list is <code>x.headD 0</code>. ACL2 <code>car</code> of <code>nil</code> is <code>nil</code>, and the hypothesis <code>x</code> (non-nil) excludes that case, so the statement is unaffected. A <code>car</code> declaration in <code>Base.lean</code> would replace the inline <code>headD</code>, and it is proposed, not added.</li>
 <li>Rule-set bookkeeping forms are not generated. These are <code>in-theory</code>, <code>deftheory</code>, <code>theory-invariant</code>, and the <code>enable</code> and <code>disable</code> forms they contain. They select which rewrite rules the ACL2 prover uses, and they state no theorem about values. Each theorem they refer to is still generated as its own axiom.</li>
 <li>A reader conditional that excludes a form in standard ACL2 excludes its axiom, and the exclusion is recorded.</li>
 </ol>
@@ -323,7 +325,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 
   <h2>Theorems and axioms</h2>
   <section class="node">
-    <div class="node-head"><span class="node-name">rewrite-linear-equalities-to-iff</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/mini-theories.lisp#L28" target="_blank" rel="noopener">mini-theories.lisp line 28</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">rewrite-linear-equalities-to-iff</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/mini-theories.lisp#L28" target="_blank" rel="noopener">mini-theories.lisp line 28</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm rewrite-linear-equalities-to-iff
    (equal (equal (&lt; w x) (&lt; y z))
@@ -336,7 +338,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">Uniqueness-of-*-inverses-lemma-2</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/mini-theories.lisp#L43" target="_blank" rel="noopener">mini-theories.lisp line 43</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">Uniqueness-of-*-inverses-lemma-2</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/mini-theories.lisp#L43" target="_blank" rel="noopener">mini-theories.lisp line 43</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">  (defthm Uniqueness-of-*-inverses-lemma-2
     (equal (equal (* x y)
@@ -352,7 +354,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">Uniqueness-of-*-inverses</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/mini-theories.lisp#L50" target="_blank" rel="noopener">mini-theories.lisp line 50</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">Uniqueness-of-*-inverses</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/mini-theories.lisp#L50" target="_blank" rel="noopener">mini-theories.lisp line 50</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2"> (defthm Uniqueness-of-*-inverses
    (equal (equal (* x y)
@@ -368,7 +370,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">expts-add-aggressive</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/mini-theories.lisp#L70" target="_blank" rel="noopener">mini-theories.lisp line 70</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">expts-add-aggressive</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/mini-theories.lisp#L70" target="_blank" rel="noopener">mini-theories.lisp line 70</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expts-add-aggressive
   (implies (and (integerp i)
@@ -391,7 +393,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">expts-add-inverse</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/mini-theories.lisp#L80" target="_blank" rel="noopener">mini-theories.lisp line 80</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">expts-add-inverse</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/mini-theories.lisp#L80" target="_blank" rel="noopener">mini-theories.lisp line 80</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expts-add-inverse
   (implies (and (integerp i)
@@ -415,10 +417,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
 
-  <details>
-    <summary>Certificate file mini-theories.cert (ACL2 book certificate)</summary>
-    <p class="sub2">The file is binary, so the page shows its full content as a hex dump (2026 bytes).</p>
-    <pre class="acl2">00000000: 0a23 5aac 120b c905 0000 0000 0108 4143  .#Z...........AC
+  <details open>
+    <summary>Certificate mini-theories.cert</summary>
+    <table class="certinfo">
+      <tr><td>File</td><td><a href="file:///Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/books/arithmetic-2/pass1/mini-theories.cert">/Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/books/arithmetic-2/pass1/mini-theories.cert</a></td></tr>
+      <tr><td>Size</td><td>2026 bytes</td></tr>
+      <tr><td>SHA-256</td><td><code>f973c93d984e59212649aea6b4a4fc876ccc7409b842b17894c4d28f4598088e</code></td></tr>
+      <tr><td>ACL2 version</td><td>8.7</td></tr>
+      <tr><td>Book paths named in the certificate</td><td><ul><li><code>UNARY-/</code></li><li><code>expt-helperGarithmetic-2/pass1/expt-helper.lisp</code></li><li><code>expt8arithmetic-2/pass1/expt.lisp</code></li><li><code>inequalitiesIarithmetic-2/pass1/inequalities.lisp</code></li><li><code>mini-theoriesJarithmetic-2/pass1/mini-theories.lisp</code></li><li><code>prefer-timesIarithmetic-2/pass1/prefer-times.lisp</code></li></ul></td></tr>
+    </table>
+    <details>
+      <summary>Hex dump of the certificate (2026 bytes)</summary>
+      <pre class="acl2">00000000: 0a23 5aac 120b c905 0000 0000 0108 4143  .#Z...........AC
 00000010: 4c32 0116 434f 4d4d 4f4e 2d4c 4953 5001  L2..COMMON-LISP.
 00000020: 1449 4e2d 5041 434b 4147 4502 0400 0604  .IN-PACKAGE.....
 00000030: 00ac 120b c90a 235a ac12 0bc9 0200 0000  ......#Z........
@@ -545,6 +555,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 000007c0: 0bc9 0200 0000 0000 010e 4b45 5957 4f52  ..........KEYWOR
 000007d0: 4401 2254 5249 5649 414c 2d42 4f4f 4b2d  D.&quot;TRIVIAL-BOOK-
 000007e0: 4841 5348 0000 ac12 0bc9                 HASH......</pre>
+    </details>
   </details>
 </main>
 </div>

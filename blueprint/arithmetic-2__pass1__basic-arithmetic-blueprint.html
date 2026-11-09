@@ -230,7 +230,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
     <div><span class="label">Axioms</span><b>32</b></div>
     <div><span class="label">Embedding</span><b>Shallow, Rat</b></div>
     <div><span class="label">ACL2 certificate</span><b class="ok">basic-arithmetic.cert present</b></div>
-    <div><span class="label">Lean build</span><b class="">lake build not run</b></div>
+    <div><span class="label">Lean build</span><b class="ok">lake build passes</b></div>
   </div>
 
   <details class="decisions">
@@ -288,6 +288,8 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 <li>Shared primitives of ACL2.Base, merged from the pilot fragments. There is one symbol type, <code>ACLSymbol</code>, a structure with the <code>symbol-name</code> as field <code>name</code> (axioms.lisp, lines 5615 to 5697). <code>memberSymbolName</code> is <code>member-symbol-name</code> (axioms.lisp, line 5717). <code>trueListp</code> is <code>True</code>, because every Lean list is a true list. <code>arglistp</code> is an opaque signature, because it is defined in the ACL2 system (basis-a.lisp, line 856) and not in a book. <code>stringp</code> is <code>True</code> on <code>String</code>, and <code>length</code> on a string is its character count. <code>char</code> returns <code>Option Char</code> (deviation D1: <code>nil</code> for an index out of range, so the value may be <code>nil</code>). <code>characterp</code> takes <code>Option Char</code>, true for <code>some</code> (deviation D1). <code>code-char</code> is total, <code>Char.ofNat</code>, so for a code outside the range of ACL2 characters it differs from ACL2 (deviation D2, not resolved by the user). <code>char-code</code> is the code of the character as a rational.</li>
 <li>Why <code>characterp</code> takes <code>Option Char</code>. ACL2 <code>characterp</code> is a predicate on every object, and <code>char</code> returns <code>nil</code> for an index out of range. The statement <code>characterp-of-char</code>, <code>(characterp (char s n))</code> equivalent to <code>(stringp s ∧ nfix n &lt; length s)</code>, requires <code>characterp</code> to be false on that <code>nil</code>. A <code>characterp</code> on <code>Char</code> alone has no value for <code>char</code> to return, so <code>Option Char</code> is the carrier, with <code>none</code> for <code>nil</code>. This is the consequence of deviation D1 in decision 50, and it is open for the user&#x27;s decision together with D1.</li>
 <li>Batch primitives merged into ACL2.Base. <code>natp</code>, <code>realfix</code>, <code>rfix</code>, <code>stringListp</code>, <code>addToSetEqual</code>, <code>consp</code>, <code>function-symbolp</code> and <code>arity</code> (opaque, basis-b.lisp line 2255), <code>symbolp</code> (abbrev, <code>True</code>, deviation D3) and <code>primitivep</code> (opaque) are declared once in Base.lean. The module files of the batch keep only their own axioms. <code>arity-iff</code> ranges over symbols, so the cons case is excluded (deviation). <code>rfix</code> and <code>realfix</code> axioms sit in their book namespaces, as decision 32 requires. The <code>arithmetic/real-listp</code> book has no axioms, because both theorems sit under <code>#+:non-standard-analysis</code> (decision 12).</li>
+<li>Deviations from the untyped ACL2 domain in the batch modules. Each of the following is a recorded deviation, and each is a faithful statement over the stated type. (a) List and alist variables range over <code>List α</code> with <code>α</code> a type parameter, and <code>rationalListp</code> is <code>True</code>, so statements over <code>List Rat</code> have no content in Lean (<code>arithmetic/rational-listp</code>, <code>arithmetic/sumlist</code>). (b) <code>booleanp</code> is <code>True</code> on <code>Prop</code>, which is a larger carrier than the ACL2 truth values (D4, <code>equal-of-booleans</code>). (c) <code>update-acl2-oracle</code> takes an oracle over <code>List α</code>, and <code>State</code>, <code>InputChannels</code>, <code>w</code> and <code>open-input-channels</code> are opaque types with a <code>Nonempty</code> placeholder, because Lean&#x27;s <code>opaque</code> needs an inhabitant. The placeholders are <code>Prop</code> axioms that assert nonemptiness only. (d) <code>test-2</code> is an opaque <code>String</code>, because its value depends on the file encoding, which this embedding does not represent. (e) Variables of <code>digit-to-char</code> and <code>zero-digit-to-char</code> range over <code>Rat</code>, not over every ACL2 object. (f) <code>unionEqual</code>, <code>symbolNameLst</code> and <code>len</code> are declared in <code>Base.lean</code> as the ACL2 functions on lists.</li>
+<li><code>car</code> on a nonempty list is <code>x.headD 0</code>. ACL2 <code>car</code> of <code>nil</code> is <code>nil</code>, and the hypothesis <code>x</code> (non-nil) excludes that case, so the statement is unaffected. A <code>car</code> declaration in <code>Base.lean</code> would replace the inline <code>headD</code>, and it is proposed, not added.</li>
 <li>Rule-set bookkeeping forms are not generated. These are <code>in-theory</code>, <code>deftheory</code>, <code>theory-invariant</code>, and the <code>enable</code> and <code>disable</code> forms they contain. They select which rewrite rules the ACL2 prover uses, and they state no theorem about values. Each theorem they refer to is still generated as its own axiom.</li>
 <li>A reader conditional that excludes a form in standard ACL2 excludes its axiom, and the exclusion is recorded.</li>
 </ol>
@@ -326,7 +328,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 
   <h2>Theorems and axioms</h2>
   <section class="node">
-    <div class="node-head"><span class="node-name">commutativity-2-of-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L16" target="_blank" rel="noopener">basic-arithmetic.lisp line 16</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">commutativity-2-of-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L16" target="_blank" rel="noopener">basic-arithmetic.lisp line 16</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm commutativity-2-of-+
   (equal (+ x (+ y z))
@@ -339,7 +341,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">functional-self-inversion-of-minus</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L20" target="_blank" rel="noopener">basic-arithmetic.lisp line 20</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">functional-self-inversion-of-minus</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L20" target="_blank" rel="noopener">basic-arithmetic.lisp line 20</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm functional-self-inversion-of-minus
   (equal (- (- x))
@@ -352,7 +354,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">distributivity-of-minus-over-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L24" target="_blank" rel="noopener">basic-arithmetic.lisp line 24</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">distributivity-of-minus-over-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L24" target="_blank" rel="noopener">basic-arithmetic.lisp line 24</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm distributivity-of-minus-over-+
   (equal (- (+ x y))
@@ -365,7 +367,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">minus-cancellation-on-right</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L28" target="_blank" rel="noopener">basic-arithmetic.lisp line 28</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">minus-cancellation-on-right</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L28" target="_blank" rel="noopener">basic-arithmetic.lisp line 28</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm minus-cancellation-on-right
   (equal (+ x y (- x))
@@ -378,7 +380,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">minus-cancellation-on-left</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L32" target="_blank" rel="noopener">basic-arithmetic.lisp line 32</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">minus-cancellation-on-left</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L32" target="_blank" rel="noopener">basic-arithmetic.lisp line 32</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm minus-cancellation-on-left
   (equal (+ x (- x) y)
@@ -391,7 +393,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">right-cancellation-for-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L41" target="_blank" rel="noopener">basic-arithmetic.lisp line 41</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">right-cancellation-for-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L41" target="_blank" rel="noopener">basic-arithmetic.lisp line 41</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm right-cancellation-for-+
   (equal (equal (+ x z)
@@ -405,7 +407,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">left-cancellation-for-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L46" target="_blank" rel="noopener">basic-arithmetic.lisp line 46</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">left-cancellation-for-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L46" target="_blank" rel="noopener">basic-arithmetic.lisp line 46</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm left-cancellation-for-+
   (equal (equal (+ x y)
@@ -419,7 +421,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">equal-minus-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L51" target="_blank" rel="noopener">basic-arithmetic.lisp line 51</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">equal-minus-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L51" target="_blank" rel="noopener">basic-arithmetic.lisp line 51</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm equal-minus-0
   (equal (equal (- x) 0)
@@ -432,7 +434,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">equal-+-x-y-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L59" target="_blank" rel="noopener">basic-arithmetic.lisp line 59</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">equal-+-x-y-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L59" target="_blank" rel="noopener">basic-arithmetic.lisp line 59</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm equal-+-x-y-0
   (implies (syntaxp (not (and (consp y)
@@ -448,7 +450,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">equal-+-x-y-x</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L66" target="_blank" rel="noopener">basic-arithmetic.lisp line 66</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">equal-+-x-y-x</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L66" target="_blank" rel="noopener">basic-arithmetic.lisp line 66</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm equal-+-x-y-x
   (equal (equal (+ x y) x)
@@ -462,7 +464,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">equal-+-x-y-y</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L71" target="_blank" rel="noopener">basic-arithmetic.lisp line 71</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">equal-+-x-y-y</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L71" target="_blank" rel="noopener">basic-arithmetic.lisp line 71</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm equal-+-x-y-y
   (equal (equal (+ x y) y)
@@ -476,7 +478,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">equal-minus-minus</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L76" target="_blank" rel="noopener">basic-arithmetic.lisp line 76</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">equal-minus-minus</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L76" target="_blank" rel="noopener">basic-arithmetic.lisp line 76</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm equal-minus-minus
   (equal (equal (- a) (- b))
@@ -489,7 +491,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">fold-consts-in-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L80" target="_blank" rel="noopener">basic-arithmetic.lisp line 80</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">fold-consts-in-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L80" target="_blank" rel="noopener">basic-arithmetic.lisp line 80</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm fold-consts-in-+
   (implies (and (syntaxp (quotep x))
@@ -504,7 +506,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">commutativity-2-of-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L92" target="_blank" rel="noopener">basic-arithmetic.lisp line 92</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">commutativity-2-of-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L92" target="_blank" rel="noopener">basic-arithmetic.lisp line 92</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm commutativity-2-of-*
    (equal (* x (* y z))
@@ -517,7 +519,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">functional-self-inversion-of-/</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L96" target="_blank" rel="noopener">basic-arithmetic.lisp line 96</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">functional-self-inversion-of-/</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L96" target="_blank" rel="noopener">basic-arithmetic.lisp line 96</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm functional-self-inversion-of-/
   (equal (/ (/ x)) (fix x)))</pre></div>
@@ -529,7 +531,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">distributivity-of-/-over-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L99" target="_blank" rel="noopener">basic-arithmetic.lisp line 99</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">distributivity-of-/-over-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L99" target="_blank" rel="noopener">basic-arithmetic.lisp line 99</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm distributivity-of-/-over-*
   (equal (/ (* x y))
@@ -542,7 +544,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">/-cancellation-on-right</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L103" target="_blank" rel="noopener">basic-arithmetic.lisp line 103</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">/-cancellation-on-right</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L103" target="_blank" rel="noopener">basic-arithmetic.lisp line 103</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm /-cancellation-on-right
   (equal (* y x (/ y))
@@ -557,7 +559,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">/-cancellation-on-left</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L109" target="_blank" rel="noopener">basic-arithmetic.lisp line 109</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">/-cancellation-on-left</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L109" target="_blank" rel="noopener">basic-arithmetic.lisp line 109</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm /-cancellation-on-left
   (equal (* y (/ y) x)
@@ -572,7 +574,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">right-cancellation-for-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L115" target="_blank" rel="noopener">basic-arithmetic.lisp line 115</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">right-cancellation-for-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L115" target="_blank" rel="noopener">basic-arithmetic.lisp line 115</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm right-cancellation-for-*
   (equal (equal (* x z) (* y z))
@@ -586,7 +588,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">left-cancellation-for-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L120" target="_blank" rel="noopener">basic-arithmetic.lisp line 120</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">left-cancellation-for-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L120" target="_blank" rel="noopener">basic-arithmetic.lisp line 120</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm left-cancellation-for-*
   (equal (equal (* z x) (* z y))
@@ -600,7 +602,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">equal-/-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L125" target="_blank" rel="noopener">basic-arithmetic.lisp line 125</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">equal-/-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L125" target="_blank" rel="noopener">basic-arithmetic.lisp line 125</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm equal-/-0
   (equal (equal (/ x) 0)
@@ -613,7 +615,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">equal-*-x-y-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L129" target="_blank" rel="noopener">basic-arithmetic.lisp line 129</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">equal-*-x-y-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L129" target="_blank" rel="noopener">basic-arithmetic.lisp line 129</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm equal-*-x-y-0
   (equal (equal (* x y) 0)
@@ -627,7 +629,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">equal-*-x-y-x</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L134" target="_blank" rel="noopener">basic-arithmetic.lisp line 134</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">equal-*-x-y-x</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L134" target="_blank" rel="noopener">basic-arithmetic.lisp line 134</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm equal-*-x-y-x
   (equal (equal (* x y) x)
@@ -647,7 +649,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">equal-*-y-x-x</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L145" target="_blank" rel="noopener">basic-arithmetic.lisp line 145</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">equal-*-y-x-x</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L145" target="_blank" rel="noopener">basic-arithmetic.lisp line 145</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm equal-*-y-x-x
   (equal (equal (* y x) x)
@@ -662,7 +664,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">equal-/-/</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L151" target="_blank" rel="noopener">basic-arithmetic.lisp line 151</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">equal-/-/</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L151" target="_blank" rel="noopener">basic-arithmetic.lisp line 151</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm equal-/-/
   (equal (equal (/ a) (/ b))
@@ -675,7 +677,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">fold-consts-in-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L155" target="_blank" rel="noopener">basic-arithmetic.lisp line 155</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">fold-consts-in-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L155" target="_blank" rel="noopener">basic-arithmetic.lisp line 155</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm fold-consts-in-*
   (implies (and (syntaxp (quotep x))
@@ -690,7 +692,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">equal-/</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L173" target="_blank" rel="noopener">basic-arithmetic.lisp line 173</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">equal-/</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L173" target="_blank" rel="noopener">basic-arithmetic.lisp line 173</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm equal-/
   (equal (equal (/ x) y)
@@ -705,7 +707,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">numerator-nonzero-forward</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L182" target="_blank" rel="noopener">basic-arithmetic.lisp line 182</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">numerator-nonzero-forward</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L182" target="_blank" rel="noopener">basic-arithmetic.lisp line 182</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm numerator-nonzero-forward
   (implies (not (equal (numerator r) 0))
@@ -722,7 +724,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">times-zero</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L197" target="_blank" rel="noopener">basic-arithmetic.lisp line 197</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">times-zero</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L197" target="_blank" rel="noopener">basic-arithmetic.lisp line 197</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm times-zero
   (equal (* 0 x) 0))</pre></div>
@@ -734,7 +736,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">functional-commutativity-of-minus-*-right</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L204" target="_blank" rel="noopener">basic-arithmetic.lisp line 204</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">functional-commutativity-of-minus-*-right</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L204" target="_blank" rel="noopener">basic-arithmetic.lisp line 204</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm functional-commutativity-of-minus-*-right
   (equal (* x (- y))
@@ -747,7 +749,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">functional-commutativity-of-minus-*-left</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L208" target="_blank" rel="noopener">basic-arithmetic.lisp line 208</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">functional-commutativity-of-minus-*-left</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L208" target="_blank" rel="noopener">basic-arithmetic.lisp line 208</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm functional-commutativity-of-minus-*-left
   (equal (* (- x) y)
@@ -760,7 +762,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
   <section class="node">
-    <div class="node-head"><span class="node-name">reciprocal-minus-a</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L212" target="_blank" rel="noopener">basic-arithmetic.lisp line 212</a> · <span class="">lake build not run</span></span></div>
+    <div class="node-head"><span class="node-name">reciprocal-minus-a</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L212" target="_blank" rel="noopener">basic-arithmetic.lisp line 212</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
       <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm reciprocal-minus-a
   (equal (/ (- x))
@@ -773,10 +775,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 </ol></div></details>
   </section>
 
-  <details>
-    <summary>Certificate file basic-arithmetic.cert (ACL2 book certificate)</summary>
-    <p class="sub2">The file is binary, so the page shows its full content as a hex dump (3592 bytes).</p>
-    <pre class="acl2">00000000: 0a23 5aac 120b c905 0000 0000 0108 4143  .#Z...........AC
+  <details open>
+    <summary>Certificate basic-arithmetic.cert</summary>
+    <table class="certinfo">
+      <tr><td>File</td><td><a href="file:///Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/books/arithmetic-2/pass1/basic-arithmetic.cert">/Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/books/arithmetic-2/pass1/basic-arithmetic.cert</a></td></tr>
+      <tr><td>Size</td><td>3592 bytes</td></tr>
+      <tr><td>SHA-256</td><td><code>c288a89aeac53892188d148def7bcab1160038176825fa695721d7cf2a89f9bd</code></td></tr>
+      <tr><td>ACL2 version</td><td>8.7</td></tr>
+      <tr><td>Book paths named in the certificate</td><td><ul><li><code>EQUAL-/-0</code></li></ul></td></tr>
+    </table>
+    <details>
+      <summary>Hex dump of the certificate (3592 bytes)</summary>
+      <pre class="acl2">00000000: 0a23 5aac 120b c905 0000 0000 0108 4143  .#Z...........AC
 00000010: 4c32 0116 434f 4d4d 4f4e 2d4c 4953 5001  L2..COMMON-LISP.
 00000020: 1449 4e2d 5041 434b 4147 4502 0400 0604  .IN-PACKAGE.....
 00000030: 00ac 120b c90a 235a ac12 0bc9 0200 0000  ......#Z........
@@ -1001,6 +1011,7 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
 00000de0: 0200 0000 0000 010e 4b45 5957 4f52 4401  ........KEYWORD.
 00000df0: 2254 5249 5649 414c 2d42 4f4f 4b2d 4841  &quot;TRIVIAL-BOOK-HA
 00000e00: 5348 0000 ac12 0bc9                      SH......</pre>
+    </details>
   </details>
 </main>
 </div>
