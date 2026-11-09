@@ -1,0 +1,5 @@
+.lake/
+.DS_Store
+lake-packages/
+exports/
+__pycache__/

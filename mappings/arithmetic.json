@@ -1,0 +1,23 @@
+{
+  "scope": "certified books in books/arithmetic",
+  "package_rule": "Every book in scope selects the ACL2 package with in-package. No defpkg form occurs in scope. The ACL2 package maps to the Lean namespace ACL2.",
+  "lean_module_rule": "Module path mirrors the book path under Lean/ with the .lean extension.",
+  "books": [
+    {"book": "arithmetic/abs", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/abs.lean", "includes": [{"target": "arithmetic/top", "local": false}]},
+    {"book": "arithmetic/binomial", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/binomial.lean", "includes": [{"target": "arithmetic/top", "local": true}, {"target": "arithmetic/factorial", "local": false}, {"target": "arithmetic/sumlist", "local": false}]},
+    {"book": "arithmetic/equalities", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/equalities.lean", "includes": [{"target": "xdoc/top", "local": false, "dir": "system"}]},
+    {"book": "arithmetic/factorial", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/factorial.lean", "includes": []},
+    {"book": "arithmetic/idiv", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/idiv.lean", "includes": [{"target": "arithmetic/top", "local": false}]},
+    {"book": "arithmetic/inequalities", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/inequalities.lean", "includes": [{"target": "arithmetic/equalities", "local": false}]},
+    {"book": "arithmetic/mod-gcd", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/mod-gcd.lean", "includes": [{"target": "arithmetic/inequalities", "local": true}]},
+    {"book": "arithmetic/nat-listp", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/nat-listp.lean", "includes": [{"target": "xdoc/top", "local": false, "dir": "system"}]},
+    {"book": "arithmetic/natp-posp", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/natp-posp.lean", "includes": [{"target": "arithmetic/inequalities", "local": false}]},
+    {"book": "arithmetic/rational-listp", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/rational-listp.lean", "includes": [{"target": "xdoc/top", "local": false, "dir": "system"}]},
+    {"book": "arithmetic/rationals", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/rationals.lean", "includes": [{"target": "arithmetic/inequalities", "local": false}, {"target": "arithmetic/mod-gcd", "local": true}]},
+    {"book": "arithmetic/real-listp", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/real-listp.lean", "includes": []},
+    {"book": "arithmetic/realp", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/realp.lean", "includes": []},
+    {"book": "arithmetic/sumlist", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/sumlist.lean", "includes": []},
+    {"book": "arithmetic/top", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/top.lean", "includes": [{"target": "arithmetic/equalities", "local": false}, {"target": "arithmetic/rational-listp", "local": false}, {"target": "arithmetic/nat-listp", "local": false}, {"target": "arithmetic/realp", "local": false}, {"target": "arithmetic/real-listp", "local": false}, {"target": "arithmetic/inequalities", "local": false}, {"target": "arithmetic/natp-posp", "local": false}, {"target": "arithmetic/rationals", "local": false}]},
+    {"book": "arithmetic/top-with-meta", "package": "ACL2", "namespace": "ACL2", "lean_file": "Lean/arithmetic/top-with-meta.lean", "includes": [{"target": "arithmetic/top", "local": false}, {"target": "meta/meta", "local": false, "dir": "system"}]}
+  ]
+}

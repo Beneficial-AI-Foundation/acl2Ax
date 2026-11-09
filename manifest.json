@@ -1,0 +1,5813 @@
+{
+ "source": "/Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/books",
+ "books": [
+  {
+   "path": "acl2s/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-2/meta/cancel-terms-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-2/meta/non-linear.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-2/pass1/basic-arithmetic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-2/pass1/basic-arithmetic-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-2/pass1/expt.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-2/pass1/expt-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-2/pass1/inequalities.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-2/pass1/mini-theories.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-2/pass1/numerator-and-denominator.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-2/pass1/numerator-and-denominator-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-2/pass1/prefer-times.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-2/pass1/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/arithmetic-theory.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/banner.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/basic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/basic-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/building-blocks.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/collect.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/common.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/default-hint.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/integerp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/integerp-meta.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/mini-theories.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/mini-theories-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/normalize.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/numerator-and-denominator.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/remove-weak-inequalities.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/simplify.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/simplify-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/bind-free/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/extra/ext.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/extra/ext-compat.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/extra/top-ext.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/floor-mod/floor-mod.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/floor-mod/mod-expt-fast.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/pass1/basic-arithmetic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/pass1/basic-arithmetic-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/pass1/expt.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/pass1/expt-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/pass1/inequalities.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/pass1/mini-theories.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/pass1/non-linear.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/pass1/num-and-denom-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/pass1/numerator-and-denominator.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/pass1/prefer-times.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/pass1/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-3/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/arithmetic-theory.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/banner.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/basic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/building-blocks.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/building-blocks-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/collect.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/common.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/default-hint.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/distributivity.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/dynamic-e-d.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/elim-hint.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/expt.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/expt-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/forcing-types.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/if-normalization.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/integerp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/integerp-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/integerp-meta.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/mini-theories.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/natp-posp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/normalize.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/numerator-and-denominator.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/remove-weak-inequalities.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/simple-equalities-and-inequalities.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/simple-equalities-and-inequalities-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/simplify.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/simplify-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/types.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/types-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/basic-ops/we-are-here.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/floor-mod/floor-mod.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/floor-mod/floor-mod-basic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/floor-mod/floor-mod-basic-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/floor-mod/floor-mod-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/floor-mod/forcing-types.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/floor-mod/if-normalization.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/floor-mod/logand.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/floor-mod/logand-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/floor-mod/mod-expt-fast.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/floor-mod/more-floor-mod.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/floor-mod/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/lib/floor-mod/truncate-rem.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/support/basic-arithmetic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/support/basic-arithmetic-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/support/expt.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/support/expt-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/support/inequalities.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/support/mini-theories.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/support/non-linear.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/support/num-and-denom-helper.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/support/numerator-and-denominator.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/support/prefer-times.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/support/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic-5/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic/abs.lisp",
+   "status": "axioms generated, lake build passes"
+  },
+  {
+   "path": "arithmetic/binomial.lisp",
+   "status": "axioms generated, lake build passes"
+  },
+  {
+   "path": "arithmetic/equalities.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic/factorial.lisp",
+   "status": "axioms generated, lake build passes"
+  },
+  {
+   "path": "arithmetic/idiv.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic/inequalities.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic/mod-gcd.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic/nat-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic/natp-posp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic/rational-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic/rationals.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic/real-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic/realp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic/sumlist.lisp",
+   "status": "axioms generated, lake build passes"
+  },
+  {
+   "path": "arithmetic/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "arithmetic/top-with-meta.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "build/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/bitops/equal-by-logbitp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/bitops/fast-logext.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/bitops/floor-mod.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/bitops/ihs-extensions.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/bitops/ihsext-basics.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/bitops/integer-length.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/bitops/logbitp-mismatch.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/bitops/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/bitops/signed-byte-p.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/bridge/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/baselists.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/basetypes.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/database.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/deftypes.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/docgen.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/fixequiv.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/fixtype.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/fty-alist.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/fty-list.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/fty-parseutils.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/fty-sugar.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/fty-sum.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/fty-sum-casemacro.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/fty-transsum.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/multicase.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/fty/visitor.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/getopt/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/misc/equal-sets.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/misc/evaluator-metatheorems.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/misc/memory-mgmt.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/misc/memory-mgmt-logic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/misc/prev-stobj-binding.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/misc/universal-equiv.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/misc/witness-cp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/nrev/fast.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/nrev/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/nrev/pure.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "centaur/satlink/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "clause-processors/equality.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "clause-processors/ev-find-rules.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "clause-processors/ev-theoremp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "clause-processors/generalize.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "clause-processors/join-thms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "clause-processors/magic-ev.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "clause-processors/meta-extract-user.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "clause-processors/remove-hyp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "clause-processors/term-vars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "clause-processors/unify-subst.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "clause-processors/use-by-hint.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "clause-processors/witness-cp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "coi/symbol-fns/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "cowles/acl2-agp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "cowles/acl2-asg.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "cowles/acl2-crg.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "cowles/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/alist-defthms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/alist-defuns.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/alist-theory.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/array1.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/defalist.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/deflist.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/list-defthms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/list-defuns.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/list-theory.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/no-duplicates.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/number-list-defthms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/number-list-defuns.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/number-list-theory.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/set-defthms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/set-defuns.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/set-theory.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/structures.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "data-structures/utilities.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "defsort/defsort.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "defsort/duplicated-members.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "defsort/generic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "defsort/uniquep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ihs/@logops.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ihs/basic-definitions.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ihs/ihs-definitions.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ihs/ihs-doc-topic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ihs/ihs-init.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ihs/ihs-lemmas.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ihs/ihs-theories.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ihs/logops-definitions.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ihs/logops-lemmas.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ihs/math-lemmas.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ihs/quotient-remainder-lemmas.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/acl2-arrays/alen1.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/acl2-arrays/aref1.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/acl2-arrays/array1p.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/acl2-arrays/aset1.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/acl2-arrays/bounded-integer-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/acl2-arrays/compress1.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/acl2-arrays/compress11.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/acl2-arrays/constants.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/acl2-arrays/default.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/acl2-arrays/dimensions.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/acl2-arrays/header.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/acl2-arrays/maximum-length.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/alists-light/acons.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/alists-light/alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/alists-light/assoc-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/alists-light/remove-assoc-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/alists-light/strip-cars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/alists-light/symbol-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/built-ins/collect.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/built-ins/disable.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/bv-lists/unsigned-byte-listp-def.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/error-checking/def-error-checker.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/error-checking/ensure-function-is-guard-verified.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/error-checking/ensure-function-is-logic-mode.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/error-checking/ensure-list-has-no-duplicates.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/error-checking/ensure-symbol-is-fresh-event-name.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/error-checking/ensure-value-is-boolean.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/error-checking/ensure-value-is-not-in-list.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/error-checking/ensure-value-is-symbol.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/error-checking/ensure-value-is-symbol-list.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/error-checking/ensure-value-is-untranslated-term.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/event-macros/applicability-conditions.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/event-macros/cw-event.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/event-macros/evmac-input-hints-p.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/event-macros/fail-event.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/event-macros/input-processing.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/event-macros/make-event-terse.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/event-macros/proof-preparation.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/event-macros/restore-output.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/event-macros/screen-printing.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/event-macros/try-event.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/event-macros/xdoc-constructors.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/file-io-light/channels.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/file-io-light/iprint-oracle-updates.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/file-io-light/read-object.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/file-io-light/typed-io-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/fty/fty-omap.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/fty/fty-set.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/fty/map.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/append.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/butlast.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/cdr.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/cons.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/intersection-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/len.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/member-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/no-duplicatesp-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/nth.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/nthcdr.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/remove1-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/revappend.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/reverse-list.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/take.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/lists-light/true-list-fix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/strings-light/char.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/terms-light/sublis-var-simple.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/acl2-count.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/assoc-keyword.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/chk-length-and-keys.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/defmacroq.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/defthmr.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/enumerations.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/equal-of-booleans.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/er-soft-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/error-checking/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/intern-in-package-of-symbol.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/keyword-value-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/keyword-value-lists.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/keyword-value-lists2.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/lookup-keyword.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/make-termination-theorem.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/map-symbol-name.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/member-symbol-name.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/messages.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/msgp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/ordinals.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/orelse.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/polarity.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/read-acl2-oracle.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/state.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/system/numbered-names.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/tables.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/trans-eval-error-triple.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/translate.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "kestrel/utilities/update-acl2-oracle.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "make-event/acl2x-help.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "meta/meta.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "meta/meta-plus-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "meta/meta-plus-lessp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "meta/meta-times-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "meta/pseudo-termp-lemmas.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "meta/term-defuns.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "meta/term-lemmas.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/arithmetic-top-theory.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/bash.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/bash-bsd.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/beta-reduce.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/book-checks.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/callers-and-ancestors.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/character-encoding-test.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/check-acl2-exports.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/check-fn-inst.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/computed-hint.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/computed-hint-rewrite.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/csort.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/dead-events.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/defattach-bang.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/defattach-example.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/definline.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/defmac.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/defopener.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/defp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/defpm.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/defproxy-test.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/defpun.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/defun-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/dft.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/dft-ex.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/dijkstra-shortest-path.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/disassemble.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/dump-events.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/eliminate-irrelevance-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/enumerate.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/equal-by-g.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/equal-by-g-help.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/eval.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/evalable-printing.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/expander.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/expander-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/fast-coerce.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/fibonacci.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/file-io.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/file-io-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/find-events-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/find-lemmas.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/gentle.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/getprop.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/goodstein.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/grcd.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/hanoi.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/hidden-defpkg-checks/pkg1.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/hidden-defpkg-checks/pkg2.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/hidden-defpkg-checks/sub1.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/hidden-defpkg-checks/sub2.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/hidden-defpkg-checks/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/hons-help.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/hons-help2.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/hons-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/how-to-prove-thms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/install-not-normalized.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/install-not-normalized-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/int-division.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/integer-type-set-test.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/invariants.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/meta-lemmas.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/mult.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/multi-v-uni.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/oprof.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/pigeonhole.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/priorities.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/problem13.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/process-book-readme.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/profiling.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/radix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/random.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/records.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/records-bsd.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/records0.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/redef-pkg.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/rtl-untranslate.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/save-time.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/seq.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/seqw.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/simp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/simplify-defuns.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/simplify-thm.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/sin-cos.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/sort-symbols.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/sticky-disable.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/symbol-btree.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/symbol-print-full-escapes.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/total-order.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/total-order-bsd.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/trace-star.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/transfinite.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/untranslate-patterns.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/wet.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/with-waterfall-parallelism.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "misc/without-waterfall-parallelism.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "models/jvm/m1/m1.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ordinals/e0-ordinal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ordinals/lexicographic-book.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ordinals/lexicographic-ordering-without-arithmetic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ordinals/limits.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ordinals/ordinal-addition.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ordinals/ordinal-basic-thms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ordinals/ordinal-definitions.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ordinals/ordinal-exponentiation.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ordinals/ordinal-isomorphism.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ordinals/ordinal-multiplication.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ordinals/ordinal-total-order.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ordinals/ordinals-without-arithmetic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "ordinals/top-with-meta.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "oslib/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "oslib/read-acl2-oracle.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "projects/apply/apply.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "projects/apply/base.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "projects/apply/definductor.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "projects/apply/loop.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "projects/apply/loop-lemmas.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "projects/apply/relink-fancy-scion.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "projects/apply/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "quicklisp/base.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "quicklisp/bordeaux.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/arith.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/arith2.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/basic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/cg.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/common-factor.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/common-factor-defuns.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/complex-rationalp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/denominator.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/even-odd.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/even-odd2.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/even-odd2-proofs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/expo.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/expo-proofs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/expt.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/expt-proofs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/extra-rules.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/fl.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/fl-expt.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/fl-hacks.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/fl-proofs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/floor.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/floor-proofs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/fp2.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/ground-zero.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/induct.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/integerp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/inverted-factor.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/mod.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/mod-expt.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/mod-proofs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/negative-syntaxp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/nniq.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/numerator.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/power2p.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/predicate.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/product.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/product-proofs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/rationalp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/unary-divide.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "rtl/rel9/arithmetic/x-2xx.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "sorting/convert-perm-to-how-many.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "sorting/how-many.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "sorting/merge-sort-term-order.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "sorting/perm.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "sorting/term-ordered-perms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/abstract.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/alist-defuns.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/alist-equiv.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/alist-fix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/alist-keys.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/alist-map-keys.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/alist-map-vals.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/alist-vals.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/alists-compatible.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/append-alist-keys.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/append-alist-vals.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/assoc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/fal-all-boundp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/fal-extract.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/fal-extract-vals.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/fal-find-any.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/fast-alist-clean.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/hons-assoc-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/hons-put-assoc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/hons-rassoc-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/hons-remove-assoc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/pairlis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/put-assoc-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/remove-assoc-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/remove-assocs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/strip-cars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/strip-cdrs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/alists/worth-hashing.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/arith-equiv-defs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/arith-equivs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/bytep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/code-char-char-code-with-force.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/controlled-configuration.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/defs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/fix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/good-pseudo-term-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/good-pseudo-termp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/good-valuep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/if-star.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/ifix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/inductions.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/intern-in-package-of-symbol.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/maybe-natp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/maybe-string-fix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/mbt-dollar.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/member-symbol-name.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/nfix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/nibblep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/nonkeyword-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/organize-symbols-by-name.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/organize-symbols-by-name-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/organize-symbols-by-pkg.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/organize-symbols-by-pkg-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/pos-fix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/realfix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/rfix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/symbol-name-lst.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/symbol-package-name-lst.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/symbol-package-name-lst-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/symbol-package-name-non-cl.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/symbol-package-name-non-cl-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/two-nats-measure.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/basic/yyyjoin.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/bitsets/bignum-extract.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/bitsets/bignum-extract-opt.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/bitsets/bignum-extract-opt-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/bitsets/bits-between.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/bitsets/bitsets.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/bitsets/bitsets-opt.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/bitsets/bitsets-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/bitsets/sbitsets.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/bitsets/sbitsets-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/bitsets/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/base.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/combine.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/file-measure.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/nthcdr-bytes.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/open-channels.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/print-objects.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/read-file-bytes.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/read-file-characters.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/read-file-characters-no-error.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/read-file-lines.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/read-file-lines-no-newlines.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/read-file-objects.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/read-ints.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/read-string.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/read-string-light.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/read-string-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/serialize-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/serialize-tests2.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/take-bytes.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/io/unsound-read.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/abstract.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/acl2-count.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/add-to-set.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/all-equalp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/append.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/bits-equiv.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/butlast.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/duplicity.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/equiv.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/final-cdr.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/flatten.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/index-of.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/intersection.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/intersectp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/last.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/len.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/list-defuns.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/list-fix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/mfc-utils.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/nats-equiv.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/no-duplicatesp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/nth.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/nthcdr.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/prefixp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/rcons.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/remove.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/remove-duplicates.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/remove1-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/repeat.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/resize-list.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/rev.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/revappend.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/reverse.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/same-lengthp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/set-difference.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/sets.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/sublistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/subseq.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/suffixp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/take.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/true-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/union.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/lists/update-nth.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/misc/intern-in-package-of-symbol.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/misc/two-nats-measure.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/obags/core.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/obags/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/obags/tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/obags/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/obags/with-fixing-theorems.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/omaps/assoc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/omaps/compatiblep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/omaps/core.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/omaps/delete.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/omaps/extensionality.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/omaps/from-alist.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/omaps/from-lists.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/omaps/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/omaps/submap.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/omaps/tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/omaps/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/omaps/update.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/omaps/with-fixing-theorems.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/cardinality.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/computed-hints.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/delete.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/difference.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/element-list.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/instance.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/intersect.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/map.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/map-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/membership.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/nonemptyp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/outer.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/primitives.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/quantify.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/quantify-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/sort.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/under-set-equiv.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/osets/union.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/1d-arr.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/2d-arr.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/absstobjs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/bitarr.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/clone.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/def-hash.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/def-hash-theory.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/natarr.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/nested-stobjs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/nicestobj.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/stobj-table.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/stobjtab.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/tests/1d-arr.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/tests/2d-arr.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/tests/clone.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/tests/def-hash.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/stobjs/updater-independence.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/abbrevs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/arithmetic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/ascii-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/base64.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/base64-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/bin-digit-char-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/binary.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/binary-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/case-conversion.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/cat.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/cat-base.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/char-case.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/char-fix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/char-kinds.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/char-kinds-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/charset.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/charset-fns.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/coerce.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/dec-digit-char-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/decimal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/decimal-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/defs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/defs-aux.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/defs-program.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/digit-to-char.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/eqv.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/explode-atom.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/explode-implode-equalities.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/explode-nonnegative-integer.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/fast-cat.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/firstn-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/hex.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/hex-digit-char-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/hex-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/hexify.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/html-encode.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/ieqv.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/iless.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/iprefixp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/isort.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/istrpos.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/istrprefixp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/isubstrp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/lcletter-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/lcletter-digit-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/letter-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/letter-digit-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/letter-digit-dash-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/letter-digit-uscore-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/letter-digit-uscore-dash-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/letter-digit-uscore-dollar-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/letter-uscore-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/letter-uscore-dollar-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/make-character-list.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/nondigit-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/oct-digit-char-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/octal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/octal-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/pad.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/prefix-lines.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/pretty.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/pretty-defs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/pretty-defs-aux.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/pretty-program.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/pretty-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/printable-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/printtree.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/printtree-concat.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/printtree-fix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/printtree-fty.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/stringify.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/stringless.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strline.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strline-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strnatless.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strpos.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strprefixp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strrange-equiv.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strrpos.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strsplit.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strsplit-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strsubst.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strsubst-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strtok.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strtok-bang.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strtok-bang-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/strtok-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/subseq.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/substrp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/suffixp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/suffixp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/symbols.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/top-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/ucletter-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/ucletter-digit-chars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/url-encode.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/strings/url-encode-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/acceptable-rewrite-rule-p.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/add-suffix-lst.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/add-suffix-to-fn-lst.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/add-suffix-to-fn-or-const.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/add-suffix-to-fn-or-const-lst.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/add-suffix-to-fn-or-const-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-fnnames.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-free-bound-vars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-free-bound-vars-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-lambdas.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-lambdas-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-non-gv-exec-ffn-symbs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-non-gv-exec-ffn-symbs-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-non-gv-ffn-symbs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-non-gv-ffn-symbs-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-pkg-names.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-pkg-names-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-program-ffn-symbs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-program-ffn-symbs-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-vars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-vars-in-untranslated-term.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-vars-open.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/all-vars-open-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/apply-fn-into-ifs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/apply-fn-into-ifs-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/apply-term.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/apply-term-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/apply-terms-same-args.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/apply-terms-same-args-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/apply-unary-to-terms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/apply-unary-to-terms-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/arglistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/arity.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/arity-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/arity-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-and-call.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-and-call-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-fn-call.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-fn-call-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-if-call.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-if-call-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-lambda-call.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-lambda-call-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-list-call.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-list-call-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-mbt-call.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-mbt-call-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-mbt-dollar-call.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-mbt-dollar-call-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-mv-let-call.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-mv-let-call-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-nary-lambda-call.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-nary-lambda-call-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-not-call.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-not-call-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-or-call.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-or-call-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-unary-lambda-call.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-unary-lambda-call-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-user-lambda.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-user-lambda-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-user-term.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/check-user-term-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/classes.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/classes-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/classes-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/classes-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/close-lambdas.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/close-lambdas-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/conjoin.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/conjoin-equalities.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/conjoin-equalities-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/constant-namep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/constant-namep-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/constant-queries.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/constant-symbolp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/constant-symbolp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/constant-value.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/constant-value-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/defchoose-queries.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/defchoose-queries-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/definedp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/definedp-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/definedp-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/definedp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/defun-sk-queries.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/defun-sk-queries-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/dumb-negate-lit.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/dumb-occur-var-open.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/dumb-occur-var-open-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/enhanced-utilities.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/event-landmark-names.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/event-landmark-names-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/event-name-queries.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fapply-term.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fapply-term-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fapply-terms-same-args.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fapply-terms-same-args-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fapply-unary-to-terms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fapply-unary-to-terms-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/flatten-ands-in-lit.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/formals-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/formals-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fresh-logical-name-with-dollars-suffix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fresh-logical-name-with-dollars-suffix-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fresh-namep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fsubcor-var.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fsublis-fn.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fsublis-fn-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fsublis-var.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fsublis-var-more-theorems.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fsublis-var-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/function-name-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/function-name-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/function-namep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/function-namep-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/function-queries.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/function-symbol-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/function-symbol-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/function-symbolp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fundef-disabledp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fundef-disabledp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fundef-enabledp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/fundef-enabledp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/genvar-dollar.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/genvar-dollar-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/get-measure.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/get-measure-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/get-measure-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/get-measure-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/get-ruler-extenders.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/get-ruler-extenders-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/get-ruler-extenders-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/get-ruler-extenders-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/get-well-founded-relation.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/get-well-founded-relation-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/get-well-founded-relation-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/get-well-founded-relation-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/getprops.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/guard-theorem-no-simplify.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/guard-theorem-no-simplify-dollar.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/guard-theorem-no-simplify-dollar-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/guard-theorem-no-simplify-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/guard-verified-exec-fnsp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/guard-verified-exec-fnsp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/guard-verified-fnsp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/guard-verified-fnsp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/guard-verified-p.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/guard-verified-p-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/guard-verified-p-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/guard-verified-p-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/ibody.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/ibody-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/if-tree-leaf-terms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/if-tree-leaf-terms-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/implicate.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/included-books.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/included-books-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/induction-machine.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/induction-machine-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/induction-machine-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/induction-machine-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/install-not-normalized-dollar.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/install-not-normalized-event.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/install-not-normalized-event-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/invariant-risk.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/irecursivep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/irecursivep-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/irecursivep-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/irecursivep-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/irrelevant-formals.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/irrelevant-formals-book.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/known-packages.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/known-packages-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/known-packages-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/known-packages-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/lambda-closedp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/lambda-closedp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/lambda-guard-verified-exec-fnsp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/lambda-guard-verified-exec-fnsp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/lambda-guard-verified-fnsp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/lambda-guard-verified-fnsp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/lambda-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/lambda-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/lambda-logic-fnsp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/lambda-logic-fnsp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/lambdap.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/lambdap-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/logic-function-namep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/logic-function-namep-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/logical-name-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/logical-name-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-args-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-args-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-keyword-args.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-keyword-args-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-keyword-args-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-keyword-args-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-name-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-name-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-namep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-namep-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-queries.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-required-args.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-required-args-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-required-args-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-required-args-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-symbol-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-symbol-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-symbolp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/macro-symbolp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/make-mv-let-call.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/make-mv-let-call-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/make-mv-nth-calls.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/make-mv-nth-calls-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/maybe-pseudo-event-formp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/maybe-pseudo-event-formp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/measured-subset.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/measured-subset-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/measured-subset-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/measured-subset-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/mvify.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/mvify-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/no-stobjs-p.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/no-stobjs-p-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/no-stobjs-p-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/no-stobjs-p-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/non-executablep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/non-executablep-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/non-executablep-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/non-executablep-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/non-parallel-book.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/number-of-results.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/number-of-results-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/number-of-results-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/number-of-results-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/one-way-unify-dollar.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/one-way-unify-dollar-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/partition-rest-and-keyword-args.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/plist-worldp-with-formals.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/primitivep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/primitivep-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/primitivep-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/primitivep-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-command-landmark-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-command-landmark-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-event-form-fix.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-event-form-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-event-form-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-event-formp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-event-formp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-event-landmark-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-event-landmark-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-lambda-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-lambda-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-lambdap.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-lambdap-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-termfn-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-termfn-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-termfnp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-termfnp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-tests-and-call-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-tests-and-call-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-tests-and-callp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pseudo-tests-and-callp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pure-raw-p.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/pure-raw-p-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/quote-term.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/quote-term-list.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/quote-term-list-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/quote-term-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/rawp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/rawp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/recursive-calls.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/recursive-calls-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/remove-dead-if-branches.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/remove-dead-if-branches-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/remove-mbe.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/remove-mbe-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/remove-progn.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/remove-progn-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/remove-trivial-vars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/remove-trivial-vars-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/remove-unused-vars.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/remove-unused-vars-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/rune-disabledp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/rune-disabledp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/rune-enabledp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/rune-enabledp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/stobjs-in-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/stobjs-in-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/stobjs-out-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/stobjs-out-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/table-alist-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/table-alist-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/tail-recursive-p.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/tail-recursive-p-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/term-function-recognizers.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/term-guard-obligation.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/term-guard-obligation-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/term-possible-numbers-of-results.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/term-possible-numbers-of-results-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/term-queries.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/term-transformations.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/termfn-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/termfn-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/termfnp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/termfnp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/termination-theorem-dollar.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/termination-theorem-dollar-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/theorem-name-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/theorem-name-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/theorem-namep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/theorem-namep-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/theorem-queries.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/theorem-symbol-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/theorem-symbol-listp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/theorem-symbolp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/theorem-symbolp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/thm-formula.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/thm-formula-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/thm-formula-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/thm-formula-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/ubody.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/ubody-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/ubody-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/ubody-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/uguard.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/uguard-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/uguard-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/uguard-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/unquote-term.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/unquote-term-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/untranslate-dollar.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/untranslate-dollar-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/unwrapped-nonexec-body.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/unwrapped-nonexec-body-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/unwrapped-nonexec-body-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/unwrapped-nonexec-body-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/system/w.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/assert.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/assert-bang.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/assert-bang-stobj.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/assert-bang-stobj-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/assert-bang-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/assert-equal.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/assert-equal-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/assert-qmark.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/assert-qmark-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/eval.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-be-redundant.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-be-redundant-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-be-table-key.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-eval-to.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-eval-to-t.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-fail.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-fail-local.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-fail-local-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-fail-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-fail-with-error.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-fail-with-hard-error.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-fail-with-soft-error.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-not-be-table-key.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-not-prove.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-prove.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-succeed.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/must-succeed-star.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/testing/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/cons-pos-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/cons-pos-alistp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/keyword-symbol-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/keyword-symbol-alistp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/keyword-to-keyword-value-list-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/keyword-to-keyword-value-list-alistp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/keyword-truelist-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/string-string-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/string-string-alistp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/string-stringlist-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/string-symbol-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/string-symbollist-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/string-symbollist-alistp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-nat-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-nat-alistp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-pos-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-pos-alistp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-pseudoeventform-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-pseudoterm-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-pseudoterm-alistp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-string-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-string-alistp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-symbol-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-symbol-alistp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-symbollist-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-truelist-alistp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/symbol-truelist-alistp-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-alists/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/acl2-number-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/atom-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/boolean-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/character-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/cons-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/eqlable-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/integer-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/nat-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/pseudo-term-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/rational-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/signed-byte-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/string-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/string-or-symbol-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/symbol-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/typed-lists/unsigned-byte-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/add-io-pairs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/bstar.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/cons.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/da-base.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/def-bound-theorems.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/def-bound-theorems-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defaggregate.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defaggrify-defrec.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defalist.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defalist-base.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defarbrec.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defarbrec-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defarbrec-template.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defconstrained-recognizer.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defconsts.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defenum.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defenum-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/deffixer.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/define.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/define-sk.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defines.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/definj.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/definj-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defirrelevant.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defirrelevant-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defiso.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defiso-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/deflist.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/deflist-aux.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/deflist-base.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmacro-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmacro-plus-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmacro-plus-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmapappend.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmapping.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmapping-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmapping-proof-templates.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmapping-templates.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmapping-tests-concrete.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmapping-tests-template-1-1.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmapping-tests-template-1-2.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmapping-tests-template-2-1.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmapping-tests-template-2-2.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmapping-tests-utils.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmapping-tests-validation.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmax-nat.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmax-nat-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmax-nat-template.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmax-nat-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmin-int.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmin-int-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmin-int-template.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmin-int-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmvtypes.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defmvtypes-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defprojection.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defredundant.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defredundant-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defret-mutual-generate.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defretgen.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defrule.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defsum.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defsurj.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defsurj-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defthm-commutative.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/deftutorial.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/deftutorial-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/deftutorial-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defund-sk.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defund-sk-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defund-sk-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/defval.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/error-value-tuples.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/error-value-tuples-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/extensions/assert-return-thms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/formals.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/formals-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/generate-symbol.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/look-up.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/look-up-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/maybe-defthm.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/maybe-defthm-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/returnspecs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/returnspecs-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/support.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/termhints.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/bstar.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/defaggregate.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/defaggrify-defrec.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/defalist.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/defarbrec.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/define.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/define-sk.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/defines.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/deflist.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/defmapappend.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/defprojection.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/defredundant.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/defrule.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/defval.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tests/utils.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/tuple.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "std/util/wizard.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/all-fnnames.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/apply/apply.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/apply/apply-constraints.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/apply/apply-prim.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/apply/apply-prim-support.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/bind-macro-args.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/case-match.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/convert-normalized-term-to-pairs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/defstobj.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/doc/acl2-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/doc/acl2-doc-wrap.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/doc/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/extend-pathname.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/f-put-global.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/fmx-cw.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/fmx-cw-support.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/hl-addr-combine.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/kestrel.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/legal-variablep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/merge-sort-symbol-lt.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/merge-sort-term-order.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/meta-extract.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/observation1-cw.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/origin.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/pseudo-command-formp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/pseudo-command-landmarkp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/pseudo-event-form-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/pseudo-event-formp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/pseudo-event-landmarkp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/pseudo-good-worldp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/pseudo-termp-lemmas.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/pseudo-tests-and-calls-listp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/pseudo-tests-and-callsp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/remove-guard-holders.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/remove-guard-holders-weak.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/remove-guard-holders1.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/subcor-var.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/sublis-var.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/subst-expr.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/subst-var.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/termp.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "system/verified-termination-and-guards.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/advise.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/bstar.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/btree.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/case-splitting-rules.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/clone-stobj.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/cws.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/dead-events.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/def-functional-instance.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/defevaluator-fast.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/define-keyed-function.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/defined-const.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/defmacfun.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/defsum.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/defthmg.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/defttag-muffled.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/deftuple.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/do-not.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/easy-simplify.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/elide-event.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/elide-event-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/equality-with-hons-copy.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/er-soft-logic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/eval-events-from-file.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/eval-events-from-file-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/eval-events-from-file-test.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/fake-event.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/flag.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/flag-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/in-raw-mode.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/include-an-arithmetic-book.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/include-raw.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/k-induction.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/last-theory-change.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/lint.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/match-tree.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/memoize-prover-fns.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/mv-nth.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/names-after.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/nld.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/open-trace-file-bang.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/oracle-eval.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/oracle-eval-real.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/oracle-time.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/oracle-timelimit.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/pattern-match.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/plev.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/plev-ccl.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/prettygoals/doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/prettygoals/portcullis.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/prettygoals/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/prove-dollar.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/prove-dollar-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/removable-runes.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/remove-hyps.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/rewrite-dollar.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/rewrite-dollar-book.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/rewrite-with-equality.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/rulesets.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/run-script.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/safe-case.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/save-obligs.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/saved-errors.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/show-diff-lines.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/some-events.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/stobj-frame.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/stobj-help.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/symlet.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/table-replay.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/templates.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/theory-tools.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/time-dollar-with-gc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/trivial-ancestors-check.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/types-misc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/untranslate-for-exec.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/untranslate-for-exec-tests.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/with-arith-help.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/with-arith1-help.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/with-arith5-help.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/with-quoted-forms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/with-supporters.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/with-supporters-doc.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/with-supporters-test-sub.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/with-supporters-test-top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "tools/without-subsumption.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/autolink.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/base.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/book-thms.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/constructors.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/debug.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/defxdoc-plus.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/defxdoc-raw.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/display.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/fmt-to-str.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/fmt-to-str-orig.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/full-escape-symbol.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/init.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/names.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/parse-xml.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/prepare-topic.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/preprocess.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/spellcheck.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/str.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/top.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/topics.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/unsound-eval.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/verbosep.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/word-wrap.lisp",
+   "status": "pending"
+  },
+  {
+   "path": "xdoc/xdoc-error.lisp",
+   "status": "pending"
+  }
+ ]
+}

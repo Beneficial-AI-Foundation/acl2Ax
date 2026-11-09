@@ -1,0 +1,8 @@
+name = "acl2Ax"
+version = "0.1.0"
+defaultTargets = ["ACL2Ax"]
+
+[[lean_lib]]
+name = "ACL2Ax"
+srcDir = "Lean"
+roots = ["ACL2.Base", "arithmetic.abs", "arithmetic.factorial", "arithmetic.sumlist", "arithmetic.binomial"]
