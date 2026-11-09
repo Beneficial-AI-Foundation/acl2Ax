@@ -1,0 +1,1051 @@
+<meta charset="utf-8">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>ACL2 basic-arithmetic Blueprint</title>
+<style>/* Layout: a single column of nodes, each node a theorem with its ACL2 source and Lean statement. */
+:root {
+  --bg: #f5f4ef; --fg: #1c2230; --muted: #5d6578; --rule: #d9d6cc;
+  --panel: #ffffff; --accent: #1f6b67; --code-bg: #eceae2;
+  color-scheme: light;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121417; --fg: #e4e2dc; --muted: #9aa1b0; --rule: #2c313a;
+    --panel: #181b21; --accent: #7fd0c9; --code-bg: #20242c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121417; --fg: #e4e2dc; --muted: #9aa1b0; --rule: #2c313a;
+  --panel: #181b21; --accent: #7fd0c9; --code-bg: #20242c; color-scheme: dark;
+}
+html, body { margin: 0; }
+body {
+  background: var(--bg); color: var(--fg);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+  font-size: 14px;
+}
+main { max-width: 760px; margin: 0 auto; }
+h1 { font-size: 1.6rem; margin: 0 0 4px; text-wrap: balance; }
+h2 { font-size: 1.05rem; margin: 32px 0 12px; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0 0 20px; }
+.label { text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); }
+.status {
+  display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 12px 14px;
+  border: 1px solid var(--rule); border-radius: 6px; background: var(--panel);
+}
+.status div { min-width: 0; }
+.status b { display: block; font-weight: 600; font-variant-numeric: tabular-nums; }
+.ok { color: var(--accent); }
+.node {
+  background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+  padding: 12px 14px; margin: 0 0 12px; min-width: 0;
+}
+.node-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; align-items: baseline; }
+.node-name { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 600; overflow-wrap: anywhere; }
+.src { color: var(--muted); font-size: 0.8rem; white-space: nowrap; }
+pre {
+  background: var(--code-bg); color: var(--fg); border-radius: 4px;
+  padding: 8px 10px; margin: 10px 0 0; overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem;
+}
+.defs { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.def { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.def code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.85rem; }
+.def span { color: var(--muted); font-size: 0.85rem; }
+footer { margin-top: 32px; color: var(--muted); font-size: 0.8rem; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details.decisions { margin: 12px 0 0; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details.decisions { margin: 12px 0 0; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details.decisions { margin: 12px 0 0; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.bad { color: #b3261e; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bad { color: #ff8a80; } }
+:root[data-theme="dark"] .bad { color: #ff8a80; }
+</style>
+<style>
+:root {
+  --bg: #fafaf9; --panel: #ffffff; --ink: #1c1c1e; --muted: #6b6b70; --line: #e4e4e7;
+  --accent: #2f5bd3; --ok: #15803d; --bad: #b42318; --code: #f4f4f5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111114; --panel: #18181c; --ink: #ececf0; --muted: #9a9aa3; --line: #2a2a30;
+    --accent: #8ea8ff; --ok: #4ade80; --bad: #f97066; --code: #1f1f25;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111114; --panel: #18181c; --ink: #ececf0; --muted: #9a9aa3; --line: #2a2a30;
+  --accent: #8ea8ff; --ok: #4ade80; --bad: #f97066; --code: #1f1f25;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.layout { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; }
+.toc { position: sticky; top: 0; height: 100vh; overflow-y: auto; border-right: 1px solid var(--line);
+  background: var(--panel); padding: 20px 16px; }
+.toc h1 { font-size: 15px; margin: 0 0 4px; }
+.toc .sub { color: var(--muted); font-size: 12px; margin-bottom: 16px; }
+.toc input { width: 100%; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--bg); color: var(--ink); margin-bottom: 12px; }
+.toc a { color: var(--ink); text-decoration: none; display: block; padding: 4px 8px; border-radius: 6px; }
+.toc a:hover { background: var(--code); }
+.toc .group { margin-top: 10px; }
+.toc .group > a { font-weight: 600; }
+.toc .group ul { list-style: none; margin: 2px 0 0 10px; padding: 0; border-left: 1px solid var(--line); }
+.toc .group li a { font-size: 13px; color: var(--muted); padding: 2px 8px; }
+.toc .count { color: var(--muted); font-weight: 400; font-size: 12px; }
+
+.toc li.current a { background: var(--code); color: var(--accent); font-weight: 600; }
+.toc ul { list-style: none; margin: 2px 0 0 10px; padding: 0; border-left: 1px solid var(--line); }
+.layout main { min-width: 0; }
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .toc { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
+}
+</style>
+<style>
+:root {
+  --tk-kw: #7a2f8f; --tk-name: #1f6b67; --tk-const: #9a3412; --tk-type: #1d4f91;
+  --tk-num: #9a3412; --tk-str: #7a4a00; --tk-com: #6a7183; --tk-op: #4a5266; --tk-par: #8a8f9c;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+    --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+  }
+}
+:root[data-theme="dark"] {
+  --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+  --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+}
+.tk-kw { color: var(--tk-kw); font-weight: 600; }
+.tk-name { color: var(--tk-name); font-weight: 600; }
+.tk-const { color: var(--tk-const); }
+.tk-type { color: var(--tk-type); }
+.tk-num { color: var(--tk-num); }
+.tk-str { color: var(--tk-str); }
+.tk-com { color: var(--tk-com); font-style: italic; }
+.tk-op { color: var(--tk-op); }
+.tk-par { color: var(--tk-par); }
+</style>
+<div class="layout">
+<aside class="toc"><h1>ACL2 to Lean blueprint</h1><div class="sub">42 modules, 250 axioms</div><input id="filter" type="search" placeholder="Filter books"><div><a href="index.html">Overview</a></div><div><a href="index.html#rules">Embedding rules</a></div><div class="group"><a href="index.html#d-acl2s">acl2s <span class="count">(1)</span></a><ul><li><a href="acl2s__portcullis-blueprint.html">portcullis</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic">arithmetic <span class="count">(3)</span></a><ul><li><a href="arithmetic__rational-listp-blueprint.html">rational-listp</a></li><li><a href="arithmetic__real-listp-blueprint.html">real-listp</a></li><li><a href="arithmetic__sumlist-blueprint.html">sumlist</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic-2">arithmetic-2 <span class="count">(12)</span></a><ul><li><a href="arithmetic-2__meta__cancel-terms-helper-blueprint.html">meta/cancel-terms-helper</a></li><li><a href="arithmetic-2__meta__non-linear-blueprint.html">meta/non-linear</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-helper-blueprint.html">pass1/basic-arithmetic-helper</a></li><li class="current"><a href="arithmetic-2__pass1__basic-arithmetic-blueprint.html">pass1/basic-arithmetic</a></li><li><a href="arithmetic-2__pass1__expt-helper-blueprint.html">pass1/expt-helper</a></li><li><a href="arithmetic-2__pass1__expt-blueprint.html">pass1/expt</a></li><li><a href="arithmetic-2__pass1__inequalities-blueprint.html">pass1/inequalities</a></li><li><a href="arithmetic-2__pass1__mini-theories-blueprint.html">pass1/mini-theories</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-helper-blueprint.html">pass1/numerator-and-denominator-helper</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-blueprint.html">pass1/numerator-and-denominator</a></li><li><a href="arithmetic-2__pass1__prefer-times-blueprint.html">pass1/prefer-times</a></li><li><a href="arithmetic-2__pass1__top-blueprint.html">pass1/top</a></li></ul></div><div class="group"><a href="index.html#d-kestrel">kestrel <span class="count">(5)</span></a><ul><li><a href="kestrel__strings-light__char-blueprint.html">strings-light/char</a></li><li><a href="kestrel__utilities__equal-of-booleans-blueprint.html">utilities/equal-of-booleans</a></li><li><a href="kestrel__utilities__map-symbol-name-blueprint.html">utilities/map-symbol-name</a></li><li><a href="kestrel__utilities__member-symbol-name-blueprint.html">utilities/member-symbol-name</a></li><li><a href="kestrel__utilities__update-acl2-oracle-blueprint.html">utilities/update-acl2-oracle</a></li></ul></div><div class="group"><a href="index.html#d-misc">misc <span class="count">(1)</span></a><ul><li><a href="misc__character-encoding-test-blueprint.html">character-encoding-test</a></li></ul></div><div class="group"><a href="index.html#d-std">std <span class="count">(20)</span></a><ul><li><a href="std__alists__assoc-blueprint.html">alists/assoc</a></li><li><a href="std__basic__code-char-char-code-with-force-blueprint.html">basic/code-char-char-code-with-force</a></li><li><a href="std__basic__fix-blueprint.html">basic/fix</a></li><li><a href="std__basic__ifix-blueprint.html">basic/ifix</a></li><li><a href="std__basic__member-symbol-name-blueprint.html">basic/member-symbol-name</a></li><li><a href="std__basic__nfix-blueprint.html">basic/nfix</a></li><li><a href="std__basic__realfix-blueprint.html">basic/realfix</a></li><li><a href="std__basic__rfix-blueprint.html">basic/rfix</a></li><li><a href="std__basic__symbol-name-lst-blueprint.html">basic/symbol-name-lst</a></li><li><a href="std__lists__add-to-set-blueprint.html">lists/add-to-set</a></li><li><a href="std__lists__union-blueprint.html">lists/union</a></li><li><a href="std__strings__digit-to-char-blueprint.html">strings/digit-to-char</a></li><li><a href="std__system__arglistp-blueprint.html">system/arglistp</a></li><li><a href="std__system__arity-blueprint.html">system/arity</a></li><li><a href="std__system__dumb-negate-lit-blueprint.html">system/dumb-negate-lit</a></li><li><a href="std__system__getprops-blueprint.html">system/getprops</a></li><li><a href="std__system__implicate-blueprint.html">system/implicate</a></li><li><a href="std__system__primitivep-blueprint.html">system/primitivep</a></li><li><a href="std__system__pseudo-event-form-listp-blueprint.html">system/pseudo-event-form-listp</a></li><li><a href="std__system__pseudo-event-formp-blueprint.html">system/pseudo-event-formp</a></li></ul></div></aside>
+<main>
+  <p class="label">Blueprint, arithmetic-2/pass1/basic-arithmetic</p>
+  <h1>ACL2 basic-arithmetic, shallow embedding</h1>
+  <p class="sub">The theorems of the ACL2 book arithmetic-2/pass1/basic-arithmetic, each shown as the ACL2 source and as its Lean axiom.</p>
+  
+
+  <div class="status">
+    <div><span class="label">Book</span><b>arithmetic-2/pass1/basic-arithmetic.lisp</b></div>
+    <div><span class="label">Axioms</span><b>32</b></div>
+    <div><span class="label">Embedding</span><b>Shallow, Rat</b></div>
+    <div><span class="label">ACL2 certificate</span><b class="ok">basic-arithmetic.cert present</b></div>
+    <div><span class="label">Lean build</span><b class="ok">lake build passes</b></div>
+  </div>
+
+  <details class="decisions">
+    <summary>Embedding decisions, general</summary>
+  <div class="prose">
+<p>Every deviation from the ACL2 source in the Lean axioms is listed here or under its element.</p>
+<h3>General decisions</h3>
+<ol>
+<li>The embedding is shallow. Each ACL2 theorem or lemma becomes a Lean proposition over Lean types, not over a deep syntax of ACL2 terms.</li>
+<li>Every ACL2 number is a <code>Rat</code>. Integer arguments are tested with <code>integerp</code>, which is <code>den = 1</code>.</li>
+<li>ACL2 truth values become Lean <code>Prop</code>. The connectives <code>implies</code>, <code>and</code>, <code>or</code>, <code>not</code> and <code>equal</code> become the corresponding Lean connectives.</li>
+<li>ACL2 primitives and definitions used in the books are interpreted by Lean functions, listed in the interpretation table. A definition of a book is a Lean <code>def</code> with the ACL2 name in guillemets.</li>
+<li>Quantified variables range over <code>Rat</code> or <code>List Rat</code>, not over all ACL2 objects. A theorem with no hypothesis therefore holds in Lean only for rational arguments.</li>
+<li>Support definitions live in <code>Lean/ACL2/Base.lean</code>, outside the mirror of the books directory tree.</li>
+<li>Hyphens in ACL2 names are kept with Lean guillemets, for example <code>«abs-*»</code>.</li>
+<li>Each ACL2 theorem is an <code>axiom</code>. The <code>:rule-classes</code>, hints and proofs are not represented.</li>
+<li>A module does not import the modules of a <code>local</code> <code>include-book</code>. Non-local includes are imported when their module exists.</li>
+<li>A recursive ACL2 definition is a Lean <code>def</code> on <code>Rat</code>, with <code>termination_by</code> on a natural measure. An integer argument is a <code>Rat</code> that satisfies <code>integerp</code>, and the measure is taken from its numerator, so no <code>Int</code> helper is used.</li>
+<li>Local theorems and lemmas are axioms too.</li>
+<li>ACL2 complex rationals are the Lean type <code>CRat</code>, pairs of <code>Rat</code> with the field operations. A real <code>Rat</code> embeds in <code>CRat</code> with imaginary part 0. Theorems over the reals keep <code>Rat</code>, and theorems over numbers that may be complex use <code>CRat</code>.</li>
+<li>The order <code>&lt;</code> on <code>CRat</code> is the lexicographic order of <code>completion-of-&lt;</code> (axioms.lisp, lines 25364 to 25374): <code>x &lt; y</code> holds when <code>realpart x &lt; realpart y</code>, or when the real parts are equal and <code>imagpart x &lt; imagpart y</code>. On real arguments it coincides with the order on <code>Rat</code>.</li>
+<li>No Mathlib dependency is used. The <code>CRat</code> type is defined in core Lean, so the shallow embedding needs no <code>require</code>.</li>
+<li>Unconstrained ACL2 variables of the cancel-terms-helper book range over <code>CRat</code>. A variable under <code>real/rationalp</code> ranges over <code>Rat</code>, and is coerced to <code>CRat</code> with <code>↑</code> when used with complex values.</li>
+<li><code>real/rationalp</code> of a complex rational is true exactly when its imaginary part is 0, because <code>(complex x 0)</code> is the rational <code>x</code>.</li>
+<li>A <code>cond</code> with no true clause returns <code>False</code>, as ACL2 returns <code>nil</code>.</li>
+<li><code>helper-9</code> in the <code>#| |#</code> block at the end of cancel-terms-helper.lisp is a comment, and no axiom is written for it.</li>
+<li>ACL2 <code>&lt;=</code> on complex rationals is <code>(not (&lt; y x))</code>, the definition of <code>&lt;=?</code> in axioms.lisp (lines 11614 to 11618). It is the Lean predicate <code>acl2le</code>. On real arguments it coincides with <code>≤</code> on <code>Rat</code>.</li>
+<li>A variable name that contains <code>+</code>, such as <code>y+</code>, is not a Lean identifier. It is renamed <code>yp</code> in the module. The renaming does not change the statement.</li>
+<li>Theorems of non-linear.lisp that state the property for real variables use <code>Rat</code>, and those that state it for numbers that may be complex use <code>CRat</code>.</li>
+<li><code>encapsulate</code> is transparent. The theorems inside it are axioms of the module, and the local ones are included (decision 11). The statements of basic-arithmetic-helper.lisp range over <code>CRat</code>, because ACL2 numbers there include complex values, and <code>(/ x)</code> is <code>CRat.inv x</code>.</li>
+<li><code>quotep</code> and <code>syntaxp</code> hypotheses are represented as always-inhabited types, <code>quotepC x : Type := PUnit</code> and <code>syntaxpW : Type := PUnit</code>. A hypothesis of this type imposes no condition, so an axiom with such a hypothesis is stated without a condition. The representation of <code>quotep</code> and <code>syntaxp</code> is DEFERRED: the user will decide how to represent them properly, for example in the deep embedding. Until then this is a deviation, because the ACL2 statements are conditional on properties of all objects.</li>
+<li><code>numerator</code> on a complex rational is <code>numeratorC</code>. It is the numerator of the real part when the imaginary part is 0, and 0 otherwise, as <code>completion-of-numerator</code> (axioms.lisp, line 25668) states.</li>
+<li><code>syntaxp</code> hypotheses are kept as <code>syntaxpW</code> (decision 25). <code>(syntaxp form)</code> expands to <code>(and form t)</code> (axioms.lisp, line 4558). The representation is deferred with decision 25.</li>
+<li>The macro <code>fc</code> in expt.lisp (line 15) is the identity, <code>(defmacro fc (x) x)</code>. Each <code>(fc e)</code> is written as <code>e</code>.</li>
+<li><code>expt</code> on complex rationals is <code>exptC r i</code>, with a rational exponent. It follows <code>expt</code> in axioms.lisp (line 9073): <code>exptCInt</code> for an integer exponent, and 1 for a non-integer exponent. The helpers <code>zipR</code>, <code>ifixR</code> and <code>integerpC</code> follow <code>zip</code>, <code>ifix</code> and <code>integerp</code> on complex values. <code>expt</code> on rationals keeps its earlier definition in <code>Base.lean</code>.</li>
+<li>Visibility follows ACL2. Each module uses the Lean module system. A non-local <code>include-book</code> is a <code>public import</code>, so its exported names reach the importers, as in ACL2. A <code>local</code> <code>include-book</code> is a plain <code>import</code>, which the module can use in its own declarations but does not re-export. An exported axiom is <code>public axiom</code>. A local axiom is <code>private axiom</code>, which is usable in the module and invisible to importers. <code>ACL2.Base</code> is a <code>public import</code>, and its declarations are public. Local includes are imported only when their module exists. Until then the module records them as pending in a comment. Tests with a scratch project confirmed each of these visibility rules.</li>
+<li>The modules cancel-terms-helper, non-linear, basic-arithmetic-helper, basic-arithmetic and expt were generated before decision 30. Their local includes are pending (the comment at the top of each module lists them). Their local imports must be added once those modules exist. The order file ORDER.txt now includes local edges, so these books come after their local dependencies.</li>
+<li>Each book&#x27;s declarations live in the namespace <code>ACL2.&lt;book path&gt;</code>, for example <code>ACL2.«arithmetic-2».pass1.«basic-arithmetic»</code>. A local include can bring in public names that share an ACL2 name with the book&#x27;s own axioms (for example <code>equal-/</code> in basic-arithmetic-helper and basic-arithmetic). The book namespace keeps the two apart, as the book namespaces of ACL2 do. The shared <code>Base.lean</code> stays in namespace <code>ACL2</code>.</li>
+<li>The local includes that exist are now imported: basic-arithmetic imports basic-arithmetic-helper, non-linear imports cancel-terms-helper, and expt imports basic-arithmetic. Pending local includes remain: ../pass1/top for cancel-terms-helper and non-linear, and inequalities, prefer-times and expt-helper for expt. Decision 31 still lists the modules generated before decision 30.</li>
+<li>inequalities.lisp is generated after basic-arithmetic, which it includes locally. Its local include is imported. Its <code>iff-equal</code> is a local theorem and is <code>private</code>. The <code>fc</code> macro is inlined (decision 28). All variables are real, so they range over <code>Rat</code>.</li>
+<li>Every module depends only on modules that exist. <code>scripts/check_deps.py</code> checks this: each include of the book must be an imported module, and each module must exist. A module with a missing dependency is moved to <code>staged/</code>, outside <code>Lean/</code>, and its manifest status says what it waits for. Staged modules are regenerated once their dependencies exist. Currently staged: cancel-terms-helper and non-linear (waiting for arithmetic-2/pass1/top), and expt (waiting for expt-helper and prefer-times). The import of inequalities was added to expt.</li>
+<li>prefer-times.lisp is generated after basic-arithmetic and inequalities, which it includes locally, and both are imported. The equalities over all numbers use <code>CRat</code> and <code>CRat.inv</code>, and the <code>&lt;</code> normalizations over reals use <code>Rat</code> and <code>⁻¹</code>. Its local theorems iff-equal, times-one and times-minus-one are <code>private</code>.</li>
+<li>The local defun <code>Math-induction-start-at-k</code> (expt-helper.lisp, line 22) is an induction scheme used only in hints. It is not a theorem, and no statement uses it, so it is not generated. The local theorem <code>justify-induction</code> is <code>private</code>.</li>
+<li>expt.lisp is restored from <code>staged/</code> once its local dependencies exist: expt-helper and prefer-times are generated. Its imports are basic-arithmetic, inequalities, prefer-times and expt-helper, all plain imports.</li>
+<li>mini-theories.lisp: its rule-set forms are not generated (decision 40). Its local lemma <code>Uniqueness-of-*-inverses-lemma-2</code> is <code>private</code>. Its local includes basic-arithmetic, inequalities, prefer-times and expt are imported.</li>
+<li>A function defined by a book (<code>defun</code>) is an opaque constant with its type signature and no body, for example <code>opaque nonneg-int-gcd : Rat → Rat → Rat</code>. The axioms about it are stated, not proved. Its name and namespace follow the same rules as the axioms (decisions 30 and 32), and its uses in statements refer to the constant. Functions of <code>Lean/ACL2/Base.lean</code> keep their interpretations, because they give the ACL2 primitives their meaning. Decision 37 is revised: the local defun <code>Math-induction-start-at-k</code> is generated as an opaque signature, with result type <code>Prop</code>.</li>
+<li><code>denominator</code> on a complex rational is <code>denominatorC</code>: the denominator of the real part when the imaginary part is 0, and 1 otherwise (<code>completion-of-denominator</code>, axioms.lisp, line 25561). The system function <code>nonnegative-integer-quotient</code> (axioms.lisp, line 6889) is an opaque signature in <code>Base.lean</code>, as decision 41 gives for book functions.</li>
+<li>numerator-and-denominator-helper.lisp: its functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code>, <code>nonneg-int-gcd-multiplier1</code>, <code>nonneg-int-gcd-multiplier2</code> and the local <code>induct-on-nonneg-int</code> are opaque signatures (decisions 37 and 41). It has no local includes that need a Lean import beyond basic-arithmetic, inequalities and prefer-times, which are imported as plain imports. Its statements over the integers use <code>Rat</code>, and <code>Nonneg-int-gcd-numerator-denominator</code> ranges over <code>CRat</code>, because its ACL2 statement has no integer hypothesis.</li>
+<li>numerator-and-denominator.lisp: its variables range over <code>CRat</code>, with <code>rationalp</code> as <code>realrationalpC</code>, <code>integerp</code> as <code>integerpC</code>, <code>numerator</code> as <code>numeratorC</code> and <code>denominator</code> as <code>denominatorC</code> (decisions 26 and 42). The local lemmas numerator-integerp-lemma-1 and numerator-integerp-lemma are <code>private</code>. Its local includes are imported as plain imports. Base.lean gains one decidability instance, for <code>realrationalpC</code>, which the <code>if</code> in <code>*-r-denominator-r</code> needs. <code>integerpC</code> needs no instance, because it occurs only in a disjunction.</li>
+<li>Decidability of the complex predicates in <code>if</code> expressions. The chosen representation is a computable instance, <code>Decidable (realrationalpC c)</code>, defined as <code>c.im = 0</code> (Base.lean). The alternative is to axiomatize decidability, either as <code>axiom</code> of type <code>∀ c : CRat, Decidable (realrationalpC c)</code> or through <code>Classical.propDecidable</code>. The two alternatives are logically equivalent to the chosen one, and they do not change any statement. They are not chosen, because they make the <code>if</code> depend on a non-computable choice, which ACL2&#x27;s <code>real/rationalp</code> test does not have. The alternative is recorded for the user&#x27;s decision.</li>
+<li>pass1/top.lisp has no theorem outside a <code>#| |#</code> block comment. Its module imports its non-local includes as <code>public import</code>, and it has no axioms. Its statements are not generated, because the book has none.</li>
+<li>cancel-terms-helper and non-linear are restored from <code>staged/</code>, now that <code>pass1/top</code> exists. Their local imports are plain imports: <code>pass1/top</code> for both, and <code>cancel-terms-helper</code> for non-linear.</li>
+<li>Block comments of the ACL2 book (<code>#| |#</code>) are recorded verbatim as Lean <code>--</code> comments at the end of the module, before the namespace closes. They state no axiom. This keeps the removed material, such as the commented-out theorems of pass1/top, visible next to the module.</li>
+<li>Alists. An ACL2 alist is a list of pairs, the key as the first component and the value as the second. The Lean type is <code>AList α β := List (α × β)</code> (ACL2.Base). The predicate <code>alistp</code> (axioms.lisp, line 2515) holds of every element of this type, because each element is a pair, so <code>alistp</code> is <code>True</code> on <code>AList</code>. <code>assoc-equal</code> is <code>assocEqual</code>, which returns the first pair with the given key, or <code>none</code> for <code>nil</code>. Keys and values are type parameters, not <code>Rat</code>, because ACL2 objects are untyped (a deviation from the shallow <code>Rat</code> domain, recorded here). The alist is not a <code>Finmap</code>, because <code>alistp</code> does not require unique keys. The finite-map view is the first-match lookup, and no axiom uses a <code>Finmap</code>.</li>
+<li>Shared primitives of ACL2.Base, merged from the pilot fragments. There is one symbol type, <code>ACLSymbol</code>, a structure with the <code>symbol-name</code> as field <code>name</code> (axioms.lisp, lines 5615 to 5697). <code>memberSymbolName</code> is <code>member-symbol-name</code> (axioms.lisp, line 5717). <code>trueListp</code> is <code>True</code>, because every Lean list is a true list. <code>arglistp</code> is an opaque signature, because it is defined in the ACL2 system (basis-a.lisp, line 856) and not in a book. <code>stringp</code> is <code>True</code> on <code>String</code>, and <code>length</code> on a string is its character count. <code>char</code> returns <code>Option Char</code> (deviation D1: <code>nil</code> for an index out of range, so the value may be <code>nil</code>). <code>characterp</code> takes <code>Option Char</code>, true for <code>some</code> (deviation D1). <code>code-char</code> is total, <code>Char.ofNat</code>, so for a code outside the range of ACL2 characters it differs from ACL2 (deviation D2, not resolved by the user). <code>char-code</code> is the code of the character as a rational.</li>
+<li>Why <code>characterp</code> takes <code>Option Char</code>. ACL2 <code>characterp</code> is a predicate on every object, and <code>char</code> returns <code>nil</code> for an index out of range. The statement <code>characterp-of-char</code>, <code>(characterp (char s n))</code> equivalent to <code>(stringp s ∧ nfix n &lt; length s)</code>, requires <code>characterp</code> to be false on that <code>nil</code>. A <code>characterp</code> on <code>Char</code> alone has no value for <code>char</code> to return, so <code>Option Char</code> is the carrier, with <code>none</code> for <code>nil</code>. This is the consequence of deviation D1 in decision 50, and it is open for the user&#x27;s decision together with D1.</li>
+<li>Batch primitives merged into ACL2.Base. <code>natp</code>, <code>realfix</code>, <code>rfix</code>, <code>stringListp</code>, <code>addToSetEqual</code>, <code>consp</code>, <code>function-symbolp</code> and <code>arity</code> (opaque, basis-b.lisp line 2255), <code>symbolp</code> (abbrev, <code>True</code>, deviation D3) and <code>primitivep</code> (opaque) are declared once in Base.lean. The module files of the batch keep only their own axioms. <code>arity-iff</code> ranges over symbols, so the cons case is excluded (deviation). <code>rfix</code> and <code>realfix</code> axioms sit in their book namespaces, as decision 32 requires. The <code>arithmetic/real-listp</code> book has no axioms, because both theorems sit under <code>#+:non-standard-analysis</code> (decision 12).</li>
+<li>Deviations from the untyped ACL2 domain in the batch modules. Each of the following is a recorded deviation, and each is a faithful statement over the stated type. (a) List and alist variables range over <code>List α</code> with <code>α</code> a type parameter, and <code>rationalListp</code> is <code>True</code>, so statements over <code>List Rat</code> have no content in Lean (<code>arithmetic/rational-listp</code>, <code>arithmetic/sumlist</code>). (b) <code>booleanp</code> is <code>True</code> on <code>Prop</code>, which is a larger carrier than the ACL2 truth values (D4, <code>equal-of-booleans</code>). (c) <code>update-acl2-oracle</code> takes an oracle over <code>List α</code>, and <code>State</code>, <code>InputChannels</code>, <code>w</code> and <code>open-input-channels</code> are opaque types with a <code>Nonempty</code> placeholder, because Lean&#x27;s <code>opaque</code> needs an inhabitant. The placeholders are <code>Prop</code> axioms that assert nonemptiness only. (d) <code>test-2</code> is an opaque <code>String</code>, because its value depends on the file encoding, which this embedding does not represent. (e) Variables of <code>digit-to-char</code> and <code>zero-digit-to-char</code> range over <code>Rat</code>, not over every ACL2 object. (f) <code>unionEqual</code>, <code>symbolNameLst</code> and <code>len</code> are declared in <code>Base.lean</code> as the ACL2 functions on lists.</li>
+<li><code>car</code> on a nonempty list is <code>x.headD 0</code>. ACL2 <code>car</code> of <code>nil</code> is <code>nil</code>, and the hypothesis <code>x</code> (non-nil) excludes that case, so the statement is unaffected. A <code>car</code> declaration in <code>Base.lean</code> would replace the inline <code>headD</code>, and it is proposed, not added.</li>
+<li>Rule-set bookkeeping forms are not generated. These are <code>in-theory</code>, <code>deftheory</code>, <code>theory-invariant</code>, and the <code>enable</code> and <code>disable</code> forms they contain. They select which rewrite rules the ACL2 prover uses, and they state no theorem about values. Each theorem they refer to is still generated as its own axiom.</li>
+<li>A reader conditional that excludes a form in standard ACL2 excludes its axiom, and the exclusion is recorded.</li>
+</ol>
+<h3>Excluded books: metaprogramming</h3>
+<p>Interpretation rows: <code>std/system/dumb-negate-lit</code> and <code>std/system/implicate</code> are excluded as metaprogramming, with status <code>excluded: metaprogramming</code> in <code>manifest.json</code>. Both books state properties of ACL2 terms as data (<code>pseudo-termp</code>, <code>dumb-negate-lit</code>, <code>implicate</code>). No module is written.</p>
+<h3>Interpretation table</h3>
+<div class="tablewrap"><table>
+<tr><th>ACL2</th><th>Lean (<code>ACL2</code> namespace)</th></tr>
+<tr><td><code>CRat (ACL2 complex rational)</code></td><td><code>structure CRat with re, im : Rat, field operations, Coe from Rat</code></td></tr>
+<tr><td><code>realpart, imagpart</code></td><td><code>CRat.realpart, CRat.imagpart</code></td></tr>
+<tr><td><code>&lt; on complex arguments</code></td><td><code>CRat.lt: lexicographic on (realpart, imagpart), from completion-of-&lt; (axioms.lisp 25364 to 25374)</code></td></tr>
+<tr><td><code>acl2-numberp on CRat</code></td><td><code>acl2NumberPC, constant True</code></td></tr>
+<tr><td><code>/ on CRat</code></td><td><code>CRat.inv and Div, 0 for a zero argument, as (/ 0) in ACL2</code></td></tr>
+<tr><td><code>complex</code></td><td><code>complex x y, the value ⟨x, y⟩ of CRat</code></td></tr>
+<tr><td><code>real/rationalp on CRat</code></td><td><code>realrationalpC c, c.im = 0</code></td></tr>
+<tr><td><code>fix on CRat</code></td><td><code>fixC, identity</code></td></tr>
+<tr><td><code>cond without a true clause</code></td><td><code>False</code></td></tr>
+<tr><td><code>&lt;= on CRat</code></td><td><code>acl2le x y, ¬ (y &lt; x)</code></td></tr>
+<tr><td><code>quotep on CRat</code></td><td><code>quotepC, always-inhabited Type (decision 25, deferred)</code></td></tr>
+<tr><td><code>syntaxp</code></td><td><code>syntaxpW, always-inhabited Type (decision 25, deferred)</code></td></tr>
+<tr><td><code>numerator on CRat</code></td><td><code>numeratorC (decision 26)</code></td></tr>
+<tr><td><code>expt on CRat</code></td><td><code>exptC r i, exptCInt for an integer exponent, else 1 (decision 29)</code></td></tr>
+<tr><td><code>fc</code></td><td><code>identity, inlined (decision 28)</code></td></tr>
+<tr><td><code>zip, ifix, integerp on CRat</code></td><td><code>zipR, ifixR, integerpC (decision 29)</code></td></tr>
+<tr><td><code>alistp on an alist</code></td><td><code>alistp, constant True on AList (decision 49)</code></td></tr>
+<tr><td><code>assoc-equal</code></td><td><code>assocEqual, first match, none for nil (decision 49)</code></td></tr>
+<tr><td><code>getprops</code></td><td><code>opaque «getprops» over ACLSymbol, World, result AList ACLSymbol β (decision 41)</code></td></tr>
+</table></div>
+  </div>
+  </details>
+
+  <h2>Interpretations of ACL2 primitives and definitions</h2>
+  <div class="defs">
+    <div class="def"><code>syntaxp</code><span><code>syntaxpW</code>, always-inhabited <code>Type</code> (decision 25, deferred)</span></div>
+  </div>
+
+  <h2>Theorems and axioms</h2>
+  <section class="node">
+    <div class="node-head"><span class="node-name">commutativity-2-of-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L16" target="_blank" rel="noopener">basic-arithmetic.lisp line 16</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">commutativity-2-of-+</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>+ x <span class="tk-par">(</span>+ y z<span class="tk-par">)</span><span class="tk-par">)</span>
+         <span class="tk-par">(</span>+ y <span class="tk-par">(</span>+ x z<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«commutativity-2-of-+»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y z <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  x <span class="tk-op">+</span> <span class="tk-par">(</span>y <span class="tk-op">+</span> z<span class="tk-par">)</span> <span class="tk-op">=</span> y <span class="tk-op">+</span> <span class="tk-par">(</span>x <span class="tk-op">+</span> z<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">functional-self-inversion-of-minus</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L20" target="_blank" rel="noopener">basic-arithmetic.lisp line 20</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">functional-self-inversion-of-minus</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>- <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">)</span>
+         <span class="tk-par">(</span>fix x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«functional-self-inversion-of-minus»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-op">-</span><span class="tk-par">(</span><span class="tk-op">-</span>x<span class="tk-par">)</span> <span class="tk-op">=</span> fixC x</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">distributivity-of-minus-over-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L24" target="_blank" rel="noopener">basic-arithmetic.lisp line 24</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">distributivity-of-minus-over-+</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>- <span class="tk-par">(</span>+ x y<span class="tk-par">)</span><span class="tk-par">)</span>
+         <span class="tk-par">(</span>+ <span class="tk-par">(</span>- x<span class="tk-par">)</span> <span class="tk-par">(</span>- y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«distributivity-of-minus-over-+»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-op">-</span><span class="tk-par">(</span>x <span class="tk-op">+</span> y<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-op">-</span>x <span class="tk-op">+</span> <span class="tk-op">-</span>y</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">minus-cancellation-on-right</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L28" target="_blank" rel="noopener">basic-arithmetic.lisp line 28</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">minus-cancellation-on-right</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>+ x y <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">)</span>
+         <span class="tk-par">(</span>fix y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«minus-cancellation-on-right»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  x <span class="tk-op">+</span> y <span class="tk-op">+</span> <span class="tk-op">-</span>x <span class="tk-op">=</span> fixC y</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">minus-cancellation-on-left</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L32" target="_blank" rel="noopener">basic-arithmetic.lisp line 32</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">minus-cancellation-on-left</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>+ x <span class="tk-par">(</span>- x<span class="tk-par">)</span> y<span class="tk-par">)</span>
+         <span class="tk-par">(</span>fix y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«minus-cancellation-on-left»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  x <span class="tk-op">+</span> <span class="tk-op">-</span>x <span class="tk-op">+</span> y <span class="tk-op">=</span> fixC y</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">right-cancellation-for-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L41" target="_blank" rel="noopener">basic-arithmetic.lisp line 41</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">right-cancellation-for-+</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>+ x z<span class="tk-par">)</span>
+                <span class="tk-par">(</span>+ y z<span class="tk-par">)</span><span class="tk-par">)</span>
+         <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix x<span class="tk-par">)</span> <span class="tk-par">(</span>fix y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«right-cancellation-for-+»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y z <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>x <span class="tk-op">+</span> z <span class="tk-op">=</span> y <span class="tk-op">+</span> z<span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>fixC x <span class="tk-op">=</span> fixC y<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">left-cancellation-for-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L46" target="_blank" rel="noopener">basic-arithmetic.lisp line 46</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">left-cancellation-for-+</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>+ x y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>+ x z<span class="tk-par">)</span><span class="tk-par">)</span>
+         <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix y<span class="tk-par">)</span> <span class="tk-par">(</span>fix z<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«left-cancellation-for-+»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y z <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>x <span class="tk-op">+</span> y <span class="tk-op">=</span> x <span class="tk-op">+</span> z<span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>fixC y <span class="tk-op">=</span> fixC z<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">equal-minus-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L51" target="_blank" rel="noopener">basic-arithmetic.lisp line 51</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-minus-0</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>- x<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+         <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix x<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-minus-0»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span><span class="tk-op">-</span>x <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>fixC x <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">equal-+-x-y-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L59" target="_blank" rel="noopener">basic-arithmetic.lisp line 59</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-+-x-y-0</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">syntaxp</span> <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>consp y<span class="tk-par">)</span>
+			      <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>car y<span class="tk-par">)</span> <span class="tk-op">&#x27;</span>binary-+<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>+ x y<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix x<span class="tk-par">)</span> <span class="tk-par">(</span>- y<span class="tk-par">)</span><span class="tk-par">)</span>
+		       <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>- x<span class="tk-par">)</span> <span class="tk-par">(</span>fix y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-+-x-y-0»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  syntaxpW <span class="tk-op">→</span> <span class="tk-par">(</span>x <span class="tk-op">+</span> y <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>fixC x <span class="tk-op">=</span> <span class="tk-op">-</span>y <span class="tk-op">∧</span> <span class="tk-op">-</span>x <span class="tk-op">=</span> fixC y<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>. The <code>syntaxp</code> hypothesis is <code>syntaxpW</code>, always-inhabited (decision 25, deferred).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">equal-+-x-y-x</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L66" target="_blank" rel="noopener">basic-arithmetic.lisp line 66</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-+-x-y-x</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>+ x y<span class="tk-par">)</span> x<span class="tk-par">)</span>
+         <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>acl2-numberp x<span class="tk-par">)</span>
+	      <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix y<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-+-x-y-x»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>x <span class="tk-op">+</span> y <span class="tk-op">=</span> x<span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>acl2NumberPC x <span class="tk-op">∧</span> fixC y <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">equal-+-x-y-y</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L71" target="_blank" rel="noopener">basic-arithmetic.lisp line 71</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-+-x-y-y</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>+ x y<span class="tk-par">)</span> y<span class="tk-par">)</span>
+	 <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>acl2-numberp y<span class="tk-par">)</span>
+	      <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix x<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-+-x-y-y»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>x <span class="tk-op">+</span> y <span class="tk-op">=</span> y<span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>acl2NumberPC y <span class="tk-op">∧</span> fixC x <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">equal-minus-minus</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L76" target="_blank" rel="noopener">basic-arithmetic.lisp line 76</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-minus-minus</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>- a<span class="tk-par">)</span> <span class="tk-par">(</span>- b<span class="tk-par">)</span><span class="tk-par">)</span>
+         <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix a<span class="tk-par">)</span> <span class="tk-par">(</span>fix b<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-minus-minus»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> a b <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span><span class="tk-op">-</span>a <span class="tk-op">=</span> <span class="tk-op">-</span>b<span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>fixC a <span class="tk-op">=</span> fixC b<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">fold-consts-in-+</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L80" target="_blank" rel="noopener">basic-arithmetic.lisp line 80</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">fold-consts-in-+</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">syntaxp</span> <span class="tk-par">(</span>quotep x<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">syntaxp</span> <span class="tk-par">(</span>quotep y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>+ x <span class="tk-par">(</span>+ y z<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span>+ <span class="tk-par">(</span>+ x y<span class="tk-par">)</span> z<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«fold-consts-in-+»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y z <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  quotepC x <span class="tk-op">→</span> quotepC y <span class="tk-op">→</span> x <span class="tk-op">+</span> <span class="tk-par">(</span>y <span class="tk-op">+</span> z<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-par">(</span>x <span class="tk-op">+</span> y<span class="tk-par">)</span> <span class="tk-op">+</span> z</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>. The <code>quotep</code> hypotheses are <code>quotepC</code>, always-inhabited (decision 25, deferred).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">commutativity-2-of-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L92" target="_blank" rel="noopener">basic-arithmetic.lisp line 92</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">commutativity-2-of-*</span>
+   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* x <span class="tk-par">(</span>* y z<span class="tk-par">)</span><span class="tk-par">)</span>
+          <span class="tk-par">(</span>* y <span class="tk-par">(</span>* x z<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«commutativity-2-of-*»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y z <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  x <span class="tk-op">*</span> <span class="tk-par">(</span>y <span class="tk-op">*</span> z<span class="tk-par">)</span> <span class="tk-op">=</span> y <span class="tk-op">*</span> <span class="tk-par">(</span>x <span class="tk-op">*</span> z<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">functional-self-inversion-of-/</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L96" target="_blank" rel="noopener">basic-arithmetic.lisp line 96</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">functional-self-inversion-of-/</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>/ <span class="tk-par">(</span>/ x<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-par">(</span>fix x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«functional-self-inversion-of-/»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  CRat.inv <span class="tk-par">(</span>CRat.inv x<span class="tk-par">)</span> <span class="tk-op">=</span> fixC x</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">distributivity-of-/-over-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L99" target="_blank" rel="noopener">basic-arithmetic.lisp line 99</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">distributivity-of-/-over-*</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>/ <span class="tk-par">(</span>* x y<span class="tk-par">)</span><span class="tk-par">)</span>
+	 <span class="tk-par">(</span>* <span class="tk-par">(</span>/ x<span class="tk-par">)</span> <span class="tk-par">(</span>/ y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«distributivity-of-/-over-*»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  CRat.inv <span class="tk-par">(</span>x <span class="tk-op">*</span> y<span class="tk-par">)</span> <span class="tk-op">=</span> CRat.inv x <span class="tk-op">*</span> CRat.inv y</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">/-cancellation-on-right</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L103" target="_blank" rel="noopener">basic-arithmetic.lisp line 103</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">/-cancellation-on-right</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* y x <span class="tk-par">(</span>/ y<span class="tk-par">)</span><span class="tk-par">)</span>
+	 <span class="tk-par">(</span><span class="tk-kw">if</span> <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix y<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	     <span class="tk-par">(</span>fix x<span class="tk-par">)</span>
+	     <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«/-cancellation-on-right»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  y <span class="tk-op">*</span> x <span class="tk-op">*</span> CRat.inv y <span class="tk-op">=</span> <span class="tk-par">(</span><span class="tk-kw">if</span> <span class="tk-op">¬</span> <span class="tk-par">(</span>fixC y <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-kw">then</span> fixC x <span class="tk-kw">else</span> <span class="tk-num">0</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">/-cancellation-on-left</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L109" target="_blank" rel="noopener">basic-arithmetic.lisp line 109</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">/-cancellation-on-left</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* y <span class="tk-par">(</span>/ y<span class="tk-par">)</span> x<span class="tk-par">)</span>
+	 <span class="tk-par">(</span><span class="tk-kw">if</span> <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix y<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	     <span class="tk-par">(</span>fix x<span class="tk-par">)</span>
+	     <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«/-cancellation-on-left»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  y <span class="tk-op">*</span> CRat.inv y <span class="tk-op">*</span> x <span class="tk-op">=</span> <span class="tk-par">(</span><span class="tk-kw">if</span> <span class="tk-op">¬</span> <span class="tk-par">(</span>fixC y <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-kw">then</span> fixC x <span class="tk-kw">else</span> <span class="tk-num">0</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">right-cancellation-for-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L115" target="_blank" rel="noopener">basic-arithmetic.lisp line 115</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">right-cancellation-for-*</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* x z<span class="tk-par">)</span> <span class="tk-par">(</span>* y z<span class="tk-par">)</span><span class="tk-par">)</span>
+	 <span class="tk-par">(</span><span class="tk-kw">or</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-num">0</span> <span class="tk-par">(</span>fix z<span class="tk-par">)</span><span class="tk-par">)</span>
+	     <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix x<span class="tk-par">)</span> <span class="tk-par">(</span>fix y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«right-cancellation-for-*»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y z <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>x <span class="tk-op">*</span> z <span class="tk-op">=</span> y <span class="tk-op">*</span> z<span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span><span class="tk-num">0</span> <span class="tk-op">=</span> fixC z <span class="tk-op">∨</span> fixC x <span class="tk-op">=</span> fixC y<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">left-cancellation-for-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L120" target="_blank" rel="noopener">basic-arithmetic.lisp line 120</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">left-cancellation-for-*</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* z x<span class="tk-par">)</span> <span class="tk-par">(</span>* z y<span class="tk-par">)</span><span class="tk-par">)</span>
+         <span class="tk-par">(</span><span class="tk-kw">or</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-num">0</span> <span class="tk-par">(</span>fix z<span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix x<span class="tk-par">)</span> <span class="tk-par">(</span>fix y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«left-cancellation-for-*»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y z <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>z <span class="tk-op">*</span> x <span class="tk-op">=</span> z <span class="tk-op">*</span> y<span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span><span class="tk-num">0</span> <span class="tk-op">=</span> fixC z <span class="tk-op">∨</span> fixC x <span class="tk-op">=</span> fixC y<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">equal-/-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L125" target="_blank" rel="noopener">basic-arithmetic.lisp line 125</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-/-0</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>/ x<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+	 <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix x<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-/-0»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>CRat.inv x <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>fixC x <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">equal-*-x-y-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L129" target="_blank" rel="noopener">basic-arithmetic.lisp line 129</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-*-x-y-0</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* x y<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+	 <span class="tk-par">(</span><span class="tk-kw">or</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix x<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+	     <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix y<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-*-x-y-0»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>x <span class="tk-op">*</span> y <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>fixC x <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">∨</span> fixC y <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">equal-*-x-y-x</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L134" target="_blank" rel="noopener">basic-arithmetic.lisp line 134</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-*-x-y-x</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* x y<span class="tk-par">)</span> x<span class="tk-par">)</span>
+	 <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>acl2-numberp x<span class="tk-par">)</span>
+	      <span class="tk-par">(</span><span class="tk-kw">or</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> x <span class="tk-num">0</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span><span class="tk-kw">equal</span> y <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:use</span>
+           <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:instance</span> right-cancellation-for-*
+                       <span class="tk-par">(</span>z x<span class="tk-par">)</span>
+                       <span class="tk-par">(</span>x y<span class="tk-par">)</span>
+                       <span class="tk-par">(</span>y <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-*-x-y-x»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>x <span class="tk-op">*</span> y <span class="tk-op">=</span> x<span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>acl2NumberPC x <span class="tk-op">∧</span> <span class="tk-par">(</span>x <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">∨</span> y <span class="tk-op">=</span> <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">equal-*-y-x-x</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L145" target="_blank" rel="noopener">basic-arithmetic.lisp line 145</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-*-y-x-x</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* y x<span class="tk-par">)</span> x<span class="tk-par">)</span>
+	 <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>acl2-numberp x<span class="tk-par">)</span>
+	      <span class="tk-par">(</span><span class="tk-kw">or</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> x <span class="tk-num">0</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span><span class="tk-kw">equal</span> y <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-*-y-x-x»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>y <span class="tk-op">*</span> x <span class="tk-op">=</span> x<span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>acl2NumberPC x <span class="tk-op">∧</span> <span class="tk-par">(</span>x <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">∨</span> y <span class="tk-op">=</span> <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">equal-/-/</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L151" target="_blank" rel="noopener">basic-arithmetic.lisp line 151</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-/-/</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>/ a<span class="tk-par">)</span> <span class="tk-par">(</span>/ b<span class="tk-par">)</span><span class="tk-par">)</span>
+	 <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix a<span class="tk-par">)</span> <span class="tk-par">(</span>fix b<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-/-/»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> a b <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>CRat.inv a <span class="tk-op">=</span> CRat.inv b<span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>fixC a <span class="tk-op">=</span> fixC b<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>. The name also occurs in basic-arithmetic-helper.lean. The two modules are not imported into each other, so the names do not clash in Lean.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">fold-consts-in-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L155" target="_blank" rel="noopener">basic-arithmetic.lisp line 155</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">fold-consts-in-*</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">syntaxp</span> <span class="tk-par">(</span>quotep x<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">syntaxp</span> <span class="tk-par">(</span>quotep y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* x <span class="tk-par">(</span>* y z<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span>* <span class="tk-par">(</span>* x y<span class="tk-par">)</span> z<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«fold-consts-in-*»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y z <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  quotepC x <span class="tk-op">→</span> quotepC y <span class="tk-op">→</span> x <span class="tk-op">*</span> <span class="tk-par">(</span>y <span class="tk-op">*</span> z<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-par">(</span>x <span class="tk-op">*</span> y<span class="tk-par">)</span> <span class="tk-op">*</span> z</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>. The <code>quotep</code> hypotheses are <code>quotepC</code>, always-inhabited (decision 25, deferred).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">equal-/</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L173" target="_blank" rel="noopener">basic-arithmetic.lisp line 173</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-/</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>/ x<span class="tk-par">)</span> y<span class="tk-par">)</span>
+	 <span class="tk-par">(</span><span class="tk-kw">if</span> <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix x<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	     <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-num">1</span> <span class="tk-par">(</span>* x y<span class="tk-par">)</span><span class="tk-par">)</span>
+	     <span class="tk-par">(</span><span class="tk-kw">equal</span> y <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-/»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>CRat.inv x <span class="tk-op">=</span> y<span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span><span class="tk-kw">if</span> <span class="tk-op">¬</span> <span class="tk-par">(</span>fixC x <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-kw">then</span> <span class="tk-num">1</span> <span class="tk-op">=</span> x <span class="tk-op">*</span> y <span class="tk-kw">else</span> y <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">numerator-nonzero-forward</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L182" target="_blank" rel="noopener">basic-arithmetic.lisp line 182</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">numerator-nonzero-forward</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>numerator r<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> r <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>acl2-numberp r<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span>
+  <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:forward-chaining</span> <span class="tk-const">:trigger-terms</span>
+                      <span class="tk-par">(</span><span class="tk-par">(</span>numerator r<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«numerator-nonzero-forward»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-op">¬</span> <span class="tk-par">(</span>numeratorC r <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-op">→</span> <span class="tk-par">(</span><span class="tk-op">¬</span> <span class="tk-par">(</span>r <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-op">∧</span> acl2NumberPC r<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>. <code>numerator</code> is <code>numeratorC</code> (decision 26).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">times-zero</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L197" target="_blank" rel="noopener">basic-arithmetic.lisp line 197</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">times-zero</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* <span class="tk-num">0</span> x<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«times-zero»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">*</span> x <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">functional-commutativity-of-minus-*-right</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L204" target="_blank" rel="noopener">basic-arithmetic.lisp line 204</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">functional-commutativity-of-minus-*-right</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* x <span class="tk-par">(</span>- y<span class="tk-par">)</span><span class="tk-par">)</span>
+	 <span class="tk-par">(</span>- <span class="tk-par">(</span>* x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«functional-commutativity-of-minus-*-right»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  x <span class="tk-op">*</span> <span class="tk-par">(</span><span class="tk-op">-</span>y<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-op">-</span><span class="tk-par">(</span>x <span class="tk-op">*</span> y<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">functional-commutativity-of-minus-*-left</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L208" target="_blank" rel="noopener">basic-arithmetic.lisp line 208</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">functional-commutativity-of-minus-*-left</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* <span class="tk-par">(</span>- x<span class="tk-par">)</span> y<span class="tk-par">)</span>
+         <span class="tk-par">(</span>- <span class="tk-par">(</span>* x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«functional-commutativity-of-minus-*-left»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span><span class="tk-op">-</span>x<span class="tk-par">)</span> <span class="tk-op">*</span> y <span class="tk-op">=</span> <span class="tk-op">-</span><span class="tk-par">(</span>x <span class="tk-op">*</span> y<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">reciprocal-minus-a</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/basic-arithmetic.lisp#L212" target="_blank" rel="noopener">basic-arithmetic.lisp line 212</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">reciprocal-minus-a</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>/ <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">)</span>
+         <span class="tk-par">(</span>- <span class="tk-par">(</span>/ x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«reciprocal-minus-a»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  CRat.inv <span class="tk-par">(</span><span class="tk-op">-</span>x<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-op">-</span><span class="tk-par">(</span>CRat.inv x<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code>. <code>(/ x)</code> is <code>CRat.inv x</code>, <code>fix</code> is <code>fixC</code>.</li>
+</ol></div></details>
+  </section>
+
+  <details open>
+    <summary>Certificate basic-arithmetic.cert</summary>
+    <table class="certinfo">
+      <tr><td>File</td><td><a href="file:///Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/books/arithmetic-2/pass1/basic-arithmetic.cert">/Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/books/arithmetic-2/pass1/basic-arithmetic.cert</a></td></tr>
+      <tr><td>Size</td><td>3592 bytes</td></tr>
+      <tr><td>SHA-256</td><td><code>c288a89aeac53892188d148def7bcab1160038176825fa695721d7cf2a89f9bd</code></td></tr>
+      <tr><td>ACL2 version</td><td>8.7</td></tr>
+      <tr><td>Book paths named in the certificate</td><td><ul><li><code>EQUAL-/-0</code></li></ul></td></tr>
+    </table>
+    <details>
+      <summary>Hex dump of the certificate (3592 bytes)</summary>
+      <pre class="acl2">00000000: 0a23 5aac 120b c905 0000 0000 0108 4143  .#Z...........AC
+00000010: 4c32 0116 434f 4d4d 4f4e 2d4c 4953 5001  L2..COMMON-LISP.
+00000020: 1449 4e2d 5041 434b 4147 4502 0400 0604  .IN-PACKAGE.....
+00000030: 00ac 120b c90a 235a ac12 0bc9 0200 0000  ......#Z........
+00000040: 0001 2041 434c 3220 5665 7273 696f 6e20  .. ACL2 Version 
+00000050: 382e 3700 0000 ac12 0bc9 0a23 5aac 120b  8.7........#Z...
+00000060: c902 0000 0000 0001 0e4b 4559 574f 5244  .........KEYWORD
+00000070: 012a 4245 4749 4e2d 504f 5254 4355 4c4c  .*BEGIN-PORTCULL
+00000080: 4953 2d43 4d44 5300 00ac 120b c90a 235a  IS-CMDS.......#Z
+00000090: ac12 0bc9 0200 0000 0000 010e 4b45 5957  ............KEYW
+000000a0: 4f52 4401 2645 4e44 2d50 4f52 5443 554c  ORD.&amp;END-PORTCUL
+000000b0: 4c49 532d 434d 4453 0000 ac12 0bc9 0a23  LIS-CMDS.......#
+000000c0: 5aac 120b c902 0000 0000 0001 0e4b 4559  Z............KEY
+000000d0: 574f 5244 0112 4345 5254 2d44 4154 4100  WORD..CERT-DATA.
+000000e0: 00ac 120b c90a 235a ac12 0bc9 ab06 0201  ......#Z........
+000000f0: 0000 0000 0003 1643 4f4d 4d4f 4e2d 4c49  .......COMMON-LI
+00000100: 5350 0806 4341 520a 434f 4e53 5006 414e  SP..CAR.CONSP.AN
+00000110: 4404 4946 124e 554d 4552 4154 4f52 064e  D.IF.NUMERATOR.N
+00000120: 4f54 0a51 554f 5445 0a45 5155 414c 0841  OT.QUOTE.EQUAL.A
+00000130: 434c 3226 4446 554e 4354 494f 4e41 4c2d  CL2&amp;DFUNCTIONAL-
+00000140: 5345 4c46 2d49 4e56 4552 5349 4f4e 2d4f  SELF-INVERSION-O
+00000150: 462d 4d49 4e55 5336 4d49 4e55 532d 4341  F-MINUS6MINUS-CA
+00000160: 4e43 454c 4c41 5449 4f4e 2d4f 4e2d 5249  NCELLATION-ON-RI
+00000170: 4748 5434 4d49 4e55 532d 4341 4e43 454c  GHT4MINUS-CANCEL
+00000180: 4c41 5449 4f4e 2d4f 4e2d 4c45 4654 3052  LATION-ON-LEFT0R
+00000190: 4947 4854 2d43 414e 4345 4c4c 4154 494f  IGHT-CANCELLATIO
+000001a0: 4e2d 464f 522d 2b2e 4c45 4654 2d43 414e  N-FOR-+.LEFT-CAN
+000001b0: 4345 4c4c 4154 494f 4e2d 464f 522d 2b1a  CELLATION-FOR-+.
+000001c0: 4551 5541 4c2d 4d49 4e55 532d 301a 4551  EQUAL-MINUS-0.EQ
+000001d0: 5541 4c2d 2b2d 582d 592d 301a 4551 5541  UAL-+-X-Y-0.EQUA
+000001e0: 4c2d 2b2d 582d 592d 5810 4249 4e41 5259  L-+-X-Y-X.BINARY
+000001f0: 2d2b 1a45 5155 414c 2d2b 2d58 2d59 2d59  -+.EQUAL-+-X-Y-Y
+00000200: 0242 0241 2245 5155 414c 2d4d 494e 5553  .B.A&quot;EQUAL-MINUS
+00000210: 2d4d 494e 5553 2e2f 2d43 414e 4345 4c4c  -MINUS./-CANCELL
+00000220: 4154 494f 4e2d 4f4e 2d52 4947 4854 2c2f  ATION-ON-RIGHT,/
+00000230: 2d43 414e 4345 4c4c 4154 494f 4e2d 4f4e  -CANCELLATION-ON
+00000240: 2d4c 4546 542e 4c45 4654 2d43 414e 4345  -LEFT.LEFT-CANCE
+00000250: 4c4c 4154 494f 4e2d 464f 522d 2a12 4551  LLATION-FOR-*.EQ
+00000260: 5541 4c2d 2f2d 3006 4649 581a 4551 5541  UAL-/-0.FIX.EQUA
+00000270: 4c2d 2a2d 582d 592d 301a 4551 5541 4c2d  L-*-X-Y-0.EQUAL-
+00000280: 2a2d 582d 592d 581a 4551 5541 4c2d 2a2d  *-X-Y-X.EQUAL-*-
+00000290: 592d 582d 5802 5a0c 5155 4f54 4550 0e53  Y-X-X.Z.QUOTEP.S
+000002a0: 594e 5441 5850 0853 594e 5020 464f 4c44  YNTAXP.SYNP FOLD
+000002b0: 2d43 4f4e 5354 532d 494e 2d2a 1841 434c  -CONSTS-IN-*.ACL
+000002c0: 322d 4e55 4d42 4552 5002 520e 494d 504c  2-NUMBERP.R.IMPL
+000002d0: 4945 5332 4e55 4d45 5241 544f 522d 4e4f  IES2NUMERATOR-NO
+000002e0: 4e5a 4552 4f2d 464f 5257 4152 4414 5449  NZERO-FORWARD.TI
+000002f0: 4d45 532d 5a45 524f 0259 1042 494e 4152  MES-ZERO.Y.BINAR
+00000300: 592d 2a50 4655 4e43 5449 4f4e 414c 2d43  Y-*PFUNCTIONAL-C
+00000310: 4f4d 4d55 5441 5449 5649 5459 2d4f 462d  OMMUTATIVITY-OF-
+00000320: 4d49 4e55 532d 2a2d 4c45 4654 0258 0e55  MINUS-*-LEFT.X.U
+00000330: 4e41 5259 2d2d 0e55 4e41 5259 2d2f 2452  NARY--.UNARY-/$R
+00000340: 4543 4950 524f 4341 4c2d 4d49 4e55 532d  ECIPROCAL-MINUS-
+00000350: 410e 4b45 5957 4f52 4403 0c44 4546 5448  A.KEYWORD..DEFTH
+00000360: 4d12 5452 414e 534c 4154 4522 5459 5045  M.TRANSLATE&quot;TYPE
+00000370: 2d50 5245 5343 5249 5054 494f 4ef7 0568  -PRESCRIPTION..h
+00000380: 0064 315c 005e 3770 0060 395c 0060 3b78  .d1\.^7p.`9\.`;x
+00000390: 005e 3d7c 0074 3f16 4016 005e 4260 4388  .^=|.t?.@..^B`C.
+000003a0: 0100 8201 456c 468e 0100 6248 642d 5c00  ....ElF...bHd-\.
+000003b0: 5e4b 5600 9801 4d58 4e56 005c 5058 51a4  ^KV...MXNV.\PXQ.
+000003c0: 0100 5e53 a801 009e 0155 1656 1600 5e58  ..^S.....U.V..^X
+000003d0: 5859 b401 00ae 015b 9401 5cba 0100 5a5e  XY.....[..\...Z^
+000003e0: 642a 0600 1461 5c00 c401 6358 64c4 0100  d*...a\...cXd...
+000003f0: ca01 6616 6716 0058 69d4 0100 d001 6bc0  ..f.g..Xi.....k.
+00000400: 016c da01 0054 6e64 294e 0010 71c4 0100  .l...Tnd)N..q...
+00000410: e401 7316 74ea 0100 1276 c401 004e 7816  ..s.t....v...Nx.
+00000420: 79f4 0100 127b 4e00 4c7d 0000 147f 8002  y....{N.L}......
+00000430: 00fc 0181 01f8 0182 010e 8301 8802 00ee  ................
+00000440: 0185 0150 8601 5000 0e88 014c 8901 128a  ...P..P....L....
+00000450: 0116 8b01 108c 019a 0200 8e02 8e01 e001  ................
+00000460: 8f01 a002 0052 9101 6425 0000 1494 015c  .....R..d%.....\
+00000470: 0044 9601 ae02 0046 9801 b202 0014 9a01  .D.....F........
+00000480: 5c00 449c 0102 0014 9e01 8002 00be 02a0  \.D.............
+00000490: 01ba 02a1 010e a201 c602 0014 a401 ca02  ................
+000004a0: 00b6 02a6 01aa 02a7 0148 a801 5600 44aa  .........H..V.D.
+000004b0: 01d6 0200 46ac 01da 0200 14ae 0156 0044  ....F........V.D
+000004c0: b001 8002 00be 02b2 01e2 02b3 010e b401  ................
+000004d0: ea02 0014 b601 ee02 00de 02b8 01aa 02b9  ................
+000004e0: 0148 ba01 8002 00f6 02bc 01d2 02bd 010e  .H..............
+000004f0: be01 4200 56c0 0158 c101 8403 005c c301  ..B.V..X.....\..
+00000500: 58c4 0156 005c c601 58c7 0142 0090 03c9  X..V.\..X..B....
+00000510: 0158 ca01 9603 008a 03cc 0116 cd01 9c03  .X..............
+00000520: 00fe 02cf 0150 d001 5000 16d2 0158 d301  .....P..P....X..
+00000530: 0ed4 0148 d501 ac03 00a2 03d7 01a6 02d8  ...H............
+00000540: 01b2 0300 4ada 0164 205c 0056 dd01 58de  ....J..d \.V..X.
+00000550: 015c 00be 03e0 0116 e101 5c00 4ce3 01c4  .\........\.L...
+00000560: 0100 5ce5 0116 e601 c401 005c e801 16e9  ..\........\....
+00000570: 0104 0014 eb01 d803 0056 ed01 16ee 01de  .........V......
+00000580: 0300 d403 f001 ce03 f101 0ef2 0180 0200  ................
+00000590: e603 f401 c803 f501 0ef6 01ee 0300 c403  ................
+000005a0: f801 16f9 0116 000e fb01 4cfc 0158 fd01  ..........L..X..
+000005b0: fc03 00f4 03ff 01b8 0380 0282 0400 4082  ..............@.
+000005c0: 0264 1f56 005c 8502 5886 025c 008e 0488  .d.V.\..X..\....
+000005d0: 0216 8902 5c00 4c8b 02c4 0100 5c8d 0216  ....\.L.....\...
+000005e0: 8e02 c401 005c 9002 1691 02d8 0300 5693  .....\........V.
+000005f0: 0216 9402 aa04 00a4 0496 029e 0497 020e  ................
+00000600: 9802 8002 00b2 049a 0298 049b 020e 9c02  ................
+00000610: ba04 0094 049e 0216 9f02 1600 0ea1 024c  ...............L
+00000620: a202 58a3 02c8 0400 c004 a502 8804 a602  ..X.............
+00000630: ce04 003e a802 641e 5600 5cab 0258 ac02  ...&gt;..d.V.\..X..
+00000640: c401 00da 04ae 0216 af02 5c00 3ab1 02c4  ..........\.:...
+00000650: 0100 e404 b302 16b4 025c 003a b602 c401  .........\.:....
+00000660: 00ee 04b8 0216 b902 5600 3abb 02c4 0100  ........V.:.....
+00000670: f804 bd02 16be 02fe 0400 f404 c002 ea04  ................
+00000680: c102 0ec2 0286 0500 e004 c402 16c5 0216  ................
+00000690: 000e c702 3ac8 0258 c902 9405 008c 05cb  ....:..X........
+000006a0: 02d4 04cc 029a 0500 3cce 0264 1c5c 0060  ........&lt;..d.\.`
+000006b0: d102 c401 00a4 05d3 0216 d402 5c00 3ad6  ............\.:.
+000006c0: 02c4 0100 ae05 d802 16d9 02b4 0500 aa05  ................
+000006d0: db02 16dc 0216 003a de02 60df 02c0 0500  .......:..`.....
+000006e0: ba05 e102 a005 e202 c605 0038 e402 641b  ...........8..d.
+000006f0: 5c00 42e7 0258 e802 5600 42ea 0258 eb02  \.B..X..V.B..X..
+00000700: d805 00d2 05ed 0216 ee02 4200 3af0 02e2  ..........B.:...
+00000710: 0500 c401 f202 16f3 0242 003a f502 ec05  .........B.:....
+00000720: 00c4 01f7 0216 f802 5c00 3afa 0256 003a  ........\.:..V.:
+00000730: fc02 fa05 00f6 05fe 0216 ff02 8006 00f2  ................
+00000740: 0581 03e8 0582 030e 8303 8806 00de 0585  ................
+00000750: 0316 8603 1600 0e88 033a 8903 588a 0396  .........:..X...
+00000760: 0600 8e06 8c03 cc05 8d03 9c06 0036 8f03  .............6..
+00000770: 641a 5600 6092 035c 00a6 0694 0358 9503  d.V.`..\.....X..
+00000780: ac06 0056 9703 5898 0356 003a 9a03 c401  ...V..X..V.:....
+00000790: 00b6 069c 0316 9d03 bc06 0012 9f03 5c00  ..............\.
+000007a0: 3aa1 03c4 0100 c406 a303 c006 a403 0ea5  :...............
+000007b0: 03cc 0600 b206 a703 16a8 0316 000e aa03  ................
+000007c0: 3aab 0312 ac03 58ad 0360 ae03 de06 00d2  :.....X..`......
+000007d0: 06b0 03a2 06b1 03e4 0600 34b3 0364 1956  ..........4..d.V
+000007e0: 0060 b603 ee06 005c b803 58b9 03f4 0600  .`.....\..X.....
+000007f0: 56bb 0358 bc03 5600 3abe 03c4 0100 fe06  V..X..V.:.......
+00000800: c003 16c1 0384 0700 12c3 035c 003a c503  ...........\.:..
+00000810: c401 008c 07c7 0388 07c8 030e c903 9407  ................
+00000820: 00fa 06cb 0316 cc03 1600 0ece 033a cf03  .............:..
+00000830: 12d0 0358 d103 60d2 03a6 0700 9a07 d403  ...X..`.........
+00000840: ea06 d503 ac07 0032 d703 6418 2e00 5eda  .......2..d...^.
+00000850: 032c 005e dc03 ba07 00b6 07de 0316 df03  .,.^............
+00000860: 2e00 3ae1 032c 003a e303 c807 00c4 07e5  ..:..,.:........
+00000870: 0316 e603 ce07 00c0 07e8 0316 e903 1600  ................
+00000880: 3aeb 035e ec03 da07 00d4 07ee 03b2 07ef  :..^............
+00000890: 03e0 0700 30f1 0364 1556 005c f403 28f5  ....0..d.V.\..(.
+000008a0: 0356 00ec 07f7 0316 f803 5600 4cfa 035c  .V........V.L..\
+000008b0: 003a fc03 c401 00fa 07fe 0316 ff03 8002  .:..............
+000008c0: 0080 0881 04f6 0782 040e 8304 8808 00f2  ................
+000008d0: 0785 0416 8604 1600 0e88 043a 8904 4c8a  ...........:..L.
+000008e0: 0428 8b04 9808 008e 088d 04e6 078e 049e  .(..............
+000008f0: 0800 2a90 0464 1356 005c 9304 2894 045c  ..*..d.V.\..(..\
+00000900: 00aa 0896 0416 9704 5c00 4c99 0456 003a  ........\.L..V.:
+00000910: 9b04 c401 00b8 089d 0416 9e04 8002 00be  ................
+00000920: 08a0 04b4 08a1 040e a204 c608 00b0 08a4  ................
+00000930: 0416 a504 1600 0ea7 043a a804 4ca9 0428  .........:..L..(
+00000940: aa04 d608 00cc 08ac 04a4 08ad 04dc 0800  ................
+00000950: 26af 0464 1256 000a b204 5600 08b4 0428  &amp;..d.V....V....(
+00000960: 0014 b604 ee08 00ea 08b8 0416 b904 f408  ................
+00000970: 00e6 08bb 040c bc04 fa08 0012 be04 fe08  ................
+00000980: 0046 c004 8209 0014 c204 5600 0ac4 0456  .F........V....V
+00000990: 0008 c604 ee08 008e 09c8 0416 c904 8002  ................
+000009a0: 0094 09cb 048a 09cc 040e cd04 9c09 0012  ................
+000009b0: cf04 8002 00be 02d1 04a0 09d2 040e d304  ................
+000009c0: a809 0014 d504 ac09 0086 09d7 04aa 02d8  ................
+000009d0: 0448 d904 5600 5cdb 0428 dc04 c401 00ba  .H..V.\..(......
+000009e0: 09de 0416 df04 5c00 3ae1 0456 005e e304  ......\.:..V.^..
+000009f0: c809 00c4 09e5 0416 e604 5c00 5ee8 0456  ..........\.^..V
+00000a00: 003a ea04 d609 00d2 09ec 0416 ed04 8002  .:..............
+00000a10: 00dc 09ef 04ce 09f0 040e f104 e409 00c0  ................
+00000a20: 09f3 0416 f404 ea09 00b4 09f6 0450 f704  .............P..
+00000a30: 5000 16f9 040e fa04 3afb 045e fc04 28fd  P.......:..^..(.
+00000a40: 0448 fe04 fe09 00f0 0980 05e2 0881 0584  .H..............
+00000a50: 0a00 2483 0564 115c 005e 8605 c401 008e  ..$..d.\.^......
+00000a60: 0a88 0516 8905 5c00 3a8b 05c4 0100 980a  ......\.:.......
+00000a70: 8d05 168e 059e 0a00 940a 9005 1691 0516  ................
+00000a80: 003a 9305 5e94 05aa 0a00 a40a 9605 8a0a  .:..^...........
+00000a90: 9705 b00a 0022 9905 6410 5600 5c9c 0528  .....&quot;..d.V.\..(
+00000aa0: 9d05 4200 5c9f 0528 a005 c20a 00bc 0aa2  ..B.\..(........
+00000ab0: 0516 a305 5600 3aa5 0542 003a a705 d00a  ....V.:..B.:....
+00000ac0: 00cc 0aa9 0516 aa05 d60a 00c8 0aac 0516  ................
+00000ad0: ad05 1600 3aaf 0528 b005 e20a 00dc 0ab2  ....:..(........
+00000ae0: 05b6 0ab3 05e8 0a00 20b5 0564 0f42 005c  ........ ..d.B.\
+00000af0: b805 28b9 0542 0056 bb05 28bc 05fa 0a00  ..(..B.V..(.....
+00000b00: f40a be05 16bf 055c 003a c105 5600 3ac3  .......\.:..V.:.
+00000b10: 0588 0b00 840b c505 16c6 058e 0b00 800b  ................
+00000b20: c805 16c9 0516 003a cb05 28cc 059a 0b00  .......:..(.....
+00000b30: 940b ce05 ee0a cf05 a00b 001e d105 640e  ..............d.
+00000b40: 5c00 5ed4 0556 00aa 0bd6 0528 d705 b00b  \.^..V.....(....
+00000b50: 005c d905 28da 0556 003a dc05 ba0b 00b6  .\..(..V.:......
+00000b60: 0bde 0516 df05 1600 3ae1 0528 e205 5ee3  ........:..(..^.
+00000b70: 05c8 0b00 c00b e505 a60b e605 ce0b 001c  ................
+00000b80: e805 640d 5c00 5eeb 05d8 0b00 56ed 0528  ..d.\.^.....V..(
+00000b90: ee05 de0b 005c f005 28f1 0556 003a f305  .....\..(..V.:..
+00000ba0: e80b 00e4 0bf5 0516 f605 1600 3af8 0528  ............:..(
+00000bb0: f905 5efa 05f6 0b00 ee0b fc05 d40b fd05  ..^.............
+00000bc0: fc0b 001a ff05 640c 5c00 5e82 0686 0c00  ......d.\.^.....
+00000bd0: 5e84 065c 003a 8606 8e0c 008a 0c88 0616  ^..\.:..........
+00000be0: 8906 1600 3a8b 065e 8c06 9a0c 0094 0c8e  ....:..^........
+00000bf0: 0682 0c8f 06a0 0c00 1891 06a4 0c00 800c  ................
+00000c00: 9306 d20b 9406 a40b 9506 ec0a 9606 b40a  ................
+00000c10: 9706 880a 9806 e008 9906 a208 9a06 e407  ................
+00000c20: 9b06 b007 9c06 e806 9d06 a006 9e06 ca05  ................
+00000c30: 9f06 9e05 a006 d204 a106 8604 a206 b603  ................
+00000c40: a306 a402 a406 de01 a506 be01 a606 9201  ................
+00000c50: a706 66a8 06d2 0c00 6aaa 06a8 0616 00ac  ..f.....j.......
+00000c60: 120b c90a 235a ac12 0bc9 0000 0000 0000  ....#Z..........
+00000c70: 0000 00ac 120b c90a 235a ac12 0bc9 3303  ........#Z....3.
+00000c80: 861a 9c99 afeb 0edb 2900 0000 062e 6261  ........).....ba
+00000c90: 7369 632d 6172 6974 686d 6574 6963 2d68  sic-arithmetic-h
+00000ca0: 656c 7065 722e 6261 7369 632d 6172 6974  elper.basic-arit
+00000cb0: 686d 6574 6963 2d68 656c 7065 725e 6172  hmetic-helper^ar
+00000cc0: 6974 686d 6574 6963 2d32 2f70 6173 7331  ithmetic-2/pass1
+00000cd0: 2f62 6173 6963 2d61 7269 7468 6d65 7469  /basic-arithmeti
+00000ce0: 632d 6865 6c70 6572 2e6c 6973 7020 6261  c-helper.lisp ba
+00000cf0: 7369 632d 6172 6974 686d 6574 6963 2062  sic-arithmetic b
+00000d00: 6173 6963 2d61 7269 7468 6d65 7469 6350  asic-arithmeticP
+00000d10: 6172 6974 686d 6574 6963 2d32 2f70 6173  arithmetic-2/pas
+00000d20: 7331 2f62 6173 6963 2d61 7269 7468 6d65  s1/basic-arithme
+00000d30: 7469 632e 6c69 7370 0208 4143 4c32 010a  tic.lisp..ACL2..
+00000d40: 4c4f 4341 4c0e 4b45 5957 4f52 4406 1e42  LOCAL.KEYWORD..B
+00000d50: 4f4f 4b2d 5752 4954 452d 4441 5445 1642  OOK-WRITE-DATE.B
+00000d60: 4f4f 4b2d 4c45 4e47 5448 0a54 5441 4753  OOK-LENGTH.TTAGS
+00000d70: 0e41 5849 4f4d 5350 1e53 4b49 5050 4544  .AXIOMSP.SKIPPED
+00000d80: 2d50 524f 4f46 5350 0c53 5953 5445 4d22  -PROOFSP.SYSTEM&quot;
+00000d90: 220a 2000 1e00 1c00 2a00 2816 2617 1a04  &quot;. .....*.(.&amp;...
+00000da0: 1803 3400 321b 301c 101d 121e 241f 2207  ..4.2.0.....$.&quot;.
+00000db0: 2000 1e00 1c00 4800 4625 4426 1a02 1803   .....H.F%D&amp;....
+00000dc0: 5200 502a 4e2b 0a2c 0c2d 422e 5e00 1630  R.P*N+.,.-B.^..0
+00000dd0: 6200 4032 00ac 120b c90a 235a ac12 0bc9  b.@2......#Z....
+00000de0: 0200 0000 0000 010e 4b45 5957 4f52 4401  ........KEYWORD.
+00000df0: 2254 5249 5649 414c 2d42 4f4f 4b2d 4841  &quot;TRIVIAL-BOOK-HA
+00000e00: 5348 0000 ac12 0bc9                      SH......</pre>
+    </details>
+  </details>
+</main>
+</div>
+<script>
+const q = document.getElementById('filter');
+q.addEventListener('input', () => {
+  const v = q.value.toLowerCase();
+  document.querySelectorAll('.toc li').forEach(li => {
+    li.style.display = li.textContent.toLowerCase().includes(v) ? '' : 'none';
+  });
+});
+</script>
