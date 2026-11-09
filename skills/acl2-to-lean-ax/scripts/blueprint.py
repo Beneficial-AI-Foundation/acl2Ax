@@ -19,6 +19,7 @@ Inputs in <project-dir>:
 Output:
   <project-dir>/blueprint/<book>-blueprint.html
 The stylesheet is read from assets/style.css next to this skill.
+The module highlight.py colours the ACL2 source and the Lean axiom of each theorem.
 """
 import argparse
 import hashlib
@@ -32,6 +33,7 @@ import sys
 SKILL = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import landing  # noqa: E402  shared table of contents
+import highlight  # noqa: E402  ACL2 and Lean syntax highlighting
 
 
 def thm_source(lines, name):
@@ -173,7 +175,7 @@ def main():
             nodes.append(f"""  <section class="node">
     <div class="node-head"><span class="node-name">{html.escape(acl2_name)}</span><span class="src"><a href="{a.github}/{book_rel}.lisp#L{ln}" target="_blank" rel="noopener">{book_name}.lisp line {ln}</a> · <span>{html.escape(manifest_status)}</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">{html.escape(src)}</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2">{highlight.acl2(src)}</pre></div>
       <div><p class="lbl">Lean axiom</p><pre>none: {html.escape(manifest_status)}</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose">{md_to_html(decision)}</div></details>
@@ -185,8 +187,8 @@ def main():
         nodes.append(f"""  <section class="node">
     <div class="node-head"><span class="node-name">{html.escape(name)}</span><span class="src"><a href="{a.github}/{book_rel}.lisp#L{ln}" target="_blank" rel="noopener">{book_name}.lisp line {ln}</a> · <span class="{build_cls}">{build_note}</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">{html.escape(src)}</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «{html.escape(name)}» : {html.escape(stmt.strip())}</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2">{highlight.acl2(src)}</pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean">{highlight.lean(f"axiom «{name}» : {stmt.strip()}")}</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose">{md_to_html(decision)}</div></details>
   </section>""")
@@ -228,6 +230,7 @@ def main():
 <title>ACL2 {book_name} Blueprint</title>
 <style>{css}</style>
 <style>{landing.TOC_CSS}</style>
+<style>{highlight.TOKEN_CSS}</style>
 <div class="layout">
 <aside class="toc">{toc}</aside>
 <main>
