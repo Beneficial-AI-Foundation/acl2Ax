@@ -217,6 +217,31 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   .toc { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
 }
 </style>
+<style>
+:root {
+  --tk-kw: #7a2f8f; --tk-name: #1f6b67; --tk-const: #9a3412; --tk-type: #1d4f91;
+  --tk-num: #9a3412; --tk-str: #7a4a00; --tk-com: #6a7183; --tk-op: #4a5266; --tk-par: #8a8f9c;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+    --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+  }
+}
+:root[data-theme="dark"] {
+  --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+  --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+}
+.tk-kw { color: var(--tk-kw); font-weight: 600; }
+.tk-name { color: var(--tk-name); font-weight: 600; }
+.tk-const { color: var(--tk-const); }
+.tk-type { color: var(--tk-type); }
+.tk-num { color: var(--tk-num); }
+.tk-str { color: var(--tk-str); }
+.tk-com { color: var(--tk-com); font-style: italic; }
+.tk-op { color: var(--tk-op); }
+.tk-par { color: var(--tk-par); }
+</style>
 <div class="layout">
 <aside class="toc"><h1>ACL2 to Lean blueprint</h1><div class="sub">42 modules, 250 axioms</div><input id="filter" type="search" placeholder="Filter books"><div><a href="index.html">Overview</a></div><div><a href="index.html#rules">Embedding rules</a></div><div class="group"><a href="index.html#d-acl2s">acl2s <span class="count">(1)</span></a><ul><li><a href="acl2s__portcullis-blueprint.html">portcullis</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic">arithmetic <span class="count">(3)</span></a><ul><li><a href="arithmetic__rational-listp-blueprint.html">rational-listp</a></li><li><a href="arithmetic__real-listp-blueprint.html">real-listp</a></li><li><a href="arithmetic__sumlist-blueprint.html">sumlist</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic-2">arithmetic-2 <span class="count">(12)</span></a><ul><li><a href="arithmetic-2__meta__cancel-terms-helper-blueprint.html">meta/cancel-terms-helper</a></li><li><a href="arithmetic-2__meta__non-linear-blueprint.html">meta/non-linear</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-helper-blueprint.html">pass1/basic-arithmetic-helper</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-blueprint.html">pass1/basic-arithmetic</a></li><li><a href="arithmetic-2__pass1__expt-helper-blueprint.html">pass1/expt-helper</a></li><li class="current"><a href="arithmetic-2__pass1__expt-blueprint.html">pass1/expt</a></li><li><a href="arithmetic-2__pass1__inequalities-blueprint.html">pass1/inequalities</a></li><li><a href="arithmetic-2__pass1__mini-theories-blueprint.html">pass1/mini-theories</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-helper-blueprint.html">pass1/numerator-and-denominator-helper</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-blueprint.html">pass1/numerator-and-denominator</a></li><li><a href="arithmetic-2__pass1__prefer-times-blueprint.html">pass1/prefer-times</a></li><li><a href="arithmetic-2__pass1__top-blueprint.html">pass1/top</a></li></ul></div><div class="group"><a href="index.html#d-kestrel">kestrel <span class="count">(5)</span></a><ul><li><a href="kestrel__strings-light__char-blueprint.html">strings-light/char</a></li><li><a href="kestrel__utilities__equal-of-booleans-blueprint.html">utilities/equal-of-booleans</a></li><li><a href="kestrel__utilities__map-symbol-name-blueprint.html">utilities/map-symbol-name</a></li><li><a href="kestrel__utilities__member-symbol-name-blueprint.html">utilities/member-symbol-name</a></li><li><a href="kestrel__utilities__update-acl2-oracle-blueprint.html">utilities/update-acl2-oracle</a></li></ul></div><div class="group"><a href="index.html#d-misc">misc <span class="count">(1)</span></a><ul><li><a href="misc__character-encoding-test-blueprint.html">character-encoding-test</a></li></ul></div><div class="group"><a href="index.html#d-std">std <span class="count">(20)</span></a><ul><li><a href="std__alists__assoc-blueprint.html">alists/assoc</a></li><li><a href="std__basic__code-char-char-code-with-force-blueprint.html">basic/code-char-char-code-with-force</a></li><li><a href="std__basic__fix-blueprint.html">basic/fix</a></li><li><a href="std__basic__ifix-blueprint.html">basic/ifix</a></li><li><a href="std__basic__member-symbol-name-blueprint.html">basic/member-symbol-name</a></li><li><a href="std__basic__nfix-blueprint.html">basic/nfix</a></li><li><a href="std__basic__realfix-blueprint.html">basic/realfix</a></li><li><a href="std__basic__rfix-blueprint.html">basic/rfix</a></li><li><a href="std__basic__symbol-name-lst-blueprint.html">basic/symbol-name-lst</a></li><li><a href="std__lists__add-to-set-blueprint.html">lists/add-to-set</a></li><li><a href="std__lists__union-blueprint.html">lists/union</a></li><li><a href="std__strings__digit-to-char-blueprint.html">strings/digit-to-char</a></li><li><a href="std__system__arglistp-blueprint.html">system/arglistp</a></li><li><a href="std__system__arity-blueprint.html">system/arity</a></li><li><a href="std__system__dumb-negate-lit-blueprint.html">system/dumb-negate-lit</a></li><li><a href="std__system__getprops-blueprint.html">system/getprops</a></li><li><a href="std__system__implicate-blueprint.html">system/implicate</a></li><li><a href="std__system__primitivep-blueprint.html">system/primitivep</a></li><li><a href="std__system__pseudo-event-form-listp-blueprint.html">system/pseudo-event-form-listp</a></li><li><a href="std__system__pseudo-event-formp-blueprint.html">system/pseudo-event-formp</a></li></ul></div></aside>
 <main>
@@ -330,12 +355,12 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">expt-type-prescription-rationalp</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L21" target="_blank" rel="noopener">expt.lisp line 21</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expt-type-prescription-rationalp
-  (implies (rationalp r)
-           (rationalp (expt r i)))
-  :rule-classes (:type-prescription :generalize))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «expt-type-prescription-rationalp» : ∀ r : CRat, ∀ i : Rat,
-  realrationalpC r → realrationalpC (exptC r i)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-type-prescription-rationalp</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span>rationalp r<span class="tk-par">)</span>
+           <span class="tk-par">(</span>rationalp <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:type-prescription</span> <span class="tk-const">:generalize</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-type-prescription-rationalp»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalpC r <span class="tk-op">→</span> realrationalpC <span class="tk-par">(</span>exptC r i<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -345,13 +370,13 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">expt-type-prescription-positive-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L32" target="_blank" rel="noopener">expt.lisp line 32</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expt-type-prescription-positive-1
-  (implies (and (&lt; 0 r)
-                (real/rationalp r))
-           (&lt; 0 (expt r i)))
-  :rule-classes (:type-prescription :generalize))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «expt-type-prescription-positive-1» : ∀ r i : Rat,
-  0 &lt; r → realrationalp r → (0 : CRat) &lt; exptC (↑r : CRat) i</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-type-prescription-positive-1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> r<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:type-prescription</span> <span class="tk-const">:generalize</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-type-prescription-positive-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> realrationalp r <span class="tk-op">→</span> <span class="tk-par">(</span><span class="tk-num">0</span> <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">&lt;</span> exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -360,13 +385,13 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">expt-type-prescription-positive-2</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L38" target="_blank" rel="noopener">expt.lisp line 38</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expt-type-prescription-positive-2
-  (implies (and (&lt;= 0 r)
-                (real/rationalp r))
-           (&lt;= 0 (expt r i)))
-  :rule-classes (:type-prescription :generalize))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «expt-type-prescription-positive-2» : ∀ r i : Rat,
-  0 ≤ r → realrationalp r → acl2le 0 (exptC (↑r : CRat) i)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-type-prescription-positive-2</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> r<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:type-prescription</span> <span class="tk-const">:generalize</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-type-prescription-positive-2»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">≤</span> r <span class="tk-op">→</span> realrationalp r <span class="tk-op">→</span> acl2le <span class="tk-num">0</span> <span class="tk-par">(</span>exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -375,13 +400,13 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">expt-type-prescription-nonzero</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L44" target="_blank" rel="noopener">expt.lisp line 44</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expt-type-prescription-nonzero
-  (implies (and (fc (acl2-numberp r))
-                (not (equal r 0)))
-           (not (equal 0 (expt r i))))
-  :rule-classes (:type-prescription :generalize))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «expt-type-prescription-nonzero» : ∀ r : CRat, ∀ i : Rat,
-  acl2NumberPC r → ¬ (r = 0) → ¬ (exptC r i = 0)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-type-prescription-nonzero</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>fc <span class="tk-par">(</span>acl2-numberp r<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> r <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-num">0</span> <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:type-prescription</span> <span class="tk-const">:generalize</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-type-prescription-nonzero»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  acl2NumberPC r <span class="tk-op">→</span> <span class="tk-op">¬</span> <span class="tk-par">(</span>r <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-op">→</span> <span class="tk-op">¬</span> <span class="tk-par">(</span>exptC r i <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -390,13 +415,13 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">expt-type-prescription-integerp</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L50" target="_blank" rel="noopener">expt.lisp line 50</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expt-type-prescription-integerp
-  (implies (and (&lt;= 0 i)
-                (integerp r))
-           (integerp (expt r i)))
-  :rule-classes (:type-prescription :generalize))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «expt-type-prescription-integerp» : ∀ r i : Rat,
-  0 ≤ i → integerp r → integerpC (exptC (↑r : CRat) i)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-type-prescription-integerp</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> i<span class="tk-par">)</span>
+                <span class="tk-par">(</span>integerp r<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>integerp <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:type-prescription</span> <span class="tk-const">:generalize</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-type-prescription-integerp»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">≤</span> i <span class="tk-op">→</span> integerp r <span class="tk-op">→</span> integerpC <span class="tk-par">(</span>exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -405,12 +430,12 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">equal-expt-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L56" target="_blank" rel="noopener">expt.lisp line 56</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm equal-expt-0
-  (equal (equal (expt x i) 0)
-	 (and (equal (fix x) 0)
-	      (not (equal (ifix i) 0)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «equal-expt-0» : ∀ x : CRat, ∀ i : Rat,
-  (exptC x i = 0) ↔ (fixC x = 0 ∧ ¬ (ifixR i = 0))</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-expt-0</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt x i<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+	 <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix x<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+	      <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>ifix i<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-expt-0»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>exptC x i <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>fixC x <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">∧</span> <span class="tk-op">¬</span> <span class="tk-par">(</span>ifixR i <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -419,15 +444,15 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">expt-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L61" target="_blank" rel="noopener">expt.lisp line 61</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expt-0
- (and (equal (expt x 0)
-	     1)
-      (equal (expt 0 i)
-	     (if (zip i)
-		 1
-	         0))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «expt-0» : ∀ x : CRat, ∀ i : Rat,
-  (exptC x 0 = 1) ∧ (exptC 0 i = (if zipR i then 1 else 0))</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-0</span>
+ <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt x <span class="tk-num">0</span><span class="tk-par">)</span>
+	     <span class="tk-num">1</span><span class="tk-par">)</span>
+      <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt <span class="tk-num">0</span> i<span class="tk-par">)</span>
+	     <span class="tk-par">(</span><span class="tk-kw">if</span> <span class="tk-par">(</span>zip i<span class="tk-par">)</span>
+		 <span class="tk-num">1</span>
+	         <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-0»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>exptC x <span class="tk-num">0</span> <span class="tk-op">=</span> <span class="tk-num">1</span><span class="tk-par">)</span> <span class="tk-op">∧</span> <span class="tk-par">(</span>exptC <span class="tk-num">0</span> i <span class="tk-op">=</span> <span class="tk-par">(</span><span class="tk-kw">if</span> zipR i <span class="tk-kw">then</span> <span class="tk-num">1</span> <span class="tk-kw">else</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -436,13 +461,13 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">expt-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L69" target="_blank" rel="noopener">expt.lisp line 69</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expt-1
-  (and (equal (expt x 1)
-	      (fix x))
-       (equal (expt 1 i)
-	      1)))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «expt-1» : ∀ x : CRat, ∀ i : Rat,
-  (exptC x 1 = fixC x) ∧ (exptC 1 i = 1)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-1</span>
+  <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt x <span class="tk-num">1</span><span class="tk-par">)</span>
+	      <span class="tk-par">(</span>fix x<span class="tk-par">)</span><span class="tk-par">)</span>
+       <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt <span class="tk-num">1</span> i<span class="tk-par">)</span>
+	      <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>exptC x <span class="tk-num">1</span> <span class="tk-op">=</span> fixC x<span class="tk-par">)</span> <span class="tk-op">∧</span> <span class="tk-par">(</span>exptC <span class="tk-num">1</span> i <span class="tk-op">=</span> <span class="tk-num">1</span><span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -451,11 +476,11 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">expt-minus</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L76" target="_blank" rel="noopener">expt.lisp line 76</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2"> (defthm expt-minus
-   (equal (expt r (- i))
-	  (/ (expt r i)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «expt-minus» : ∀ r : CRat, ∀ i : Rat,
-  exptC r (-i) = CRat.inv (exptC r i)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"> <span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-minus</span>
+   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt r <span class="tk-par">(</span>- i<span class="tk-par">)</span><span class="tk-par">)</span>
+	  <span class="tk-par">(</span>/ <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-minus»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  exptC r <span class="tk-par">(</span><span class="tk-op">-</span>i<span class="tk-par">)</span> <span class="tk-op">=</span> CRat.inv <span class="tk-par">(</span>exptC r i<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Local. Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -464,17 +489,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">exponents-add-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L80" target="_blank" rel="noopener">expt.lisp line 80</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm exponents-add-1
-  (implies (and (fc (integerp i))
-		(fc (integerp j)))
-	   (equal (expt r (+ i j))
-		  (if (equal (+ i j) 0)
-		      1
-		      (* (expt r i)
-			 (expt r j))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «exponents-add-1» : ∀ r : CRat, ∀ i j : Rat,
-  integerp i → integerp j →
-  exptC r (i + j) = (if i + j = 0 then 1 else exptC r i * exptC r j)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">exponents-add-1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt r <span class="tk-par">(</span>+ i j<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span><span class="tk-kw">if</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>+ i j<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+		      <span class="tk-num">1</span>
+		      <span class="tk-par">(</span>* <span class="tk-par">(</span>expt r i<span class="tk-par">)</span>
+			 <span class="tk-par">(</span>expt r j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«exponents-add-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  exptC r <span class="tk-par">(</span>i <span class="tk-op">+</span> j<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-par">(</span><span class="tk-kw">if</span> i <span class="tk-op">+</span> j <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-kw">then</span> <span class="tk-num">1</span> <span class="tk-kw">else</span> exptC r i <span class="tk-op">*</span> exptC r j<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent. <code>expt</code> is <code>exptC</code> (decision 29).</li>
@@ -483,17 +508,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">exponents-add-for-nonpos-exponents</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L89" target="_blank" rel="noopener">expt.lisp line 89</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm exponents-add-for-nonpos-exponents
-  (implies (and (&lt;= i 0)
-		(&lt;= j 0)
-		(fc (integerp i))
-		(fc (integerp j)))
-	   (equal (expt r (+ i j))
-		  (* (expt r i)
-		     (expt r j)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «exponents-add-for-nonpos-exponents» : ∀ r : CRat, ∀ i j : Rat,
-  i ≤ 0 → j ≤ 0 → integerp i → integerp j →
-  exptC r (i + j) = exptC r i * exptC r j</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">exponents-add-for-nonpos-exponents</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= i <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt;= j <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt r <span class="tk-par">(</span>+ i j<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span>* <span class="tk-par">(</span>expt r i<span class="tk-par">)</span>
+		     <span class="tk-par">(</span>expt r j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«exponents-add-for-nonpos-exponents»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  i <span class="tk-op">≤</span> <span class="tk-num">0</span> <span class="tk-op">→</span> j <span class="tk-op">≤</span> <span class="tk-num">0</span> <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  exptC r <span class="tk-par">(</span>i <span class="tk-op">+</span> j<span class="tk-par">)</span> <span class="tk-op">=</span> exptC r i <span class="tk-op">*</span> exptC r j</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent. <code>expt</code> is <code>exptC</code> (decision 29).</li>
@@ -502,17 +527,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">exponents-add-for-nonneg-exponents</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L98" target="_blank" rel="noopener">expt.lisp line 98</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm exponents-add-for-nonneg-exponents
-  (implies (and (&lt;= 0 i)
-		(&lt;= 0 j)
-		(fc (integerp i))
-		(fc (integerp j)))
-	   (equal (expt r (+ i j))
-		  (* (expt r i)
-		     (expt r j)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «exponents-add-for-nonneg-exponents» : ∀ r : CRat, ∀ i j : Rat,
-  0 ≤ i → 0 ≤ j → integerp i → integerp j →
-  exptC r (i + j) = exptC r i * exptC r j</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">exponents-add-for-nonneg-exponents</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> i<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt r <span class="tk-par">(</span>+ i j<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span>* <span class="tk-par">(</span>expt r i<span class="tk-par">)</span>
+		     <span class="tk-par">(</span>expt r j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«exponents-add-for-nonneg-exponents»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">≤</span> i <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> j <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  exptC r <span class="tk-par">(</span>i <span class="tk-op">+</span> j<span class="tk-par">)</span> <span class="tk-op">=</span> exptC r i <span class="tk-op">*</span> exptC r j</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent. <code>expt</code> is <code>exptC</code> (decision 29).</li>
@@ -521,17 +546,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">exponents-add-2</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L107" target="_blank" rel="noopener">expt.lisp line 107</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm exponents-add-2
-  (implies (and (not (equal 0 r))
-		(fc (acl2-numberp r))
-		(fc (integerp i))
-		(fc (integerp j)))
-	   (equal (expt r (+ i j))
-		  (* (expt r i)
-		     (expt r j)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «exponents-add-2» : ∀ r : CRat, ∀ i j : Rat,
-  ¬ (0 = r) → acl2NumberPC r → integerp i → integerp j →
-  exptC r (i + j) = exptC r i * exptC r j</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">exponents-add-2</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-num">0</span> r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>acl2-numberp r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt r <span class="tk-par">(</span>+ i j<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span>* <span class="tk-par">(</span>expt r i<span class="tk-par">)</span>
+		     <span class="tk-par">(</span>expt r j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«exponents-add-2»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-op">¬</span> <span class="tk-par">(</span><span class="tk-num">0</span> <span class="tk-op">=</span> r<span class="tk-par">)</span> <span class="tk-op">→</span> acl2NumberPC r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  exptC r <span class="tk-par">(</span>i <span class="tk-op">+</span> j<span class="tk-par">)</span> <span class="tk-op">=</span> exptC r i <span class="tk-op">*</span> exptC r j</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent. <code>expt</code> is <code>exptC</code> (decision 29).</li>
@@ -540,12 +565,12 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">distributivity-of-expt-over-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L116" target="_blank" rel="noopener">expt.lisp line 116</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm distributivity-of-expt-over-*
-  (equal (expt (* a b) i)
-         (* (expt a i)
-            (expt b i))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «distributivity-of-expt-over-*» : ∀ a b : CRat, ∀ i : Rat,
-  exptC (a * b) i = exptC a i * exptC b i</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">distributivity-of-expt-over-*</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt <span class="tk-par">(</span>* a b<span class="tk-par">)</span> i<span class="tk-par">)</span>
+         <span class="tk-par">(</span>* <span class="tk-par">(</span>expt a i<span class="tk-par">)</span>
+            <span class="tk-par">(</span>expt b i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«distributivity-of-expt-over-*»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> a b <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  exptC <span class="tk-par">(</span>a <span class="tk-op">*</span> b<span class="tk-par">)</span> i <span class="tk-op">=</span> exptC a i <span class="tk-op">*</span> exptC b i</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -554,11 +579,11 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">functional-commutativity-of-expt-/-base</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L121" target="_blank" rel="noopener">expt.lisp line 121</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm functional-commutativity-of-expt-/-base
-  (equal (expt (/ r) i)
-         (/ (expt r i))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «functional-commutativity-of-expt-/-base» : ∀ r : CRat, ∀ i : Rat,
-  exptC (CRat.inv r) i = CRat.inv (exptC r i)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">functional-commutativity-of-expt-/-base</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt <span class="tk-par">(</span>/ r<span class="tk-par">)</span> i<span class="tk-par">)</span>
+         <span class="tk-par">(</span>/ <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«functional-commutativity-of-expt-/-base»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  exptC <span class="tk-par">(</span>CRat.inv r<span class="tk-par">)</span> i <span class="tk-op">=</span> CRat.inv <span class="tk-par">(</span>exptC r i<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -567,14 +592,14 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Exponents-multiply</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L125" target="_blank" rel="noopener">expt.lisp line 125</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm Exponents-multiply
-  (implies (and (fc (integerp i))
-                (fc (integerp j)))
-           (equal (expt (expt r i) j)
-                  (expt r (* i j))))
-  :hints ((&quot;Subgoal *1/4&#x27;&quot; :in-theory (enable prefer-*-to-/))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Exponents-multiply» : ∀ r : CRat, ∀ i j : Rat,
-  integerp i → integerp j → exptC (exptC r i) j = exptC r (i * j)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">Exponents-multiply</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt <span class="tk-par">(</span>expt r i<span class="tk-par">)</span> j<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>expt r <span class="tk-par">(</span>* i j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Subgoal *1/4&#x27;&quot;</span> <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">enable</span> prefer-*-to-/<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Exponents-multiply»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span> exptC <span class="tk-par">(</span>exptC r i<span class="tk-par">)</span> j <span class="tk-op">=</span> exptC r <span class="tk-par">(</span>i <span class="tk-op">*</span> j<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -583,18 +608,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">expt-is-increasing-for-base&gt;1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L132" target="_blank" rel="noopener">expt.lisp line 132</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expt-is-increasing-for-base&gt;1
-  (implies (and (&lt; 1 r)
-		(&lt; i j)
-		(fc (real/rationalp r))
-		(fc (integerp i))
-		(fc (integerp j)))
-	   (&lt; (expt r i)
-	      (expt r j)))
-  :rule-classes (:rewrite :linear))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «expt-is-increasing-for-base&gt;1» : ∀ r i j : Rat,
-  1 &lt; r → i &lt; j → realrationalp r → integerp i → integerp j →
-  exptC (↑r : CRat) i &lt; exptC (↑r : CRat) j</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-is-increasing-for-base&gt;1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> r<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; i j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>real/rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>expt r i<span class="tk-par">)</span>
+	      <span class="tk-par">(</span>expt r j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:rewrite</span> <span class="tk-const">:linear</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-is-increasing-for-base&gt;1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">1</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> i <span class="tk-op">&lt;</span> j <span class="tk-op">→</span> realrationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i <span class="tk-op">&lt;</span> exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> j</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code> with the rational exponent. <code>expt</code> is <code>exptC</code> (decision 29).</li>
@@ -603,24 +628,24 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Expt-is-decreasing-for-pos-base&lt;1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L142" target="_blank" rel="noopener">expt.lisp line 142</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm Expt-is-decreasing-for-pos-base&lt;1
-  (implies (and (&lt; 0 r)
-                (&lt; r 1)
-                (&lt; i j)
-                (fc (real/rationalp r))
-                (fc (integerp i))
-                (fc (integerp j)))
-           (&lt; (expt r j)
-              (expt r i)))
-  :rule-classes (:rewrite :linear)
-  :hints ((&quot;Goal&quot; :use
-           ((:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">Expt-is-decreasing-for-pos-base&lt;1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> r<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; r <span class="tk-num">1</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; i j<span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>real/rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>expt r j<span class="tk-par">)</span>
+              <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:rewrite</span> <span class="tk-const">:linear</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:use</span>
+           <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:instance</span>
              expt-is-increasing-for-base&gt;1
-             (r (/ r))))
-	   :in-theory (enable prefer-*-to-/))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Expt-is-decreasing-for-pos-base&lt;1» : ∀ r i j : Rat,
-  0 &lt; r → r &lt; 1 → i &lt; j → realrationalp r → integerp i → integerp j →
-  exptC (↑r : CRat) j &lt; exptC (↑r : CRat) i</pre></div>
+             <span class="tk-par">(</span>r <span class="tk-par">(</span>/ r<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">enable</span> prefer-*-to-/<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Expt-is-decreasing-for-pos-base&lt;1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> r <span class="tk-op">&lt;</span> <span class="tk-num">1</span> <span class="tk-op">→</span> i <span class="tk-op">&lt;</span> j <span class="tk-op">→</span> realrationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> j <span class="tk-op">&lt;</span> exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -629,20 +654,20 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Expt-is-weakly-increasing-for-base&gt;1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L160" target="_blank" rel="noopener">expt.lisp line 160</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm Expt-is-weakly-increasing-for-base&gt;1
-  (implies (and (&lt;= 1 r)
-                (&lt;= i j)
-                (fc (real/rationalp r))
-                (fc (integerp i))
-                (fc (integerp j)))
-           (&lt;= (expt r i)
-               (expt r j)))
-  :rule-classes (:rewrite :linear)
-  :hints ((&quot;Goal&quot; :use expt-is-increasing-for-base&gt;1
-           :in-theory (disable  expt-is-increasing-for-base&gt;1))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Expt-is-weakly-increasing-for-base&gt;1» : ∀ r i j : Rat,
-  1 ≤ r → i ≤ j → realrationalp r → integerp i → integerp j →
-  acl2le (exptC (↑r : CRat) i) (exptC (↑r : CRat) j)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">Expt-is-weakly-increasing-for-base&gt;1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">1</span> r<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= i j<span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>real/rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>expt r i<span class="tk-par">)</span>
+               <span class="tk-par">(</span>expt r j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:rewrite</span> <span class="tk-const">:linear</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:use</span> expt-is-increasing-for-base&gt;1
+           <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span>  expt-is-increasing-for-base&gt;1<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Expt-is-weakly-increasing-for-base&gt;1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">1</span> <span class="tk-op">≤</span> r <span class="tk-op">→</span> i <span class="tk-op">≤</span> j <span class="tk-op">→</span> realrationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  acl2le <span class="tk-par">(</span>exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i<span class="tk-par">)</span> <span class="tk-par">(</span>exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> j<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -651,21 +676,21 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Expt-is-weakly-decreasing-for-pos-base&lt;1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L172" target="_blank" rel="noopener">expt.lisp line 172</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm Expt-is-weakly-decreasing-for-pos-base&lt;1
-  (implies (and (&lt; 0 r)
-                (&lt;= r 1)
-                (&lt;= i j)
-                (fc (real/rationalp r))
-                (fc (integerp i))
-                (fc (integerp j)))
-           (&lt;= (expt r j)
-               (expt r i)))
-  :rule-classes (:rewrite :linear)
-  :hints ((&quot;Goal&quot; :use expt-is-decreasing-for-pos-base&lt;1
-           :in-theory (disable expt-is-decreasing-for-pos-base&lt;1))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Expt-is-weakly-decreasing-for-pos-base&lt;1» : ∀ r i j : Rat,
-  0 &lt; r → r ≤ 1 → i ≤ j → realrationalp r → integerp i → integerp j →
-  acl2le (exptC (↑r : CRat) j) (exptC (↑r : CRat) i)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">Expt-is-weakly-decreasing-for-pos-base&lt;1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> r<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= r <span class="tk-num">1</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= i j<span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>real/rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>expt r j<span class="tk-par">)</span>
+               <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:rewrite</span> <span class="tk-const">:linear</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:use</span> expt-is-decreasing-for-pos-base&lt;1
+           <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> expt-is-decreasing-for-pos-base&lt;1<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Expt-is-weakly-decreasing-for-pos-base&lt;1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> r <span class="tk-op">≤</span> <span class="tk-num">1</span> <span class="tk-op">→</span> i <span class="tk-op">≤</span> j <span class="tk-op">→</span> realrationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  acl2le <span class="tk-par">(</span>exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> j<span class="tk-par">)</span> <span class="tk-par">(</span>exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -674,14 +699,14 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">stupid-hack</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L188" target="_blank" rel="noopener">expt.lisp line 188</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2"> (defthm stupid-hack
-   (implies (and (real/rationalp x)
-		 (not (equal x 0)))
-	    (equal (* x (/ x) (expt a b))
-		   (expt a b)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «stupid-hack» : ∀ x : Rat, ∀ a : CRat, ∀ b : Rat,
-  realrationalp x → ¬ (x = 0) →
-  ((↑x : CRat) * CRat.inv (↑x : CRat)) * exptC a b = exptC a b</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"> <span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">stupid-hack</span>
+   <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	    <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* x <span class="tk-par">(</span>/ x<span class="tk-par">)</span> <span class="tk-par">(</span>expt a b<span class="tk-par">)</span><span class="tk-par">)</span>
+		   <span class="tk-par">(</span>expt a b<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«stupid-hack»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> a <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> b <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> <span class="tk-op">¬</span> <span class="tk-par">(</span>x <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-op">→</span>
+  <span class="tk-par">(</span><span class="tk-par">(</span>↑x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">*</span> CRat.inv <span class="tk-par">(</span>↑x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-op">*</span> exptC a b <span class="tk-op">=</span> exptC a b</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Local. Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -690,16 +715,16 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">expt-&gt;-1-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L194" target="_blank" rel="noopener">expt.lisp line 194</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expt-&gt;-1-1
-  (implies (and (&lt; 1 r)
-		(&lt; 0 i)
-		(fc (real/rationalp r))
-		(fc (integerp i)))
-	   (&lt; 1 (expt r i)))
-  :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «expt-&gt;-1-1» : ∀ r i : Rat,
-  1 &lt; r → 0 &lt; i → realrationalp r → integerp i →
-  (1 : CRat) &lt; exptC (↑r : CRat) i</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-&gt;-1-1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> r<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> i<span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>real/rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-&gt;-1-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">1</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> i <span class="tk-op">→</span> realrationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span>
+  <span class="tk-par">(</span><span class="tk-num">1</span> <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">&lt;</span> exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -708,17 +733,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">expt-&gt;-1-2</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L202" target="_blank" rel="noopener">expt.lisp line 202</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expt-&gt;-1-2
-  (implies (and (&lt; 0 r)
-		(&lt; r 1)
-		(&lt; i 0)
-		(fc (real/rationalp r))
-		(fc (integerp i)))
-	   (&lt; 1 (expt r i)))
-  :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «expt-&gt;-1-2» : ∀ r i : Rat,
-  0 &lt; r → r &lt; 1 → i &lt; 0 → realrationalp r → integerp i →
-  (1 : CRat) &lt; exptC (↑r : CRat) i</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-&gt;-1-2</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> r<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; r <span class="tk-num">1</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; i <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>real/rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-&gt;-1-2»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> r <span class="tk-op">&lt;</span> <span class="tk-num">1</span> <span class="tk-op">→</span> i <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span> realrationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span>
+  <span class="tk-par">(</span><span class="tk-num">1</span> <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">&lt;</span> exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -727,17 +752,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">expt-&lt;-1-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L211" target="_blank" rel="noopener">expt.lisp line 211</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expt-&lt;-1-1
-  (implies (and (&lt; 0 r)
-		(&lt; r 1)
-		(&lt; 0 i)
-		(fc (real/rationalp r))
-		(fc (integerp i)))
-	   (&lt; (expt r i) 1))
-  :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «expt-&lt;-1-1» : ∀ r i : Rat,
-  0 &lt; r → r &lt; 1 → 0 &lt; i → realrationalp r → integerp i →
-  exptC (↑r : CRat) i &lt; 1</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-&lt;-1-1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> r<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; r <span class="tk-num">1</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> i<span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>real/rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>expt r i<span class="tk-par">)</span> <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-&lt;-1-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> r <span class="tk-op">&lt;</span> <span class="tk-num">1</span> <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> i <span class="tk-op">→</span> realrationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span>
+  exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i <span class="tk-op">&lt;</span> <span class="tk-num">1</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
@@ -746,17 +771,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">expt-&lt;-1-2</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/expt.lisp#L220" target="_blank" rel="noopener">expt.lisp line 220</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm expt-&lt;-1-2
-  (implies (and (&lt; 1 r)
-		(&lt; i 0)
-		(fc (real/rationalp r))
-		(fc (integerp i)))
-	   (&lt; (expt r i) 1))
-  :hints ((&quot;Goal&quot; :in-theory (enable prefer-*-to-/)))
-  :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «expt-&lt;-1-2» : ∀ r i : Rat,
-  1 &lt; r → i &lt; 0 → realrationalp r → integerp i →
-  exptC (↑r : CRat) i &lt; 1</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-&lt;-1-2</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> r<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; i <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>real/rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>expt r i<span class="tk-par">)</span> <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">enable</span> prefer-*-to-/<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-&lt;-1-2»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">1</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> i <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span> realrationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span>
+  exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i <span class="tk-op">&lt;</span> <span class="tk-num">1</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>

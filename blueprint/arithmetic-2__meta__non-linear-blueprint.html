@@ -217,6 +217,31 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   .toc { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
 }
 </style>
+<style>
+:root {
+  --tk-kw: #7a2f8f; --tk-name: #1f6b67; --tk-const: #9a3412; --tk-type: #1d4f91;
+  --tk-num: #9a3412; --tk-str: #7a4a00; --tk-com: #6a7183; --tk-op: #4a5266; --tk-par: #8a8f9c;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+    --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+  }
+}
+:root[data-theme="dark"] {
+  --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+  --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+}
+.tk-kw { color: var(--tk-kw); font-weight: 600; }
+.tk-name { color: var(--tk-name); font-weight: 600; }
+.tk-const { color: var(--tk-const); }
+.tk-type { color: var(--tk-type); }
+.tk-num { color: var(--tk-num); }
+.tk-str { color: var(--tk-str); }
+.tk-com { color: var(--tk-com); font-style: italic; }
+.tk-op { color: var(--tk-op); }
+.tk-par { color: var(--tk-par); }
+</style>
 <div class="layout">
 <aside class="toc"><h1>ACL2 to Lean blueprint</h1><div class="sub">42 modules, 250 axioms</div><input id="filter" type="search" placeholder="Filter books"><div><a href="index.html">Overview</a></div><div><a href="index.html#rules">Embedding rules</a></div><div class="group"><a href="index.html#d-acl2s">acl2s <span class="count">(1)</span></a><ul><li><a href="acl2s__portcullis-blueprint.html">portcullis</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic">arithmetic <span class="count">(3)</span></a><ul><li><a href="arithmetic__rational-listp-blueprint.html">rational-listp</a></li><li><a href="arithmetic__real-listp-blueprint.html">real-listp</a></li><li><a href="arithmetic__sumlist-blueprint.html">sumlist</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic-2">arithmetic-2 <span class="count">(12)</span></a><ul><li><a href="arithmetic-2__meta__cancel-terms-helper-blueprint.html">meta/cancel-terms-helper</a></li><li class="current"><a href="arithmetic-2__meta__non-linear-blueprint.html">meta/non-linear</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-helper-blueprint.html">pass1/basic-arithmetic-helper</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-blueprint.html">pass1/basic-arithmetic</a></li><li><a href="arithmetic-2__pass1__expt-helper-blueprint.html">pass1/expt-helper</a></li><li><a href="arithmetic-2__pass1__expt-blueprint.html">pass1/expt</a></li><li><a href="arithmetic-2__pass1__inequalities-blueprint.html">pass1/inequalities</a></li><li><a href="arithmetic-2__pass1__mini-theories-blueprint.html">pass1/mini-theories</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-helper-blueprint.html">pass1/numerator-and-denominator-helper</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-blueprint.html">pass1/numerator-and-denominator</a></li><li><a href="arithmetic-2__pass1__prefer-times-blueprint.html">pass1/prefer-times</a></li><li><a href="arithmetic-2__pass1__top-blueprint.html">pass1/top</a></li></ul></div><div class="group"><a href="index.html#d-kestrel">kestrel <span class="count">(5)</span></a><ul><li><a href="kestrel__strings-light__char-blueprint.html">strings-light/char</a></li><li><a href="kestrel__utilities__equal-of-booleans-blueprint.html">utilities/equal-of-booleans</a></li><li><a href="kestrel__utilities__map-symbol-name-blueprint.html">utilities/map-symbol-name</a></li><li><a href="kestrel__utilities__member-symbol-name-blueprint.html">utilities/member-symbol-name</a></li><li><a href="kestrel__utilities__update-acl2-oracle-blueprint.html">utilities/update-acl2-oracle</a></li></ul></div><div class="group"><a href="index.html#d-misc">misc <span class="count">(1)</span></a><ul><li><a href="misc__character-encoding-test-blueprint.html">character-encoding-test</a></li></ul></div><div class="group"><a href="index.html#d-std">std <span class="count">(20)</span></a><ul><li><a href="std__alists__assoc-blueprint.html">alists/assoc</a></li><li><a href="std__basic__code-char-char-code-with-force-blueprint.html">basic/code-char-char-code-with-force</a></li><li><a href="std__basic__fix-blueprint.html">basic/fix</a></li><li><a href="std__basic__ifix-blueprint.html">basic/ifix</a></li><li><a href="std__basic__member-symbol-name-blueprint.html">basic/member-symbol-name</a></li><li><a href="std__basic__nfix-blueprint.html">basic/nfix</a></li><li><a href="std__basic__realfix-blueprint.html">basic/realfix</a></li><li><a href="std__basic__rfix-blueprint.html">basic/rfix</a></li><li><a href="std__basic__symbol-name-lst-blueprint.html">basic/symbol-name-lst</a></li><li><a href="std__lists__add-to-set-blueprint.html">lists/add-to-set</a></li><li><a href="std__lists__union-blueprint.html">lists/union</a></li><li><a href="std__strings__digit-to-char-blueprint.html">strings/digit-to-char</a></li><li><a href="std__system__arglistp-blueprint.html">system/arglistp</a></li><li><a href="std__system__arity-blueprint.html">system/arity</a></li><li><a href="std__system__dumb-negate-lit-blueprint.html">system/dumb-negate-lit</a></li><li><a href="std__system__getprops-blueprint.html">system/getprops</a></li><li><a href="std__system__implicate-blueprint.html">system/implicate</a></li><li><a href="std__system__primitivep-blueprint.html">system/primitivep</a></li><li><a href="std__system__pseudo-event-form-listp-blueprint.html">system/pseudo-event-form-listp</a></li><li><a href="std__system__pseudo-event-formp-blueprint.html">system/pseudo-event-formp</a></li></ul></div></aside>
 <main>
@@ -330,19 +355,19 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">*-preserves-&lt;=-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L34" target="_blank" rel="noopener">non-linear.lisp line 34</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2"> (defthm *-preserves-&lt;=-1
-     (implies (and (&lt;= x1 x2)
-                   (&lt;= 0 x1)
-                   (&lt;= 0 y1)
-                   (real/rationalp x1)
-                   (real/rationalp x2)
-                   (real/rationalp y1))
-              (&lt;= (* x1 y1) (* x2 y1)))
-   :rule-classes :linear))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «*-preserves-&lt;=-1» : ∀ x1 x2 y1 : Rat,
-  x1 ≤ x2 → 0 ≤ x1 → 0 ≤ y1 →
-  realrationalp x1 → realrationalp x2 → realrationalp y1 →
-  x1 * y1 ≤ x2 * y1</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"> <span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">*-preserves-&lt;=-1</span>
+     <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= x1 x2<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x1<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> y1<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>real/rationalp x1<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>real/rationalp x2<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>real/rationalp y1<span class="tk-par">)</span><span class="tk-par">)</span>
+              <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>* x1 y1<span class="tk-par">)</span> <span class="tk-par">(</span>* x2 y1<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«*-preserves-&lt;=-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x1 x2 y1 <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  x1 <span class="tk-op">≤</span> x2 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x1 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> y1 <span class="tk-op">→</span>
+  realrationalp x1 <span class="tk-op">→</span> realrationalp x2 <span class="tk-op">→</span> realrationalp y1 <span class="tk-op">→</span>
+  x1 <span class="tk-op">*</span> y1 <span class="tk-op">≤</span> x2 <span class="tk-op">*</span> y1</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Local. Real variables, <code>Rat</code>. The <code>realrationalp</code> hypotheses are <code>True</code>.</li>
@@ -351,19 +376,19 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">*-preserves-&lt;=-2</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L45" target="_blank" rel="noopener">non-linear.lisp line 45</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2"> (defthm *-preserves-&lt;=-2
-     (implies (and (&lt;= y1 y2)
-                   (&lt;= 0 x2)
-                   (&lt;= 0 y1)
-                   (real/rationalp x2)
-                   (real/rationalp y1)
-                   (real/rationalp y2))
-              (&lt;= (* x2 y1) (* x2 y2)))
-   :rule-classes :linear))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «*-preserves-&lt;=-2» : ∀ x2 y1 y2 : Rat,
-  y1 ≤ y2 → 0 ≤ x2 → 0 ≤ y1 →
-  realrationalp x2 → realrationalp y1 → realrationalp y2 →
-  x2 * y1 ≤ x2 * y2</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"> <span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">*-preserves-&lt;=-2</span>
+     <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= y1 y2<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x2<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> y1<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>real/rationalp x2<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>real/rationalp y1<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>real/rationalp y2<span class="tk-par">)</span><span class="tk-par">)</span>
+              <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>* x2 y1<span class="tk-par">)</span> <span class="tk-par">(</span>* x2 y2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«*-preserves-&lt;=-2»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x2 y1 y2 <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  y1 <span class="tk-op">≤</span> y2 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x2 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> y1 <span class="tk-op">→</span>
+  realrationalp x2 <span class="tk-op">→</span> realrationalp y1 <span class="tk-op">→</span> realrationalp y2 <span class="tk-op">→</span>
+  x2 <span class="tk-op">*</span> y1 <span class="tk-op">≤</span> x2 <span class="tk-op">*</span> y2</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Local. Real variables, <code>Rat</code>.</li>
@@ -372,19 +397,19 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">*-preserves-&lt;-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L56" target="_blank" rel="noopener">non-linear.lisp line 56</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2"> (defthm *-preserves-&lt;-1
-     (implies (and (&lt; x1 x2)
-                   (&lt;= 0 x1)
-                   (&lt; 0 y1)
-                   (real/rationalp x1)
-                   (real/rationalp x2)
-                   (real/rationalp y1))
-              (&lt; (* x1 y1) (* x2 y1)))
-   :rule-classes :linear))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «*-preserves-&lt;-1» : ∀ x1 x2 y1 : Rat,
-  x1 &lt; x2 → 0 ≤ x1 → 0 &lt; y1 →
-  realrationalp x1 → realrationalp x2 → realrationalp y1 →
-  x1 * y1 &lt; x2 * y1</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"> <span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">*-preserves-&lt;-1</span>
+     <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; x1 x2<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x1<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> y1<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>real/rationalp x1<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>real/rationalp x2<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>real/rationalp y1<span class="tk-par">)</span><span class="tk-par">)</span>
+              <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>* x1 y1<span class="tk-par">)</span> <span class="tk-par">(</span>* x2 y1<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«*-preserves-&lt;-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x1 x2 y1 <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  x1 <span class="tk-op">&lt;</span> x2 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x1 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> y1 <span class="tk-op">→</span>
+  realrationalp x1 <span class="tk-op">→</span> realrationalp x2 <span class="tk-op">→</span> realrationalp y1 <span class="tk-op">→</span>
+  x1 <span class="tk-op">*</span> y1 <span class="tk-op">&lt;</span> x2 <span class="tk-op">*</span> y1</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Local. Real variables, <code>Rat</code>.</li>
@@ -393,19 +418,19 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">*-preserves-&lt;-2</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L67" target="_blank" rel="noopener">non-linear.lisp line 67</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2"> (defthm *-preserves-&lt;-2
-     (implies (and (&lt; y1 y2)
-                   (&lt; 0 x2)
-                   (&lt;= 0 y1)
-                   (real/rationalp x2)
-                   (real/rationalp y1)
-                   (real/rationalp y2))
-              (&lt; (* x2 y1) (* x2 y2)))
-   :rule-classes :linear))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «*-preserves-&lt;-2» : ∀ x2 y1 y2 : Rat,
-  y1 &lt; y2 → 0 &lt; x2 → 0 ≤ y1 →
-  realrationalp x2 → realrationalp y1 → realrationalp y2 →
-  x2 * y1 &lt; x2 * y2</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"> <span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">*-preserves-&lt;-2</span>
+     <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; y1 y2<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> x2<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> y1<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>real/rationalp x2<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>real/rationalp y1<span class="tk-par">)</span>
+                   <span class="tk-par">(</span>real/rationalp y2<span class="tk-par">)</span><span class="tk-par">)</span>
+              <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>* x2 y1<span class="tk-par">)</span> <span class="tk-par">(</span>* x2 y2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«*-preserves-&lt;-2»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x2 y1 y2 <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  y1 <span class="tk-op">&lt;</span> y2 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> x2 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> y1 <span class="tk-op">→</span>
+  realrationalp x2 <span class="tk-op">→</span> realrationalp y1 <span class="tk-op">→</span> realrationalp y2 <span class="tk-op">→</span>
+  x2 <span class="tk-op">*</span> y1 <span class="tk-op">&lt;</span> x2 <span class="tk-op">*</span> y2</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Local. Real variables, <code>Rat</code>.</li>
@@ -414,21 +439,21 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">*-preserves-&lt;=-for-nonnegatives</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L79" target="_blank" rel="noopener">non-linear.lisp line 79</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm *-preserves-&lt;=-for-nonnegatives
-    (implies (and (&lt;= x1 x2)
-                  (&lt;= y1 y2)
-                  (&lt;= 0 x1)
-                  (&lt;= 0 y1)
-                  (real/rationalp x1)
-                  (real/rationalp x2)
-                  (real/rationalp y1)
-                  (real/rationalp y2))
-             (&lt;= (* x1 y1) (* x2 y2)))
-  :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «*-preserves-&lt;=-for-nonnegatives» : ∀ x1 x2 y1 y2 : Rat,
-  x1 ≤ x2 → y1 ≤ y2 → 0 ≤ x1 → 0 ≤ y1 →
-  realrationalp x1 → realrationalp x2 → realrationalp y1 → realrationalp y2 →
-  x1 * y1 ≤ x2 * y2</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">*-preserves-&lt;=-for-nonnegatives</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= x1 x2<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt;= y1 y2<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> y1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x2<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp y1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp y2<span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>* x1 y1<span class="tk-par">)</span> <span class="tk-par">(</span>* x2 y2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«*-preserves-&lt;=-for-nonnegatives»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x1 x2 y1 y2 <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  x1 <span class="tk-op">≤</span> x2 <span class="tk-op">→</span> y1 <span class="tk-op">≤</span> y2 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x1 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> y1 <span class="tk-op">→</span>
+  realrationalp x1 <span class="tk-op">→</span> realrationalp x2 <span class="tk-op">→</span> realrationalp y1 <span class="tk-op">→</span> realrationalp y2 <span class="tk-op">→</span>
+  x1 <span class="tk-op">*</span> y1 <span class="tk-op">≤</span> x2 <span class="tk-op">*</span> y2</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>.</li>
@@ -437,22 +462,22 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">*-preserves-&lt;-for-nonnegatives</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L91" target="_blank" rel="noopener">non-linear.lisp line 91</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm *-preserves-&lt;-for-nonnegatives
-    (implies (and (&lt; x1 x2)
-                  (&lt; y1 y2)
-                  (&lt;= 0 x1)
-                  (&lt;= 0 y1)
-                  (real/rationalp x1)
-                  (real/rationalp x2)
-                  (real/rationalp y1)
-                  (real/rationalp y2))
-             (&lt; (* x1 y1) (* x2 y2)))
-  :rule-classes :linear
-  :hints ((&quot;Goal&quot; :cases ((equal x1 0) (equal y1 0)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «*-preserves-&lt;-for-nonnegatives» : ∀ x1 x2 y1 y2 : Rat,
-  x1 &lt; x2 → y1 &lt; y2 → 0 ≤ x1 → 0 ≤ y1 →
-  realrationalp x1 → realrationalp x2 → realrationalp y1 → realrationalp y2 →
-  x1 * y1 &lt; x2 * y2</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">*-preserves-&lt;-for-nonnegatives</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; x1 x2<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt; y1 y2<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> y1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x2<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp y1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp y2<span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>* x1 y1<span class="tk-par">)</span> <span class="tk-par">(</span>* x2 y2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:cases</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-kw">equal</span> x1 <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> y1 <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«*-preserves-&lt;-for-nonnegatives»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x1 x2 y1 y2 <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  x1 <span class="tk-op">&lt;</span> x2 <span class="tk-op">→</span> y1 <span class="tk-op">&lt;</span> y2 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x1 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> y1 <span class="tk-op">→</span>
+  realrationalp x1 <span class="tk-op">→</span> realrationalp x2 <span class="tk-op">→</span> realrationalp y1 <span class="tk-op">→</span> realrationalp y2 <span class="tk-op">→</span>
+  x1 <span class="tk-op">*</span> y1 <span class="tk-op">&lt;</span> x2 <span class="tk-op">*</span> y2</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. The <code>:hints</code> are dropped.</li>
@@ -461,21 +486,21 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">*-preserves-&lt;-for-nonnegatives-stronger-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L104" target="_blank" rel="noopener">non-linear.lisp line 104</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm *-preserves-&lt;-for-nonnegatives-stronger-1
-    (implies (and (&lt;= x1 x2)
-                  (&lt; y1 y2)
-                  (&lt; 0 x1)
-                  (&lt;= 0 y1)
-                  (real/rationalp x1)
-                  (real/rationalp x2)
-                  (real/rationalp y1)
-                  (real/rationalp y2))
-             (&lt; (* x1 y1) (* x2 y2)))
-  :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «*-preserves-&lt;-for-nonnegatives-stronger-1» : ∀ x1 x2 y1 y2 : Rat,
-  x1 ≤ x2 → y1 &lt; y2 → 0 &lt; x1 → 0 ≤ y1 →
-  realrationalp x1 → realrationalp x2 → realrationalp y1 → realrationalp y2 →
-  x1 * y1 &lt; x2 * y2</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">*-preserves-&lt;-for-nonnegatives-stronger-1</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= x1 x2<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt; y1 y2<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> x1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> y1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x2<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp y1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp y2<span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>* x1 y1<span class="tk-par">)</span> <span class="tk-par">(</span>* x2 y2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«*-preserves-&lt;-for-nonnegatives-stronger-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x1 x2 y1 y2 <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  x1 <span class="tk-op">≤</span> x2 <span class="tk-op">→</span> y1 <span class="tk-op">&lt;</span> y2 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> x1 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> y1 <span class="tk-op">→</span>
+  realrationalp x1 <span class="tk-op">→</span> realrationalp x2 <span class="tk-op">→</span> realrationalp y1 <span class="tk-op">→</span> realrationalp y2 <span class="tk-op">→</span>
+  x1 <span class="tk-op">*</span> y1 <span class="tk-op">&lt;</span> x2 <span class="tk-op">*</span> y2</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>.</li>
@@ -484,21 +509,21 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">*-preserves-&lt;-for-nonnegatives-stronger-2</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L116" target="_blank" rel="noopener">non-linear.lisp line 116</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm *-preserves-&lt;-for-nonnegatives-stronger-2
-    (implies (and (&lt; x1 x2)
-                  (&lt;= y1 y2)
-                  (&lt;= 0 x1)
-                  (&lt; 0 y1)
-                  (real/rationalp x1)
-                  (real/rationalp x2)
-                  (real/rationalp y1)
-                  (real/rationalp y2))
-             (&lt; (* x1 y1) (* x2 y2)))
-  :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «*-preserves-&lt;-for-nonnegatives-stronger-2» : ∀ x1 x2 y1 y2 : Rat,
-  x1 &lt; x2 → y1 ≤ y2 → 0 ≤ x1 → 0 &lt; y1 →
-  realrationalp x1 → realrationalp x2 → realrationalp y1 → realrationalp y2 →
-  x1 * y1 &lt; x2 * y2</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">*-preserves-&lt;-for-nonnegatives-stronger-2</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; x1 x2<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt;= y1 y2<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> y1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x2<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp y1<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp y2<span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>* x1 y1<span class="tk-par">)</span> <span class="tk-par">(</span>* x2 y2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«*-preserves-&lt;-for-nonnegatives-stronger-2»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x1 x2 y1 y2 <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  x1 <span class="tk-op">&lt;</span> x2 <span class="tk-op">→</span> y1 <span class="tk-op">≤</span> y2 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x1 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> y1 <span class="tk-op">→</span>
+  realrationalp x1 <span class="tk-op">→</span> realrationalp x2 <span class="tk-op">→</span> realrationalp y1 <span class="tk-op">→</span> realrationalp y2 <span class="tk-op">→</span>
+  x1 <span class="tk-op">*</span> y1 <span class="tk-op">&lt;</span> x2 <span class="tk-op">*</span> y2</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>.</li>
@@ -507,31 +532,31 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">*-weakly-monotonic</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L134" target="_blank" rel="noopener">non-linear.lisp line 134</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm *-weakly-monotonic
-  (implies (and (&lt;= y y+)
-               (real/rationalp x)   ; This does not hold if x, y, and z are complex!
-               (&lt;= 0 x))
-           (&lt;= (* x y) (* x y+)))
-  :hints ((&quot;Goal&quot; :cases ((equal x 0))))
-  :rule-classes
-  ((:forward-chaining :trigger-terms ((* x y) (* x y+)))
-   (:linear)
-   (:forward-chaining
-    :trigger-terms ((* y x) (* y+ x))
-    :corollary
-    (implies (and (&lt;= y y+)
-                  (real/rationalp x)
-                  (&lt;= 0 x))
-             (&lt;= (* y x) (* y+ x))))
-   (:linear
-    :corollary
-    (implies (and (&lt;= y y+)
-                  (real/rationalp x)
-                  (&lt;= 0 x))
-             (&lt;= (* y x) (* y+ x))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «*-weakly-monotonic» : ∀ y yp : CRat, ∀ x : Rat,
-  acl2le y yp → realrationalp x → 0 ≤ x →
-  acl2le ((↑x : CRat) * y) ((↑x : CRat) * yp)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">*-weakly-monotonic</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= y y+<span class="tk-par">)</span>
+               <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>   <span class="tk-com">; This does not hold if x, y, and z are complex!</span>
+               <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>* x y<span class="tk-par">)</span> <span class="tk-par">(</span>* x y+<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:cases</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-kw">equal</span> x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span>
+  <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:forward-chaining</span> <span class="tk-const">:trigger-terms</span> <span class="tk-par">(</span><span class="tk-par">(</span>* x y<span class="tk-par">)</span> <span class="tk-par">(</span>* x y+<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-par">(</span><span class="tk-const">:linear</span><span class="tk-par">)</span>
+   <span class="tk-par">(</span><span class="tk-const">:forward-chaining</span>
+    <span class="tk-const">:trigger-terms</span> <span class="tk-par">(</span><span class="tk-par">(</span>* y x<span class="tk-par">)</span> <span class="tk-par">(</span>* y+ x<span class="tk-par">)</span><span class="tk-par">)</span>
+    <span class="tk-const">:corollary</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= y y+<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>* y x<span class="tk-par">)</span> <span class="tk-par">(</span>* y+ x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-par">(</span><span class="tk-const">:linear</span>
+    <span class="tk-const">:corollary</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= y y+<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>* y x<span class="tk-par">)</span> <span class="tk-par">(</span>* y+ x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«*-weakly-monotonic»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> y yp <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  acl2le y yp <span class="tk-op">→</span> realrationalp x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span>
+  acl2le <span class="tk-par">(</span><span class="tk-par">(</span>↑x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">*</span> y<span class="tk-par">)</span> <span class="tk-par">(</span><span class="tk-par">(</span>↑x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">*</span> yp<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li><code>y</code> and <code>y+</code> (named <code>yp</code>) range over <code>CRat</code>, because the ACL2 statement holds for complex values (the <code>#| |#</code> counterexample is a comment). <code>x</code> is real, <code>Rat</code>. <code>&lt;=</code> is <code>acl2le</code>. The name <code>y+</code> is <code>yp</code> (decision 22).</li>
@@ -540,30 +565,30 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">*-strongly-monotonic</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L167" target="_blank" rel="noopener">non-linear.lisp line 167</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm *-strongly-monotonic
-  (implies (and (&lt; y y+)
-                (real/rationalp x)
-                (&lt; 0 x))
-           (&lt; (* x y) (* x y+)))
-  :rule-classes
-  ((:forward-chaining :trigger-terms ((* x y) (* x y+)))
-   (:linear)
-   (:forward-chaining
-    :trigger-terms ((* y x) (* y+ x))
-    :corollary
-    (implies (and (&lt; y y+)
-                  (real/rationalp x)
-                  (&lt; 0 x))
-             (&lt; (* y x) (* y+ x))))
-   (:linear
-    :corollary
-    (implies (and (&lt; y y+)
-                  (real/rationalp x)
-                  (&lt; 0 x))
-             (&lt; (* y x) (* y+ x))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «*-strongly-monotonic» : ∀ y yp : CRat, ∀ x : Rat,
-  y &lt; yp → realrationalp x → 0 &lt; x →
-  (↑x : CRat) * y &lt; (↑x : CRat) * yp</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">*-strongly-monotonic</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; y y+<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>* x y<span class="tk-par">)</span> <span class="tk-par">(</span>* x y+<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span>
+  <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:forward-chaining</span> <span class="tk-const">:trigger-terms</span> <span class="tk-par">(</span><span class="tk-par">(</span>* x y<span class="tk-par">)</span> <span class="tk-par">(</span>* x y+<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-par">(</span><span class="tk-const">:linear</span><span class="tk-par">)</span>
+   <span class="tk-par">(</span><span class="tk-const">:forward-chaining</span>
+    <span class="tk-const">:trigger-terms</span> <span class="tk-par">(</span><span class="tk-par">(</span>* y x<span class="tk-par">)</span> <span class="tk-par">(</span>* y+ x<span class="tk-par">)</span><span class="tk-par">)</span>
+    <span class="tk-const">:corollary</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; y y+<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>* y x<span class="tk-par">)</span> <span class="tk-par">(</span>* y+ x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-par">(</span><span class="tk-const">:linear</span>
+    <span class="tk-const">:corollary</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; y y+<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>* y x<span class="tk-par">)</span> <span class="tk-par">(</span>* y+ x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«*-strongly-monotonic»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> y yp <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  y <span class="tk-op">&lt;</span> yp <span class="tk-op">→</span> realrationalp x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> x <span class="tk-op">→</span>
+  <span class="tk-par">(</span>↑x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">*</span> y <span class="tk-op">&lt;</span> <span class="tk-par">(</span>↑x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">*</span> yp</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li><code>y</code> and <code>yp</code> range over <code>CRat</code>. <code>x</code> is real, <code>Rat</code>. The name <code>y+</code> is <code>yp</code> (decision 22).</li>
@@ -572,30 +597,30 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">*-weakly-monotonic-negative-multiplier</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L189" target="_blank" rel="noopener">non-linear.lisp line 189</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm *-weakly-monotonic-negative-multiplier
-  (implies (and (&lt;= y y+)
-               (real/rationalp x)
-               (&lt; x 0))
-           (&lt;= (* x y+) (* x y)))
-  :rule-classes
-  ((:forward-chaining :trigger-terms ((* x y) (* x y+)))
-   (:linear)
-   (:forward-chaining
-    :trigger-terms ((* y x) (* y+ x))
-    :corollary
-    (implies (and (&lt;= y y+)
-                  (real/rationalp x)
-                  (&lt; x 0))
-             (&lt;= (* y+ x) (* y x))))
-   (:linear
-    :corollary
-    (implies (and (&lt;= y y+)
-                  (real/rationalp x)
-                  (&lt; x 0))
-             (&lt;= (* y+ x) (* y x))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «*-weakly-monotonic-negative-multiplier» : ∀ y yp : CRat, ∀ x : Rat,
-  acl2le y yp → realrationalp x → x &lt; 0 →
-  acl2le ((↑x : CRat) * yp) ((↑x : CRat) * y)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">*-weakly-monotonic-negative-multiplier</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= y y+<span class="tk-par">)</span>
+               <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+               <span class="tk-par">(</span>&lt; x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>* x y+<span class="tk-par">)</span> <span class="tk-par">(</span>* x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span>
+  <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:forward-chaining</span> <span class="tk-const">:trigger-terms</span> <span class="tk-par">(</span><span class="tk-par">(</span>* x y<span class="tk-par">)</span> <span class="tk-par">(</span>* x y+<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-par">(</span><span class="tk-const">:linear</span><span class="tk-par">)</span>
+   <span class="tk-par">(</span><span class="tk-const">:forward-chaining</span>
+    <span class="tk-const">:trigger-terms</span> <span class="tk-par">(</span><span class="tk-par">(</span>* y x<span class="tk-par">)</span> <span class="tk-par">(</span>* y+ x<span class="tk-par">)</span><span class="tk-par">)</span>
+    <span class="tk-const">:corollary</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= y y+<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt; x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>* y+ x<span class="tk-par">)</span> <span class="tk-par">(</span>* y x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-par">(</span><span class="tk-const">:linear</span>
+    <span class="tk-const">:corollary</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= y y+<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt; x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>* y+ x<span class="tk-par">)</span> <span class="tk-par">(</span>* y x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«*-weakly-monotonic-negative-multiplier»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> y yp <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  acl2le y yp <span class="tk-op">→</span> realrationalp x <span class="tk-op">→</span> x <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span>
+  acl2le <span class="tk-par">(</span><span class="tk-par">(</span>↑x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">*</span> yp<span class="tk-par">)</span> <span class="tk-par">(</span><span class="tk-par">(</span>↑x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">*</span> y<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li><code>y</code> and <code>yp</code> range over <code>CRat</code>. <code>x</code> is real, <code>Rat</code>. <code>&lt;=</code> is <code>acl2le</code>. The name <code>y+</code> is <code>yp</code> (decision 22).</li>
@@ -604,30 +629,30 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">*-strongly-monotonic-negative-multiplier</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L211" target="_blank" rel="noopener">non-linear.lisp line 211</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm *-strongly-monotonic-negative-multiplier
-  (implies (and (&lt; y y+)
-                (real/rationalp x)
-                (&lt; x 0))
-           (&lt; (* x y+) (* x y)))
-  :rule-classes
-  ((:forward-chaining :trigger-terms ((* x y) (* x y+)))
-   (:linear)
-   (:forward-chaining
-    :trigger-terms ((* y x) (* y+ x))
-    :corollary
-    (implies (and (&lt; y y+)
-                  (real/rationalp x)
-                  (&lt; x 0))
-             (&lt; (* y+ x) (* y x))))
-   (:linear
-    :corollary
-    (implies (and (&lt; y y+)
-                  (real/rationalp x)
-                  (&lt; x 0))
-             (&lt; (* y+ x) (* y x))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «*-strongly-monotonic-negative-multiplier» : ∀ y yp : CRat, ∀ x : Rat,
-  y &lt; yp → realrationalp x → x &lt; 0 →
-  (↑x : CRat) * yp &lt; (↑x : CRat) * y</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">*-strongly-monotonic-negative-multiplier</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; y y+<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>* x y+<span class="tk-par">)</span> <span class="tk-par">(</span>* x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span>
+  <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:forward-chaining</span> <span class="tk-const">:trigger-terms</span> <span class="tk-par">(</span><span class="tk-par">(</span>* x y<span class="tk-par">)</span> <span class="tk-par">(</span>* x y+<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-par">(</span><span class="tk-const">:linear</span><span class="tk-par">)</span>
+   <span class="tk-par">(</span><span class="tk-const">:forward-chaining</span>
+    <span class="tk-const">:trigger-terms</span> <span class="tk-par">(</span><span class="tk-par">(</span>* y x<span class="tk-par">)</span> <span class="tk-par">(</span>* y+ x<span class="tk-par">)</span><span class="tk-par">)</span>
+    <span class="tk-const">:corollary</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; y y+<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt; x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>* y+ x<span class="tk-par">)</span> <span class="tk-par">(</span>* y x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-par">(</span><span class="tk-const">:linear</span>
+    <span class="tk-const">:corollary</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; y y+<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>&lt; x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>* y+ x<span class="tk-par">)</span> <span class="tk-par">(</span>* y x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«*-strongly-monotonic-negative-multiplier»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> y yp <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  y <span class="tk-op">&lt;</span> yp <span class="tk-op">→</span> realrationalp x <span class="tk-op">→</span> x <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span>
+  <span class="tk-par">(</span>↑x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">*</span> yp <span class="tk-op">&lt;</span> <span class="tk-par">(</span>↑x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">*</span> y</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li><code>y</code> and <code>yp</code> range over <code>CRat</code>. <code>x</code> is real, <code>Rat</code>. The name <code>y+</code> is <code>yp</code> (decision 22).</li>
@@ -636,17 +661,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">/-weakly-monotonic</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L236" target="_blank" rel="noopener">non-linear.lisp line 236</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm /-weakly-monotonic
-  (implies (and (&lt;= y y+)
-                (real/rationalp y)
-                (real/rationalp y+)
-                (&lt; 0 y))
-           (&lt;= (/ y+) (/ y)))
-  :rule-classes
-  ((:forward-chaining :trigger-terms ((/ y+) (/ y))) :linear))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «/-weakly-monotonic» : ∀ y yp : Rat,
-  y ≤ yp → realrationalp y → realrationalp yp → 0 &lt; y →
-  yp⁻¹ ≤ y⁻¹</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">/-weakly-monotonic</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= y y+<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y+<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> y<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>/ y+<span class="tk-par">)</span> <span class="tk-par">(</span>/ y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span>
+  <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:forward-chaining</span> <span class="tk-const">:trigger-terms</span> <span class="tk-par">(</span><span class="tk-par">(</span>/ y+<span class="tk-par">)</span> <span class="tk-par">(</span>/ y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-const">:linear</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«/-weakly-monotonic»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> y yp <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  y <span class="tk-op">≤</span> yp <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> realrationalp yp <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> y <span class="tk-op">→</span>
+  yp⁻¹ <span class="tk-op">≤</span> y⁻¹</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ y)</code> is <code>y⁻¹</code>.</li>
@@ -655,17 +680,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">/-strongly-monotonic</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L245" target="_blank" rel="noopener">non-linear.lisp line 245</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm /-strongly-monotonic
-  (implies (and (&lt; y y+)
-                (real/rationalp y)
-                (real/rationalp y+)
-                (&lt; 0 y))
-           (&lt; (/ y+) (/ y)))
-  :rule-classes
-  ((:forward-chaining :trigger-terms ((/ y+) (/ y))) :linear))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «/-strongly-monotonic» : ∀ y yp : Rat,
-  y &lt; yp → realrationalp y → realrationalp yp → 0 &lt; y →
-  yp⁻¹ &lt; y⁻¹</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">/-strongly-monotonic</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; y y+<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y+<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> y<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>/ y+<span class="tk-par">)</span> <span class="tk-par">(</span>/ y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span>
+  <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:forward-chaining</span> <span class="tk-const">:trigger-terms</span> <span class="tk-par">(</span><span class="tk-par">(</span>/ y+<span class="tk-par">)</span> <span class="tk-par">(</span>/ y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-const">:linear</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«/-strongly-monotonic»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> y yp <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  y <span class="tk-op">&lt;</span> yp <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> realrationalp yp <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> y <span class="tk-op">→</span>
+  yp⁻¹ <span class="tk-op">&lt;</span> y⁻¹</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ y)</code> is <code>y⁻¹</code>.</li>
@@ -674,16 +699,16 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">x*y&gt;1-positive</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L256" target="_blank" rel="noopener">non-linear.lisp line 256</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm x*y&gt;1-positive
-   (implies (and (&lt; 1 x)
-                 (&lt; 1 y)
-                 (real/rationalp x)
-                 (real/rationalp y))
-    (&lt; 1 (* x y)))
-   :rule-classes (:linear :rewrite))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «x*y&gt;1-positive» : ∀ x y : Rat,
-  1 &lt; x → 1 &lt; y → realrationalp x → realrationalp y →
-  1 &lt; x * y</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">x*y&gt;1-positive</span>
+   <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> x<span class="tk-par">)</span>
+                 <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> y<span class="tk-par">)</span>
+                 <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                 <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span><span class="tk-par">)</span>
+    <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> <span class="tk-par">(</span>* x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:linear</span> <span class="tk-const">:rewrite</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«x*y&gt;1-positive»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">1</span> <span class="tk-op">&lt;</span> x <span class="tk-op">→</span> <span class="tk-num">1</span> <span class="tk-op">&lt;</span> y <span class="tk-op">→</span> realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span>
+  <span class="tk-num">1</span> <span class="tk-op">&lt;</span> x <span class="tk-op">*</span> y</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>.</li>
@@ -692,18 +717,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">x*y&gt;1-positive-stronger</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L264" target="_blank" rel="noopener">non-linear.lisp line 264</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm x*y&gt;1-positive-stronger
-   (implies (and (or (and (&lt; 1 x)
-                          (&lt;= 1 y))
-                     (and (&lt;= 1 x)
-                          (&lt; 1 y)))
-                 (real/rationalp x)
-                 (real/rationalp y))
-    (&lt; 1 (* x y)))
-   :rule-classes (:linear :rewrite))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «x*y&gt;1-positive-stronger» : ∀ x y : Rat,
-  ((1 &lt; x ∧ 1 ≤ y) ∨ (1 ≤ x ∧ 1 &lt; y)) → realrationalp x → realrationalp y →
-  1 &lt; x * y</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">x*y&gt;1-positive-stronger</span>
+   <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">or</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> x<span class="tk-par">)</span>
+                          <span class="tk-par">(</span>&lt;= <span class="tk-num">1</span> y<span class="tk-par">)</span><span class="tk-par">)</span>
+                     <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">1</span> x<span class="tk-par">)</span>
+                          <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+                 <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                 <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span><span class="tk-par">)</span>
+    <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> <span class="tk-par">(</span>* x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:linear</span> <span class="tk-const">:rewrite</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«x*y&gt;1-positive-stronger»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-num">1</span> <span class="tk-op">&lt;</span> x <span class="tk-op">∧</span> <span class="tk-num">1</span> <span class="tk-op">≤</span> y<span class="tk-par">)</span> <span class="tk-op">∨</span> <span class="tk-par">(</span><span class="tk-num">1</span> <span class="tk-op">≤</span> x <span class="tk-op">∧</span> <span class="tk-num">1</span> <span class="tk-op">&lt;</span> y<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-op">→</span> realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span>
+  <span class="tk-num">1</span> <span class="tk-op">&lt;</span> x <span class="tk-op">*</span> y</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. The disjunction is kept.</li>
@@ -712,16 +737,16 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">x*y&gt;=1-positive</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L274" target="_blank" rel="noopener">non-linear.lisp line 274</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm x*y&gt;=1-positive
-   (implies (and (&lt;= 1 x)
-                 (&lt;= 1 y)
-                 (real/rationalp x)
-                 (real/rationalp y))
-    (&lt;= 1 (* x y)))
-   :rule-classes (:linear :rewrite))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «x*y&gt;=1-positive» : ∀ x y : Rat,
-  1 ≤ x → 1 ≤ y → realrationalp x → realrationalp y →
-  1 ≤ x * y</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">x*y&gt;=1-positive</span>
+   <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">1</span> x<span class="tk-par">)</span>
+                 <span class="tk-par">(</span>&lt;= <span class="tk-num">1</span> y<span class="tk-par">)</span>
+                 <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                 <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span><span class="tk-par">)</span>
+    <span class="tk-par">(</span>&lt;= <span class="tk-num">1</span> <span class="tk-par">(</span>* x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:linear</span> <span class="tk-const">:rewrite</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«x*y&gt;=1-positive»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">1</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span> <span class="tk-num">1</span> <span class="tk-op">≤</span> y <span class="tk-op">→</span> realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span>
+  <span class="tk-num">1</span> <span class="tk-op">≤</span> x <span class="tk-op">*</span> y</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>.</li>
@@ -730,19 +755,19 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">x*y&gt;1-negative</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L282" target="_blank" rel="noopener">non-linear.lisp line 282</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm x*y&gt;1-negative
-   (implies (and (&lt; x -1)
-                 (&lt; y -1)
-                 (real/rationalp x)
-                 (real/rationalp y))
-    (&lt; 1 (* x y)))
-  :hints ((&quot;Goal&quot; :use ((:instance x*y&gt;1-positive
-                                   (x (- x))
-                                   (y (- y))))))
-   :rule-classes (:linear :rewrite))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «x*y&gt;1-negative» : ∀ x y : Rat,
-  x &lt; -1 → y &lt; -1 → realrationalp x → realrationalp y →
-  1 &lt; x * y</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">x*y&gt;1-negative</span>
+   <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; x <span class="tk-num">-1</span><span class="tk-par">)</span>
+                 <span class="tk-par">(</span>&lt; y <span class="tk-num">-1</span><span class="tk-par">)</span>
+                 <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                 <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span><span class="tk-par">)</span>
+    <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> <span class="tk-par">(</span>* x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:instance</span> x*y&gt;1-positive
+                                   <span class="tk-par">(</span>x <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">)</span>
+                                   <span class="tk-par">(</span>y <span class="tk-par">(</span>- y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:linear</span> <span class="tk-const">:rewrite</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«x*y&gt;1-negative»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  x <span class="tk-op">&lt;</span> <span class="tk-op">-</span><span class="tk-num">1</span> <span class="tk-op">→</span> y <span class="tk-op">&lt;</span> <span class="tk-op">-</span><span class="tk-num">1</span> <span class="tk-op">→</span> realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span>
+  <span class="tk-num">1</span> <span class="tk-op">&lt;</span> x <span class="tk-op">*</span> y</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>:hints</code> dropped.</li>
@@ -751,19 +776,19 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">x*y&gt;=1-negative</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L293" target="_blank" rel="noopener">non-linear.lisp line 293</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm x*y&gt;=1-negative
-   (implies (and (&lt;= x -1)
-                 (&lt;= y -1)
-                 (real/rationalp x)
-                 (real/rationalp y))
-    (&lt;= 1 (* x y)))
-  :hints ((&quot;Goal&quot; :use ((:instance x*y&gt;=1-positive
-                                   (x (- x))
-                                   (y (- y))))))
-  :rule-classes (:linear :rewrite))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «x*y&gt;=1-negative» : ∀ x y : Rat,
-  x ≤ -1 → y ≤ -1 → realrationalp x → realrationalp y →
-  1 ≤ x * y</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">x*y&gt;=1-negative</span>
+   <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= x <span class="tk-num">-1</span><span class="tk-par">)</span>
+                 <span class="tk-par">(</span>&lt;= y <span class="tk-num">-1</span><span class="tk-par">)</span>
+                 <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                 <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span><span class="tk-par">)</span>
+    <span class="tk-par">(</span>&lt;= <span class="tk-num">1</span> <span class="tk-par">(</span>* x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:instance</span> x*y&gt;=1-positive
+                                   <span class="tk-par">(</span>x <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">)</span>
+                                   <span class="tk-par">(</span>y <span class="tk-par">(</span>- y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:linear</span> <span class="tk-const">:rewrite</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«x*y&gt;=1-negative»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  x <span class="tk-op">≤</span> <span class="tk-op">-</span><span class="tk-num">1</span> <span class="tk-op">→</span> y <span class="tk-op">≤</span> <span class="tk-op">-</span><span class="tk-num">1</span> <span class="tk-op">→</span> realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span>
+  <span class="tk-num">1</span> <span class="tk-op">≤</span> x <span class="tk-op">*</span> y</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>:hints</code> dropped.</li>
@@ -772,18 +797,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-a</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L313" target="_blank" rel="noopener">non-linear.lisp line 313</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-a
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                (&lt;= 0 x)
-                (&lt; 0 y)
-                (&lt;= x y))
-           (and (&lt;= 0 (/ x y))
-                (&lt;= (/ x y) 1)))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-a» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → 0 ≤ x → 0 &lt; y → x ≤ y →
-  (0 ≤ x / y ∧ x / y ≤ 1)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-a</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= x y<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>/ x y<span class="tk-par">)</span> <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-a»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> y <span class="tk-op">→</span> x <span class="tk-op">≤</span> y <span class="tk-op">→</span>
+  <span class="tk-par">(</span><span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">/</span> y <span class="tk-op">∧</span> x <span class="tk-op">/</span> y <span class="tk-op">≤</span> <span class="tk-num">1</span><span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -792,18 +817,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-b</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L323" target="_blank" rel="noopener">non-linear.lisp line 323</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-b
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                (&lt;= 0 x)
-                ;;(&lt; 0 y)
-                (&lt; x y))
-           (and (&lt;= 0 (/ x y))
-                (&lt; (/ x y) 1)))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-b» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → 0 ≤ x → x &lt; y →
-  (0 ≤ x / y ∧ x / y &lt; 1)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-b</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x<span class="tk-par">)</span>
+                <span class="tk-com">;;(&lt; 0 y)</span>
+                <span class="tk-par">(</span>&lt; x y<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>/ x y<span class="tk-par">)</span> <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-b»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span> x <span class="tk-op">&lt;</span> y <span class="tk-op">→</span>
+  <span class="tk-par">(</span><span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">/</span> y <span class="tk-op">∧</span> x <span class="tk-op">/</span> y <span class="tk-op">&lt;</span> <span class="tk-num">1</span><span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -812,18 +837,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-c</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L333" target="_blank" rel="noopener">non-linear.lisp line 333</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-c
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                (&lt; 0 x)
-                (&lt; 0 y)
-                (&lt;= y x))
-           (and (&lt; 0 (/ x y))
-                (&lt;= 1 (/ x y))))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-c» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → 0 &lt; x → 0 &lt; y → y ≤ x →
-  (0 &lt; x / y ∧ 1 ≤ x / y)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-c</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= y x<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= <span class="tk-num">1</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-c»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> y <span class="tk-op">→</span> y <span class="tk-op">≤</span> x <span class="tk-op">→</span>
+  <span class="tk-par">(</span><span class="tk-num">0</span> <span class="tk-op">&lt;</span> x <span class="tk-op">/</span> y <span class="tk-op">∧</span> <span class="tk-num">1</span> <span class="tk-op">≤</span> x <span class="tk-op">/</span> y<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -832,18 +857,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-d</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L343" target="_blank" rel="noopener">non-linear.lisp line 343</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-d
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                ;;(&lt; 0 x)
-                (&lt; 0 y)
-                (&lt; y x))
-           (and (&lt; 0 (/ x y))
-                (&lt; 1 (/ x y))))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-d» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → 0 &lt; y → y &lt; x →
-  (0 &lt; x / y ∧ 1 &lt; x / y)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-d</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-com">;;(&lt; 0 x)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; y x<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-d»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> y <span class="tk-op">→</span> y <span class="tk-op">&lt;</span> x <span class="tk-op">→</span>
+  <span class="tk-par">(</span><span class="tk-num">0</span> <span class="tk-op">&lt;</span> x <span class="tk-op">/</span> y <span class="tk-op">∧</span> <span class="tk-num">1</span> <span class="tk-op">&lt;</span> x <span class="tk-op">/</span> y<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -852,18 +877,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-e</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L353" target="_blank" rel="noopener">non-linear.lisp line 353</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-e
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                (&lt;= 0 x)
-                (&lt; y 0)
-                (&lt;= x (- y)))
-           (and (&lt;= (/ x y) 0)
-                (&lt;= -1 (/ x y))))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-e» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → 0 ≤ x → y &lt; 0 → x ≤ -y →
-  (x / y ≤ 0 ∧ -1 ≤ x / y)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-e</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; y <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= x <span class="tk-par">(</span>- y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>/ x y<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= <span class="tk-num">-1</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-e»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span> y <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span> x <span class="tk-op">≤</span> <span class="tk-op">-</span>y <span class="tk-op">→</span>
+  <span class="tk-par">(</span>x <span class="tk-op">/</span> y <span class="tk-op">≤</span> <span class="tk-num">0</span> <span class="tk-op">∧</span> <span class="tk-op">-</span><span class="tk-num">1</span> <span class="tk-op">≤</span> x <span class="tk-op">/</span> y<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -872,18 +897,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-f</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L363" target="_blank" rel="noopener">non-linear.lisp line 363</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-f
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                (&lt;= 0 x)
-                ;;(&lt; y 0)
-                (&lt; x (- y)))
-           (and (&lt;= (/ x y) 0)
-                (&lt; -1 (/ x y))))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-f» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → 0 ≤ x → x &lt; -y →
-  (x / y ≤ 0 ∧ -1 &lt; x / y)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-f</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x<span class="tk-par">)</span>
+                <span class="tk-com">;;(&lt; y 0)</span>
+                <span class="tk-par">(</span>&lt; x <span class="tk-par">(</span>- y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>/ x y<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">-1</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-f»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span> x <span class="tk-op">&lt;</span> <span class="tk-op">-</span>y <span class="tk-op">→</span>
+  <span class="tk-par">(</span>x <span class="tk-op">/</span> y <span class="tk-op">≤</span> <span class="tk-num">0</span> <span class="tk-op">∧</span> <span class="tk-op">-</span><span class="tk-num">1</span> <span class="tk-op">&lt;</span> x <span class="tk-op">/</span> y<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -892,17 +917,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-g</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L373" target="_blank" rel="noopener">non-linear.lisp line 373</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-g
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                (&lt; 0 x)
-                (&lt; y 0)
-                (&lt;= (- y) x))
-           (&lt;= (/ x y) -1))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-g» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → 0 &lt; x → y &lt; 0 → -y ≤ x →
-  x / y ≤ -1</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-g</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; y <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>- y<span class="tk-par">)</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>/ x y<span class="tk-par">)</span> <span class="tk-num">-1</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-g»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> x <span class="tk-op">→</span> y <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span> <span class="tk-op">-</span>y <span class="tk-op">≤</span> x <span class="tk-op">→</span>
+  x <span class="tk-op">/</span> y <span class="tk-op">≤</span> <span class="tk-op">-</span><span class="tk-num">1</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -911,17 +936,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-h</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L382" target="_blank" rel="noopener">non-linear.lisp line 382</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-h
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                ;;(&lt; 0 x)
-                (&lt; y 0)
-                (&lt; (- y) x))
-           (&lt; (/ x y) -1))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-h» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → y &lt; 0 → -y &lt; x →
-  x / y &lt; -1</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-h</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-com">;;(&lt; 0 x)</span>
+                <span class="tk-par">(</span>&lt; y <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>- y<span class="tk-par">)</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>/ x y<span class="tk-par">)</span> <span class="tk-num">-1</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-h»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> y <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span> <span class="tk-op">-</span>y <span class="tk-op">&lt;</span> x <span class="tk-op">→</span>
+  x <span class="tk-op">/</span> y <span class="tk-op">&lt;</span> <span class="tk-op">-</span><span class="tk-num">1</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -930,18 +955,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-i</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L391" target="_blank" rel="noopener">non-linear.lisp line 391</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-i
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                (&lt;= x 0)
-                (&lt; 0 y)
-                (&lt;= (- x) y))
-           (and (&lt;= (/ x y) 0)
-                (&lt;= -1 (/ x y))))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-i» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → x ≤ 0 → 0 &lt; y → -x ≤ y →
-  (x / y ≤ 0 ∧ -1 ≤ x / y)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-i</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= x <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>- x<span class="tk-par">)</span> y<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>/ x y<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= <span class="tk-num">-1</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-i»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> x <span class="tk-op">≤</span> <span class="tk-num">0</span> <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> y <span class="tk-op">→</span> <span class="tk-op">-</span>x <span class="tk-op">≤</span> y <span class="tk-op">→</span>
+  <span class="tk-par">(</span>x <span class="tk-op">/</span> y <span class="tk-op">≤</span> <span class="tk-num">0</span> <span class="tk-op">∧</span> <span class="tk-op">-</span><span class="tk-num">1</span> <span class="tk-op">≤</span> x <span class="tk-op">/</span> y<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -950,18 +975,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-j</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L401" target="_blank" rel="noopener">non-linear.lisp line 401</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-j
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                (&lt;= x 0)
-                ;;(&lt; 0 y)
-                (&lt; (- x) y))
-           (and (&lt;= (/ x y) 0)
-                (&lt; -1 (/ x y))))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-j» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → x ≤ 0 → -x &lt; y →
-  (x / y ≤ 0 ∧ -1 &lt; x / y)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-j</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= x <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-com">;;(&lt; 0 y)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>- x<span class="tk-par">)</span> y<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>/ x y<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">-1</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-j»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> x <span class="tk-op">≤</span> <span class="tk-num">0</span> <span class="tk-op">→</span> <span class="tk-op">-</span>x <span class="tk-op">&lt;</span> y <span class="tk-op">→</span>
+  <span class="tk-par">(</span>x <span class="tk-op">/</span> y <span class="tk-op">≤</span> <span class="tk-num">0</span> <span class="tk-op">∧</span> <span class="tk-op">-</span><span class="tk-num">1</span> <span class="tk-op">&lt;</span> x <span class="tk-op">/</span> y<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -970,17 +995,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-k</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L411" target="_blank" rel="noopener">non-linear.lisp line 411</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-k
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                (&lt; x 0)
-                (&lt; 0 y)
-                (&lt;= y (- x)))
-           (&lt;= (/ x y) -1))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-k» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → x &lt; 0 → 0 &lt; y → y ≤ -x →
-  x / y ≤ -1</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-k</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; x <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= y <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>/ x y<span class="tk-par">)</span> <span class="tk-num">-1</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-k»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> x <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> y <span class="tk-op">→</span> y <span class="tk-op">≤</span> <span class="tk-op">-</span>x <span class="tk-op">→</span>
+  x <span class="tk-op">/</span> y <span class="tk-op">≤</span> <span class="tk-op">-</span><span class="tk-num">1</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -989,17 +1014,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-l</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L420" target="_blank" rel="noopener">non-linear.lisp line 420</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-l
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                ;;(&lt; x 0)
-                (&lt; 0 y)
-                (&lt; y (- x)))
-           (&lt; (/ x y) -1))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-l» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → 0 &lt; y → y &lt; -x →
-  x / y &lt; -1</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-l</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-com">;;(&lt; x 0)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; y <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>/ x y<span class="tk-par">)</span> <span class="tk-num">-1</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-l»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> y <span class="tk-op">→</span> y <span class="tk-op">&lt;</span> <span class="tk-op">-</span>x <span class="tk-op">→</span>
+  x <span class="tk-op">/</span> y <span class="tk-op">&lt;</span> <span class="tk-op">-</span><span class="tk-num">1</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -1008,17 +1033,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-m</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L429" target="_blank" rel="noopener">non-linear.lisp line 429</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-m
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                (&lt; x 0)
-                (&lt; y 0)
-                (&lt;= x y))
-           (&lt;= 1 (/ x y)))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-m» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → x &lt; 0 → y &lt; 0 → x ≤ y →
-  1 ≤ x / y</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-m</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; x <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; y <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= x y<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt;= <span class="tk-num">1</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-m»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> x <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span> y <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span> x <span class="tk-op">≤</span> y <span class="tk-op">→</span>
+  <span class="tk-num">1</span> <span class="tk-op">≤</span> x <span class="tk-op">/</span> y</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -1027,17 +1052,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-n</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L438" target="_blank" rel="noopener">non-linear.lisp line 438</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-n
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                ;;(&lt; x 0)
-                (&lt; y 0)
-                (&lt; x y))
-           (&lt; 1 (/ x y)))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-n» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → y &lt; 0 → x &lt; y →
-  1 &lt; x / y</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-n</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-com">;;(&lt; x 0)</span>
+                <span class="tk-par">(</span>&lt; y <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; x y<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-n»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> y <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span> x <span class="tk-op">&lt;</span> y <span class="tk-op">→</span>
+  <span class="tk-num">1</span> <span class="tk-op">&lt;</span> x <span class="tk-op">/</span> y</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -1046,18 +1071,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-o</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L447" target="_blank" rel="noopener">non-linear.lisp line 447</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-o
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                (&lt;= x 0)
-                (&lt; y 0)
-                (&lt;= y x))
-           (and (&lt;= 0 (/ x y))
-                (&lt;= (/ x y) 1)))
-   :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-o» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → x ≤ 0 → y &lt; 0 → y ≤ x →
-  (0 ≤ x / y ∧ x / y ≤ 1)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-o</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= x <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; y <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= y x<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>/ x y<span class="tk-par">)</span> <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-o»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> x <span class="tk-op">≤</span> <span class="tk-num">0</span> <span class="tk-op">→</span> y <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span> y <span class="tk-op">≤</span> x <span class="tk-op">→</span>
+  <span class="tk-par">(</span><span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">/</span> y <span class="tk-op">∧</span> x <span class="tk-op">/</span> y <span class="tk-op">≤</span> <span class="tk-num">1</span><span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>
@@ -1066,18 +1091,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">ratio-theory-of-1-p</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/meta/non-linear.lisp#L457" target="_blank" rel="noopener">non-linear.lisp line 457</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm ratio-theory-of-1-p
-  (implies (and (real/rationalp x)
-                (real/rationalp y)
-                (&lt;= x 0)
-                ;;(&lt; y 0)
-                (&lt; y x))
-           (and (&lt;= 0 (/ x y))
-                (&lt; (/ x y) 1)))
-  :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «ratio-theory-of-1-p» : ∀ x y : Rat,
-  realrationalp x → realrationalp y → x ≤ 0 → y &lt; x →
-  (0 ≤ x / y ∧ x / y &lt; 1)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">ratio-theory-of-1-p</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>real/rationalp x<span class="tk-par">)</span>
+                <span class="tk-par">(</span>real/rationalp y<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= x <span class="tk-num">0</span><span class="tk-par">)</span>
+                <span class="tk-com">;;(&lt; y 0)</span>
+                <span class="tk-par">(</span>&lt; y x<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> <span class="tk-par">(</span>/ x y<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>/ x y<span class="tk-par">)</span> <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«ratio-theory-of-1-p»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalp x <span class="tk-op">→</span> realrationalp y <span class="tk-op">→</span> x <span class="tk-op">≤</span> <span class="tk-num">0</span> <span class="tk-op">→</span> y <span class="tk-op">&lt;</span> x <span class="tk-op">→</span>
+  <span class="tk-par">(</span><span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">/</span> y <span class="tk-op">∧</span> x <span class="tk-op">/</span> y <span class="tk-op">&lt;</span> <span class="tk-num">1</span><span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Real variables, <code>Rat</code>. <code>(/ x y)</code> is <code>x / y</code>, the ACL2 <code>/</code> of <code>Rat</code>.</li>

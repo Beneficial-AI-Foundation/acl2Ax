@@ -217,6 +217,31 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   .toc { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
 }
 </style>
+<style>
+:root {
+  --tk-kw: #7a2f8f; --tk-name: #1f6b67; --tk-const: #9a3412; --tk-type: #1d4f91;
+  --tk-num: #9a3412; --tk-str: #7a4a00; --tk-com: #6a7183; --tk-op: #4a5266; --tk-par: #8a8f9c;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+    --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+  }
+}
+:root[data-theme="dark"] {
+  --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+  --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+}
+.tk-kw { color: var(--tk-kw); font-weight: 600; }
+.tk-name { color: var(--tk-name); font-weight: 600; }
+.tk-const { color: var(--tk-const); }
+.tk-type { color: var(--tk-type); }
+.tk-num { color: var(--tk-num); }
+.tk-str { color: var(--tk-str); }
+.tk-com { color: var(--tk-com); font-style: italic; }
+.tk-op { color: var(--tk-op); }
+.tk-par { color: var(--tk-par); }
+</style>
 <div class="layout">
 <aside class="toc"><h1>ACL2 to Lean blueprint</h1><div class="sub">42 modules, 250 axioms</div><input id="filter" type="search" placeholder="Filter books"><div><a href="index.html">Overview</a></div><div><a href="index.html#rules">Embedding rules</a></div><div class="group"><a href="index.html#d-acl2s">acl2s <span class="count">(1)</span></a><ul><li><a href="acl2s__portcullis-blueprint.html">portcullis</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic">arithmetic <span class="count">(3)</span></a><ul><li><a href="arithmetic__rational-listp-blueprint.html">rational-listp</a></li><li><a href="arithmetic__real-listp-blueprint.html">real-listp</a></li><li><a href="arithmetic__sumlist-blueprint.html">sumlist</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic-2">arithmetic-2 <span class="count">(12)</span></a><ul><li><a href="arithmetic-2__meta__cancel-terms-helper-blueprint.html">meta/cancel-terms-helper</a></li><li><a href="arithmetic-2__meta__non-linear-blueprint.html">meta/non-linear</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-helper-blueprint.html">pass1/basic-arithmetic-helper</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-blueprint.html">pass1/basic-arithmetic</a></li><li><a href="arithmetic-2__pass1__expt-helper-blueprint.html">pass1/expt-helper</a></li><li><a href="arithmetic-2__pass1__expt-blueprint.html">pass1/expt</a></li><li><a href="arithmetic-2__pass1__inequalities-blueprint.html">pass1/inequalities</a></li><li><a href="arithmetic-2__pass1__mini-theories-blueprint.html">pass1/mini-theories</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-helper-blueprint.html">pass1/numerator-and-denominator-helper</a></li><li class="current"><a href="arithmetic-2__pass1__numerator-and-denominator-blueprint.html">pass1/numerator-and-denominator</a></li><li><a href="arithmetic-2__pass1__prefer-times-blueprint.html">pass1/prefer-times</a></li><li><a href="arithmetic-2__pass1__top-blueprint.html">pass1/top</a></li></ul></div><div class="group"><a href="index.html#d-kestrel">kestrel <span class="count">(5)</span></a><ul><li><a href="kestrel__strings-light__char-blueprint.html">strings-light/char</a></li><li><a href="kestrel__utilities__equal-of-booleans-blueprint.html">utilities/equal-of-booleans</a></li><li><a href="kestrel__utilities__map-symbol-name-blueprint.html">utilities/map-symbol-name</a></li><li><a href="kestrel__utilities__member-symbol-name-blueprint.html">utilities/member-symbol-name</a></li><li><a href="kestrel__utilities__update-acl2-oracle-blueprint.html">utilities/update-acl2-oracle</a></li></ul></div><div class="group"><a href="index.html#d-misc">misc <span class="count">(1)</span></a><ul><li><a href="misc__character-encoding-test-blueprint.html">character-encoding-test</a></li></ul></div><div class="group"><a href="index.html#d-std">std <span class="count">(20)</span></a><ul><li><a href="std__alists__assoc-blueprint.html">alists/assoc</a></li><li><a href="std__basic__code-char-char-code-with-force-blueprint.html">basic/code-char-char-code-with-force</a></li><li><a href="std__basic__fix-blueprint.html">basic/fix</a></li><li><a href="std__basic__ifix-blueprint.html">basic/ifix</a></li><li><a href="std__basic__member-symbol-name-blueprint.html">basic/member-symbol-name</a></li><li><a href="std__basic__nfix-blueprint.html">basic/nfix</a></li><li><a href="std__basic__realfix-blueprint.html">basic/realfix</a></li><li><a href="std__basic__rfix-blueprint.html">basic/rfix</a></li><li><a href="std__basic__symbol-name-lst-blueprint.html">basic/symbol-name-lst</a></li><li><a href="std__lists__add-to-set-blueprint.html">lists/add-to-set</a></li><li><a href="std__lists__union-blueprint.html">lists/union</a></li><li><a href="std__strings__digit-to-char-blueprint.html">strings/digit-to-char</a></li><li><a href="std__system__arglistp-blueprint.html">system/arglistp</a></li><li><a href="std__system__arity-blueprint.html">system/arity</a></li><li><a href="std__system__dumb-negate-lit-blueprint.html">system/dumb-negate-lit</a></li><li><a href="std__system__getprops-blueprint.html">system/getprops</a></li><li><a href="std__system__implicate-blueprint.html">system/implicate</a></li><li><a href="std__system__primitivep-blueprint.html">system/primitivep</a></li><li><a href="std__system__pseudo-event-form-listp-blueprint.html">system/pseudo-event-form-listp</a></li><li><a href="std__system__pseudo-event-formp-blueprint.html">system/pseudo-event-formp</a></li></ul></div></aside>
 <main>
@@ -327,18 +352,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">numerator-minus</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator.lisp#L20" target="_blank" rel="noopener">numerator-and-denominator.lisp line 20</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm numerator-minus
-   (equal (numerator (- i))
-          (- (numerator i)))
-  :hints ((&quot;Goal&quot;
-	   :cases ((rationalp i)))
-	  (&quot;Subgoal 1&quot;
-	   :use (:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">numerator-minus</span>
+   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>numerator <span class="tk-par">(</span>- i<span class="tk-par">)</span><span class="tk-par">)</span>
+          <span class="tk-par">(</span>- <span class="tk-par">(</span>numerator i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:cases</span> <span class="tk-par">(</span><span class="tk-par">(</span>rationalp i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	  <span class="tk-par">(</span><span class="tk-str">&quot;Subgoal 1&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 Unique-rationalp
-		 (d (denominator i))
-		 (n (- (numerator i)))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «numerator-minus» : ∀ i : CRat,
-  numeratorC (-i) = -numeratorC i</pre></div>
+		 <span class="tk-par">(</span>d <span class="tk-par">(</span>denominator i<span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>n <span class="tk-par">(</span>- <span class="tk-par">(</span>numerator i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«numerator-minus»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  numeratorC <span class="tk-par">(</span><span class="tk-op">-</span>i<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-op">-</span>numeratorC i</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> (decision 44). <code>numerator</code>, <code>denominator</code>, <code>rationalp</code> and <code>integerp</code> are the complex versions.</li>
@@ -347,17 +372,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">denominator-minus</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator.lisp#L31" target="_blank" rel="noopener">numerator-and-denominator.lisp line 31</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm denominator-minus
-  (implies (rationalp x)
-           (equal (denominator (- x))
-                  (denominator x)))
- :hints ((&quot;Goal&quot;
-	  :use (:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">denominator-minus</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span>rationalp x<span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>denominator <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">)</span>
+                  <span class="tk-par">(</span>denominator x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+ <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	  <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		Unique-rationalp
-		(d (denominator x))
-		(n (- (numerator x)))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «denominator-minus» : ∀ x : CRat,
-  realrationalpC x → denominatorC (-x) = denominatorC x</pre></div>
+		<span class="tk-par">(</span>d <span class="tk-par">(</span>denominator x<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>n <span class="tk-par">(</span>- <span class="tk-par">(</span>numerator x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«denominator-minus»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  realrationalpC x <span class="tk-op">→</span> denominatorC <span class="tk-par">(</span><span class="tk-op">-</span>x<span class="tk-par">)</span> <span class="tk-op">=</span> denominatorC x</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> (decision 44). <code>numerator</code>, <code>denominator</code>, <code>rationalp</code> and <code>integerp</code> are the complex versions.</li>
@@ -366,15 +391,15 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">numerator-integerp-lemma-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator.lisp#L45" target="_blank" rel="noopener">numerator-and-denominator.lisp line 45</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">  (defthm numerator-integerp-lemma-1
-    (implies (rationalp x)
-             (equal (* (* (numerator x) (/ (denominator x))) (denominator x))
-                    (numerator x)))
-    :rule-classes nil
-    :hints ((&quot;Goal&quot; :in-theory (disable rational-implies2)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «numerator-integerp-lemma-1» : ∀ x : CRat,
-  realrationalpC x →
-  numeratorC x * (denominatorC x)⁻¹ * denominatorC x = numeratorC x</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2">  <span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">numerator-integerp-lemma-1</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span>rationalp x<span class="tk-par">)</span>
+             <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* <span class="tk-par">(</span>* <span class="tk-par">(</span>numerator x<span class="tk-par">)</span> <span class="tk-par">(</span>/ <span class="tk-par">(</span>denominator x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-par">(</span>denominator x<span class="tk-par">)</span><span class="tk-par">)</span>
+                    <span class="tk-par">(</span>numerator x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+    <span class="tk-const">:rule-classes</span> <span class="tk-const">nil</span>
+    <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> rational-implies2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«numerator-integerp-lemma-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  realrationalpC x <span class="tk-op">→</span>
+  numeratorC x <span class="tk-op">*</span> <span class="tk-par">(</span>denominatorC x<span class="tk-par">)</span>⁻¹ <span class="tk-op">*</span> denominatorC x <span class="tk-op">=</span> numeratorC x</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Local, <code>private</code>. Statement over <code>CRat</code> (decision 44). <code>numerator</code>, <code>denominator</code>, <code>rationalp</code> and <code>integerp</code> are the complex versions.</li>
@@ -383,20 +408,20 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">numerator-integerp-lemma</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator.lisp#L53" target="_blank" rel="noopener">numerator-and-denominator.lisp line 53</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">  (defthm numerator-integerp-lemma
-    (implies (and (rationalp x)
-                  (equal (* (numerator x) (/ (denominator x)))
-                         x))
-             (equal (numerator x)
-                    (* x (denominator x))))
-    :rule-classes nil
-    :hints ((&quot;Goal&quot; :use (numerator-integerp-lemma-1)
-             :in-theory (disable rational-implies2))
-	    (&quot;Goal&#x27;&quot; :in-theory (e/d (prefer-*-to-/) (rational-implies2))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «numerator-integerp-lemma» : ∀ x : CRat,
-  realrationalpC x →
-  (↑(numeratorC x * (denominatorC x)⁻¹) : CRat) = x →
-  (↑(numeratorC x) : CRat) = x * ↑(denominatorC x)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2">  <span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">numerator-integerp-lemma</span>
+    <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>rationalp x<span class="tk-par">)</span>
+                  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* <span class="tk-par">(</span>numerator x<span class="tk-par">)</span> <span class="tk-par">(</span>/ <span class="tk-par">(</span>denominator x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+                         x<span class="tk-par">)</span><span class="tk-par">)</span>
+             <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>numerator x<span class="tk-par">)</span>
+                    <span class="tk-par">(</span>* x <span class="tk-par">(</span>denominator x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+    <span class="tk-const">:rule-classes</span> <span class="tk-const">nil</span>
+    <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:use</span> <span class="tk-par">(</span>numerator-integerp-lemma-1<span class="tk-par">)</span>
+             <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> rational-implies2<span class="tk-par">)</span><span class="tk-par">)</span>
+	    <span class="tk-par">(</span><span class="tk-str">&quot;Goal&#x27;&quot;</span> <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">e/d</span> <span class="tk-par">(</span>prefer-*-to-/<span class="tk-par">)</span> <span class="tk-par">(</span>rational-implies2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«numerator-integerp-lemma»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  realrationalpC x <span class="tk-op">→</span>
+  <span class="tk-par">(</span>↑<span class="tk-par">(</span>numeratorC x <span class="tk-op">*</span> <span class="tk-par">(</span>denominatorC x<span class="tk-par">)</span>⁻¹<span class="tk-par">)</span> <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">=</span> x <span class="tk-op">→</span>
+  <span class="tk-par">(</span>↑<span class="tk-par">(</span>numeratorC x<span class="tk-par">)</span> <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">=</span> x <span class="tk-op">*</span> ↑<span class="tk-par">(</span>denominatorC x<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Local, <code>private</code>. Statement over <code>CRat</code> (decision 44). <code>numerator</code>, <code>denominator</code>, <code>rationalp</code> and <code>integerp</code> are the complex versions.</li>
@@ -405,18 +430,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">numerator-when-integerp</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator.lisp#L64" target="_blank" rel="noopener">numerator-and-denominator.lisp line 64</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2"> (defthm numerator-when-integerp
-   (implies (integerp x)
-            (equal (numerator x)
-                   x))
-   :hints ((&quot;Goal&quot; :in-theory (disable rational-implies2)
-            :use ((:instance lowest-terms (r x)
-                             (q 1)
-                             (n (denominator x)))
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"> <span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">numerator-when-integerp</span>
+   <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+            <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>numerator x<span class="tk-par">)</span>
+                   x<span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> rational-implies2<span class="tk-par">)</span>
+            <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:instance</span> lowest-terms <span class="tk-par">(</span>r x<span class="tk-par">)</span>
+                             <span class="tk-par">(</span>q <span class="tk-num">1</span><span class="tk-par">)</span>
+                             <span class="tk-par">(</span>n <span class="tk-par">(</span>denominator x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
                   rational-implies2
-                  numerator-integerp-lemma))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «numerator-when-integerp» : ∀ x : Rat,
-  integerp x → numeratorC (↑x) = x</pre></div>
+                  numerator-integerp-lemma<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«numerator-when-integerp»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp x <span class="tk-op">→</span> numeratorC <span class="tk-par">(</span>↑x<span class="tk-par">)</span> <span class="tk-op">=</span> x</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> (decision 44). <code>numerator</code>, <code>denominator</code>, <code>rationalp</code> and <code>integerp</code> are the complex versions.</li>
@@ -425,15 +450,15 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">integerp==&gt;denominator=1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator.lisp#L76" target="_blank" rel="noopener">numerator-and-denominator.lisp line 76</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm integerp==&gt;denominator=1
-  (implies (integerp x)
-           (equal (denominator x) 1))
-  :hints
-  ((&quot;Goal&quot;
-    :use (rational-implies2 numerator-when-integerp)
-    :in-theory (disable rational-implies2))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «integerp==&gt;denominator=1» : ∀ x : Rat,
-  integerp x → denominatorC (↑x) = 1</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">integerp==&gt;denominator=1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>denominator x<span class="tk-par">)</span> <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span>
+  <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+    <span class="tk-const">:use</span> <span class="tk-par">(</span>rational-implies2 numerator-when-integerp<span class="tk-par">)</span>
+    <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> rational-implies2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«integerp==&gt;denominator=1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp x <span class="tk-op">→</span> denominatorC <span class="tk-par">(</span>↑x<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-num">1</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> (decision 44). <code>numerator</code>, <code>denominator</code>, <code>rationalp</code> and <code>integerp</code> are the complex versions.</li>
@@ -442,14 +467,14 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">equal-denominator-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator.lisp#L84" target="_blank" rel="noopener">numerator-and-denominator.lisp line 84</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm equal-denominator-1
-  (equal (equal (denominator x) 1)
-         (or (integerp x)
-             (not (rationalp x))))
-  :hints ((&quot;Goal&quot; :use (rational-implies2 completion-of-denominator)
-           :in-theory (disable rational-implies2))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «equal-denominator-1» : ∀ x : CRat,
-  (denominatorC x = 1) ↔ (integerpC x ∨ ¬ realrationalpC x)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-denominator-1</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>denominator x<span class="tk-par">)</span> <span class="tk-num">1</span><span class="tk-par">)</span>
+         <span class="tk-par">(</span><span class="tk-kw">or</span> <span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+             <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span>rationalp x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:use</span> <span class="tk-par">(</span>rational-implies2 completion-of-denominator<span class="tk-par">)</span>
+           <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> rational-implies2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-denominator-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>denominatorC x <span class="tk-op">=</span> <span class="tk-num">1</span><span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>integerpC x <span class="tk-op">∨</span> <span class="tk-op">¬</span> realrationalpC x<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> (decision 44). <code>numerator</code>, <code>denominator</code>, <code>rationalp</code> and <code>integerp</code> are the complex versions.</li>
@@ -458,16 +483,16 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">*-r-denominator-r</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator.lisp#L94" target="_blank" rel="noopener">numerator-and-denominator.lisp line 94</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm *-r-denominator-r
-  (equal (* r (denominator r))
-         (if (rationalp r)
-             (numerator r)
-           (fix r)))
-  :hints ((&quot;Goal&quot; :use ((:instance rational-implies2 (x r)))
-           :in-theory (disable rational-implies2))
-	  (&quot;Goal&#x27;&#x27;&quot; :in-theory (enable prefer-*-to-/))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «*-r-denominator-r» : ∀ r : CRat,
-  r * ↑(denominatorC r) = (if realrationalpC r then ↑(numeratorC r) else fixC r)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">*-r-denominator-r</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* r <span class="tk-par">(</span>denominator r<span class="tk-par">)</span><span class="tk-par">)</span>
+         <span class="tk-par">(</span><span class="tk-kw">if</span> <span class="tk-par">(</span>rationalp r<span class="tk-par">)</span>
+             <span class="tk-par">(</span>numerator r<span class="tk-par">)</span>
+           <span class="tk-par">(</span>fix r<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:instance</span> rational-implies2 <span class="tk-par">(</span>x r<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> rational-implies2<span class="tk-par">)</span><span class="tk-par">)</span>
+	  <span class="tk-par">(</span><span class="tk-str">&quot;Goal&#x27;&#x27;&quot;</span> <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">enable</span> prefer-*-to-/<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«*-r-denominator-r»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  r <span class="tk-op">*</span> ↑<span class="tk-par">(</span>denominatorC r<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-par">(</span><span class="tk-kw">if</span> realrationalpC r <span class="tk-kw">then</span> ↑<span class="tk-par">(</span>numeratorC r<span class="tk-par">)</span> <span class="tk-kw">else</span> fixC r<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> (decision 44). <code>numerator</code>, <code>denominator</code>, <code>rationalp</code> and <code>integerp</code> are the complex versions.</li>

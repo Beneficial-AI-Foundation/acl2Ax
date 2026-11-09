@@ -217,6 +217,31 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   .toc { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
 }
 </style>
+<style>
+:root {
+  --tk-kw: #7a2f8f; --tk-name: #1f6b67; --tk-const: #9a3412; --tk-type: #1d4f91;
+  --tk-num: #9a3412; --tk-str: #7a4a00; --tk-com: #6a7183; --tk-op: #4a5266; --tk-par: #8a8f9c;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+    --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+  }
+}
+:root[data-theme="dark"] {
+  --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+  --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+}
+.tk-kw { color: var(--tk-kw); font-weight: 600; }
+.tk-name { color: var(--tk-name); font-weight: 600; }
+.tk-const { color: var(--tk-const); }
+.tk-type { color: var(--tk-type); }
+.tk-num { color: var(--tk-num); }
+.tk-str { color: var(--tk-str); }
+.tk-com { color: var(--tk-com); font-style: italic; }
+.tk-op { color: var(--tk-op); }
+.tk-par { color: var(--tk-par); }
+</style>
 <div class="layout">
 <aside class="toc"><h1>ACL2 to Lean blueprint</h1><div class="sub">42 modules, 250 axioms</div><input id="filter" type="search" placeholder="Filter books"><div><a href="index.html">Overview</a></div><div><a href="index.html#rules">Embedding rules</a></div><div class="group"><a href="index.html#d-acl2s">acl2s <span class="count">(1)</span></a><ul><li><a href="acl2s__portcullis-blueprint.html">portcullis</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic">arithmetic <span class="count">(3)</span></a><ul><li><a href="arithmetic__rational-listp-blueprint.html">rational-listp</a></li><li><a href="arithmetic__real-listp-blueprint.html">real-listp</a></li><li><a href="arithmetic__sumlist-blueprint.html">sumlist</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic-2">arithmetic-2 <span class="count">(12)</span></a><ul><li><a href="arithmetic-2__meta__cancel-terms-helper-blueprint.html">meta/cancel-terms-helper</a></li><li><a href="arithmetic-2__meta__non-linear-blueprint.html">meta/non-linear</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-helper-blueprint.html">pass1/basic-arithmetic-helper</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-blueprint.html">pass1/basic-arithmetic</a></li><li><a href="arithmetic-2__pass1__expt-helper-blueprint.html">pass1/expt-helper</a></li><li><a href="arithmetic-2__pass1__expt-blueprint.html">pass1/expt</a></li><li><a href="arithmetic-2__pass1__inequalities-blueprint.html">pass1/inequalities</a></li><li><a href="arithmetic-2__pass1__mini-theories-blueprint.html">pass1/mini-theories</a></li><li class="current"><a href="arithmetic-2__pass1__numerator-and-denominator-helper-blueprint.html">pass1/numerator-and-denominator-helper</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-blueprint.html">pass1/numerator-and-denominator</a></li><li><a href="arithmetic-2__pass1__prefer-times-blueprint.html">pass1/prefer-times</a></li><li><a href="arithmetic-2__pass1__top-blueprint.html">pass1/top</a></li></ul></div><div class="group"><a href="index.html#d-kestrel">kestrel <span class="count">(5)</span></a><ul><li><a href="kestrel__strings-light__char-blueprint.html">strings-light/char</a></li><li><a href="kestrel__utilities__equal-of-booleans-blueprint.html">utilities/equal-of-booleans</a></li><li><a href="kestrel__utilities__map-symbol-name-blueprint.html">utilities/map-symbol-name</a></li><li><a href="kestrel__utilities__member-symbol-name-blueprint.html">utilities/member-symbol-name</a></li><li><a href="kestrel__utilities__update-acl2-oracle-blueprint.html">utilities/update-acl2-oracle</a></li></ul></div><div class="group"><a href="index.html#d-misc">misc <span class="count">(1)</span></a><ul><li><a href="misc__character-encoding-test-blueprint.html">character-encoding-test</a></li></ul></div><div class="group"><a href="index.html#d-std">std <span class="count">(20)</span></a><ul><li><a href="std__alists__assoc-blueprint.html">alists/assoc</a></li><li><a href="std__basic__code-char-char-code-with-force-blueprint.html">basic/code-char-char-code-with-force</a></li><li><a href="std__basic__fix-blueprint.html">basic/fix</a></li><li><a href="std__basic__ifix-blueprint.html">basic/ifix</a></li><li><a href="std__basic__member-symbol-name-blueprint.html">basic/member-symbol-name</a></li><li><a href="std__basic__nfix-blueprint.html">basic/nfix</a></li><li><a href="std__basic__realfix-blueprint.html">basic/realfix</a></li><li><a href="std__basic__rfix-blueprint.html">basic/rfix</a></li><li><a href="std__basic__symbol-name-lst-blueprint.html">basic/symbol-name-lst</a></li><li><a href="std__lists__add-to-set-blueprint.html">lists/add-to-set</a></li><li><a href="std__lists__union-blueprint.html">lists/union</a></li><li><a href="std__strings__digit-to-char-blueprint.html">strings/digit-to-char</a></li><li><a href="std__system__arglistp-blueprint.html">system/arglistp</a></li><li><a href="std__system__arity-blueprint.html">system/arity</a></li><li><a href="std__system__dumb-negate-lit-blueprint.html">system/dumb-negate-lit</a></li><li><a href="std__system__getprops-blueprint.html">system/getprops</a></li><li><a href="std__system__implicate-blueprint.html">system/implicate</a></li><li><a href="std__system__primitivep-blueprint.html">system/primitivep</a></li><li><a href="std__system__pseudo-event-form-listp-blueprint.html">system/pseudo-event-form-listp</a></li><li><a href="std__system__pseudo-event-formp-blueprint.html">system/pseudo-event-formp</a></li></ul></div></aside>
 <main>
@@ -327,14 +352,14 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-mod-&lt;-divisor</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L55" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 55</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-mod-&lt;-divisor
-  (implies (and (integerp d)
-		(&lt; 0 d))
-	   (&lt; (nonneg-int-mod n d) d))
-  :rule-classes :linear)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-mod-&lt;-divisor» : ∀ n d : Rat,
-  integerp d → 0 &lt; d → «nonneg-int-mod» n d &lt; d</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-mod-&lt;-divisor</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp d<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> d<span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>nonneg-int-mod n d<span class="tk-par">)</span> d<span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-mod-&lt;-divisor»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> n d <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp d <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> d <span class="tk-op">→</span> «nonneg-int-mod» n d <span class="tk-op">&lt;</span> d</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -343,27 +368,27 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-mod-nonnegative-integer-quotient</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L62" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 62</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-mod-nonnegative-integer-quotient
-  (equal (+ (nonneg-int-mod n d)
-	    (* (nfix d)(nonnegative-integer-quotient n d)))
-	 (nfix n))
-  :rule-classes ((:elim
-		  :corollary
-		  (implies (and
-			    (integerp n)
-			    (integerp d)
-			    (&gt;= n 0)
-			    (&gt;= d 0))
-			   (equal
-			    (+
-			     (nonneg-int-mod n d)
-			     (* d
-				(nonnegative-integer-quotient n
-							      d)))
-			    n)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-mod-nonnegative-integer-quotient» : ∀ n d : Rat,
-  «nonneg-int-mod» n d + nfix d * «nonnegative-integer-quotient» n d = nfix n</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-mod-nonnegative-integer-quotient</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>+ <span class="tk-par">(</span>nonneg-int-mod n d<span class="tk-par">)</span>
+	    <span class="tk-par">(</span>* <span class="tk-par">(</span>nfix d<span class="tk-par">)</span><span class="tk-par">(</span>nonnegative-integer-quotient n d<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	 <span class="tk-par">(</span>nfix n<span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:elim</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span>
+			    <span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+			    <span class="tk-par">(</span>integerp d<span class="tk-par">)</span>
+			    <span class="tk-par">(</span>&gt;= n <span class="tk-num">0</span><span class="tk-par">)</span>
+			    <span class="tk-par">(</span>&gt;= d <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>+
+			     <span class="tk-par">(</span>nonneg-int-mod n d<span class="tk-par">)</span>
+			     <span class="tk-par">(</span>* d
+				<span class="tk-par">(</span>nonnegative-integer-quotient n
+							      d<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			    n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-mod-nonnegative-integer-quotient»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> n d <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  «nonneg-int-mod» n d <span class="tk-op">+</span> nfix d <span class="tk-op">*</span> «nonnegative-integer-quotient» n d <span class="tk-op">=</span> nfix n</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -372,15 +397,15 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-mod-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L82" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 82</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-mod-0
-  (equal (nonneg-int-mod 0 d) 0)
-  :hints ((&quot;Goal&quot;
-	   :use (:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-mod-0</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-num">0</span> d<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 Nonneg-int-mod-nonnegative-integer-quotient
-		 (n 0)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-mod-0» : ∀ d : Rat,
-  «nonneg-int-mod» 0 d = 0</pre></div>
+		 <span class="tk-par">(</span>n <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-mod-0»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> d <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  «nonneg-int-mod» <span class="tk-num">0</span> d <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -389,21 +414,21 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-mod-+-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L97" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 97</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-mod-+-*
-  (implies (and (integerp j)
-		(integerp n)
-		(integerp x)
-		(&gt;= x 0)
-		(&lt; x n)
-		(&gt;= j 0))
-	   (equal (nonneg-int-mod (+ x (* j n)) n)
-		  x))
-     :hints ((&quot;Goal&quot;
-	      :induct (induct-on-nonneg-int j))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-mod-+-*» : ∀ j n x : Rat,
-  integerp j → integerp n → integerp x → 0 ≤ x → x &lt; n → 0 ≤ j →
-  «nonneg-int-mod» (x + j * n) n = x</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-mod-+-*</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= x <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; x n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= j <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span>
+		  x<span class="tk-par">)</span><span class="tk-par">)</span>
+     <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	      <span class="tk-const">:induct</span> <span class="tk-par">(</span>induct-on-nonneg-int j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-mod-+-*»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> j n x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp j <span class="tk-op">→</span> integerp n <span class="tk-op">→</span> integerp x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span> x <span class="tk-op">&lt;</span> n <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> j <span class="tk-op">→</span>
+  «nonneg-int-mod» <span class="tk-par">(</span>x <span class="tk-op">+</span> j <span class="tk-op">*</span> n<span class="tk-par">)</span> n <span class="tk-op">=</span> x</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -412,19 +437,19 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-mod-+-*-nonneg-int-mod</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L110" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 110</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-mod-+-*-nonneg-int-mod
-  (implies (and (integerp j)
-		(integerp n)
-		(integerp x)
-		(&gt;= j 0)
-		(&lt; 0 n)
-		(&gt;= x 0))
-	   (equal (nonneg-int-mod (+ x (* j n)) n)
-		  (nonneg-int-mod x n))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-mod-+-*-nonneg-int-mod» : ∀ j n x : Rat,
-  integerp j → integerp n → integerp x → 0 ≤ j → 0 &lt; n → 0 ≤ x →
-  «nonneg-int-mod» (x + j * n) n = «nonneg-int-mod» x n</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-mod-+-*-nonneg-int-mod</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= j <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>nonneg-int-mod x n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-mod-+-*-nonneg-int-mod»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> j n x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp j <span class="tk-op">→</span> integerp n <span class="tk-op">→</span> integerp x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> j <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> n <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span>
+  «nonneg-int-mod» <span class="tk-par">(</span>x <span class="tk-op">+</span> j <span class="tk-op">*</span> n<span class="tk-par">)</span> n <span class="tk-op">=</span> «nonneg-int-mod» x n</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -433,29 +458,29 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-mod-+-*-nonneg-int-mod-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L121" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 121</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-mod-+-*-nonneg-int-mod-1
-  (implies (and (integerp j)
-		(integerp k)
-		(integerp n)
-		(integerp x)
-		(&gt;= j 0)
-		(&gt;= k 0)
-		(&lt; 0 n)
-		(&gt;= x 0)
-		(equal (nonneg-int-mod k n) 0))
-	   (equal (nonneg-int-mod (+ x (* j k)) n)
-		  (nonneg-int-mod x n)))
-    :hints ((&quot;Goal&quot;
-	     :in-theory (disable Nonneg-int-mod-+-*-nonneg-int-mod)
-	     :use (:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-mod-+-*-nonneg-int-mod-1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp k<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= j <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= k <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= x <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod k n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j k<span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>nonneg-int-mod x n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+    <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	     <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> Nonneg-int-mod-+-*-nonneg-int-mod<span class="tk-par">)</span>
+	     <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		   Nonneg-int-mod-+-*-nonneg-int-mod
-		   (j (* j (nonnegative-integer-quotient k n))))
-	     )))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-mod-+-*-nonneg-int-mod-1» : ∀ j k n x : Rat,
-  integerp j → integerp k → integerp n → integerp x →
-  0 ≤ j → 0 ≤ k → 0 &lt; n → 0 ≤ x → «nonneg-int-mod» k n = 0 →
-  «nonneg-int-mod» (x + j * k) n = «nonneg-int-mod» x n</pre></div>
+		   <span class="tk-par">(</span>j <span class="tk-par">(</span>* j <span class="tk-par">(</span>nonnegative-integer-quotient k n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	     <span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-mod-+-*-nonneg-int-mod-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> j k n x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp j <span class="tk-op">→</span> integerp k <span class="tk-op">→</span> integerp n <span class="tk-op">→</span> integerp x <span class="tk-op">→</span>
+  <span class="tk-num">0</span> <span class="tk-op">≤</span> j <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> k <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> n <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span> «nonneg-int-mod» k n <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span>
+  «nonneg-int-mod» <span class="tk-par">(</span>x <span class="tk-op">+</span> j <span class="tk-op">*</span> k<span class="tk-par">)</span> n <span class="tk-op">=</span> «nonneg-int-mod» x n</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -464,15 +489,15 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Divisor-nonnegative-integer-quotient</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L141" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 141</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Divisor-nonnegative-integer-quotient
-  (implies (equal (nonneg-int-mod n d) 0)
-	   (equal (* (nfix d)
-		     (nonnegative-integer-quotient n d))
-		  (nfix n)))
-  :rule-classes nil)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Divisor-nonnegative-integer-quotient» : ∀ n d : Rat,
-  «nonneg-int-mod» n d = 0 → nfix d * «nonnegative-integer-quotient» n d = nfix n</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Divisor-nonnegative-integer-quotient</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod n d<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* <span class="tk-par">(</span>nfix d<span class="tk-par">)</span>
+		     <span class="tk-par">(</span>nonnegative-integer-quotient n d<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span>nfix n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">nil</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Divisor-nonnegative-integer-quotient»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> n d <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  «nonneg-int-mod» n d <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span> nfix d <span class="tk-op">*</span> «nonnegative-integer-quotient» n d <span class="tk-op">=</span> nfix n</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -481,16 +506,16 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Left-nonneg-int-mod-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L149" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 149</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Left-nonneg-int-mod-*
-  (implies (and (integerp j)
-		(integerp n)
-		(&gt;= n 0))
-	   (equal (nonneg-int-mod (* j n) n) 0))
-  :hints ((&quot;Goal&quot;
-	   :induct (induct-on-nonneg-int j))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Left-nonneg-int-mod-*» : ∀ j n : Rat,
-  integerp j → integerp n → 0 ≤ n → «nonneg-int-mod» (j * n) n = 0</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Left-nonneg-int-mod-*</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= n <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>* j n<span class="tk-par">)</span> n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:induct</span> <span class="tk-par">(</span>induct-on-nonneg-int j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Left-nonneg-int-mod-*»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> j n <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp j <span class="tk-op">→</span> integerp n <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> n <span class="tk-op">→</span> «nonneg-int-mod» <span class="tk-par">(</span>j <span class="tk-op">*</span> n<span class="tk-par">)</span> n <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -499,14 +524,14 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Right-nonneg-int-mod-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L158" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 158</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Right-nonneg-int-mod-*
-  (implies (and (integerp j)
-		(integerp n)
-		(&gt;= n 0))
-	   (equal (nonneg-int-mod (* n j) n) 0)))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Right-nonneg-int-mod-*» : ∀ j n : Rat,
-  integerp j → integerp n → 0 ≤ n → «nonneg-int-mod» (n * j) n = 0</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Right-nonneg-int-mod-*</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= n <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>* n j<span class="tk-par">)</span> n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Right-nonneg-int-mod-*»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> j n <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp j <span class="tk-op">→</span> integerp n <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> n <span class="tk-op">→</span> «nonneg-int-mod» <span class="tk-par">(</span>n <span class="tk-op">*</span> j<span class="tk-par">)</span> n <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -515,22 +540,22 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-mod-*-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L165" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 165</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-mod-*-0
-  (implies (and (integerp j)
-		(integerp y)
-		(&gt;= j 0)
-		(equal (nonneg-int-mod j n) 0))
-	   (equal (nonneg-int-mod (* j y) n) 0))
-  :hints ((&quot;Goal&quot;
-	   :in-theory (disable Right-nonneg-int-mod-*)
-	   :use ((:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-mod-*-0</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp y<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= j <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod j n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>* j y<span class="tk-par">)</span> n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> Right-nonneg-int-mod-*<span class="tk-par">)</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:instance</span>
 		  Right-nonneg-int-mod-*
-		  (j (* y (nonnegative-integer-quotient j n)))))
-	   )))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-mod-*-0» : ∀ j y n : Rat,
-  integerp j → integerp y → 0 ≤ j → «nonneg-int-mod» j n = 0 →
-  «nonneg-int-mod» (j * y) n = 0</pre></div>
+		  <span class="tk-par">(</span>j <span class="tk-par">(</span>* y <span class="tk-par">(</span>nonnegative-integer-quotient j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-mod-*-0»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> j y n <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp j <span class="tk-op">→</span> integerp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> j <span class="tk-op">→</span> «nonneg-int-mod» j n <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span>
+  «nonneg-int-mod» <span class="tk-par">(</span>j <span class="tk-op">*</span> y<span class="tk-par">)</span> n <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -539,17 +564,17 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-Int-mod-+-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L179" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 179</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-Int-mod-+-0
-  (implies (and (integerp x)
-		(&gt;= x 0)
-		(&gt;= y 0)
-		(equal (nonneg-int-mod x n) 0)
-		(equal (nonneg-int-mod y n) 0))
-	   (equal (nonneg-int-mod (+ x y) n) 0)))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-Int-mod-+-0» : ∀ x y n : Rat,
-  integerp x → 0 ≤ x → 0 ≤ y → «nonneg-int-mod» x n = 0 → «nonneg-int-mod» y n = 0 →
-  «nonneg-int-mod» (x + y) n = 0</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-Int-mod-+-0</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= x <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= y <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod x n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod y n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>+ x y<span class="tk-par">)</span> n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-Int-mod-+-0»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y n <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> y <span class="tk-op">→</span> «nonneg-int-mod» x n <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span> «nonneg-int-mod» y n <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span>
+  «nonneg-int-mod» <span class="tk-par">(</span>x <span class="tk-op">+</span> y<span class="tk-par">)</span> n <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -558,23 +583,23 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-Int-mod-minus-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L188" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 188</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-Int-mod-minus-0
-  (implies (and (integerp x)
-		(integerp y)
-		(&gt;= y 0)
-		(equal (nonneg-int-mod x n) 0)
-		(equal (nonneg-int-mod y n) 0))
-	   (equal (nonneg-int-mod (- x y) n) 0))
-  :hints ((&quot;Goal&quot;
-	   :in-theory (disable Right-nonneg-int-mod-*)
-	   :use (:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-Int-mod-minus-0</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp y<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= y <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod x n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod y n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>- x y<span class="tk-par">)</span> n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> Right-nonneg-int-mod-*<span class="tk-par">)</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 Right-nonneg-int-mod-*
-		 (j (- (nonnegative-integer-quotient x n)
-		       (nonnegative-integer-quotient y n)))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-Int-mod-minus-0» : ∀ x y n : Rat,
-  integerp x → integerp y → 0 ≤ y → «nonneg-int-mod» x n = 0 → «nonneg-int-mod» y n = 0 →
-  «nonneg-int-mod» (x - y) n = 0</pre></div>
+		 <span class="tk-par">(</span>j <span class="tk-par">(</span>- <span class="tk-par">(</span>nonnegative-integer-quotient x n<span class="tk-par">)</span>
+		       <span class="tk-par">(</span>nonnegative-integer-quotient y n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-Int-mod-minus-0»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y n <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp x <span class="tk-op">→</span> integerp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> y <span class="tk-op">→</span> «nonneg-int-mod» x n <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span> «nonneg-int-mod» y n <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span>
+  «nonneg-int-mod» <span class="tk-par">(</span>x <span class="tk-op">-</span> y<span class="tk-par">)</span> n <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -583,39 +608,39 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Linear-combination-nonneg-int-mod</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L203" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 203</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Linear-combination-nonneg-int-mod
-  (implies (and (integerp a)
-		(integerp b)
-		(integerp x)
-		(integerp y)
-		(&gt;= a 0)
-		(&gt;= b 0)
-		(equal (nonneg-int-mod a n) 0)
-		(equal (nonneg-int-mod b n) 0))
-	   (equal (nonneg-int-mod (+ (* a x)(* b y)) n) 0))
-  :hints ((&quot;Goal&quot;
-	   :in-theory (disable Nonneg-Int-mod-minus-0)
-	   :use ((:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Linear-combination-nonneg-int-mod</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp a<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp b<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp y<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= a <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= b <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod a n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod b n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>+ <span class="tk-par">(</span>* a x<span class="tk-par">)</span><span class="tk-par">(</span>* b y<span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> Nonneg-Int-mod-minus-0<span class="tk-par">)</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:instance</span>
 		  Nonneg-Int-mod-minus-0
-		  (x (* a x))
-		  (y (* b (- y))))
-		 (:instance
+		  <span class="tk-par">(</span>x <span class="tk-par">(</span>* a x<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span>y <span class="tk-par">(</span>* b <span class="tk-par">(</span>- y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		  Nonneg-int-mod-*-0
-		  (j b)
-		  (y (- y)))
-		 (:instance
+		  <span class="tk-par">(</span>j b<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>y <span class="tk-par">(</span>- y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		  Nonneg-Int-mod-minus-0
-		  (x (* b y))
-		  (y (* a (- x))))
-		 (:instance
+		  <span class="tk-par">(</span>x <span class="tk-par">(</span>* b y<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span>y <span class="tk-par">(</span>* a <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		  Nonneg-int-mod-*-0
-		  (j a)
-		  (y (- x)))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Linear-combination-nonneg-int-mod» : ∀ a b x y n : Rat,
-  integerp a → integerp b → integerp x → integerp y → 0 ≤ a → 0 ≤ b →
-  «nonneg-int-mod» a n = 0 → «nonneg-int-mod» b n = 0 →
-  «nonneg-int-mod» (a * x + b * y) n = 0</pre></div>
+		  <span class="tk-par">(</span>j a<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>y <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Linear-combination-nonneg-int-mod»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> a b x y n <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp a <span class="tk-op">→</span> integerp b <span class="tk-op">→</span> integerp x <span class="tk-op">→</span> integerp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> a <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> b <span class="tk-op">→</span>
+  «nonneg-int-mod» a n <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span> «nonneg-int-mod» b n <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span>
+  «nonneg-int-mod» <span class="tk-par">(</span>a <span class="tk-op">*</span> x <span class="tk-op">+</span> b <span class="tk-op">*</span> y<span class="tk-par">)</span> n <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -624,14 +649,14 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Divisor-&lt;=</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L233" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 233</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Divisor-&lt;=
-  (implies (and (integerp n)
-		(&gt; n 0)
-		(equal (nonneg-int-mod n d) 0))
-	   (&lt;= d n)))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Divisor-&lt;=» : ∀ n d : Rat,
-  integerp n → 0 &lt; n → «nonneg-int-mod» n d = 0 → d ≤ n</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Divisor-&lt;=</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt; n <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod n d<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt;= d n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Divisor-&lt;=»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> n d <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp n <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> n <span class="tk-op">→</span> «nonneg-int-mod» n d <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span> d <span class="tk-op">≤</span> n</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -640,11 +665,11 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-mod-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L242" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 242</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-mod-1
-  (equal (nonneg-int-mod n 1) 0))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-mod-1» : ∀ n : Rat,
-  «nonneg-int-mod» n 1 = 0</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-mod-1</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod n <span class="tk-num">1</span><span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-mod-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> n <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  «nonneg-int-mod» n <span class="tk-num">1</span> <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -653,16 +678,16 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-gcd-&gt;-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L260" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 260</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-gcd-&gt;-0
-  (implies (or (and (integerp d)
-		    (&gt; d 0))
-	       (and (integerp n)
-		    (&gt; n 0)))
-	   (&gt; (nonneg-int-gcd n d) 0))
-  :rule-classes :type-prescription)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-gcd-&gt;-0» : ∀ n d : Rat,
-  ((integerp d ∧ 0 &lt; d) ∨ (integerp n ∧ 0 &lt; n)) → 0 &lt; «nonneg-int-gcd» n d</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-gcd-&gt;-0</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">or</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp d<span class="tk-par">)</span>
+		    <span class="tk-par">(</span>&gt; d <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	       <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		    <span class="tk-par">(</span>&gt; n <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&gt; <span class="tk-par">(</span>nonneg-int-gcd n d<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:type-prescription</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-gcd-&gt;-0»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> n d <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span><span class="tk-par">(</span>integerp d <span class="tk-op">∧</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> d<span class="tk-par">)</span> <span class="tk-op">∨</span> <span class="tk-par">(</span>integerp n <span class="tk-op">∧</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> n<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> «nonneg-int-gcd» n d</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -671,14 +696,14 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-gcd-is-COMMON-divisor</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L269" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 269</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-    Nonneg-int-gcd-is-COMMON-divisor
-    (and (equal (nonneg-int-mod x (nonneg-int-gcd x y))
-		0)
-	 (equal (nonneg-int-mod y (nonneg-int-gcd x y))
-		0)))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-gcd-is-COMMON-divisor» : ∀ x y : Rat,
-  «nonneg-int-mod» x («nonneg-int-gcd» x y) = 0 ∧ «nonneg-int-mod» y («nonneg-int-gcd» x y) = 0</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+    <span class="tk-name">Nonneg-int-gcd-is-COMMON-divisor</span>
+    <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod x <span class="tk-par">(</span>nonneg-int-gcd x y<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-num">0</span><span class="tk-par">)</span>
+	 <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod y <span class="tk-par">(</span>nonneg-int-gcd x y<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-gcd-is-COMMON-divisor»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  «nonneg-int-mod» x <span class="tk-par">(</span>«nonneg-int-gcd» x y<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">∧</span> «nonneg-int-mod» y <span class="tk-par">(</span>«nonneg-int-gcd» x y<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -687,16 +712,16 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Linear-combination-for-nonneg-int-gcd</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L300" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 300</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-    Linear-combination-for-nonneg-int-gcd
-    (equal (nonneg-int-gcd x y)
-	   (+ (* (nfix x)
-		 (nonneg-int-gcd-multiplier1 x y))
-	      (* (nfix y)
-		 (nonneg-int-gcd-multiplier2 x y)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Linear-combination-for-nonneg-int-gcd» : ∀ x y : Rat,
-  «nonneg-int-gcd» x y =
-    nfix x * «nonneg-int-gcd-multiplier1» x y + nfix y * «nonneg-int-gcd-multiplier2» x y</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+    <span class="tk-name">Linear-combination-for-nonneg-int-gcd</span>
+    <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd x y<span class="tk-par">)</span>
+	   <span class="tk-par">(</span>+ <span class="tk-par">(</span>* <span class="tk-par">(</span>nfix x<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>nonneg-int-gcd-multiplier1 x y<span class="tk-par">)</span><span class="tk-par">)</span>
+	      <span class="tk-par">(</span>* <span class="tk-par">(</span>nfix y<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>nonneg-int-gcd-multiplier2 x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Linear-combination-for-nonneg-int-gcd»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  «nonneg-int-gcd» x y <span class="tk-op">=</span>
+    nfix x <span class="tk-op">*</span> «nonneg-int-gcd-multiplier1» x y <span class="tk-op">+</span> nfix y <span class="tk-op">*</span> «nonneg-int-gcd-multiplier2» x y</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -705,18 +730,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-gcd-is-LARGEST-common-divisor-mod</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L310" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 310</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-gcd-is-LARGEST-common-divisor-mod
-  (implies (and (equal (nonneg-int-mod x d) 0)
-		(equal (nonneg-int-mod y d) 0))
-	   (equal (nonneg-int-mod (nonneg-int-gcd x y) d)
-		  0))
-  :hints ((&quot;Goal&quot;
-	   :in-theory
-	   (enable Linear-combination-for-nonneg-int-gcd))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-gcd-is-LARGEST-common-divisor-mod» : ∀ x y d : Rat,
-  «nonneg-int-mod» x d = 0 → «nonneg-int-mod» y d = 0 →
-  «nonneg-int-mod» («nonneg-int-gcd» x y) d = 0</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-gcd-is-LARGEST-common-divisor-mod</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod x d<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod y d<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>nonneg-int-gcd x y<span class="tk-par">)</span> d<span class="tk-par">)</span>
+		  <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:in-theory</span>
+	   <span class="tk-par">(</span><span class="tk-kw">enable</span> Linear-combination-for-nonneg-int-gcd<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-gcd-is-LARGEST-common-divisor-mod»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y d <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  «nonneg-int-mod» x d <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span> «nonneg-int-mod» y d <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span>
+  «nonneg-int-mod» <span class="tk-par">(</span>«nonneg-int-gcd» x y<span class="tk-par">)</span> d <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -725,21 +750,21 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-gcd-is-LARGEST-common-divisor-&lt;=</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L320" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 320</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-gcd-is-LARGEST-common-divisor-&lt;=
-  (implies (and (or (and (integerp x)
-			 (&gt; x 0))
-		    (and (integerp y)
-			 (&gt; y 0)))
-		(equal (nonneg-int-mod x d) 0)
-		(equal (nonneg-int-mod y d) 0))
-	   (&lt;= d (nonneg-int-gcd x y)))
-  :hints ((&quot;Goal&quot;
-	   :in-theory (enable Divisor-&lt;=))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-gcd-is-LARGEST-common-divisor-&lt;=» : ∀ x y d : Rat,
-  ((integerp x ∧ 0 &lt; x) ∨ (integerp y ∧ 0 &lt; y)) →
-  «nonneg-int-mod» x d = 0 → «nonneg-int-mod» y d = 0 →
-  d ≤ «nonneg-int-gcd» x y</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-gcd-is-LARGEST-common-divisor-&lt;=</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">or</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+			 <span class="tk-par">(</span>&gt; x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		    <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp y<span class="tk-par">)</span>
+			 <span class="tk-par">(</span>&gt; y <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod x d<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod y d<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt;= d <span class="tk-par">(</span>nonneg-int-gcd x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">enable</span> Divisor-&lt;=<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-gcd-is-LARGEST-common-divisor-&lt;=»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y d <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span><span class="tk-par">(</span>integerp x <span class="tk-op">∧</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> x<span class="tk-par">)</span> <span class="tk-op">∨</span> <span class="tk-par">(</span>integerp y <span class="tk-op">∧</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> y<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-op">→</span>
+  «nonneg-int-mod» x d <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span> «nonneg-int-mod» y d <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span>
+  d <span class="tk-op">≤</span> «nonneg-int-gcd» x y</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -748,35 +773,35 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonnegative-integer-quotient-gcd</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L332" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 332</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonnegative-integer-quotient-gcd
-  (implies (and (integerp x)
-		(integerp y)
-		(&gt;= x 0)
-		(&gt;= y 0))
-	   (and (equal (* (nonneg-int-gcd x y)
-			  (nonnegative-integer-quotient
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonnegative-integer-quotient-gcd</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp y<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= x <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= y <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* <span class="tk-par">(</span>nonneg-int-gcd x y<span class="tk-par">)</span>
+			  <span class="tk-par">(</span>nonnegative-integer-quotient
 			   x
-			   (nonneg-int-gcd x y)))
-		       x)
-		(equal (* (nonneg-int-gcd x y)
-			  (nonnegative-integer-quotient
+			   <span class="tk-par">(</span>nonneg-int-gcd x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		       x<span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* <span class="tk-par">(</span>nonneg-int-gcd x y<span class="tk-par">)</span>
+			  <span class="tk-par">(</span>nonnegative-integer-quotient
 			   y
-			   (nonneg-int-gcd x y)))
-		       y)))
-  :hints ((&quot;Goal&quot;
-	   :use ((:instance
+			   <span class="tk-par">(</span>nonneg-int-gcd x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		       y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:instance</span>
 		  Divisor-nonnegative-integer-quotient
-		  (n x)
-		  (d (nonneg-int-gcd x y)))
-		 (:instance
+		  <span class="tk-par">(</span>n x<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>d <span class="tk-par">(</span>nonneg-int-gcd x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		  Divisor-nonnegative-integer-quotient
-		  (n y)
-		  (d (nonneg-int-gcd x y)))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonnegative-integer-quotient-gcd» : ∀ x y : Rat,
-  integerp x → integerp y → 0 ≤ x → 0 ≤ y →
-  («nonneg-int-gcd» x y * «nonnegative-integer-quotient» x («nonneg-int-gcd» x y) = x) ∧
-  («nonneg-int-gcd» x y * «nonnegative-integer-quotient» y («nonneg-int-gcd» x y) = y)</pre></div>
+		  <span class="tk-par">(</span>n y<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>d <span class="tk-par">(</span>nonneg-int-gcd x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonnegative-integer-quotient-gcd»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp x <span class="tk-op">→</span> integerp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> y <span class="tk-op">→</span>
+  <span class="tk-par">(</span>«nonneg-int-gcd» x y <span class="tk-op">*</span> «nonnegative-integer-quotient» x <span class="tk-par">(</span>«nonneg-int-gcd» x y<span class="tk-par">)</span> <span class="tk-op">=</span> x<span class="tk-par">)</span> <span class="tk-op">∧</span>
+  <span class="tk-par">(</span>«nonneg-int-gcd» x y <span class="tk-op">*</span> «nonnegative-integer-quotient» y <span class="tk-par">(</span>«nonneg-int-gcd» x y<span class="tk-par">)</span> <span class="tk-op">=</span> y<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -785,16 +810,16 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Linear-combination-gcd=1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L358" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 358</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Linear-combination-gcd=1
-  (implies (and (integerp x)
-		(equal (nonneg-int-gcd y z) 1))
-	   (equal (+ (* x y (nonneg-int-gcd-multiplier1 y z))
-		     (* x z (nonneg-int-gcd-multiplier2 y z)))
-		  x)))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Linear-combination-gcd=1» : ∀ x y z : Rat,
-  integerp x → «nonneg-int-gcd» y z = 1 →
-  x * y * «nonneg-int-gcd-multiplier1» y z + x * z * «nonneg-int-gcd-multiplier2» y z = x</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Linear-combination-gcd=1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd y z<span class="tk-par">)</span> <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>+ <span class="tk-par">(</span>* x y <span class="tk-par">(</span>nonneg-int-gcd-multiplier1 y z<span class="tk-par">)</span><span class="tk-par">)</span>
+		     <span class="tk-par">(</span>* x z <span class="tk-par">(</span>nonneg-int-gcd-multiplier2 y z<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		  x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Linear-combination-gcd=1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y z <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp x <span class="tk-op">→</span> «nonneg-int-gcd» y z <span class="tk-op">=</span> <span class="tk-num">1</span> <span class="tk-op">→</span>
+  x <span class="tk-op">*</span> y <span class="tk-op">*</span> «nonneg-int-gcd-multiplier1» y z <span class="tk-op">+</span> x <span class="tk-op">*</span> z <span class="tk-op">*</span> «nonneg-int-gcd-multiplier2» y z <span class="tk-op">=</span> x</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -803,28 +828,28 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Divisor-of-product-divides-factor</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L366" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 366</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Divisor-of-product-divides-factor
-  (implies (and (equal (nonneg-int-mod (* x y) z) 0)
-		(equal (nonneg-int-gcd y z) 1)
-		(integerp x)
-		(integerp y)
-		(&gt;= x 0)
-		(&gt;= y 0))
-	   (equal (nonneg-int-mod x z) 0))
-  :rule-classes nil
-  :hints ((&quot;Goal&quot;
-	   :use ((:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Divisor-of-product-divides-factor</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>* x y<span class="tk-par">)</span> z<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd y z<span class="tk-par">)</span> <span class="tk-num">1</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp y<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= x <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= y <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod x z<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">nil</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:instance</span>
 		  Linear-combination-nonneg-int-mod
-		  (a (* x y))
-		  (b z)
-		  (n z)
-		  (x (nonneg-int-gcd-multiplier1 y z))
-		  (y (* x (nonneg-int-gcd-multiplier2 y z))))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Divisor-of-product-divides-factor» : ∀ x y z : Rat,
-  «nonneg-int-mod» (x * y) z = 0 → «nonneg-int-gcd» y z = 1 →
-  integerp x → integerp y → 0 ≤ x → 0 ≤ y →
-  «nonneg-int-mod» x z = 0</pre></div>
+		  <span class="tk-par">(</span>a <span class="tk-par">(</span>* x y<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span>b z<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>n z<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>x <span class="tk-par">(</span>nonneg-int-gcd-multiplier1 y z<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span>y <span class="tk-par">(</span>* x <span class="tk-par">(</span>nonneg-int-gcd-multiplier2 y z<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Divisor-of-product-divides-factor»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y z <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  «nonneg-int-mod» <span class="tk-par">(</span>x <span class="tk-op">*</span> y<span class="tk-par">)</span> z <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">→</span> «nonneg-int-gcd» y z <span class="tk-op">=</span> <span class="tk-num">1</span> <span class="tk-op">→</span>
+  integerp x <span class="tk-op">→</span> integerp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> y <span class="tk-op">→</span>
+  «nonneg-int-mod» x z <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -833,102 +858,102 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-mod-abs-+-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L385" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 385</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-mod-abs-+-*
-  (implies (and (integerp j)
-		(integerp n)
-		(integerp x)
-		(&lt;= 0 n))
-	   (equal (nonneg-int-mod (abs (+ x (* j n)))
-				  (nonneg-int-gcd (abs x) n))
-		  0))
-  :rule-classes ((:rewrite
-		  :corollary
-		  (implies (and (integerp j)
-				(integerp n)
-				(integerp x)
-				(&lt;= 0 n)
-				(&lt;= (+ x (* j n)) 0)
-				(&lt;= x 0))
-			   (equal
-			    (nonneg-int-mod (+ (- x)(- (* j n)))
-					    (nonneg-int-gcd (- x)
-							    n))
-			    0))
-		  :hints ((&quot;Goal&quot;
-			   :cases ((&lt; (+ x (* j n)) 0)))))
-		 (:rewrite
-		  :corollary
-		  (implies (and (integerp j)
-				(integerp n)
-				(integerp x)
-				(&lt;= 0 n)
-				(&lt;= 0 (+ x (* j n)))
-				(&lt;= x 0))
-			   (equal
-			    (nonneg-int-mod (+ x (* j n))
-					    (nonneg-int-gcd (- x)
-							    n))
-			    0)))
-		 (:rewrite
-		  :corollary
-		  (implies (and (integerp j)
-				(integerp n)
-				(integerp x)
-				(&lt;= 0 n)
-				(&lt;= (+ x (* j n)) 0)
-				(&lt;= 0 x))
-			   (equal
-			    (nonneg-int-mod (+ (- x) (- (* j n)))
-					    (nonneg-int-gcd x n))
-			    0)))
-		 (:rewrite
-		  :corollary
-		  (implies (and (integerp j)
-				(integerp n)
-				(integerp x)
-				(&lt;= 0 n)
-				(&lt;= 0 (+ x (* j n)))
-				(&lt;= 0 x))
-			   (equal
-			    (nonneg-int-mod (+ x (* j n))
-					    (nonneg-int-gcd x n))
-			    0))))
-  :hints ((&quot;Subgoal 4&quot;
-	   :use (:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-mod-abs-+-*</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> n<span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>abs <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+				  <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs x<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>+ <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">(</span>- <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+					    <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>- x<span class="tk-par">)</span>
+							    n<span class="tk-par">)</span><span class="tk-par">)</span>
+			    <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+			   <span class="tk-const">:cases</span> <span class="tk-par">(</span><span class="tk-par">(</span>&lt; <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span>
+					    <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>- x<span class="tk-par">)</span>
+							    n<span class="tk-par">)</span><span class="tk-par">)</span>
+			    <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>+ <span class="tk-par">(</span>- x<span class="tk-par">)</span> <span class="tk-par">(</span>- <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+					    <span class="tk-par">(</span>nonneg-int-gcd x n<span class="tk-par">)</span><span class="tk-par">)</span>
+			    <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span>
+					    <span class="tk-par">(</span>nonneg-int-gcd x n<span class="tk-par">)</span><span class="tk-par">)</span>
+			    <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Subgoal 4&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 Linear-combination-nonneg-int-mod
-		 (a (- x))
-		 (b n)
-		 (x 1)
-		 (y (- j))
-		 (n (nonneg-int-gcd (- x) n))))
-	  (&quot;Subgoal 3&quot;
-	   :use (:instance
+		 <span class="tk-par">(</span>a <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>b n<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>x <span class="tk-num">1</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>y <span class="tk-par">(</span>- j<span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>n <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>- x<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	  <span class="tk-par">(</span><span class="tk-str">&quot;Subgoal 3&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 Linear-combination-nonneg-int-mod
-		 (a (- x))
-		 (b n)
-		 (x -1)
-		 (y j)
-		 (n (nonneg-int-gcd (- x) n))))
-	  (&quot;Subgoal 2&quot;
-	   :use (:instance
+		 <span class="tk-par">(</span>a <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>b n<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>x <span class="tk-num">-1</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>y j<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>n <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>- x<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	  <span class="tk-par">(</span><span class="tk-str">&quot;Subgoal 2&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 Linear-combination-nonneg-int-mod
-		 (a x)
-		 (b n)
-		 (x -1)
-		 (y (- j))
-		 (n (nonneg-int-gcd x n))))
-	  (&quot;Subgoal 1&quot;
-	   :use (:instance
+		 <span class="tk-par">(</span>a x<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>b n<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>x <span class="tk-num">-1</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>y <span class="tk-par">(</span>- j<span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>n <span class="tk-par">(</span>nonneg-int-gcd x n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	  <span class="tk-par">(</span><span class="tk-str">&quot;Subgoal 1&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 linear-combination-nonneg-int-mod
-		 (a x)
-		 (b n)
-		 (x 1)
-		 (y j)
-		 (n (nonneg-int-gcd x n))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-mod-abs-+-*» : ∀ j n x : Rat,
-  integerp j → integerp n → integerp x → 0 ≤ n →
-  «nonneg-int-mod» (abs (x + j * n)) («nonneg-int-gcd» (abs x) n) = 0</pre></div>
+		 <span class="tk-par">(</span>a x<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>b n<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>x <span class="tk-num">1</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>y j<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>n <span class="tk-par">(</span>nonneg-int-gcd x n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-mod-abs-+-*»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> j n x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp j <span class="tk-op">→</span> integerp n <span class="tk-op">→</span> integerp x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> n <span class="tk-op">→</span>
+  «nonneg-int-mod» <span class="tk-par">(</span>abs <span class="tk-par">(</span>x <span class="tk-op">+</span> j <span class="tk-op">*</span> n<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-par">(</span>«nonneg-int-gcd» <span class="tk-par">(</span>abs x<span class="tk-par">)</span> n<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -937,18 +962,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-gcd-abs-&gt;=</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L479" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 479</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-gcd-abs-&gt;=
-  (implies (and (integerp j)
-		(integerp n)
-		(integerp x)
-		(&lt; 0 n))
-	   (&gt;= (nonneg-int-gcd (abs (+ x (* j n))) n)
-	       (nonneg-int-gcd (abs x) n)))
-  :rule-classes nil)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-gcd-abs-&gt;=» : ∀ j n x : Rat,
-  integerp j → integerp n → integerp x → 0 &lt; n →
-  «nonneg-int-gcd» (abs x) n ≤ «nonneg-int-gcd» (abs (x + j * n)) n</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-gcd-abs-&gt;=</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> n<span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&gt;= <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span>
+	       <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs x<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">nil</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-gcd-abs-&gt;=»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> j n x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp j <span class="tk-op">→</span> integerp n <span class="tk-op">→</span> integerp x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> n <span class="tk-op">→</span>
+  «nonneg-int-gcd» <span class="tk-par">(</span>abs x<span class="tk-par">)</span> n <span class="tk-op">≤</span> «nonneg-int-gcd» <span class="tk-par">(</span>abs <span class="tk-par">(</span>x <span class="tk-op">+</span> j <span class="tk-op">*</span> n<span class="tk-par">)</span><span class="tk-par">)</span> n</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -957,108 +982,108 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-mod-abs</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L489" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 489</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-mod-abs
-  (implies (and (integerp j)
-		(integerp n)
-		(integerp x)
-		(&lt; 0 n))
-	   (equal
-	    (nonneg-int-mod (abs x)
-			    (nonneg-int-gcd (abs (+ x (* j n)))
-					    n))
-	    0))
-  :rule-classes ((:rewrite
-		  :corollary
-		  (implies (and (integerp j)
-				(integerp n)
-				(integerp x)
-				(&lt;= 0 n)
-				(&lt;= (+ x (* j n)) 0)
-				(&lt;= x 0))
-			   (equal
-			    (nonneg-int-mod (- x)
-					    (nonneg-int-gcd
-					     (+ (- x)(- (* j n)))
-					     n))
-			    0)))
-		 (:rewrite
-		  :corollary
-		  (implies (and (integerp j)
-				(integerp n)
-				(integerp x)
-				(&lt; 0 n)
-				(&lt;= 0 (+ x (* j n)))
-				(&lt;= x 0))
-			   (equal
-			    (nonneg-int-mod (- x)
-					    (nonneg-int-gcd
-					     (+ x (* j n))
-					     n))
-			    0)))
-		 (:rewrite
-		  :corollary
-		  (implies (and (integerp j)
-				(integerp n)
-				(integerp x)
-				(&lt; 0 n)
-				(&lt;= (+ x (* j n)) 0)
-				(&lt;= 0 x))
-			   (equal
-			    (nonneg-int-mod x
-					    (nonneg-int-gcd
-					     (+ (- x)(- (* j n)))
-					     n))
-			    0)))
-		 (:rewrite
-		  :corollary
-		  (implies (and (integerp j)
-				(integerp n)
-				(integerp x)
-				(&lt; 0 n)
-				(&lt;= 0 (+ x (* j n)))
-				(&lt;= 0 x))
-			   (equal
-			    (nonneg-int-mod x
-					    (nonneg-int-gcd
-					     (+ x (* j n))
-					     n))
-			    0))))
-  :hints ((&quot;Subgoal 4&quot;
-	   :use (:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-mod-abs</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> n<span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+	    <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>abs x<span class="tk-par">)</span>
+			    <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+					    n<span class="tk-par">)</span><span class="tk-par">)</span>
+	    <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>- x<span class="tk-par">)</span>
+					    <span class="tk-par">(</span>nonneg-int-gcd
+					     <span class="tk-par">(</span>+ <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">(</span>- <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+					     n<span class="tk-par">)</span><span class="tk-par">)</span>
+			    <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>- x<span class="tk-par">)</span>
+					    <span class="tk-par">(</span>nonneg-int-gcd
+					     <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span>
+					     n<span class="tk-par">)</span><span class="tk-par">)</span>
+			    <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>nonneg-int-mod x
+					    <span class="tk-par">(</span>nonneg-int-gcd
+					     <span class="tk-par">(</span>+ <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">(</span>- <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+					     n<span class="tk-par">)</span><span class="tk-par">)</span>
+			    <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>nonneg-int-mod x
+					    <span class="tk-par">(</span>nonneg-int-gcd
+					     <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span>
+					     n<span class="tk-par">)</span><span class="tk-par">)</span>
+			    <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Subgoal 4&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 Linear-combination-nonneg-int-mod
-		 (a (+ (- x)(- (* j n))))
-		 (b n)
-		 (x 1)
-		 (y j)
-		 (n (nonneg-int-gcd (+ (- x)(- (* j n))) n))))
-	  (&quot;Subgoal 3&quot;
-	   :use (:instance
+		 <span class="tk-par">(</span>a <span class="tk-par">(</span>+ <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">(</span>- <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>b n<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>x <span class="tk-num">1</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>y j<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>n <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>+ <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">(</span>- <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	  <span class="tk-par">(</span><span class="tk-str">&quot;Subgoal 3&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 Linear-combination-nonneg-int-mod
-		 (a (+ (- x) (- (* j n))))
-		 (b n)
-		 (x -1)
-		 (y (- j))
-		 (n (nonneg-int-gcd (+ (- x) (- (* j n))) n))))
-	  (&quot;Subgoal 2&quot;
-	   :use (:instance
+		 <span class="tk-par">(</span>a <span class="tk-par">(</span>+ <span class="tk-par">(</span>- x<span class="tk-par">)</span> <span class="tk-par">(</span>- <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>b n<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>x <span class="tk-num">-1</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>y <span class="tk-par">(</span>- j<span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>n <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>+ <span class="tk-par">(</span>- x<span class="tk-par">)</span> <span class="tk-par">(</span>- <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	  <span class="tk-par">(</span><span class="tk-str">&quot;Subgoal 2&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 Linear-combination-nonneg-int-mod
-		 (a (+ x (* j n)))
-		 (b n)
-		 (x -1)
-		 (y j)
-		 (n (nonneg-int-gcd (+ x (* j n)) n))))
-	  (&quot;Subgoal 1&quot;
-	   :use (:instance
+		 <span class="tk-par">(</span>a <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>b n<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>x <span class="tk-num">-1</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>y j<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>n <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	  <span class="tk-par">(</span><span class="tk-str">&quot;Subgoal 1&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 Linear-combination-nonneg-int-mod
-		 (a (+ x (* j n)))
-		 (b n)
-		 (x 1)
-		 (y (- j))
-		 (n (nonneg-int-gcd (+ x (* j n)) n))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-mod-abs» : ∀ j n x : Rat,
-  integerp j → integerp n → integerp x → 0 &lt; n →
-  «nonneg-int-mod» (abs x) («nonneg-int-gcd» (abs (x + j * n)) n) = 0</pre></div>
+		 <span class="tk-par">(</span>a <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>b n<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>x <span class="tk-num">1</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>y <span class="tk-par">(</span>- j<span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>n <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-mod-abs»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> j n x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp j <span class="tk-op">→</span> integerp n <span class="tk-op">→</span> integerp x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> n <span class="tk-op">→</span>
+  «nonneg-int-mod» <span class="tk-par">(</span>abs x<span class="tk-par">)</span> <span class="tk-par">(</span>«nonneg-int-gcd» <span class="tk-par">(</span>abs <span class="tk-par">(</span>x <span class="tk-op">+</span> j <span class="tk-op">*</span> n<span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-num">0</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -1067,18 +1092,18 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-gcd-abs-&lt;=</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L589" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 589</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-gcd-abs-&lt;=
-  (implies (and (integerp j)
-		(integerp n)
-		(integerp x)
-		(&lt; 0 n))
-	   (&lt;= (nonneg-int-gcd (abs (+ x (* j n))) n)
-	       (nonneg-int-gcd (abs x) n)))
-  :rule-classes nil)</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-gcd-abs-&lt;=» : ∀ j n x : Rat,
-  integerp j → integerp n → integerp x → 0 &lt; n →
-  «nonneg-int-gcd» (abs (x + j * n)) n ≤ «nonneg-int-gcd» (abs x) n</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-gcd-abs-&lt;=</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> n<span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span>
+	       <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs x<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">nil</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-gcd-abs-&lt;=»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> j n x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp j <span class="tk-op">→</span> integerp n <span class="tk-op">→</span> integerp x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> n <span class="tk-op">→</span>
+  «nonneg-int-gcd» <span class="tk-par">(</span>abs <span class="tk-par">(</span>x <span class="tk-op">+</span> j <span class="tk-op">*</span> n<span class="tk-par">)</span><span class="tk-par">)</span> n <span class="tk-op">≤</span> «nonneg-int-gcd» <span class="tk-par">(</span>abs x<span class="tk-par">)</span> n</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -1087,66 +1112,66 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-gcd-abs</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L599" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 599</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-gcd-abs
-  (implies (and (integerp j)
-		(integerp n)
-		(integerp x)
-		(&lt; 0 n))
-	   (equal (nonneg-int-gcd (abs (+ x (* j n))) n)
-		  (nonneg-int-gcd (abs x) n)))
-  :rule-classes ((:rewrite
-		  :corollary
-		  (implies (and (integerp j)
-				(integerp n)
-				(integerp x)
-				(&lt; 0 n)
-				(&lt;= (+ x (* j n)) 0)
-				(&lt;= x 0))
-			   (equal
-			    (nonneg-int-gcd (+ (- x)(- (* j n))) n)
-			    (nonneg-int-gcd (- x) n)))
-		  :hints ((&quot;Goal&quot;
-			   :cases ((&lt; (+ x (* j n)) 0)))))
-		 (:rewrite
-		  :corollary
-		  (implies (and (integerp j)
-				(integerp n)
-				(integerp x)
-				(&lt; 0 n)
-				(&lt;= 0 (+ x (* j n)))
-				(&lt;= x 0))
-			   (equal (nonneg-int-gcd (+ x (* j n)) n)
-				  (nonneg-int-gcd (- x) n))))
-		 (:rewrite
-		  :corollary
-		  (implies (and (integerp j)
-				(integerp n)
-				(integerp x)
-				(&lt; 0 n)
-				(&lt;= (+ x (* j n)) 0)
-				(&lt;= 0 x))
-			   (equal
-			    (nonneg-int-gcd (+ (- x)(- (* j n))) n)
-			    (nonneg-int-gcd x n))))
-		 (:rewrite
-		  :corollary
-		  (implies (and (integerp j)
-				(integerp n)
-				(integerp x)
-				(&lt; 0 n)
-				(&lt;= 0 (+ x (* j n)))
-				(&lt;= 0 x))
-			   (equal (nonneg-int-gcd (+ x (* j n)) n)
-				  (nonneg-int-gcd x n)))))
-  :hints ((&quot;Goal&quot;
-	 :in-theory (disable Nonneg-int-mod-abs-+-*
-			     Nonneg-int-mod-abs)
-	 :use (Nonneg-int-gcd-abs-&gt;=
-	       Nonneg-int-gcd-abs-&lt;=))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-gcd-abs» : ∀ j n x : Rat,
-  integerp j → integerp n → integerp x → 0 &lt; n →
-  «nonneg-int-gcd» (abs (x + j * n)) n = «nonneg-int-gcd» (abs x) n</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-gcd-abs</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> n<span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs x<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>+ <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">(</span>- <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span>
+			    <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>- x<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+			   <span class="tk-const">:cases</span> <span class="tk-par">(</span><span class="tk-par">(</span>&lt; <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span>
+				  <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>- x<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>+ <span class="tk-par">(</span>- x<span class="tk-par">)</span><span class="tk-par">(</span>- <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span>
+			    <span class="tk-par">(</span>nonneg-int-gcd x n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp j<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> x<span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>+ x <span class="tk-par">(</span>* j n<span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span>
+				  <span class="tk-par">(</span>nonneg-int-gcd x n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	 <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> Nonneg-int-mod-abs-+-*
+			     Nonneg-int-mod-abs<span class="tk-par">)</span>
+	 <span class="tk-const">:use</span> <span class="tk-par">(</span>Nonneg-int-gcd-abs-&gt;=
+	       Nonneg-int-gcd-abs-&lt;=<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-gcd-abs»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> j n x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp j <span class="tk-op">→</span> integerp n <span class="tk-op">→</span> integerp x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> n <span class="tk-op">→</span>
+  «nonneg-int-gcd» <span class="tk-par">(</span>abs <span class="tk-par">(</span>x <span class="tk-op">+</span> j <span class="tk-op">*</span> n<span class="tk-par">)</span><span class="tk-par">)</span> n <span class="tk-op">=</span> «nonneg-int-gcd» <span class="tk-par">(</span>abs x<span class="tk-par">)</span> n</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -1155,19 +1180,19 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Commutativity-of-nonneg-int-gcd</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L657" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 657</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Commutativity-of-nonneg-int-gcd
-  (implies (and (integerp x)
-		(integerp y)
-		(&gt;= x 0)
-		(&gt;= y 0))
-	   (equal (nonneg-int-gcd x y)
-		  (nonneg-int-gcd y x)))
-  :hints ((&quot;Goal&quot;
-	   :cases ((&lt; x y)(&gt; x y)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Commutativity-of-nonneg-int-gcd» : ∀ x y : Rat,
-  integerp x → integerp y → 0 ≤ x → 0 ≤ y →
-  «nonneg-int-gcd» x y = «nonneg-int-gcd» y x</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Commutativity-of-nonneg-int-gcd</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp y<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= x <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= y <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd x y<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>nonneg-int-gcd y x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:cases</span> <span class="tk-par">(</span><span class="tk-par">(</span>&lt; x y<span class="tk-par">)</span><span class="tk-par">(</span>&gt; x y<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Commutativity-of-nonneg-int-gcd»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x y <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp x <span class="tk-op">→</span> integerp y <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> y <span class="tk-op">→</span>
+  «nonneg-int-gcd» x y <span class="tk-op">=</span> «nonneg-int-gcd» y x</pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -1176,37 +1201,37 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Cross-product-factor</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L668" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 668</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Cross-product-factor
-  (implies (and (equal (nonneg-int-gcd a b) 1)
-		(equal (* a d)(* b c))
-		(integerp a)
-		(integerp b)
-		(integerp c)
-		(integerp d)
-		(&gt;= a 0)
-		(&gt;= b 0)
-		(&gt;= c 0)
-		(&gt;= d 0))
-	   (and (equal (nonneg-int-mod c a) 0)
-		(equal (nonneg-int-mod d b) 0)))
-  :rule-classes nil
-  :hints ((&quot;Goal&quot;
-	   :use ((:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Cross-product-factor</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd a b<span class="tk-par">)</span> <span class="tk-num">1</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* a d<span class="tk-par">)</span><span class="tk-par">(</span>* b c<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp a<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp b<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp c<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp d<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= a <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= b <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= c <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= d <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod c a<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod d b<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">nil</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:instance</span>
 		  Divisor-of-product-divides-factor
-		  (x c)
-		  (y b)
-		  (z a))
-		 (:instance
+		  <span class="tk-par">(</span>x c<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>y b<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>z a<span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		  Divisor-of-product-divides-factor
-		  (x d)
-		  (y a)
-		  (z b))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Cross-product-factor» : ∀ a b c d : Rat,
-  «nonneg-int-gcd» a b = 1 → a * d = b * c →
-  integerp a → integerp b → integerp c → integerp d →
-  0 ≤ a → 0 ≤ b → 0 ≤ c → 0 ≤ d →
-  («nonneg-int-mod» c a = 0 ∧ «nonneg-int-mod» d b = 0)</pre></div>
+		  <span class="tk-par">(</span>x d<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>y a<span class="tk-par">)</span>
+		  <span class="tk-par">(</span>z b<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Cross-product-factor»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> a b c d <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  «nonneg-int-gcd» a b <span class="tk-op">=</span> <span class="tk-num">1</span> <span class="tk-op">→</span> a <span class="tk-op">*</span> d <span class="tk-op">=</span> b <span class="tk-op">*</span> c <span class="tk-op">→</span>
+  integerp a <span class="tk-op">→</span> integerp b <span class="tk-op">→</span> integerp c <span class="tk-op">→</span> integerp d <span class="tk-op">→</span>
+  <span class="tk-num">0</span> <span class="tk-op">≤</span> a <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> b <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> c <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> d <span class="tk-op">→</span>
+  <span class="tk-par">(</span>«nonneg-int-mod» c a <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">∧</span> «nonneg-int-mod» d b <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -1215,12 +1240,12 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-gcd-1-right</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L695" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 695</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-gcd-1-right
-  (equal (nonneg-int-gcd x 1)
-	 1))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-gcd-1-right» : ∀ x : Rat,
-  «nonneg-int-gcd» x 1 = 1</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-gcd-1-right</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd x <span class="tk-num">1</span><span class="tk-par">)</span>
+	 <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-gcd-1-right»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  «nonneg-int-gcd» x <span class="tk-num">1</span> <span class="tk-op">=</span> <span class="tk-num">1</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -1229,21 +1254,21 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-gcd-1-left</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L700" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 700</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-gcd-1-left
-  (implies (and (integerp x)
-		(&gt;= x 0))
- 	   (equal (nonneg-int-gcd 1 x)
-		  1))
-  :rule-classes ((:rewrite
-		  :corollary
-		  (equal (nonneg-int-gcd 1 x)
-			 1)))
-  :hints ((&quot;Goal&quot;
-	   :in-theory (disable Nonneg-int-gcd-1-right )
-	   :use Nonneg-int-gcd-1-right)))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-gcd-1-left» : ∀ x : Rat,
-  integerp x → 0 ≤ x → «nonneg-int-gcd» 1 x = 1</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-gcd-1-left</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp x<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt;= x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+ 	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-num">1</span> x<span class="tk-par">)</span>
+		  <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-num">1</span> x<span class="tk-par">)</span>
+			 <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> Nonneg-int-gcd-1-right <span class="tk-par">)</span>
+	   <span class="tk-const">:use</span> Nonneg-int-gcd-1-right<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-gcd-1-left»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp x <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> x <span class="tk-op">→</span> «nonneg-int-gcd» <span class="tk-num">1</span> x <span class="tk-op">=</span> <span class="tk-num">1</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -1252,40 +1277,40 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Nonneg-int-gcd-numerator-denominator</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L718" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 718</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Nonneg-int-gcd-numerator-denominator
-  (equal (nonneg-int-gcd (abs (numerator x))
-			 (denominator x))
-	 1)
-  :rule-classes ((:rewrite
-		  :corollary
-		  (implies (&gt;= (numerator x) 0)
-			   (equal (nonneg-int-gcd (denominator x)
-						  (numerator x))
-				  1)))
-		 (:rewrite
-		  :corollary
-		  (implies (&lt;= (numerator x) 0)
-			   (equal (nonneg-int-gcd (denominator x)
-						  (-
-						   (numerator x)))
-				  1))))
-  :hints ((&quot;Goal&quot;
-	   :use (:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Nonneg-int-gcd-numerator-denominator</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs <span class="tk-par">(</span>numerator x<span class="tk-par">)</span><span class="tk-par">)</span>
+			 <span class="tk-par">(</span>denominator x<span class="tk-par">)</span><span class="tk-par">)</span>
+	 <span class="tk-num">1</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span>&gt;= <span class="tk-par">(</span>numerator x<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>denominator x<span class="tk-par">)</span>
+						  <span class="tk-par">(</span>numerator x<span class="tk-par">)</span><span class="tk-par">)</span>
+				  <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>numerator x<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>denominator x<span class="tk-par">)</span>
+						  <span class="tk-par">(</span>-
+						   <span class="tk-par">(</span>numerator x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+				  <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 lowest-terms
-		 (n (nonneg-int-gcd (abs (numerator x))
-				    (denominator x)))
-		 (r (* (signum (numerator x))
-		       (nonnegative-integer-quotient
-			(abs (numerator x))
-			(nonneg-int-gcd (abs (numerator x))
-					(denominator x)))))
-		 (q (nonnegative-integer-quotient
-		     (denominator x)
-		     (nonneg-int-gcd (abs (numerator x))
-				     (denominator x))))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Nonneg-int-gcd-numerator-denominator» : ∀ x : CRat,
-  «nonneg-int-gcd» (abs (numeratorC x)) (denominatorC x) = 1</pre></div>
+		 <span class="tk-par">(</span>n <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs <span class="tk-par">(</span>numerator x<span class="tk-par">)</span><span class="tk-par">)</span>
+				    <span class="tk-par">(</span>denominator x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>r <span class="tk-par">(</span>* <span class="tk-par">(</span>signum <span class="tk-par">(</span>numerator x<span class="tk-par">)</span><span class="tk-par">)</span>
+		       <span class="tk-par">(</span>nonnegative-integer-quotient
+			<span class="tk-par">(</span>abs <span class="tk-par">(</span>numerator x<span class="tk-par">)</span><span class="tk-par">)</span>
+			<span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs <span class="tk-par">(</span>numerator x<span class="tk-par">)</span><span class="tk-par">)</span>
+					<span class="tk-par">(</span>denominator x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>q <span class="tk-par">(</span>nonnegative-integer-quotient
+		     <span class="tk-par">(</span>denominator x<span class="tk-par">)</span>
+		     <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs <span class="tk-par">(</span>numerator x<span class="tk-par">)</span><span class="tk-par">)</span>
+				     <span class="tk-par">(</span>denominator x<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Nonneg-int-gcd-numerator-denominator»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span>
+  «nonneg-int-gcd» <span class="tk-par">(</span>abs <span class="tk-par">(</span>numeratorC x<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-par">(</span>denominatorC x<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-num">1</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>CRat</code> (decision 43). Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -1294,33 +1319,33 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Lowest-terms-nonneg-int-mod</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L751" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 751</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Lowest-terms-nonneg-int-mod
-  (implies (and (integerp n1)
-		(integerp n2)
-		(integerp d1)
-		(integerp d2)
-		(&gt; d1 0)
-		(&gt; d2 0)
-		(equal (nonneg-int-gcd (abs n1) d1)
-		       1)
-		(equal (* (/ d1) n1)
-		       (* (/ d2) n2)))
-	   (and (equal (nonneg-int-mod d2 d1) 0)
-		(equal (nonneg-int-mod (abs n2)(abs n1)) 0)))
-  :rule-classes nil
-  :hints ((&quot;Goal&quot;
-	   :in-theory (enable prefer-*-to-/)
-	   :use (:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Lowest-terms-nonneg-int-mod</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp n1<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp n2<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp d1<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp d2<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt; d1 <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt; d2 <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs n1<span class="tk-par">)</span> d1<span class="tk-par">)</span>
+		       <span class="tk-num">1</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d1<span class="tk-par">)</span> n1<span class="tk-par">)</span>
+		       <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d2<span class="tk-par">)</span> n2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod d2 d1<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>abs n2<span class="tk-par">)</span><span class="tk-par">(</span>abs n1<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">nil</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">enable</span> prefer-*-to-/<span class="tk-par">)</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 Cross-product-factor
-		 (a (abs n1))
-		 (b d1)
-		 (c (abs n2))
-		 (d d2)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Lowest-terms-nonneg-int-mod» : ∀ n1 n2 d1 d2 : Rat,
-  integerp n1 → integerp n2 → integerp d1 → integerp d2 → 0 &lt; d1 → 0 &lt; d2 →
-  «nonneg-int-gcd» (abs n1) d1 = 1 → d1⁻¹ * n1 = d2⁻¹ * n2 →
-  («nonneg-int-mod» d2 d1 = 0 ∧ «nonneg-int-mod» (abs n2) (abs n1) = 0)</pre></div>
+		 <span class="tk-par">(</span>a <span class="tk-par">(</span>abs n1<span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>b d1<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>c <span class="tk-par">(</span>abs n2<span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>d d2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Lowest-terms-nonneg-int-mod»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> n1 n2 d1 d2 <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp n1 <span class="tk-op">→</span> integerp n2 <span class="tk-op">→</span> integerp d1 <span class="tk-op">→</span> integerp d2 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> d1 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> d2 <span class="tk-op">→</span>
+  «nonneg-int-gcd» <span class="tk-par">(</span>abs n1<span class="tk-par">)</span> d1 <span class="tk-op">=</span> <span class="tk-num">1</span> <span class="tk-op">→</span> d1⁻¹ <span class="tk-op">*</span> n1 <span class="tk-op">=</span> d2⁻¹ <span class="tk-op">*</span> n2 <span class="tk-op">→</span>
+  <span class="tk-par">(</span>«nonneg-int-mod» d2 d1 <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">∧</span> «nonneg-int-mod» <span class="tk-par">(</span>abs n2<span class="tk-par">)</span> <span class="tk-par">(</span>abs n1<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -1329,28 +1354,28 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Lowest-terms-&lt;=</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L775" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 775</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Lowest-terms-&lt;=
-  (implies (and (integerp n1)
-		(integerp n2)
-		(integerp d1)
-		(integerp d2)
-		(&gt; d1 0)
-		(&gt; d2 0)
-		(equal (nonneg-int-gcd (abs n1) d1)
-		       1)
-		(equal (* (/ d1) n1)
-		       (* (/ d2) n2)))
-	   (and (&lt;= d1 d2)
-		(&lt;= (abs n1)(abs n2))))
-  :rule-classes nil
-  :hints ((&quot;Goal&quot;
-	   :use Lowest-terms-nonneg-int-mod
-	   :in-theory (enable prefer-*-to-/))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Lowest-terms-&lt;=» : ∀ n1 n2 d1 d2 : Rat,
-  integerp n1 → integerp n2 → integerp d1 → integerp d2 → 0 &lt; d1 → 0 &lt; d2 →
-  «nonneg-int-gcd» (abs n1) d1 = 1 → d1⁻¹ * n1 = d2⁻¹ * n2 →
-  (d1 ≤ d2 ∧ abs n1 ≤ abs n2)</pre></div>
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Lowest-terms-&lt;=</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp n1<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp n2<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp d1<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp d2<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt; d1 <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt; d2 <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs n1<span class="tk-par">)</span> d1<span class="tk-par">)</span>
+		       <span class="tk-num">1</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d1<span class="tk-par">)</span> n1<span class="tk-par">)</span>
+		       <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d2<span class="tk-par">)</span> n2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= d1 d2<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>abs n1<span class="tk-par">)</span><span class="tk-par">(</span>abs n2<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">nil</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:use</span> Lowest-terms-nonneg-int-mod
+	   <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">enable</span> prefer-*-to-/<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Lowest-terms-&lt;=»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> n1 n2 d1 d2 <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp n1 <span class="tk-op">→</span> integerp n2 <span class="tk-op">→</span> integerp d1 <span class="tk-op">→</span> integerp d2 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> d1 <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> d2 <span class="tk-op">→</span>
+  «nonneg-int-gcd» <span class="tk-par">(</span>abs n1<span class="tk-par">)</span> d1 <span class="tk-op">=</span> <span class="tk-num">1</span> <span class="tk-op">→</span> d1⁻¹ <span class="tk-op">*</span> n1 <span class="tk-op">=</span> d2⁻¹ <span class="tk-op">*</span> n2 <span class="tk-op">→</span>
+  <span class="tk-par">(</span>d1 <span class="tk-op">≤</span> d2 <span class="tk-op">∧</span> abs n1 <span class="tk-op">≤</span> abs n2<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -1359,62 +1384,62 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">LEAST-numerator-denominator-nonneg-int-mod</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L794" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 794</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  LEAST-numerator-denominator-nonneg-int-mod
-  (implies (and (integerp n)
-		(integerp d)
-		(&gt; d 0))
-	   (and (equal (nonneg-int-mod d
-				       (denominator (* (/ d) n)))
-		       0)
-		(equal (nonneg-int-mod (abs n)
-				       (abs
-					(numerator (* (/ d) n))))
-		       0)))
-  :rule-classes ((:rewrite
-		  :corollary
-		  (implies (and (integerp n)
-				(integerp d)
-				(&gt; d 0))
-			   (equal
-			    (nonneg-int-mod d
-					    (denominator (* (/ d)
-							    n)))
-			    0)))
-		 (:rewrite
-		  :corollary
-		  (implies (and (integerp n)
-				(integerp d)
-				(&gt;= n 0)
-				(&gt; d 0))
-			   (equal
-			    (nonneg-int-mod n
-					    (numerator (* (/ d)
-							  n)))
-			    0)))
-		 (:rewrite
-		  :corollary
-		  (implies (and (integerp n)
-				(integerp d)
-				(&lt;= n 0)
-				(&gt; d 0))
-			   (equal
-			    (nonneg-int-mod (- n)
-					    (-
-					     (numerator (* (/ d)
-							   n))))
-			    0))))
-  :hints ((&quot;Goal&quot;
-	   :use (:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">LEAST-numerator-denominator-nonneg-int-mod</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp d<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt; d <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod d
+				       <span class="tk-par">(</span>denominator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		       <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>abs n<span class="tk-par">)</span>
+				       <span class="tk-par">(</span>abs
+					<span class="tk-par">(</span>numerator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		       <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp d<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&gt; d <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>nonneg-int-mod d
+					    <span class="tk-par">(</span>denominator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span>
+							    n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			    <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp d<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&gt;= n <span class="tk-num">0</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&gt; d <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>nonneg-int-mod n
+					    <span class="tk-par">(</span>numerator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span>
+							  n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			    <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:rewrite</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp d<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= n <span class="tk-num">0</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&gt; d <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span><span class="tk-kw">equal</span>
+			    <span class="tk-par">(</span>nonneg-int-mod <span class="tk-par">(</span>- n<span class="tk-par">)</span>
+					    <span class="tk-par">(</span>-
+					     <span class="tk-par">(</span>numerator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span>
+							   n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			    <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 Lowest-terms-nonneg-int-mod
-		 (n1 (numerator  (* (/ d) n)))
-		 (d1 (denominator (* (/ d) n)))
-		 (n2 n)
-		 (d2 d)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «LEAST-numerator-denominator-nonneg-int-mod» : ∀ n d : Rat,
-  integerp n → integerp d → 0 &lt; d →
-  («nonneg-int-mod» d (denominatorC (↑(d⁻¹ * n))) = 0 ∧
-   «nonneg-int-mod» (abs n) (abs (numeratorC (↑(d⁻¹ * n)))) = 0)</pre></div>
+		 <span class="tk-par">(</span>n1 <span class="tk-par">(</span>numerator  <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>d1 <span class="tk-par">(</span>denominator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>n2 n<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>d2 d<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«LEAST-numerator-denominator-nonneg-int-mod»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> n d <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp n <span class="tk-op">→</span> integerp d <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> d <span class="tk-op">→</span>
+  <span class="tk-par">(</span>«nonneg-int-mod» d <span class="tk-par">(</span>denominatorC <span class="tk-par">(</span>↑<span class="tk-par">(</span>d⁻¹ <span class="tk-op">*</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">∧</span>
+   «nonneg-int-mod» <span class="tk-par">(</span>abs n<span class="tk-par">)</span> <span class="tk-par">(</span>abs <span class="tk-par">(</span>numeratorC <span class="tk-par">(</span>↑<span class="tk-par">(</span>d⁻¹ <span class="tk-op">*</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -1423,45 +1448,45 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">LEAST-numerator-denominator-&lt;=</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L851" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 851</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  LEAST-numerator-denominator-&lt;=
-  (implies (and (integerp n)
-		(integerp d)
-		(&gt; d 0))
-	   (and (&lt;= (denominator (* (/ d) n)) d)
-		(&lt;= (abs (numerator (* (/ d) n)))(abs n))))
-  :rule-classes ((:linear
-		  :corollary
-		  (implies (and (integerp n)
-				(integerp d)
-				(&gt; d 0))
-			   (&lt;= (denominator (* (/ d) n)) d)))
-		 (:linear
-		  :corollary
-		  (implies (and (integerp n)
-				(integerp d)
-				(&gt;= n 0)
-				(&gt; d 0))
-			   (&lt;= (numerator (* (/ d) n)) n)))
-		 (:linear
-		  :corollary
-		  (implies (and (integerp n)
-				(integerp d)
-				(&lt;= n 0)
-				(&gt; d 0))
-			   (&lt;= n (numerator (* (/ d) n))))))
-  :hints ((&quot;Goal&quot;
-	   :in-theory (enable Divisor-&lt;=))
-	  (&quot;Subgoal 4&quot;
-	   :in-theory (disable &lt;-minus-minus
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">LEAST-numerator-denominator-&lt;=</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp d<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt; d <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>denominator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span> d<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>abs <span class="tk-par">(</span>numerator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">(</span>abs n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:linear</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp d<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&gt; d <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>denominator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span> d<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:linear</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp d<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&gt;= n <span class="tk-num">0</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&gt; d <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>numerator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-const">:linear</span>
+		  <span class="tk-const">:corollary</span>
+		  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+				<span class="tk-par">(</span>integerp d<span class="tk-par">)</span>
+				<span class="tk-par">(</span>&lt;= n <span class="tk-num">0</span><span class="tk-par">)</span>
+				<span class="tk-par">(</span>&gt; d <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span>
+			   <span class="tk-par">(</span>&lt;= n <span class="tk-par">(</span>numerator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">enable</span> Divisor-&lt;=<span class="tk-par">)</span><span class="tk-par">)</span>
+	  <span class="tk-par">(</span><span class="tk-str">&quot;Subgoal 4&quot;</span>
+	   <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> &lt;-minus-minus
 			       DIVISOR-&lt;=
-			       LEAST-NUMERATOR-DENOMINATOR-NONNEG-INT-MOD)
-	   :use (DIVISOR-&lt;= LEAST-NUMERATOR-DENOMINATOR-NONNEG-INT-MOD))
-	  (&quot;Subgoal 1&quot;
-	   :cases ((&gt; n 0)))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «LEAST-numerator-denominator-&lt;=» : ∀ n d : Rat,
-  integerp n → integerp d → 0 &lt; d →
-  (denominatorC (↑(d⁻¹ * n)) ≤ d ∧ abs (numeratorC (↑(d⁻¹ * n))) ≤ abs n)</pre></div>
+			       LEAST-NUMERATOR-DENOMINATOR-NONNEG-INT-MOD<span class="tk-par">)</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span>DIVISOR-&lt;= LEAST-NUMERATOR-DENOMINATOR-NONNEG-INT-MOD<span class="tk-par">)</span><span class="tk-par">)</span>
+	  <span class="tk-par">(</span><span class="tk-str">&quot;Subgoal 1&quot;</span>
+	   <span class="tk-const">:cases</span> <span class="tk-par">(</span><span class="tk-par">(</span>&gt; n <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«LEAST-numerator-denominator-&lt;=»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> n d <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp n <span class="tk-op">→</span> integerp d <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> d <span class="tk-op">→</span>
+  <span class="tk-par">(</span>denominatorC <span class="tk-par">(</span>↑<span class="tk-par">(</span>d⁻¹ <span class="tk-op">*</span> n<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-op">≤</span> d <span class="tk-op">∧</span> abs <span class="tk-par">(</span>numeratorC <span class="tk-par">(</span>↑<span class="tk-par">(</span>d⁻¹ <span class="tk-op">*</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-op">≤</span> abs n<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
@@ -1470,25 +1495,25 @@ html, body { margin: 0; background: var(--bg); color: var(--ink);
   <section class="node">
     <div class="node-head"><span class="node-name">Unique-rationalp</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-2/pass1/numerator-and-denominator-helper.lisp#L888" target="_blank" rel="noopener">numerator-and-denominator-helper.lisp line 888</a> · <span class="ok">lake build passes</span></span></div>
     <div class="pair">
-      <div><p class="lbl">ACL2 source</p><pre class="acl2">(defthm
-  Unique-rationalp
-  (implies (and (integerp n)
-		(integerp d)
-		(&gt; d 0)
-		(equal (nonneg-int-gcd (abs n) d)
-		       1))
-	   (and (equal (denominator (* (/ d) n)) d)
-		(equal (numerator (* (/ d) n)) n)))
-  :hints ((&quot;Goal&quot;
-	   :use (:instance
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span>
+  <span class="tk-name">Unique-rationalp</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>integerp n<span class="tk-par">)</span>
+		<span class="tk-par">(</span>integerp d<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&gt; d <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>nonneg-int-gcd <span class="tk-par">(</span>abs n<span class="tk-par">)</span> d<span class="tk-par">)</span>
+		       <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>denominator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span> d<span class="tk-par">)</span>
+		<span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>numerator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span>
+	   <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-const">:instance</span>
 		 Lowest-terms-&lt;=
-		 (n1 n)
-		 (d1 d)
-		 (n2 (numerator (* (/ d) n)))
-		 (d2 (denominator (* (/ d) n)))))))</pre></div>
-      <div><p class="lbl">Lean axiom</p><pre>axiom «Unique-rationalp» : ∀ n d : Rat,
-  integerp n → integerp d → 0 &lt; d → «nonneg-int-gcd» (abs n) d = 1 →
-  (denominatorC (↑(d⁻¹ * n)) = d ∧ numeratorC (↑(d⁻¹ * n)) = n)</pre></div>
+		 <span class="tk-par">(</span>n1 n<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>d1 d<span class="tk-par">)</span>
+		 <span class="tk-par">(</span>n2 <span class="tk-par">(</span>numerator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+		 <span class="tk-par">(</span>d2 <span class="tk-par">(</span>denominator <span class="tk-par">(</span>* <span class="tk-par">(</span>/ d<span class="tk-par">)</span> n<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Unique-rationalp»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> n d <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp n <span class="tk-op">→</span> integerp d <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> d <span class="tk-op">→</span> «nonneg-int-gcd» <span class="tk-par">(</span>abs n<span class="tk-par">)</span> d <span class="tk-op">=</span> <span class="tk-num">1</span> <span class="tk-op">→</span>
+  <span class="tk-par">(</span>denominatorC <span class="tk-par">(</span>↑<span class="tk-par">(</span>d⁻¹ <span class="tk-op">*</span> n<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-op">=</span> d <span class="tk-op">∧</span> numeratorC <span class="tk-par">(</span>↑<span class="tk-par">(</span>d⁻¹ <span class="tk-op">*</span> n<span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-op">=</span> n<span class="tk-par">)</span></pre></div>
     </div>
     <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
 <li>Statement over <code>Rat</code>. Uses opaque functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code> and their multipliers (decision 43) and <code>nonnegative-integer-quotient</code> (decision 42), as signatures only.</li>
