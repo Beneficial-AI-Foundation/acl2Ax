@@ -59,6 +59,7 @@ This file records every deviation from the ACL2 source in the Lean axioms.
 12. A reader conditional that excludes a form in standard ACL2 excludes its axiom, and the exclusion is recorded.
 55. arithmetic-3/bind-free/banner.lisp holds one `make-event` form, which prints an observation. It has no `include-book`, no `defun` and no theorem. Its module imports `ACL2.Base` only, and it has no axiom.
 56. arithmetic-3/pass1/basic-arithmetic-helper.lisp. The book has no include-book form, so the module imports only ACL2.Base. The statements range over CRat, because the ACL2 numbers of the book include complex values, as in the arithmetic-2 template. The book has six local theorems, inside encapsulate forms, and they are private axioms. It has seven exported theorems, and they are public axioms. No form is under non-standard-analysis, and the book has no defun, defmacro or block comment. The book is a revision of arithmetic-2. Its only textual change is the hypothesis (syntaxp (not (quotep y))) of functional-commutativity-of-minus-*-right, which is the type syntaxpW (decisions 25 and 27). All other statements keep the template phrasing.
+57. arithmetic-3/pass1/basic-arithmetic.lisp. The book basic-arithmetic.lisp of arithmetic-3 is a revision of the arithmetic-2 book with the same name. Its statements range over CRat, as in the arithmetic-2 template. Its only include is local, so the module imports basic-arithmetic-helper as a plain import and has no public import. No axiom sits inside a local event, so every axiom is a public axiom. The defun nonlinearp-default-hint-pass1 is a public opaque constant (decision 41). Its arguments are untyped, so the signature uses type parameters, and its result is an option of a list, because the defun returns nil or a computed hint. Two theorems, functional-commutativity-of-minus-*-right and functional-commutativity-of-minus-*-left, carry a syntaxp hypothesis in arithmetic-3 and none in arithmetic-2. Each takes the hypothesis as syntaxpW (decision 25). The :rule-classes and :hints forms are not generated. The book has 32 defthm forms and 1 defun. No form is excluded by non-standard-analysis.
 
 ## Excluded books: metaprogramming
 
@@ -1158,3 +1159,7 @@ The theorem is excluded. Its book, arithmetic-3/bind-free/remove-weak-inequaliti
 ### remove-weak-inequalities-two
 
 The theorem is excluded. Its book, arithmetic-3/bind-free/remove-weak-inequalities, is excluded as metaprogramming. The ACL2 statement is `(< x y)` implies `(< x y)` under two `syntaxp` hypotheses over `mfc` and `state`.
+
+### nonlinearp-default-hint-pass1
+
+The defun is an opaque constant with no body (decision 41). Its ACL2 arguments are untyped, so the signature is {α β γ : Type} → Prop → List α → β → Option (List γ). The first argument is the truth value stable-under-simplificationp. The second is the history hist, and the third is the prover state pspv. The result is none for nil and some list for a computed hint. No statement of the book uses this constant, so the signature does not affect any statement.
