@@ -57,10 +57,13 @@ This file records every deviation from the ACL2 source in the Lean axioms.
 54. `car` on a nonempty list is `x.headD 0`. ACL2 `car` of `nil` is `nil`, and the hypothesis `x` (non-nil) excludes that case, so the statement is unaffected. A `car` declaration in `Base.lean` would replace the inline `headD`, and it is proposed, not added.
 40. Rule-set bookkeeping forms are not generated. These are `in-theory`, `deftheory`, `theory-invariant`, and the `enable` and `disable` forms they contain. They select which rewrite rules the ACL2 prover uses, and they state no theorem about values. Each theorem they refer to is still generated as its own axiom.
 12. A reader conditional that excludes a form in standard ACL2 excludes its axiom, and the exclusion is recorded.
+55. arithmetic-3/bind-free/banner.lisp holds one `make-event` form, which prints an observation. It has no `include-book`, no `defun` and no theorem. Its module imports `ACL2.Base` only, and it has no axiom.
 
 ## Excluded books: metaprogramming
 
 Interpretation rows: `std/system/dumb-negate-lit` and `std/system/implicate` are excluded as metaprogramming, with status `excluded: metaprogramming` in `manifest.json`. Both books state properties of ACL2 terms as data (`pseudo-termp`, `dumb-negate-lit`, `implicate`). No module is written.
+
+`arithmetic-3/bind-free/building-blocks`, `arithmetic-3/bind-free/default-hint` and `arithmetic-3/bind-free/remove-weak-inequalities` are excluded as metaprogramming, with status `excluded: metaprogramming` in `manifest.json`. The functions of building-blocks take ACL2 terms as data, or the metafunction context `mfc` with `state`. The function `nonlinearp-default-hint` of default-hint is a computed hint over the prover history `hist` and the prover variable `pspv`. The functions of remove-weak-inequalities take ACL2 terms, the goal clause and `mfc` as data. Each of the three modules is a stub that declares no axiom. The two theorems of remove-weak-inequalities, `remove-weak-inequalities-one` and `remove-weak-inequalities-two`, state `(<= x y)` implies `(<= x y)` and `(< x y)` implies `(< x y)` under two `syntaxp` hypotheses that call these functions. The exclusion of these two theorems follows the Scope rule of SKILL.md, and it is open for the user's decision, because decisions 25 and 27 give a representation of `syntaxp` hypotheses.
 
 ## Interpretation table
 
@@ -1146,3 +1149,11 @@ No deviation in the statement. `symbol-name-lst` is an opaque signature (decisio
 ### len-of-symbol-name-lst
 
 No deviation in the statement. `symbol-name-lst` is an opaque signature (decision 41), and `len` is the ACL2.Base definition.
+
+### remove-weak-inequalities-one
+
+The theorem is excluded. Its book, arithmetic-3/bind-free/remove-weak-inequalities, is excluded as metaprogramming. The ACL2 statement is `(<= x y)` implies `(<= x y)` under two `syntaxp` hypotheses over `mfc` and `state`.
+
+### remove-weak-inequalities-two
+
+The theorem is excluded. Its book, arithmetic-3/bind-free/remove-weak-inequalities, is excluded as metaprogramming. The ACL2 statement is `(< x y)` implies `(< x y)` under two `syntaxp` hypotheses over `mfc` and `state`.
