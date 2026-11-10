@@ -319,7 +319,13 @@
   {
    "path": "arithmetic-3/pass1/expt.lisp",
    "cert": true,
-   "status": "pending"
+   "status": "axioms generated, lake build passes",
+   "check": {
+    "requested": "1",
+    "passes": 1,
+    "hash": "41a0dd12417abd2eb70b327d840ac7e8e861b8a27a052c9a3f45ae9eb34f59a1",
+    "result": "clean"
+   }
   },
   {
    "path": "arithmetic-3/pass1/inequalities.lisp",

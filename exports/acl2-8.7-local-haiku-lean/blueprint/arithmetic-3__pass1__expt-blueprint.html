@@ -1,0 +1,1075 @@
+<meta charset="utf-8">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>ACL2 expt Blueprint</title>
+<style>/* Layout: a single column of nodes, each node a theorem with its ACL2 source and Lean statement. */
+:root {
+  --bg: #f5f4ef; --fg: #1c2230; --muted: #5d6578; --rule: #d9d6cc;
+  --panel: #ffffff; --accent: #1f6b67; --code-bg: #eceae2;
+  color-scheme: light;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121417; --fg: #e4e2dc; --muted: #9aa1b0; --rule: #2c313a;
+    --panel: #181b21; --accent: #7fd0c9; --code-bg: #20242c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121417; --fg: #e4e2dc; --muted: #9aa1b0; --rule: #2c313a;
+  --panel: #181b21; --accent: #7fd0c9; --code-bg: #20242c; color-scheme: dark;
+}
+html, body { margin: 0; }
+body {
+  background: var(--bg); color: var(--fg);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+  font-size: 14px;
+}
+main { max-width: 760px; margin: 0 auto; }
+h1 { font-size: 1.6rem; margin: 0 0 4px; text-wrap: balance; }
+h2 { font-size: 1.05rem; margin: 32px 0 12px; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0 0 20px; }
+.label { text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); }
+.status {
+  display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 12px 14px;
+  border: 1px solid var(--rule); border-radius: 6px; background: var(--panel);
+}
+.status div { min-width: 0; }
+.status b { display: block; font-weight: 600; font-variant-numeric: tabular-nums; }
+.ok { color: var(--accent); }
+.node {
+  background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+  padding: 12px 14px; margin: 0 0 12px; min-width: 0;
+}
+.node-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; align-items: baseline; }
+.node-name { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 600; overflow-wrap: anywhere; }
+.src { color: var(--muted); font-size: 0.8rem; white-space: nowrap; }
+pre {
+  background: var(--code-bg); color: var(--fg); border-radius: 4px;
+  padding: 8px 10px; margin: 10px 0 0; overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem;
+}
+.defs { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.def { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.def code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.85rem; }
+.def span { color: var(--muted); font-size: 0.85rem; }
+footer { margin-top: 32px; color: var(--muted); font-size: 0.8rem; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details.decisions { margin: 12px 0 0; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details.decisions { margin: 12px 0 0; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details.decisions { margin: 12px 0 0; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.bad { color: #b3261e; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bad { color: #ff8a80; } }
+:root[data-theme="dark"] .bad { color: #ff8a80; }
+</style>
+<style>
+:root {
+  --bg: #fafaf9; --panel: #ffffff; --ink: #1c1c1e; --muted: #6b6b70; --line: #e4e4e7;
+  --accent: #2f5bd3; --ok: #15803d; --bad: #b42318; --code: #f4f4f5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111114; --panel: #18181c; --ink: #ececf0; --muted: #9a9aa3; --line: #2a2a30;
+    --accent: #8ea8ff; --ok: #4ade80; --bad: #f97066; --code: #1f1f25;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111114; --panel: #18181c; --ink: #ececf0; --muted: #9a9aa3; --line: #2a2a30;
+  --accent: #8ea8ff; --ok: #4ade80; --bad: #f97066; --code: #1f1f25;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.layout { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; }
+.toc { position: sticky; top: 0; height: 100vh; overflow-y: auto; border-right: 1px solid var(--line);
+  background: var(--panel); padding: 20px 16px; }
+.toc h1 { font-size: 15px; margin: 0 0 4px; }
+.toc .sub { color: var(--muted); font-size: 12px; margin-bottom: 16px; }
+.toc input { width: 100%; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--bg); color: var(--ink); margin-bottom: 12px; }
+.toc a { color: var(--ink); text-decoration: none; display: block; padding: 4px 8px; border-radius: 6px; }
+.toc a:hover { background: var(--code); }
+.toc .group { margin-top: 10px; }
+.toc .group > a { font-weight: 600; }
+.toc .group ul { list-style: none; margin: 2px 0 0 10px; padding: 0; border-left: 1px solid var(--line); }
+.toc .group li a { font-size: 13px; color: var(--muted); padding: 2px 8px; }
+.toc .count { color: var(--muted); font-weight: 400; font-size: 12px; }
+
+.toc li.current a { background: var(--code); color: var(--accent); font-weight: 600; }
+.toc ul { list-style: none; margin: 2px 0 0 10px; padding: 0; border-left: 1px solid var(--line); }
+.layout main { min-width: 0; }
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .toc { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
+}
+</style>
+<style>
+:root {
+  --tk-kw: #7a2f8f; --tk-name: #1f6b67; --tk-const: #9a3412; --tk-type: #1d4f91;
+  --tk-num: #9a3412; --tk-str: #7a4a00; --tk-com: #6a7183; --tk-op: #4a5266; --tk-par: #8a8f9c;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+    --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+  }
+}
+:root[data-theme="dark"] {
+  --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+  --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+}
+.tk-kw { color: var(--tk-kw); font-weight: 600; }
+.tk-name { color: var(--tk-name); font-weight: 600; }
+.tk-const { color: var(--tk-const); }
+.tk-type { color: var(--tk-type); }
+.tk-num { color: var(--tk-num); }
+.tk-str { color: var(--tk-str); }
+.tk-com { color: var(--tk-com); font-style: italic; }
+.tk-op { color: var(--tk-op); }
+.tk-par { color: var(--tk-par); }
+</style>
+<div class="layout">
+<aside class="toc"><h1>ACL2 to Lean blueprint</h1><div class="sub">56 modules, 439 axioms</div><input id="filter" type="search" placeholder="Filter books"><div><a href="index.html">Overview</a></div><div><a href="index.html#rules">Embedding rules</a></div><div class="group"><a href="index.html#d-acl2s">acl2s <span class="count">(1)</span></a><ul><li><a href="acl2s__portcullis-blueprint.html">portcullis</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic">arithmetic <span class="count">(3)</span></a><ul><li><a href="arithmetic__rational-listp-blueprint.html">rational-listp</a></li><li><a href="arithmetic__real-listp-blueprint.html">real-listp</a></li><li><a href="arithmetic__sumlist-blueprint.html">sumlist</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic-2">arithmetic-2 <span class="count">(12)</span></a><ul><li><a href="arithmetic-2__meta__cancel-terms-helper-blueprint.html">meta/cancel-terms-helper</a></li><li><a href="arithmetic-2__meta__non-linear-blueprint.html">meta/non-linear</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-helper-blueprint.html">pass1/basic-arithmetic-helper</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-blueprint.html">pass1/basic-arithmetic</a></li><li><a href="arithmetic-2__pass1__expt-helper-blueprint.html">pass1/expt-helper</a></li><li><a href="arithmetic-2__pass1__expt-blueprint.html">pass1/expt</a></li><li><a href="arithmetic-2__pass1__inequalities-blueprint.html">pass1/inequalities</a></li><li><a href="arithmetic-2__pass1__mini-theories-blueprint.html">pass1/mini-theories</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-helper-blueprint.html">pass1/numerator-and-denominator-helper</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-blueprint.html">pass1/numerator-and-denominator</a></li><li><a href="arithmetic-2__pass1__prefer-times-blueprint.html">pass1/prefer-times</a></li><li><a href="arithmetic-2__pass1__top-blueprint.html">pass1/top</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic-3">arithmetic-3 <span class="count">(14)</span></a><ul><li><a href="arithmetic-3__bind-free__banner-blueprint.html">bind-free/banner</a></li><li><a href="arithmetic-3__bind-free__building-blocks-blueprint.html">bind-free/building-blocks</a></li><li><a href="arithmetic-3__bind-free__default-hint-blueprint.html">bind-free/default-hint</a></li><li><a href="arithmetic-3__bind-free__remove-weak-inequalities-blueprint.html">bind-free/remove-weak-inequalities</a></li><li><a href="arithmetic-3__pass1__basic-arithmetic-helper-blueprint.html">pass1/basic-arithmetic-helper</a></li><li><a href="arithmetic-3__pass1__basic-arithmetic-blueprint.html">pass1/basic-arithmetic</a></li><li><a href="arithmetic-3__pass1__expt-helper-blueprint.html">pass1/expt-helper</a></li><li><a href="#">pass1/expt</a></li><li><a href="arithmetic-3__pass1__inequalities-blueprint.html">pass1/inequalities</a></li><li><a href="#">pass1/mini-theories</a></li><li><a href="#">pass1/non-linear</a></li><li><a href="#">pass1/num-and-denom-helper</a></li><li><a href="#">pass1/numerator-and-denominator</a></li><li><a href="arithmetic-3__pass1__prefer-times-blueprint.html">pass1/prefer-times</a></li></ul></div><div class="group"><a href="index.html#d-kestrel">kestrel <span class="count">(5)</span></a><ul><li><a href="kestrel__strings-light__char-blueprint.html">strings-light/char</a></li><li><a href="kestrel__utilities__equal-of-booleans-blueprint.html">utilities/equal-of-booleans</a></li><li><a href="kestrel__utilities__map-symbol-name-blueprint.html">utilities/map-symbol-name</a></li><li><a href="kestrel__utilities__member-symbol-name-blueprint.html">utilities/member-symbol-name</a></li><li><a href="kestrel__utilities__update-acl2-oracle-blueprint.html">utilities/update-acl2-oracle</a></li></ul></div><div class="group"><a href="index.html#d-misc">misc <span class="count">(1)</span></a><ul><li><a href="misc__character-encoding-test-blueprint.html">character-encoding-test</a></li></ul></div><div class="group"><a href="index.html#d-std">std <span class="count">(20)</span></a><ul><li><a href="std__alists__assoc-blueprint.html">alists/assoc</a></li><li><a href="std__basic__code-char-char-code-with-force-blueprint.html">basic/code-char-char-code-with-force</a></li><li><a href="std__basic__fix-blueprint.html">basic/fix</a></li><li><a href="std__basic__ifix-blueprint.html">basic/ifix</a></li><li><a href="std__basic__member-symbol-name-blueprint.html">basic/member-symbol-name</a></li><li><a href="std__basic__nfix-blueprint.html">basic/nfix</a></li><li><a href="std__basic__realfix-blueprint.html">basic/realfix</a></li><li><a href="std__basic__rfix-blueprint.html">basic/rfix</a></li><li><a href="std__basic__symbol-name-lst-blueprint.html">basic/symbol-name-lst</a></li><li><a href="std__lists__add-to-set-blueprint.html">lists/add-to-set</a></li><li><a href="std__lists__union-blueprint.html">lists/union</a></li><li><a href="std__strings__digit-to-char-blueprint.html">strings/digit-to-char</a></li><li><a href="std__system__arglistp-blueprint.html">system/arglistp</a></li><li><a href="std__system__arity-blueprint.html">system/arity</a></li><li><a href="std__system__dumb-negate-lit-blueprint.html">system/dumb-negate-lit</a></li><li><a href="std__system__getprops-blueprint.html">system/getprops</a></li><li><a href="std__system__implicate-blueprint.html">system/implicate</a></li><li><a href="std__system__primitivep-blueprint.html">system/primitivep</a></li><li><a href="std__system__pseudo-event-form-listp-blueprint.html">system/pseudo-event-form-listp</a></li><li><a href="std__system__pseudo-event-formp-blueprint.html">system/pseudo-event-formp</a></li></ul></div></aside>
+<main>
+  <p class="label">Blueprint, arithmetic-3/pass1/expt</p>
+  <h1>ACL2 expt, shallow embedding</h1>
+  <p class="sub">The theorems of the ACL2 book arithmetic-3/pass1/expt, each shown as the ACL2 source and as its Lean axiom.</p>
+  
+
+  <div class="status">
+    <div><span class="label">Book</span><b>arithmetic-3/pass1/expt.lisp</b></div>
+    <div><span class="label">Axioms</span><b>26</b></div>
+    <div><span class="label">Embedding</span><b>Shallow, Rat</b></div>
+    <div><span class="label">ACL2 certificate</span><b class="ok">expt.cert present</b></div>
+    <div><span class="label">Lean build</span><b class="ok">lake build passes</b></div>
+  </div>
+
+  <details class="decisions">
+    <summary>Embedding decisions, general</summary>
+  <div class="prose">
+<p>Every deviation from the ACL2 source in the Lean axioms is listed here or under its element.</p>
+<h3>General decisions</h3>
+<ol>
+<li>The embedding is shallow. Each ACL2 theorem or lemma becomes a Lean proposition over Lean types, not over a deep syntax of ACL2 terms.</li>
+<li>Every ACL2 number is a <code>Rat</code>. Integer arguments are tested with <code>integerp</code>, which is <code>den = 1</code>.</li>
+<li>ACL2 truth values become Lean <code>Prop</code>. The connectives <code>implies</code>, <code>and</code>, <code>or</code>, <code>not</code> and <code>equal</code> become the corresponding Lean connectives.</li>
+<li>ACL2 primitives and definitions used in the books are interpreted by Lean functions, listed in the interpretation table. A definition of a book is a Lean <code>def</code> with the ACL2 name in guillemets.</li>
+<li>Quantified variables range over <code>Rat</code> or <code>List Rat</code>, not over all ACL2 objects. A theorem with no hypothesis therefore holds in Lean only for rational arguments.</li>
+<li>Support definitions live in <code>Lean/ACL2/Base.lean</code>, outside the mirror of the books directory tree.</li>
+<li>Hyphens in ACL2 names are kept with Lean guillemets, for example <code>«abs-*»</code>.</li>
+<li>Each ACL2 theorem is an <code>axiom</code>. The <code>:rule-classes</code>, hints and proofs are not represented.</li>
+<li>A module does not import the modules of a <code>local</code> <code>include-book</code>. Non-local includes are imported when their module exists.</li>
+<li>A recursive ACL2 definition is a Lean <code>def</code> on <code>Rat</code>, with <code>termination_by</code> on a natural measure. An integer argument is a <code>Rat</code> that satisfies <code>integerp</code>, and the measure is taken from its numerator, so no <code>Int</code> helper is used.</li>
+<li>Local theorems and lemmas are axioms too.</li>
+<li>ACL2 complex rationals are the Lean type <code>CRat</code>, pairs of <code>Rat</code> with the field operations. A real <code>Rat</code> embeds in <code>CRat</code> with imaginary part 0. Theorems over the reals keep <code>Rat</code>, and theorems over numbers that may be complex use <code>CRat</code>.</li>
+<li>The order <code>&lt;</code> on <code>CRat</code> is the lexicographic order of <code>completion-of-&lt;</code> (axioms.lisp, lines 25364 to 25374): <code>x &lt; y</code> holds when <code>realpart x &lt; realpart y</code>, or when the real parts are equal and <code>imagpart x &lt; imagpart y</code>. On real arguments it coincides with the order on <code>Rat</code>.</li>
+<li>No Mathlib dependency is used. The <code>CRat</code> type is defined in core Lean, so the shallow embedding needs no <code>require</code>.</li>
+<li>Unconstrained ACL2 variables of the cancel-terms-helper book range over <code>CRat</code>. A variable under <code>real/rationalp</code> ranges over <code>Rat</code>, and is coerced to <code>CRat</code> with <code>↑</code> when used with complex values.</li>
+<li><code>real/rationalp</code> of a complex rational is true exactly when its imaginary part is 0, because <code>(complex x 0)</code> is the rational <code>x</code>.</li>
+<li>A <code>cond</code> with no true clause returns <code>False</code>, as ACL2 returns <code>nil</code>.</li>
+<li><code>helper-9</code> in the <code>#| |#</code> block at the end of cancel-terms-helper.lisp is a comment, and no axiom is written for it.</li>
+<li>ACL2 <code>&lt;=</code> on complex rationals is <code>(not (&lt; y x))</code>, the definition of <code>&lt;=?</code> in axioms.lisp (lines 11614 to 11618). It is the Lean predicate <code>acl2le</code>. On real arguments it coincides with <code>≤</code> on <code>Rat</code>.</li>
+<li>A variable name that contains <code>+</code>, such as <code>y+</code>, is not a Lean identifier. It is renamed <code>yp</code> in the module. The renaming does not change the statement.</li>
+<li>Theorems of non-linear.lisp that state the property for real variables use <code>Rat</code>, and those that state it for numbers that may be complex use <code>CRat</code>.</li>
+<li><code>encapsulate</code> is transparent. The theorems inside it are axioms of the module, and the local ones are included (decision 11). The statements of basic-arithmetic-helper.lisp range over <code>CRat</code>, because ACL2 numbers there include complex values, and <code>(/ x)</code> is <code>CRat.inv x</code>.</li>
+<li><code>quotep</code> and <code>syntaxp</code> hypotheses are represented as always-inhabited types, <code>quotepC x : Type := PUnit</code> and <code>syntaxpW : Type := PUnit</code>. A hypothesis of this type imposes no condition, so an axiom with such a hypothesis is stated without a condition. The representation of <code>quotep</code> and <code>syntaxp</code> is DEFERRED: the user will decide how to represent them properly, for example in the deep embedding. Until then this is a deviation, because the ACL2 statements are conditional on properties of all objects.</li>
+<li><code>numerator</code> on a complex rational is <code>numeratorC</code>. It is the numerator of the real part when the imaginary part is 0, and 0 otherwise, as <code>completion-of-numerator</code> (axioms.lisp, line 25668) states.</li>
+<li><code>syntaxp</code> hypotheses are kept as <code>syntaxpW</code> (decision 25). <code>(syntaxp form)</code> expands to <code>(and form t)</code> (axioms.lisp, line 4558). The representation is deferred with decision 25.</li>
+<li>The macro <code>fc</code> in expt.lisp (line 15) is the identity, <code>(defmacro fc (x) x)</code>. Each <code>(fc e)</code> is written as <code>e</code>.</li>
+<li><code>expt</code> on complex rationals is <code>exptC r i</code>, with a rational exponent. It follows <code>expt</code> in axioms.lisp (line 9073): <code>exptCInt</code> for an integer exponent, and 1 for a non-integer exponent. The helpers <code>zipR</code>, <code>ifixR</code> and <code>integerpC</code> follow <code>zip</code>, <code>ifix</code> and <code>integerp</code> on complex values. <code>expt</code> on rationals keeps its earlier definition in <code>Base.lean</code>.</li>
+<li>Visibility follows ACL2. Each module uses the Lean module system. A non-local <code>include-book</code> is a <code>public import</code>, so its exported names reach the importers, as in ACL2. A <code>local</code> <code>include-book</code> is a plain <code>import</code>, which the module can use in its own declarations but does not re-export. An exported axiom is <code>public axiom</code>. A local axiom is <code>private axiom</code>, which is usable in the module and invisible to importers. <code>ACL2.Base</code> is a <code>public import</code>, and its declarations are public. Local includes are imported only when their module exists. Until then the module records them as pending in a comment. Tests with a scratch project confirmed each of these visibility rules.</li>
+<li>The modules cancel-terms-helper, non-linear, basic-arithmetic-helper, basic-arithmetic and expt were generated before decision 30. Their local includes are pending (the comment at the top of each module lists them). Their local imports must be added once those modules exist. The order file ORDER.txt now includes local edges, so these books come after their local dependencies.</li>
+<li>Each book&#x27;s declarations live in the namespace <code>ACL2.&lt;book path&gt;</code>, for example <code>ACL2.«arithmetic-2».pass1.«basic-arithmetic»</code>. A local include can bring in public names that share an ACL2 name with the book&#x27;s own axioms (for example <code>equal-/</code> in basic-arithmetic-helper and basic-arithmetic). The book namespace keeps the two apart, as the book namespaces of ACL2 do. The shared <code>Base.lean</code> stays in namespace <code>ACL2</code>.</li>
+<li>The local includes that exist are now imported: basic-arithmetic imports basic-arithmetic-helper, non-linear imports cancel-terms-helper, and expt imports basic-arithmetic. Pending local includes remain: ../pass1/top for cancel-terms-helper and non-linear, and inequalities, prefer-times and expt-helper for expt. Decision 31 still lists the modules generated before decision 30.</li>
+<li>inequalities.lisp is generated after basic-arithmetic, which it includes locally. Its local include is imported. Its <code>iff-equal</code> is a local theorem and is <code>private</code>. The <code>fc</code> macro is inlined (decision 28). All variables are real, so they range over <code>Rat</code>.</li>
+<li>Every module depends only on modules that exist. <code>scripts/check_deps.py</code> checks this: each include of the book must be an imported module, and each module must exist. A module with a missing dependency is moved to <code>staged/</code>, outside <code>Lean/</code>, and its manifest status says what it waits for. Staged modules are regenerated once their dependencies exist. Currently staged: cancel-terms-helper and non-linear (waiting for arithmetic-2/pass1/top), and expt (waiting for expt-helper and prefer-times). The import of inequalities was added to expt.</li>
+<li>prefer-times.lisp is generated after basic-arithmetic and inequalities, which it includes locally, and both are imported. The equalities over all numbers use <code>CRat</code> and <code>CRat.inv</code>, and the <code>&lt;</code> normalizations over reals use <code>Rat</code> and <code>⁻¹</code>. Its local theorems iff-equal, times-one and times-minus-one are <code>private</code>.</li>
+<li>The local defun <code>Math-induction-start-at-k</code> (expt-helper.lisp, line 22) is an induction scheme used only in hints. It is not a theorem, and no statement uses it, so it is not generated. The local theorem <code>justify-induction</code> is <code>private</code>.</li>
+<li>expt.lisp is restored from <code>staged/</code> once its local dependencies exist: expt-helper and prefer-times are generated. Its imports are basic-arithmetic, inequalities, prefer-times and expt-helper, all plain imports.</li>
+<li>mini-theories.lisp: its rule-set forms are not generated (decision 40). Its local lemma <code>Uniqueness-of-*-inverses-lemma-2</code> is <code>private</code>. Its local includes basic-arithmetic, inequalities, prefer-times and expt are imported.</li>
+<li>A function defined by a book (<code>defun</code>) is an opaque constant with its type signature and no body, for example <code>opaque nonneg-int-gcd : Rat → Rat → Rat</code>. The axioms about it are stated, not proved. Its name and namespace follow the same rules as the axioms (decisions 30 and 32), and its uses in statements refer to the constant. Functions of <code>Lean/ACL2/Base.lean</code> keep their interpretations, because they give the ACL2 primitives their meaning. Decision 37 is revised: the local defun <code>Math-induction-start-at-k</code> is generated as an opaque signature, with result type <code>Prop</code>.</li>
+<li><code>denominator</code> on a complex rational is <code>denominatorC</code>: the denominator of the real part when the imaginary part is 0, and 1 otherwise (<code>completion-of-denominator</code>, axioms.lisp, line 25561). The system function <code>nonnegative-integer-quotient</code> (axioms.lisp, line 6889) is an opaque signature in <code>Base.lean</code>, as decision 41 gives for book functions.</li>
+<li>numerator-and-denominator-helper.lisp: its functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code>, <code>nonneg-int-gcd-multiplier1</code>, <code>nonneg-int-gcd-multiplier2</code> and the local <code>induct-on-nonneg-int</code> are opaque signatures (decisions 37 and 41). It has no local includes that need a Lean import beyond basic-arithmetic, inequalities and prefer-times, which are imported as plain imports. Its statements over the integers use <code>Rat</code>, and <code>Nonneg-int-gcd-numerator-denominator</code> ranges over <code>CRat</code>, because its ACL2 statement has no integer hypothesis.</li>
+<li>numerator-and-denominator.lisp: its variables range over <code>CRat</code>, with <code>rationalp</code> as <code>realrationalpC</code>, <code>integerp</code> as <code>integerpC</code>, <code>numerator</code> as <code>numeratorC</code> and <code>denominator</code> as <code>denominatorC</code> (decisions 26 and 42). The local lemmas numerator-integerp-lemma-1 and numerator-integerp-lemma are <code>private</code>. Its local includes are imported as plain imports. Base.lean gains one decidability instance, for <code>realrationalpC</code>, which the <code>if</code> in <code>*-r-denominator-r</code> needs. <code>integerpC</code> needs no instance, because it occurs only in a disjunction.</li>
+<li>Decidability of the complex predicates in <code>if</code> expressions. The chosen representation is a computable instance, <code>Decidable (realrationalpC c)</code>, defined as <code>c.im = 0</code> (Base.lean). The alternative is to axiomatize decidability, either as <code>axiom</code> of type <code>∀ c : CRat, Decidable (realrationalpC c)</code> or through <code>Classical.propDecidable</code>. The two alternatives are logically equivalent to the chosen one, and they do not change any statement. They are not chosen, because they make the <code>if</code> depend on a non-computable choice, which ACL2&#x27;s <code>real/rationalp</code> test does not have. The alternative is recorded for the user&#x27;s decision.</li>
+<li>pass1/top.lisp has no theorem outside a <code>#| |#</code> block comment. Its module imports its non-local includes as <code>public import</code>, and it has no axioms. Its statements are not generated, because the book has none.</li>
+<li>cancel-terms-helper and non-linear are restored from <code>staged/</code>, now that <code>pass1/top</code> exists. Their local imports are plain imports: <code>pass1/top</code> for both, and <code>cancel-terms-helper</code> for non-linear.</li>
+<li>Block comments of the ACL2 book (<code>#| |#</code>) are recorded verbatim as Lean <code>--</code> comments at the end of the module, before the namespace closes. They state no axiom. This keeps the removed material, such as the commented-out theorems of pass1/top, visible next to the module.</li>
+<li>Alists. An ACL2 alist is a list of pairs, the key as the first component and the value as the second. The Lean type is <code>AList α β := List (α × β)</code> (ACL2.Base). The predicate <code>alistp</code> (axioms.lisp, line 2515) holds of every element of this type, because each element is a pair, so <code>alistp</code> is <code>True</code> on <code>AList</code>. <code>assoc-equal</code> is <code>assocEqual</code>, which returns the first pair with the given key, or <code>none</code> for <code>nil</code>. Keys and values are type parameters, not <code>Rat</code>, because ACL2 objects are untyped (a deviation from the shallow <code>Rat</code> domain, recorded here). The alist is not a <code>Finmap</code>, because <code>alistp</code> does not require unique keys. The finite-map view is the first-match lookup, and no axiom uses a <code>Finmap</code>.</li>
+<li>Shared primitives of ACL2.Base, merged from the pilot fragments. There is one symbol type, <code>ACLSymbol</code>, a structure with the <code>symbol-name</code> as field <code>name</code> (axioms.lisp, lines 5615 to 5697). <code>memberSymbolName</code> is <code>member-symbol-name</code> (axioms.lisp, line 5717). <code>trueListp</code> is <code>True</code>, because every Lean list is a true list. <code>arglistp</code> is an opaque signature, because it is defined in the ACL2 system (basis-a.lisp, line 856) and not in a book. <code>stringp</code> is <code>True</code> on <code>String</code>, and <code>length</code> on a string is its character count. <code>char</code> returns <code>Option Char</code> (deviation D1: <code>nil</code> for an index out of range, so the value may be <code>nil</code>). <code>characterp</code> takes <code>Option Char</code>, true for <code>some</code> (deviation D1). <code>code-char</code> is total, <code>Char.ofNat</code>, so for a code outside the range of ACL2 characters it differs from ACL2 (deviation D2, not resolved by the user). <code>char-code</code> is the code of the character as a rational.</li>
+<li>Why <code>characterp</code> takes <code>Option Char</code>. ACL2 <code>characterp</code> is a predicate on every object, and <code>char</code> returns <code>nil</code> for an index out of range. The statement <code>characterp-of-char</code>, <code>(characterp (char s n))</code> equivalent to <code>(stringp s ∧ nfix n &lt; length s)</code>, requires <code>characterp</code> to be false on that <code>nil</code>. A <code>characterp</code> on <code>Char</code> alone has no value for <code>char</code> to return, so <code>Option Char</code> is the carrier, with <code>none</code> for <code>nil</code>. This is the consequence of deviation D1 in decision 50, and it is open for the user&#x27;s decision together with D1.</li>
+<li>Batch primitives merged into ACL2.Base. <code>natp</code>, <code>realfix</code>, <code>rfix</code>, <code>stringListp</code>, <code>addToSetEqual</code>, <code>consp</code>, <code>function-symbolp</code> and <code>arity</code> (opaque, basis-b.lisp line 2255), <code>symbolp</code> (abbrev, <code>True</code>, deviation D3) and <code>primitivep</code> (opaque) are declared once in Base.lean. The module files of the batch keep only their own axioms. <code>arity-iff</code> ranges over symbols, so the cons case is excluded (deviation). <code>rfix</code> and <code>realfix</code> axioms sit in their book namespaces, as decision 32 requires. The <code>arithmetic/real-listp</code> book has no axioms, because both theorems sit under <code>#+:non-standard-analysis</code> (decision 12).</li>
+<li>Deviations from the untyped ACL2 domain in the batch modules. Each of the following is a recorded deviation, and each is a faithful statement over the stated type. (a) List and alist variables range over <code>List α</code> with <code>α</code> a type parameter, and <code>rationalListp</code> is <code>True</code>, so statements over <code>List Rat</code> have no content in Lean (<code>arithmetic/rational-listp</code>, <code>arithmetic/sumlist</code>). (b) <code>booleanp</code> is <code>True</code> on <code>Prop</code>, which is a larger carrier than the ACL2 truth values (D4, <code>equal-of-booleans</code>). (c) <code>update-acl2-oracle</code> takes an oracle over <code>List α</code>, and <code>State</code>, <code>InputChannels</code>, <code>w</code> and <code>open-input-channels</code> are opaque types with a <code>Nonempty</code> placeholder, because Lean&#x27;s <code>opaque</code> needs an inhabitant. The placeholders are <code>Prop</code> axioms that assert nonemptiness only. (d) <code>test-2</code> is an opaque <code>String</code>, because its value depends on the file encoding, which this embedding does not represent. (e) Variables of <code>digit-to-char</code> and <code>zero-digit-to-char</code> range over <code>Rat</code>, not over every ACL2 object. (f) <code>unionEqual</code>, <code>symbolNameLst</code> and <code>len</code> are declared in <code>Base.lean</code> as the ACL2 functions on lists.</li>
+<li><code>car</code> on a nonempty list is <code>x.headD 0</code>. ACL2 <code>car</code> of <code>nil</code> is <code>nil</code>, and the hypothesis <code>x</code> (non-nil) excludes that case, so the statement is unaffected. A <code>car</code> declaration in <code>Base.lean</code> would replace the inline <code>headD</code>, and it is proposed, not added.</li>
+<li>Rule-set bookkeeping forms are not generated. These are <code>in-theory</code>, <code>deftheory</code>, <code>theory-invariant</code>, and the <code>enable</code> and <code>disable</code> forms they contain. They select which rewrite rules the ACL2 prover uses, and they state no theorem about values. Each theorem they refer to is still generated as its own axiom.</li>
+<li>A reader conditional that excludes a form in standard ACL2 excludes its axiom, and the exclusion is recorded.</li>
+<li>arithmetic-3/bind-free/banner.lisp holds one <code>make-event</code> form, which prints an observation. It has no <code>include-book</code>, no <code>defun</code> and no theorem. Its module imports <code>ACL2.Base</code> only, and it has no axiom.</li>
+<li>arithmetic-3/pass1/basic-arithmetic-helper.lisp. The book has no include-book form, so the module imports only ACL2.Base. The statements range over CRat, because the ACL2 numbers of the book include complex values, as in the arithmetic-2 template. The book has six local theorems, inside encapsulate forms, and they are private axioms. It has seven exported theorems, and they are public axioms. No form is under non-standard-analysis, and the book has no defun, defmacro or block comment. The book is a revision of arithmetic-2. Its only textual change is the hypothesis (syntaxp (not (quotep y))) of functional-commutativity-of-minus-*-right, which is the type syntaxpW (decisions 25 and 27). All other statements keep the template phrasing.</li>
+<li>arithmetic-3/pass1/basic-arithmetic.lisp. The book basic-arithmetic.lisp of arithmetic-3 is a revision of the arithmetic-2 book with the same name. Its statements range over CRat, as in the arithmetic-2 template. Its only include is local, so the module imports basic-arithmetic-helper as a plain import and has no public import. No axiom sits inside a local event, so every axiom is a public axiom. The defun nonlinearp-default-hint-pass1 is a public opaque constant (decision 41). Its arguments are untyped, so the signature uses type parameters, and its result is an option of a list, because the defun returns nil or a computed hint. Two theorems, functional-commutativity-of-minus-*-right and functional-commutativity-of-minus-*-left, carry a syntaxp hypothesis in arithmetic-3 and none in arithmetic-2. Each takes the hypothesis as syntaxpW (decision 25). The :rule-classes and :hints forms are not generated. The book has 32 defthm forms and 1 defun. No form is excluded by non-standard-analysis.</li>
+<li>arithmetic-3/pass1/inequalities.lisp. This book is a revision of the arithmetic-2 book inequalities. Each hypothesis <code>real/rationalp</code> of the arithmetic-2 text is <code>rationalp</code> in this text, and the module writes it as <code>rationalp x</code>. On <code>Rat</code>, <code>rationalp</code> is True in Base.lean, so these hypotheses impose no condition, and the variables range over the rationals as decision 23 states for real variables. The local theorem <code>iff-equal</code> is private. The local include of basic-arithmetic is a plain import. The local <code>in-arithmetic-theory</code> form at line 95 is a rule-set form, so it is not generated (decision 40). The macro <code>fc</code> at line 21 is the identity, so it is inlined (decision 28). The <code>set-default-hints</code> form at line 13 is not generated. The book has no defun, no block comment, no non-standard-analysis form and no non-local include, so it has no opaque constant and no excluded form. The nineteen defthm forms give nineteen axioms, one private and eighteen public.</li>
+<li>arithmetic-3/pass1/prefer-times.lisp. The book has eleven <code>defthm</code> forms outside comments. Three are local (<code>iff-equal</code>, <code>times-one</code>, <code>times-minus-one</code>), so they are <code>private axiom</code>. Eight are public. The local includes basic-arithmetic and inequalities are plain imports, and the book has no non-local include. The equalities <code>equal-*-/-1</code> and <code>equal-*-/-2</code> range over <code>CRat</code>, with <code>fixC</code>, <code>acl2NumberPC</code> and <code>CRat.inv</code>. The six <code>normalize-&lt;-/-to-*</code> axioms range over <code>Rat</code>, with <code>rationalp</code> hypotheses as the arithmetic-3 text states. The arithmetic-2 template has <code>realrationalp</code> there, and the arithmetic-3 text has <code>rationalp</code>, so the axioms follow the arithmetic-3 text. <code>set-default-hints</code>, the local <code>in-arithmetic-theory</code>, <code>deftheory</code> and <code>in-theory</code> are not generated. No <code>defun</code> and no block comment occur in the book, and no form is excluded as non-standard analysis.</li>
+<li>arithmetic-3/pass1/expt-helper.lisp. The book is a revision of arithmetic-2/pass1/expt-helper, and its statements are taken from the arithmetic-3 text. The variables x and r range over CRat when unconstrained, as in expt-crock and the four exponent theorems. The variables i, j and r range over Rat when the statement constrains them to the integers or the reals, through integerp, rationalp and the order. The local includes basic-arithmetic, inequalities and prefer-times are plain imports, and the book has no non-local include. The local theorem justify-induction is private. The local defun Math-induction-start-at-k is an opaque signature with result type Prop, as decision 41 revises decision 37, and it is private because it is local. The macro fc is the identity and is inlined. The hypothesis rationalp r replaces real/rationalp r of the arithmetic-2 text in justify-induction and expt-is-increasing-for-base&gt;1, and the Lean phrasing follows the arithmetic-3 text. The rule-classes and hints are not generated. No form is excluded.</li>
+<li>arithmetic-3/pass1/expt.lisp. The book <code>arithmetic-3/pass1/expt</code> has four local includes, <code>basic-arithmetic</code>, <code>inequalities</code>, <code>prefer-times</code> and <code>expt-helper</code>, and no non-local include. Each is a plain <code>import</code>. The module has 26 axioms, 23 public and 3 private. The private axioms are <code>expt-minus</code>, <code>expt-minus-redux</code> and <code>stupid-hack</code>, which are local theorems. The macro <code>fc</code> is the identity and is inlined. The book has no <code>defun</code>, so no opaque constant is written. It has no <code>#+:non-standard-analysis</code> form and no <code>#| |#</code> block comment, so no form is excluded. The variables follow the arithmetic-2 template. A variable that may be complex ranges over <code>CRat</code>, and a variable that the statement constrains to the rationals ranges over <code>Rat</code>. The arithmetic-3 text replaces <code>real/rationalp</code> with <code>rationalp</code> in the hypotheses of several theorems. Those statements use <code>rationalp</code> on <code>Rat</code>, which <code>Base.lean</code> defines as <code>True</code>.</li>
+</ol>
+<h3>Excluded books: metaprogramming</h3>
+<p>Interpretation rows: <code>std/system/dumb-negate-lit</code> and <code>std/system/implicate</code> are excluded as metaprogramming, with status <code>excluded: metaprogramming</code> in <code>manifest.json</code>. Both books state properties of ACL2 terms as data (<code>pseudo-termp</code>, <code>dumb-negate-lit</code>, <code>implicate</code>). No module is written.</p>
+<p><code>arithmetic-3/bind-free/building-blocks</code>, <code>arithmetic-3/bind-free/default-hint</code> and <code>arithmetic-3/bind-free/remove-weak-inequalities</code> are excluded as metaprogramming, with status <code>excluded: metaprogramming</code> in <code>manifest.json</code>. The functions of building-blocks take ACL2 terms as data, or the metafunction context <code>mfc</code> with <code>state</code>. The function <code>nonlinearp-default-hint</code> of default-hint is a computed hint over the prover history <code>hist</code> and the prover variable <code>pspv</code>. The functions of remove-weak-inequalities take ACL2 terms, the goal clause and <code>mfc</code> as data. Each of the three modules is a stub that declares no axiom. The two theorems of remove-weak-inequalities, <code>remove-weak-inequalities-one</code> and <code>remove-weak-inequalities-two</code>, state <code>(&lt;= x y)</code> implies <code>(&lt;= x y)</code> and <code>(&lt; x y)</code> implies <code>(&lt; x y)</code> under two <code>syntaxp</code> hypotheses that call these functions. The exclusion of these two theorems follows the Scope rule of SKILL.md, and it is open for the user&#x27;s decision, because decisions 25 and 27 give a representation of <code>syntaxp</code> hypotheses.</p>
+<h3>Interpretation table</h3>
+<div class="tablewrap"><table>
+<tr><th>ACL2</th><th>Lean (<code>ACL2</code> namespace)</th></tr>
+<tr><td><code>CRat (ACL2 complex rational)</code></td><td><code>structure CRat with re, im : Rat, field operations, Coe from Rat</code></td></tr>
+<tr><td><code>realpart, imagpart</code></td><td><code>CRat.realpart, CRat.imagpart</code></td></tr>
+<tr><td><code>&lt; on complex arguments</code></td><td><code>CRat.lt: lexicographic on (realpart, imagpart), from completion-of-&lt; (axioms.lisp 25364 to 25374)</code></td></tr>
+<tr><td><code>acl2-numberp on CRat</code></td><td><code>acl2NumberPC, constant True</code></td></tr>
+<tr><td><code>/ on CRat</code></td><td><code>CRat.inv and Div, 0 for a zero argument, as (/ 0) in ACL2</code></td></tr>
+<tr><td><code>complex</code></td><td><code>complex x y, the value ⟨x, y⟩ of CRat</code></td></tr>
+<tr><td><code>real/rationalp on CRat</code></td><td><code>realrationalpC c, c.im = 0</code></td></tr>
+<tr><td><code>fix on CRat</code></td><td><code>fixC, identity</code></td></tr>
+<tr><td><code>cond without a true clause</code></td><td><code>False</code></td></tr>
+<tr><td><code>&lt;= on CRat</code></td><td><code>acl2le x y, ¬ (y &lt; x)</code></td></tr>
+<tr><td><code>quotep on CRat</code></td><td><code>quotepC, always-inhabited Type (decision 25, deferred)</code></td></tr>
+<tr><td><code>syntaxp</code></td><td><code>syntaxpW, always-inhabited Type (decision 25, deferred)</code></td></tr>
+<tr><td><code>numerator on CRat</code></td><td><code>numeratorC (decision 26)</code></td></tr>
+<tr><td><code>expt on CRat</code></td><td><code>exptC r i, exptCInt for an integer exponent, else 1 (decision 29)</code></td></tr>
+<tr><td><code>fc</code></td><td><code>identity, inlined (decision 28)</code></td></tr>
+<tr><td><code>zip, ifix, integerp on CRat</code></td><td><code>zipR, ifixR, integerpC (decision 29)</code></td></tr>
+<tr><td><code>alistp on an alist</code></td><td><code>alistp, constant True on AList (decision 49)</code></td></tr>
+<tr><td><code>assoc-equal</code></td><td><code>assocEqual, first match, none for nil (decision 49)</code></td></tr>
+<tr><td><code>getprops</code></td><td><code>opaque «getprops» over ACLSymbol, World, result AList ACLSymbol β (decision 41)</code></td></tr>
+</table></div>
+  </div>
+  </details>
+
+  <h2>Interpretations of ACL2 primitives and definitions</h2>
+  <div class="defs">
+    <div class="def"><code>fc</code><span>identity, inlined (decision 28)</span></div>
+  </div>
+
+  <h2>Theorems and axioms</h2>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-type-prescription-rationalp</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L22" target="_blank" rel="noopener">expt.lisp line 22</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-type-prescription-rationalp</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span>rationalp r<span class="tk-par">)</span>
+           <span class="tk-par">(</span>rationalp <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:type-prescription</span> <span class="tk-const">:generalize</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-type-prescription-rationalp»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  realrationalpC r <span class="tk-op">→</span> realrationalpC <span class="tk-par">(</span>exptC r i<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+<li>The <code>#+:non-standard-analysis</code> variant <code>expt-type-prescription-realp</code> is omitted (decision 12).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-type-prescription-positive-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L27" target="_blank" rel="noopener">expt.lisp line 27</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-type-prescription-positive-1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> r<span class="tk-par">)</span>
+                <span class="tk-par">(</span>rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:type-prescription</span> <span class="tk-const">:generalize</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-type-prescription-positive-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> rationalp r <span class="tk-op">→</span> <span class="tk-par">(</span><span class="tk-num">0</span> <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">&lt;</span> exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-type-prescription-positive-2</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L33" target="_blank" rel="noopener">expt.lisp line 33</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-type-prescription-positive-2</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> r<span class="tk-par">)</span>
+                <span class="tk-par">(</span>rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:type-prescription</span> <span class="tk-const">:generalize</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-type-prescription-positive-2»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">≤</span> r <span class="tk-op">→</span> rationalp r <span class="tk-op">→</span> acl2le <span class="tk-num">0</span> <span class="tk-par">(</span>exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-type-prescription-nonzero</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L39" target="_blank" rel="noopener">expt.lisp line 39</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-type-prescription-nonzero</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>fc <span class="tk-par">(</span>acl2-numberp r<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> r <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-num">0</span> <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:type-prescription</span> <span class="tk-const">:generalize</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-type-prescription-nonzero»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  acl2NumberPC r <span class="tk-op">→</span> <span class="tk-op">¬</span> <span class="tk-par">(</span>r <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-op">→</span> <span class="tk-op">¬</span> <span class="tk-par">(</span>exptC r i <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-type-prescription-integerp</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L45" target="_blank" rel="noopener">expt.lisp line 45</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-type-prescription-integerp</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> i<span class="tk-par">)</span>
+                <span class="tk-par">(</span>integerp r<span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>integerp <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:type-prescription</span> <span class="tk-const">:generalize</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-type-prescription-integerp»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">≤</span> i <span class="tk-op">→</span> integerp r <span class="tk-op">→</span> integerpC <span class="tk-par">(</span>exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">equal-expt-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L51" target="_blank" rel="noopener">expt.lisp line 51</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">equal-expt-0</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt x i<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+	 <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>fix x<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+	      <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>ifix i<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«equal-expt-0»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>exptC x i <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-op">↔</span> <span class="tk-par">(</span>fixC x <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-op">∧</span> <span class="tk-op">¬</span> <span class="tk-par">(</span>ifixR i <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-0</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L56" target="_blank" rel="noopener">expt.lisp line 56</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-0</span>
+ <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt x <span class="tk-num">0</span><span class="tk-par">)</span>
+	     <span class="tk-num">1</span><span class="tk-par">)</span>
+      <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt <span class="tk-num">0</span> i<span class="tk-par">)</span>
+	     <span class="tk-par">(</span><span class="tk-kw">if</span> <span class="tk-par">(</span>zip i<span class="tk-par">)</span>
+		 <span class="tk-num">1</span>
+	         <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-0»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>exptC x <span class="tk-num">0</span> <span class="tk-op">=</span> <span class="tk-num">1</span><span class="tk-par">)</span> <span class="tk-op">∧</span> <span class="tk-par">(</span>exptC <span class="tk-num">0</span> i <span class="tk-op">=</span> <span class="tk-par">(</span><span class="tk-kw">if</span> zipR i <span class="tk-kw">then</span> <span class="tk-num">1</span> <span class="tk-kw">else</span> <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L64" target="_blank" rel="noopener">expt.lisp line 64</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-1</span>
+  <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt x <span class="tk-num">1</span><span class="tk-par">)</span>
+	      <span class="tk-par">(</span>fix x<span class="tk-par">)</span><span class="tk-par">)</span>
+       <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt <span class="tk-num">1</span> i<span class="tk-par">)</span>
+	      <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-par">(</span>exptC x <span class="tk-num">1</span> <span class="tk-op">=</span> fixC x<span class="tk-par">)</span> <span class="tk-op">∧</span> <span class="tk-par">(</span>exptC <span class="tk-num">1</span> i <span class="tk-op">=</span> <span class="tk-num">1</span><span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-minus</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L71" target="_blank" rel="noopener">expt.lisp line 71</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"> <span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-minus</span>
+   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt r <span class="tk-par">(</span>- i<span class="tk-par">)</span><span class="tk-par">)</span>
+	  <span class="tk-par">(</span>/ <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-minus»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  exptC r <span class="tk-par">(</span><span class="tk-op">-</span>i<span class="tk-par">)</span> <span class="tk-op">=</span> CRat.inv <span class="tk-par">(</span>exptC r i<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Local. Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-minus-redux</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L76" target="_blank" rel="noopener">expt.lisp line 76</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"> <span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-minus-redux</span>
+   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt r <span class="tk-par">(</span>* <span class="tk-num">-1</span> i<span class="tk-par">)</span><span class="tk-par">)</span>
+	  <span class="tk-par">(</span>/ <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+   <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:use</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:theorem</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* <span class="tk-num">-1</span> i<span class="tk-par">)</span>
+                                          <span class="tk-par">(</span>- i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-minus-redux»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  exptC r <span class="tk-par">(</span><span class="tk-op">-</span><span class="tk-num">1</span> <span class="tk-op">*</span> i<span class="tk-par">)</span> <span class="tk-op">=</span> CRat.inv <span class="tk-par">(</span>exptC r i<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><p>New in arithmetic-3, absent from the template. It is local, so it is a <code>private axiom</code>. The ACL2 exponent <code>(* -1 i)</code> is written <code>-1 * i</code>. The <code>:hints</code> are dropped.</p></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">exponents-add-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L82" target="_blank" rel="noopener">expt.lisp line 82</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">exponents-add-1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt r <span class="tk-par">(</span>+ i j<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span><span class="tk-kw">if</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>+ i j<span class="tk-par">)</span> <span class="tk-num">0</span><span class="tk-par">)</span>
+		      <span class="tk-num">1</span>
+		      <span class="tk-par">(</span>* <span class="tk-par">(</span>expt r i<span class="tk-par">)</span>
+			 <span class="tk-par">(</span>expt r j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«exponents-add-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  exptC r <span class="tk-par">(</span>i <span class="tk-op">+</span> j<span class="tk-par">)</span> <span class="tk-op">=</span> <span class="tk-par">(</span><span class="tk-kw">if</span> i <span class="tk-op">+</span> j <span class="tk-op">=</span> <span class="tk-num">0</span> <span class="tk-kw">then</span> <span class="tk-num">1</span> <span class="tk-kw">else</span> exptC r i <span class="tk-op">*</span> exptC r j<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent. <code>expt</code> is <code>exptC</code> (decision 29).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">exponents-add-for-nonpos-exponents</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L91" target="_blank" rel="noopener">expt.lisp line 91</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">exponents-add-for-nonpos-exponents</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= i <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt;= j <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt r <span class="tk-par">(</span>+ i j<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span>* <span class="tk-par">(</span>expt r i<span class="tk-par">)</span>
+		     <span class="tk-par">(</span>expt r j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«exponents-add-for-nonpos-exponents»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  i <span class="tk-op">≤</span> <span class="tk-num">0</span> <span class="tk-op">→</span> j <span class="tk-op">≤</span> <span class="tk-num">0</span> <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  exptC r <span class="tk-par">(</span>i <span class="tk-op">+</span> j<span class="tk-par">)</span> <span class="tk-op">=</span> exptC r i <span class="tk-op">*</span> exptC r j</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent. <code>expt</code> is <code>exptC</code> (decision 29).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">exponents-add-for-nonneg-exponents</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L100" target="_blank" rel="noopener">expt.lisp line 100</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">exponents-add-for-nonneg-exponents</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> i<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt;= <span class="tk-num">0</span> j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt r <span class="tk-par">(</span>+ i j<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span>* <span class="tk-par">(</span>expt r i<span class="tk-par">)</span>
+		     <span class="tk-par">(</span>expt r j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«exponents-add-for-nonneg-exponents»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">≤</span> i <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">≤</span> j <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  exptC r <span class="tk-par">(</span>i <span class="tk-op">+</span> j<span class="tk-par">)</span> <span class="tk-op">=</span> exptC r i <span class="tk-op">*</span> exptC r j</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent. <code>expt</code> is <code>exptC</code> (decision 29).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">exponents-add-2</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L109" target="_blank" rel="noopener">expt.lisp line 109</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">exponents-add-2</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-num">0</span> r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>acl2-numberp r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt r <span class="tk-par">(</span>+ i j<span class="tk-par">)</span><span class="tk-par">)</span>
+		  <span class="tk-par">(</span>* <span class="tk-par">(</span>expt r i<span class="tk-par">)</span>
+		     <span class="tk-par">(</span>expt r j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«exponents-add-2»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-op">¬</span> <span class="tk-par">(</span><span class="tk-num">0</span> <span class="tk-op">=</span> r<span class="tk-par">)</span> <span class="tk-op">→</span> acl2NumberPC r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  exptC r <span class="tk-par">(</span>i <span class="tk-op">+</span> j<span class="tk-par">)</span> <span class="tk-op">=</span> exptC r i <span class="tk-op">*</span> exptC r j</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent. <code>expt</code> is <code>exptC</code> (decision 29).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">distributivity-of-expt-over-*</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L118" target="_blank" rel="noopener">expt.lisp line 118</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">distributivity-of-expt-over-*</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt <span class="tk-par">(</span>* a b<span class="tk-par">)</span> i<span class="tk-par">)</span>
+         <span class="tk-par">(</span>* <span class="tk-par">(</span>expt a i<span class="tk-par">)</span>
+            <span class="tk-par">(</span>expt b i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«distributivity-of-expt-over-*»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> a b <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  exptC <span class="tk-par">(</span>a <span class="tk-op">*</span> b<span class="tk-par">)</span> i <span class="tk-op">=</span> exptC a i <span class="tk-op">*</span> exptC b i</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">functional-commutativity-of-expt-/-base</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L123" target="_blank" rel="noopener">expt.lisp line 123</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">functional-commutativity-of-expt-/-base</span>
+  <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt <span class="tk-par">(</span>/ r<span class="tk-par">)</span> i<span class="tk-par">)</span>
+         <span class="tk-par">(</span>/ <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«functional-commutativity-of-expt-/-base»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  exptC <span class="tk-par">(</span>CRat.inv r<span class="tk-par">)</span> i <span class="tk-op">=</span> CRat.inv <span class="tk-par">(</span>exptC r i<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">Exponents-multiply</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L127" target="_blank" rel="noopener">expt.lisp line 127</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">Exponents-multiply</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>expt <span class="tk-par">(</span>expt r i<span class="tk-par">)</span> j<span class="tk-par">)</span>
+                  <span class="tk-par">(</span>expt r <span class="tk-par">(</span>* i j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Subgoal *1/4&#x27;&quot;</span> <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">enable</span> prefer-*-to-/<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Exponents-multiply»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span> exptC <span class="tk-par">(</span>exptC r i<span class="tk-par">)</span> j <span class="tk-op">=</span> exptC r <span class="tk-par">(</span>i <span class="tk-op">*</span> j<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-is-increasing-for-base&gt;1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L134" target="_blank" rel="noopener">expt.lisp line 134</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-is-increasing-for-base&gt;1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> r<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; i j<span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>expt r i<span class="tk-par">)</span>
+	      <span class="tk-par">(</span>expt r j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:rewrite</span> <span class="tk-const">:linear</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-is-increasing-for-base&gt;1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">1</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> i <span class="tk-op">&lt;</span> j <span class="tk-op">→</span> rationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i <span class="tk-op">&lt;</span> exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> j</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>Rat</code> with the rational exponent. <code>expt</code> is <code>exptC</code> (decision 29).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">Expt-is-decreasing-for-pos-base&lt;1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L144" target="_blank" rel="noopener">expt.lisp line 144</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">Expt-is-decreasing-for-pos-base&lt;1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> r<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; r <span class="tk-num">1</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt; i j<span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>expt r j<span class="tk-par">)</span>
+              <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:rewrite</span> <span class="tk-const">:linear</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:use</span>
+           <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-const">:instance</span>
+             expt-is-increasing-for-base&gt;1
+             <span class="tk-par">(</span>r <span class="tk-par">(</span>/ r<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">enable</span> prefer-*-to-/<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Expt-is-decreasing-for-pos-base&lt;1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> r <span class="tk-op">&lt;</span> <span class="tk-num">1</span> <span class="tk-op">→</span> i <span class="tk-op">&lt;</span> j <span class="tk-op">→</span> rationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> j <span class="tk-op">&lt;</span> exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">Expt-is-weakly-increasing-for-base&gt;1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L162" target="_blank" rel="noopener">expt.lisp line 162</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">Expt-is-weakly-increasing-for-base&gt;1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt;= <span class="tk-num">1</span> r<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= i j<span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>expt r i<span class="tk-par">)</span>
+               <span class="tk-par">(</span>expt r j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:rewrite</span> <span class="tk-const">:linear</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:use</span> expt-is-increasing-for-base&gt;1
+           <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span>  expt-is-increasing-for-base&gt;1<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Expt-is-weakly-increasing-for-base&gt;1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">1</span> <span class="tk-op">≤</span> r <span class="tk-op">→</span> i <span class="tk-op">≤</span> j <span class="tk-op">→</span> rationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  acl2le <span class="tk-par">(</span>exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i<span class="tk-par">)</span> <span class="tk-par">(</span>exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> j<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">Expt-is-weakly-decreasing-for-pos-base&lt;1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L174" target="_blank" rel="noopener">expt.lisp line 174</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">Expt-is-weakly-decreasing-for-pos-base&lt;1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> r<span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= r <span class="tk-num">1</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>&lt;= i j<span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span>
+                <span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp j<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+           <span class="tk-par">(</span>&lt;= <span class="tk-par">(</span>expt r j<span class="tk-par">)</span>
+               <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-par">(</span><span class="tk-const">:rewrite</span> <span class="tk-const">:linear</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:use</span> expt-is-decreasing-for-pos-base&lt;1
+           <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">disable</span> expt-is-decreasing-for-pos-base&lt;1<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«Expt-is-weakly-decreasing-for-pos-base&lt;1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i j <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> r <span class="tk-op">≤</span> <span class="tk-num">1</span> <span class="tk-op">→</span> i <span class="tk-op">≤</span> j <span class="tk-op">→</span> rationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span> integerp j <span class="tk-op">→</span>
+  acl2le <span class="tk-par">(</span>exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> j<span class="tk-par">)</span> <span class="tk-par">(</span>exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i<span class="tk-par">)</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">stupid-hack</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L190" target="_blank" rel="noopener">expt.lisp line 190</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"> <span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">stupid-hack</span>
+   <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>rationalp x<span class="tk-par">)</span>
+		 <span class="tk-par">(</span><span class="tk-kw">not</span> <span class="tk-par">(</span><span class="tk-kw">equal</span> x <span class="tk-num">0</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	    <span class="tk-par">(</span><span class="tk-kw">equal</span> <span class="tk-par">(</span>* x <span class="tk-par">(</span>/ x<span class="tk-par">)</span> <span class="tk-par">(</span>expt a b<span class="tk-par">)</span><span class="tk-par">)</span>
+		   <span class="tk-par">(</span>expt a b<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«stupid-hack»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> x <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> a <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-op">,</span> <span class="tk-kw">∀</span> b <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  rationalp x <span class="tk-op">→</span> <span class="tk-op">¬</span> <span class="tk-par">(</span>x <span class="tk-op">=</span> <span class="tk-num">0</span><span class="tk-par">)</span> <span class="tk-op">→</span>
+  <span class="tk-par">(</span><span class="tk-par">(</span>↑x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">*</span> CRat.inv <span class="tk-par">(</span>↑x <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span><span class="tk-par">)</span> <span class="tk-op">*</span> exptC a b <span class="tk-op">=</span> exptC a b</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Local. Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-&gt;-1-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L203" target="_blank" rel="noopener">expt.lisp line 203</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-&gt;-1-1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> r<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> i<span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-&gt;-1-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">1</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> i <span class="tk-op">→</span> rationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span>
+  <span class="tk-par">(</span><span class="tk-num">1</span> <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">&lt;</span> exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-&gt;-1-2</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L211" target="_blank" rel="noopener">expt.lisp line 211</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-&gt;-1-2</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> r<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; r <span class="tk-num">1</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; i <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> <span class="tk-par">(</span>expt r i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-&gt;-1-2»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> r <span class="tk-op">&lt;</span> <span class="tk-num">1</span> <span class="tk-op">→</span> i <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span> rationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span>
+  <span class="tk-par">(</span><span class="tk-num">1</span> <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> <span class="tk-op">&lt;</span> exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i</pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-&lt;-1-1</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L220" target="_blank" rel="noopener">expt.lisp line 220</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-&lt;-1-1</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">0</span> r<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; r <span class="tk-num">1</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; <span class="tk-num">0</span> i<span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>expt r i<span class="tk-par">)</span> <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-&lt;-1-1»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">0</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> r <span class="tk-op">&lt;</span> <span class="tk-num">1</span> <span class="tk-op">→</span> <span class="tk-num">0</span> <span class="tk-op">&lt;</span> i <span class="tk-op">→</span> rationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span>
+  exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i <span class="tk-op">&lt;</span> <span class="tk-num">1</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+  <section class="node">
+    <div class="node-head"><span class="node-name">expt-&lt;-1-2</span><span class="src"><a href="https://github.com/acl2/acl2/blob/8.7/books/arithmetic-3/pass1/expt.lisp#L229" target="_blank" rel="noopener">expt.lisp line 229</a> · <span class="ok">lake build passes</span></span></div>
+    <div class="pair">
+      <div><p class="lbl">ACL2 source</p><pre class="acl2"><span class="tk-par">(</span><span class="tk-kw">defthm</span> <span class="tk-name">expt-&lt;-1-2</span>
+  <span class="tk-par">(</span><span class="tk-kw">implies</span> <span class="tk-par">(</span><span class="tk-kw">and</span> <span class="tk-par">(</span>&lt; <span class="tk-num">1</span> r<span class="tk-par">)</span>
+		<span class="tk-par">(</span>&lt; i <span class="tk-num">0</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>rationalp r<span class="tk-par">)</span><span class="tk-par">)</span>
+		<span class="tk-par">(</span>fc <span class="tk-par">(</span>integerp i<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+	   <span class="tk-par">(</span>&lt; <span class="tk-par">(</span>expt r i<span class="tk-par">)</span> <span class="tk-num">1</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:hints</span> <span class="tk-par">(</span><span class="tk-par">(</span><span class="tk-str">&quot;Goal&quot;</span> <span class="tk-const">:in-theory</span> <span class="tk-par">(</span><span class="tk-kw">enable</span> prefer-*-to-/<span class="tk-par">)</span><span class="tk-par">)</span><span class="tk-par">)</span>
+  <span class="tk-const">:rule-classes</span> <span class="tk-const">:linear</span><span class="tk-par">)</span></pre></div>
+      <div><p class="lbl">Lean axiom</p><pre class="lean"><span class="tk-kw">axiom</span> <span class="tk-name">«expt-&lt;-1-2»</span> <span class="tk-op">:</span> <span class="tk-kw">∀</span> r i <span class="tk-op">:</span> <span class="tk-type">Rat</span><span class="tk-op">,</span>
+  <span class="tk-num">1</span> <span class="tk-op">&lt;</span> r <span class="tk-op">→</span> i <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">→</span> rationalp r <span class="tk-op">→</span> integerp i <span class="tk-op">→</span>
+  exptC <span class="tk-par">(</span>↑r <span class="tk-op">:</span> <span class="tk-type">CRat</span><span class="tk-par">)</span> i <span class="tk-op">&lt;</span> <span class="tk-num">1</span></pre></div>
+    </div>
+    <details class="decisions"><summary>Embedding decisions for this element</summary><div class="prose"><ol>
+<li>Statement over <code>CRat</code> with the rational exponent <code>i</code>. <code>expt</code> is <code>exptC</code> (decision 29). <code>fc</code> is inlined (decision 28).</li>
+</ol></div></details>
+  </section>
+
+  <details open>
+    <summary>Certificate expt.cert</summary>
+    <table class="certinfo">
+      <tr><td>File</td><td><a href="file:///Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/books/arithmetic-3/pass1/expt.cert">/Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/books/arithmetic-3/pass1/expt.cert</a></td></tr>
+      <tr><td>Size</td><td>3831 bytes</td></tr>
+      <tr><td>SHA-256</td><td><code>eca129c9dbaa19432224d77b69ab4a090949c42dfe0f2496125886dccf9e7d30</code></td></tr>
+      <tr><td>ACL2 version</td><td>8.7</td></tr>
+      <tr><td>Book paths named in the certificate</td><td><ul><li><code>UNARY-/NFUNCTIONAL-COMMUTATIVITY-OF-EXPT-/-BASE</code></li><li><code>expt-helperFarithmetic-3/pass1/expt-helper.lisp</code></li><li><code>expt8arithmetic-3/pass1/expt.lisp</code></li><li><code>inequalitiesIarithmetic-3/pass1/inequalities.lisp</code></li><li><code>prefer-timesIarithmetic-3/pass1/prefer-times.lisp</code></li></ul></td></tr>
+    </table>
+    <details>
+      <summary>Hex dump of the certificate (3831 bytes)</summary>
+      <pre class="acl2">00000000: 0a23 5aac 120b c905 0000 0000 0108 4143  .#Z...........AC
+00000010: 4c32 0116 434f 4d4d 4f4e 2d4c 4953 5001  L2..COMMON-LISP.
+00000020: 1449 4e2d 5041 434b 4147 4502 0400 0604  .IN-PACKAGE.....
+00000030: 00ac 120b c90a 235a ac12 0bc9 0200 0000  ......#Z........
+00000040: 0001 2041 434c 3220 5665 7273 696f 6e20  .. ACL2 Version 
+00000050: 382e 3700 0000 ac12 0bc9 0a23 5aac 120b  8.7........#Z...
+00000060: c902 0000 0000 0001 0e4b 4559 574f 5244  .........KEYWORD
+00000070: 012a 4245 4749 4e2d 504f 5254 4355 4c4c  .*BEGIN-PORTCULL
+00000080: 4953 2d43 4d44 5300 00ac 120b c90a 235a  IS-CMDS.......#Z
+00000090: ac12 0bc9 0200 0000 0000 010e 4b45 5957  ............KEYW
+000000a0: 4f52 4401 2645 4e44 2d50 4f52 5443 554c  ORD.&amp;END-PORTCUL
+000000b0: 4c49 532d 434d 4453 0000 ac12 0bc9 0a23  LIS-CMDS.......#
+000000c0: 5aac 120b c902 0000 0000 0001 0e4b 4559  Z............KEY
+000000d0: 574f 5244 0112 4345 5254 2d44 4154 4100  WORD..CERT-DATA.
+000000e0: 00ac 120b c90a 235a ac12 0bc9 8606 0200  ......#Z........
+000000f0: 0100 0000 0003 1643 4f4d 4d4f 4e2d 4c49  .......COMMON-LI
+00000100: 5350 080a 4551 5541 4c06 4e4f 5408 4558  SP..EQUAL.NOT.EX
+00000110: 5054 1049 4e54 4547 4552 5012 5241 5449  PT.INTEGERP.RATI
+00000120: 4f4e 414c 500a 5155 4f54 4502 3c04 4946  ONALP.QUOTE.&lt;.IF
+00000130: 0841 434c 321f 4045 5850 542d 5459 5045  .ACL2.@EXPT-TYPE
+00000140: 2d50 5245 5343 5249 5054 494f 4e2d 5241  -PRESCRIPTION-RA
+00000150: 5449 4f4e 414c 5042 4558 5054 2d54 5950  TIONALPBEXPT-TYP
+00000160: 452d 5052 4553 4352 4950 5449 4f4e 2d50  E-PRESCRIPTION-P
+00000170: 4f53 4954 4956 452d 3142 4558 5054 2d54  OSITIVE-1BEXPT-T
+00000180: 5950 452d 5052 4553 4352 4950 5449 4f4e  YPE-PRESCRIPTION
+00000190: 2d50 4f53 4954 4956 452d 3218 4143 4c32  -POSITIVE-2.ACL2
+000001a0: 2d4e 554d 4245 5250 3c45 5850 542d 5459  -NUMBERP&lt;EXPT-TY
+000001b0: 5045 2d50 5245 5343 5249 5054 494f 4e2d  PE-PRESCRIPTION-
+000001c0: 4e4f 4e5a 4552 4f3e 4558 5054 2d54 5950  NONZERO&gt;EXPT-TYP
+000001d0: 452d 5052 4553 4352 4950 5449 4f4e 2d49  E-PRESCRIPTION-I
+000001e0: 4e54 4547 4552 5008 4946 4958 1845 5155  NTEGERP.IFIX.EQU
+000001f0: 414c 2d45 5850 542d 3006 5a49 500c 4558  AL-EXPT-0.ZIP.EX
+00000200: 5054 2d30 0646 4958 0258 0c45 5850 542d  PT-0.FIX.X.EXPT-
+00000210: 3102 4202 413a 4449 5354 5249 4255 5449  1.B.A:DISTRIBUTI
+00000220: 5649 5459 2d4f 462d 4558 5054 2d4f 5645  VITY-OF-EXPT-OVE
+00000230: 522d 2a0e 554e 4152 592d 2f4e 4655 4e43  R-*.UNARY-/NFUNC
+00000240: 5449 4f4e 414c 2d43 4f4d 4d55 5441 5449  TIONAL-COMMUTATI
+00000250: 5649 5459 2d4f 462d 4558 5054 2d2f 2d42  VITY-OF-EXPT-/-B
+00000260: 4153 4510 4249 4e41 5259 2d2a 2445 5850  ASE.BINARY-*$EXP
+00000270: 4f4e 454e 5453 2d4d 554c 5449 504c 5942  ONENTS-MULTIPLYB
+00000280: 4558 5054 2d49 532d 4445 4352 4541 5349  EXPT-IS-DECREASI
+00000290: 4e47 2d46 4f52 2d50 4f53 2d42 4153 453c  NG-FOR-POS-BASE&lt;
+000002a0: 3148 4558 5054 2d49 532d 5745 414b 4c59  1HEXPT-IS-WEAKLY
+000002b0: 2d49 4e43 5245 4153 494e 472d 464f 522d  -INCREASING-FOR-
+000002c0: 4241 5345 3e31 024a 5045 5850 542d 4953  BASE&gt;1.JPEXPT-IS
+000002d0: 2d57 4541 4b4c 592d 4445 4352 4541 5349  -WEAKLY-DECREASI
+000002e0: 4e47 2d46 4f52 2d50 4f53 2d42 4153 453c  NG-FOR-POS-BASE&lt;
+000002f0: 3114 4558 5054 2d3e 2d31 2d31 1445 5850  1.EXPT-&gt;-1-1.EXP
+00000300: 542d 3e2d 312d 3214 4558 5054 2d3c 2d31  T-&gt;-1-2.EXPT-&lt;-1
+00000310: 2d31 0249 0252 0e49 4d50 4c49 4553 1445  -1.I.R.IMPLIES.E
+00000320: 5850 542d 3c2d 312d 320e 4b45 5957 4f52  XPT-&lt;-1-2.KEYWOR
+00000330: 4403 0c44 4546 5448 4d12 5452 414e 534c  D..DEFTHM.TRANSL
+00000340: 4154 4522 5459 5045 2d50 5245 5343 5249  ATE&quot;TYPE-PRESCRI
+00000350: 5054 494f 4ed9 055a 0056 2a06 0012 3050  PTION..Z.V*...0P
+00000360: 0062 3214 3304 0012 356c 004e 3714 3850  .b2.3...5l.N7.8P
+00000370: 0010 3a4e 000e 3c00 0012 3e7e 007a 4076  ..:N..&lt;...&gt;~.z@v
+00000380: 4116 427e 0086 0144 7245 1646 7e00 8e01  A.B~...DrE.F~...
+00000390: 4868 4916 4a4e 0050 4c0c 4d62 009c 014f  HhI.JN.PL.Mb...O
+000003a0: 1450 a201 0096 0152 5253 5200 1455 0c56  .P.....RRSR..U.V
+000003b0: 1657 0e58 1059 b401 00a8 015b 5e5c ba01  .W.X.Y.....[^\..
+000003c0: 0054 5e56 2650 006c 6114 6262 0050 6414  .T^V&amp;P.la.bb.Pd.
+000003d0: 654e 006c 6714 6850 0010 6a4e 000e 6c7e  eN.lg.hP..jN..l~
+000003e0: 00da 016e d601 6f16 707e 00e2 0172 d201  ...n..o.p~...r..
+000003f0: 7316 747e 00ea 0176 cc01 7716 787e 00f2  s.t~...v..w.x~..
+00000400: 017a c601 7b16 7c4e 0050 7e0c 7f62 0080  .z..{.|N.P~..b..
+00000410: 0281 0114 8201 8602 00fa 0184 0152 8501  .............R..
+00000420: 5200 1487 010c 8801 1689 010e 8a01 108b  R...............
+00000430: 0198 0200 8c02 8d01 c001 8e01 9e02 004c  ...............L
+00000440: 9001 5625 5000 6c93 0114 9401 6200 5096  ..V%P.l.....b.P.
+00000450: 0114 9701 6c00 4e99 0114 9a01 5000 109c  ....l.N.....P...
+00000460: 014e 000e 9e01 7e00 be02 a001 ba02 a101  .N....~.........
+00000470: 16a2 017e 00c6 02a4 01b6 02a5 0116 a601  ...~............
+00000480: 7e00 ce02 a801 b002 a901 16aa 017e 00d6  ~............~..
+00000490: 02ac 01aa 02ad 0116 ae01 4e00 50b0 010c  ..........N.P...
+000004a0: b101 e402 0062 b301 14b4 01ea 0200 de02  .....b..........
+000004b0: b601 52b7 0152 0014 b901 0cba 0116 bb01  ..R..R..........
+000004c0: 0ebc 0110 bd01 fc02 00f0 02bf 01a4 02c0  ................
+000004d0: 0182 0300 4ac2 0156 2450 0062 c501 14c6  ....J..V$P.b....
+000004e0: 014e 006c c801 14c9 0150 0010 cb01 4e00  .N.l.....P....N.
+000004f0: 0ecd 017e 009c 03cf 0198 03d0 0116 d101  ...~............
+00000500: 7e00 a403 d301 9403 d401 16d5 017e 00ac  ~............~..
+00000510: 03d7 018e 03d8 0116 d901 4e00 50db 010c  ..........N.P...
+00000520: dc01 ba03 0062 de01 14df 01c0 0300 b403  .....b..........
+00000530: e101 52e2 0152 0014 e401 0ce5 0116 e601  ..R..R..........
+00000540: 0ee7 0110 e801 d203 00c6 03ea 0188 03eb  ................
+00000550: 01d8 0300 48ed 0156 2350 006c f001 14f1  ....H..V#P.l....
+00000560: 0150 0062 f301 14f4 01ea 0300 0af6 014e  .P.b...........N
+00000570: 0044 f801 14f9 01f4 0300 0afb 0150 0010  .D...........P..
+00000580: fd01 4e00 0eff 0144 000e 8102 7e00 8404  ..N....D....~...
+00000590: 8302 8004 8402 1685 027e 008c 0487 02fc  .........~......
+000005a0: 0388 0216 8902 7e00 9404 8b02 f803 8c02  ......~.........
+000005b0: 168d 027e 009c 048f 02ee 0390 0216 9102  ...~............
+000005c0: 7e00 a404 9302 e403 9402 1695 024e 0050  ~............N.P
+000005d0: 9702 0c98 0244 0050 9a02 0c9b 02b8 0400  .....D.P........
+000005e0: b204 9d02 149e 02be 0400 0aa0 02c2 0400  ................
+000005f0: ac04 a202 52a3 0252 000a a502 14a6 020c  ....R..R........
+00000600: a702 16a8 020e a902 10aa 02d6 0400 c804  ................
+00000610: ac02 de03 ad02 dc04 0046 af02 5621 6200  .........F..V!b.
+00000620: 50b2 0214 b302 e804 000a b502 4e00 44b7  P...........N.D.
+00000630: 0214 b802 f204 000a ba02 5000 10bc 024e  ..........P....N
+00000640: 000e be02 4400 0ec0 027e 0082 05c2 02fe  ....D....~......
+00000650: 04c3 0216 c402 7e00 8a05 c602 fa04 c702  ......~.........
+00000660: 16c8 027e 0092 05ca 02f6 04cb 0216 cc02  ...~............
+00000670: 7e00 9a05 ce02 ec04 cf02 16d0 0244 0050  ~............D.P
+00000680: d202 0cd3 024e 0050 d502 0cd6 02ae 0500  .....N.P........
+00000690: a805 d802 14d9 02b4 0500 0adb 02b8 0500  ................
+000006a0: a205 dd02 52de 0252 000a e002 14e1 020c  ....R..R........
+000006b0: e202 16e3 020e e402 10e5 02cc 0500 be05  ................
+000006c0: e702 e204 e802 d205 0042 ea02 5620 5000  .........B..V P.
+000006d0: 6ced 0214 ee02 6200 50f0 0214 f102 4400  l.....b.P.....D.
+000006e0: 4ef3 0214 f402 5000 10f6 024e 000e f802  N.....P....N....
+000006f0: 4400 0efa 027e 00f6 05fc 02f2 05fd 0216  D....~..........
+00000700: fe02 7e00 fe05 8003 ee05 8103 1682 037e  ..~............~
+00000710: 0086 0684 03ea 0585 0316 8603 7e00 8e06  ............~...
+00000720: 8803 e405 8903 168a 037e 0096 068c 03de  .........~......
+00000730: 058d 0316 8e03 4400 5090 030c 9103 4e00  ......D.P.....N.
+00000740: 5093 030c 9403 aa06 00a4 0696 0314 9703  P...............
+00000750: b006 009e 0699 0352 9a03 5200 149c 030c  .......R..R.....
+00000760: 9d03 169e 030e 9f03 10a0 03c2 0600 b606  ................
+00000770: a203 d805 a303 c806 0040 a503 561f 4e00  .........@..V.N.
+00000780: 0ea8 0344 000e aa03 7e00 d606 ac03 d206  ...D....~.......
+00000790: ad03 16ae 034e 0050 b003 0cb1 0344 00e4  .....N.P.....D..
+000007a0: 06b3 030c b403 4400 4eb6 033c b703 f006  ......D.N..&lt;....
+000007b0: 0050 b903 0cba 03f6 0600 ea06 bc03 08bd  .P..............
+000007c0: 03fc 0600 de06 bf03 52c0 0352 0008 c203  ........R..R....
+000007d0: 0cc3 033c c403 16c5 030e c603 8e07 0082  ...&lt;............
+000007e0: 07c8 03ce 06c9 0394 0700 3ecb 0356 1d50  ..........&gt;..V.P
+000007f0: 0038 ce03 4e00 9e07 d003 0cd1 034e 0050  .8..N........N.P
+00000800: d303 0cd4 03aa 0700 38d6 03ae 0700 a407  ........8.......
+00000810: d803 08d9 0308 0038 db03 0cdc 03ba 0700  .......8........
+00000820: b407 de03 9a07 df03 c007 003a e103 561b  ...........:..V.
+00000830: 3200 34e4 033c e503 4e00 cc07 e703 0ce8  2.4..&lt;..N.......
+00000840: 034e 0034 ea03 0ceb 034e 0032 ed03 0cee  .N.4.....N.2....
+00000850: 03de 0700 d807 f003 3cf1 03e4 0700 d207  ........&lt;.......
+00000860: f303 08f4 0308 003c f603 0cf7 03f0 0700  .......&lt;........
+00000870: ea07 f903 c607 fa03 f607 0036 fc03 5618  ...........6..V.
+00000880: 6200 2eff 030c 8004 2e00 2c82 0486 0800  b.........,.....
+00000890: 8208 8404 0885 044e 0062 8704 0c88 0462  .......N.b.....b
+000008a0: 0092 088a 0408 8b04 7e00 9808 8d04 8c08  ........~.......
+000008b0: 8e04 168f 0416 0008 9104 0c92 042c 9304  .............,..
+000008c0: a808 00a0 0895 04fc 0796 04ae 0800 3098  ..............0.
+000008d0: 0456 156c 002e 9b04 0c9c 0462 00ba 089e  .V.l.......b....
+000008e0: 0408 9f04 4e00 6ca1 040c a204 4e00 28a4  ....N.l.....N.(.
+000008f0: 046c 0062 a604 ca08 a704 16a8 04d2 0800  .l.b............
+00000900: c608 aa04 08ab 047e 00d8 08ad 04c0 08ae  .......~........
+00000910: 0416 af04 1600 08b1 0428 b204 0cb3 04e8  .........(......
+00000920: 0800 e008 b504 b408 b604 ee08 002a b804  .............*..
+00000930: 5613 4e00 2ebb 040c bc04 6c00 fa08 be04  V.N.......l.....
+00000940: 08bf 042e 002c c104 6c00 8409 c304 08c4  .....,..l.......
+00000950: 044e 0024 c604 6c00 8e09 c804 08c9 0494  .N.$..l.........
+00000960: 0900 0acb 047e 0098 09cd 048a 09ce 0416  .....~..........
+00000970: cf04 a009 0080 09d1 0408 d204 0800 16d4  ................
+00000980: 040a d504 24d6 042c d704 0cd8 04b2 0900  ....$..,........
+00000990: a609 da04 f408 db04 b809 0026 dd04 5611  ...........&amp;..V.
+000009a0: 6c00 4ee0 0414 e104 c409 000a e304 5000  l.N...........P.
+000009b0: 0ee5 047e 00cc 09e7 04c8 09e8 0416 e904  ...~............
+000009c0: 4e00 50eb 040c ec04 da09 000e ee04 de09  N.P.............
+000009d0: 00d4 09f0 0452 f104 5200 0ef3 040c f404  .....R..R.......
+000009e0: 16f5 040a f604 14f7 04f0 0900 e409 f904  ................
+000009f0: be09 fa04 f609 0022 fc04 5610 5000 1eff  .......&quot;..V.P...
+00000a00: 046c 0050 8105 0882 0586 0a00 0a84 057e  .l.P...........~
+00000a10: 008a 0a86 0580 0a87 0516 8805 4e00 508a  ............N.P.
+00000a20: 050c 8b05 980a 006c 8d05 088e 059e 0a00  .......l........
+00000a30: 0a90 05a2 0a00 920a 9205 5293 0552 000a  ..........R..R..
+00000a40: 9505 0896 050c 9705 1698 051e 9905 b40a  ................
+00000a50: 00a8 0a9b 05fc 099c 05ba 0a00 209e 0556  ............ ..V
+00000a60: 0e6c 0050 a105 14a2 05c6 0a00 0aa4 0550  .l.P...........P
+00000a70: 0010 a605 7e00 ce0a a805 ca0a a905 16aa  ....~...........
+00000a80: 054e 0050 ac05 0cad 056c 00dc 0aaf 0514  .N.P.....l......
+00000a90: b005 e20a 000a b205 e60a 00d6 0ab4 0552  ...............R
+00000aa0: b505 5200 0ab7 0514 b805 0cb9 0516 ba05  ..R.............
+00000ab0: 10bb 05f8 0a00 ec0a bd05 c00a be05 fe0a  ................
+00000ac0: 001c c005 560d 5000 6cc3 0514 c405 5000  ....V.P.l.....P.
+00000ad0: 10c6 057e 008e 0bc8 058a 0bc9 0516 ca05  ...~............
+00000ae0: 4e00 50cc 050c cd05 9c0b 006c cf05 14d0  N.P........l....
+00000af0: 05a2 0b00 960b d205 52d3 0552 0014 d505  ........R..R....
+00000b00: 0cd6 0516 d705 10d8 05b2 0b00 a80b da05  ................
+00000b10: 840b db05 b80b 001a dd05 560c 5000 10e0  ..........V.P...
+00000b20: 054e 0050 e205 0ce3 05c8 0b00 10e5 05cc  .N.P............
+00000b30: 0b00 c20b e705 52e8 0552 0010 ea05 0ceb  ......R..R......
+00000b40: 05d8 0b00 d20b ed05 be0b ee05 de0b 0018  ................
+00000b50: f005 e20b 00bc 0bf2 0582 0bf3 05be 0af4  ................
+00000b60: 05fa 09f5 05bc 09f6 05f2 08f7 05b2 08f8  ................
+00000b70: 05fa 07f9 05c4 07fa 0598 07fb 05cc 06fc  ................
+00000b80: 05d6 05fd 05e0 04fe 05dc 03ff 0586 0380  ................
+00000b90: 06a2 0281 06be 0182 0658 8306 880c 005c  .........X.....\
+00000ba0: 8506 8306 1200 ac12 0bc9 0a23 5aac 120b  ...........#Z...
+00000bb0: c900 0000 0000 0000 0000 ac12 0bc9 0a23  ...............#
+00000bc0: 5aac 120b c98b 0107 cf1a df32 971d 911a  Z..........2....
+00000bd0: 8114 9c99 afeb 0ee0 2c00 0000 122e 6261  ........,.....ba
+00000be0: 7369 632d 6172 6974 686d 6574 6963 2d68  sic-arithmetic-h
+00000bf0: 656c 7065 722e 6261 7369 632d 6172 6974  elper.basic-arit
+00000c00: 686d 6574 6963 2d68 656c 7065 725f 6172  hmetic-helper_ar
+00000c10: 6974 686d 6574 6963 2d33 2f70 6173 7331  ithmetic-3/pass1
+00000c20: 2f62 6173 6963 2d61 7269 7468 6d65 7469  /basic-arithmeti
+00000c30: 632d 6865 6c70 6572 2e6c 6973 7020 6261  c-helper.lisp ba
+00000c40: 7369 632d 6172 6974 686d 6574 6963 2062  sic-arithmetic b
+00000c50: 6173 6963 2d61 7269 7468 6d65 7469 6351  asic-arithmeticQ
+00000c60: 6172 6974 686d 6574 6963 2d33 2f70 6173  arithmetic-3/pas
+00000c70: 7331 2f62 6173 6963 2d61 7269 7468 6d65  s1/basic-arithme
+00000c80: 7469 632e 6c69 7370 1869 6e65 7175 616c  tic.lisp.inequal
+00000c90: 6974 6965 7318 696e 6571 7561 6c69 7469  ities.inequaliti
+00000ca0: 6573 4961 7269 7468 6d65 7469 632d 332f  esIarithmetic-3/
+00000cb0: 7061 7373 312f 696e 6571 7561 6c69 7469  pass1/inequaliti
+00000cc0: 6573 2e6c 6973 7018 7072 6566 6572 2d74  es.lisp.prefer-t
+00000cd0: 696d 6573 1870 7265 6665 722d 7469 6d65  imes.prefer-time
+00000ce0: 7349 6172 6974 686d 6574 6963 2d33 2f70  sIarithmetic-3/p
+00000cf0: 6173 7331 2f70 7265 6665 722d 7469 6d65  ass1/prefer-time
+00000d00: 732e 6c69 7370 1665 7870 742d 6865 6c70  s.lisp.expt-help
+00000d10: 6572 1665 7870 742d 6865 6c70 6572 4661  er.expt-helperFa
+00000d20: 7269 7468 6d65 7469 632d 332f 7061 7373  rithmetic-3/pass
+00000d30: 312f 6578 7074 2d68 656c 7065 722e 6c69  1/expt-helper.li
+00000d40: 7370 0865 7870 7408 6578 7074 3861 7269  sp.expt.expt8ari
+00000d50: 7468 6d65 7469 632d 332f 7061 7373 312f  thmetic-3/pass1/
+00000d60: 6578 7074 2e6c 6973 7002 0841 434c 3201  expt.lisp..ACL2.
+00000d70: 0a4c 4f43 414c 0e4b 4559 574f 5244 061e  .LOCAL.KEYWORD..
+00000d80: 424f 4f4b 2d57 5249 5445 2d44 4154 4516  BOOK-WRITE-DATE.
+00000d90: 424f 4f4b 2d4c 454e 4754 480a 5454 4147  BOOK-LENGTH.TTAG
+00000da0: 530e 4158 494f 4d53 501e 534b 4950 5045  S.AXIOMSP.SKIPPE
+00000db0: 442d 5052 4f4f 4653 500c 5359 5354 454d  D-PROOFSP.SYSTEM
+00000dc0: 6a42 1a40 003e 003c 004a 0048 2646 273a  jB.@.&gt;.&lt;.J.H&amp;F&#x27;:
+00000dd0: 0838 0754 0052 2b50 2c30 2d32 2e44 2f42  .8.T.R+P,0-2.D/B
+00000de0: 1740 003e 003c 0068 0066 3564 363a 0638  .@.&gt;.&lt;.h.f5d6:.8
+00000df0: 0772 0070 3a6e 3b2a 3c2c 3d62 3e7e 0036  .r.p:n;*&lt;,=b&gt;~.6
+00000e00: 4043 1440 003e 003c 008a 0100 8801 4686  @C.@.&gt;.&lt;......F.
+00000e10: 0147 3a05 3807 9401 0092 014b 9001 4c24  .G:.8......K..L$
+00000e20: 4d26 4e84 014f a001 0036 5143 1140 003e  M&amp;N..O...6QC.@.&gt;
+00000e30: 003c 00ac 0100 aa01 57a8 0158 3a04 3807  .&lt;......W..X:.8.
+00000e40: b601 00b4 015c b201 5d1e 5e20 5fa6 0160  .....\..].^ _..`
+00000e50: c201 0036 6243 0e40 003e 003c 00ce 0100  ...6bC.@.&gt;.&lt;....
+00000e60: cc01 68ca 0169 3a03 3807 d801 00d6 016d  ..h..i:.8......m
+00000e70: d401 6e18 6f1a 70c8 0171 e401 0036 7343  ..n.o.p..q...6sC
+00000e80: 0b40 003e 003c 00f0 0100 ee01 79ec 017a  .@.&gt;.&lt;......y..z
+00000e90: 3a02 3807 fa01 00f8 017e f601 7f12 8001  :.8......~......
+00000ea0: 1481 01ea 0182 0186 0200 3684 018a 0200  ..........6.....
+00000eb0: e801 8601 c601 8701 a401 8801 8201 8901  ................
+00000ec0: 608a 0100 ac12 0bc9 0a23 5aac 120b c902  `........#Z.....
+00000ed0: 0000 0000 0001 0e4b 4559 574f 5244 0122  .......KEYWORD.&quot;
+00000ee0: 5452 4956 4941 4c2d 424f 4f4b 2d48 4153  TRIVIAL-BOOK-HAS
+00000ef0: 4800 00ac 120b c9                        H......</pre>
+    </details>
+  </details>
+</main>
+</div>
+<script>
+const q = document.getElementById('filter');
+q.addEventListener('input', () => {
+  const v = q.value.toLowerCase();
+  document.querySelectorAll('.toc li').forEach(li => {
+    li.style.display = li.textContent.toLowerCase().includes(v) ? '' : 'none';
+  });
+});
+</script>
