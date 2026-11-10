@@ -33,10 +33,10 @@ public axiom «helper-0» : ∀ a x y : CRat,
   ¬ (fixC a = 0) → ((a * x = y * a) ↔ (fixC x = fixC y))
 
 public axiom «helper-1» : ∀ x y z a : CRat,
-  ¬ (fixC a = 0) → ((x * a = y * z * a) ↔ (fixC x = y * z))
+  ¬ (fixC a = 0) → ((x * a = y * (z * a)) ↔ (fixC x = y * z))
 
 public axiom «helper-2» : ∀ w x y z a : CRat,
-  ¬ (fixC a = 0) → ((w * x * a = y * z * a) ↔ (w * x = y * z))
+  ¬ (fixC a = 0) → ((w * (x * a) = y * (z * a)) ↔ (w * x = y * z))
 
 public axiom «helper-3» : ∀ w x y z a : CRat,
   ¬ (fixC a = 0) → ((w * a + x * a = y * a + z * a) ↔ (x + w = z + y))
@@ -45,7 +45,7 @@ public axiom «helper-4» : ∀ x y z a : CRat,
   ¬ (fixC a = 0) → ((x * a + y * a = z * a) ↔ (x + y = fixC z))
 
 public axiom «helper-5» : ∀ w x y z a : CRat,
-  ¬ (fixC a = 0) → ((w * a + x * a = y * z * a) ↔ (w + x = y * z))
+  ¬ (fixC a = 0) → ((w * a + x * a = y * (z * a)) ↔ (w + x = y * z))
 
 public axiom «helper-6» : ∀ a b : CRat, ∀ x : Rat,
   realrationalp x → ¬ (x = 0) →
@@ -67,12 +67,12 @@ public axiom «helper-8» : ∀ a b c : CRat, ∀ x : Rat,
 
 public axiom «helper-9» : ∀ a b c : CRat, ∀ x : Rat,
   realrationalp x → ¬ (x = 0) →
-  ((a * (↑x : CRat)) < (b * c * (↑x : CRat)) ↔
+  ((a * (↑x : CRat)) < (b * (c * (↑x : CRat))) ↔
     (if (0 : Rat) < x then a < b * c else b * c < a))
 
 public axiom «helper-10» : ∀ a b c : CRat, ∀ x : Rat,
   realrationalp x → ¬ (x = 0) →
-  ((a * b * (↑x : CRat)) < (c * (↑x : CRat)) ↔
+  ((a * (b * (↑x : CRat))) < (c * (↑x : CRat)) ↔
     (if (0 : Rat) < x then a * b < c else c < a * b))
 
 public axiom «helper-11» : ∀ x : Rat, ∀ y : CRat,

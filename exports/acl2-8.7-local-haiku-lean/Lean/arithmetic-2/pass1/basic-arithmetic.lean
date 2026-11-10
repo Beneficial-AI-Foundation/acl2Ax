@@ -23,10 +23,10 @@ public axiom «distributivity-of-minus-over-+» : ∀ x y : CRat,
   -(x + y) = -x + -y
 
 public axiom «minus-cancellation-on-right» : ∀ x y : CRat,
-  x + y + -x = fixC y
+  x + (y + -x) = fixC y
 
 public axiom «minus-cancellation-on-left» : ∀ x y : CRat,
-  x + -x + y = fixC y
+  x + (-x + y) = fixC y
 
 public axiom «right-cancellation-for-+» : ∀ x y z : CRat,
   (x + z = y + z) ↔ (fixC x = fixC y)
@@ -39,7 +39,7 @@ public axiom «equal-minus-0» : ∀ x : CRat,
 
 -- The syntaxp hypothesis is (not (and (consp y) ...)), which holds for every CRat y.
 public axiom «equal-+-x-y-0» : ∀ x y : CRat,
-  syntaxpW → (x + y = 0) ↔ (fixC x = -y ∧ -x = fixC y)
+  syntaxpW → ((x + y = 0) ↔ (fixC x = -y ∧ -x = fixC y))
 
 public axiom «equal-+-x-y-x» : ∀ x y : CRat,
   (x + y = x) ↔ (acl2NumberPC x ∧ fixC y = 0)
@@ -63,10 +63,10 @@ public axiom «distributivity-of-/-over-*» : ∀ x y : CRat,
   CRat.inv (x * y) = CRat.inv x * CRat.inv y
 
 public axiom «/-cancellation-on-right» : ∀ x y : CRat,
-  y * x * CRat.inv y = (if ¬ (fixC y = 0) then fixC x else 0)
+  y * (x * CRat.inv y) = (if ¬ (fixC y = 0) then fixC x else 0)
 
 public axiom «/-cancellation-on-left» : ∀ x y : CRat,
-  y * CRat.inv y * x = (if ¬ (fixC y = 0) then fixC x else 0)
+  y * (CRat.inv y * x) = (if ¬ (fixC y = 0) then fixC x else 0)
 
 public axiom «right-cancellation-for-*» : ∀ x y z : CRat,
   (x * z = y * z) ↔ (0 = fixC z ∨ fixC x = fixC y)

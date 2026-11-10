@@ -86,7 +86,7 @@ public axiom «Expt-is-weakly-decreasing-for-pos-base<1» : ∀ r i j : Rat,
 -- stupid-hack (local)
 private axiom «stupid-hack» : ∀ x : Rat, ∀ a : CRat, ∀ b : Rat,
   rationalp x → ¬ (x = 0) →
-  ((↑x : CRat) * CRat.inv (↑x : CRat)) * exptC a b = exptC a b
+  (↑x : CRat) * (CRat.inv (↑x : CRat) * exptC a b) = exptC a b
 
 public axiom «expt->-1-1» : ∀ r i : Rat,
   1 < r → 0 < i → rationalp r → integerp i →

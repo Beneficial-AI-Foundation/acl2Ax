@@ -103,7 +103,7 @@ public axiom «Nonnegative-integer-quotient-gcd» : ∀ x y : Rat,
 
 public axiom «Linear-combination-gcd=1» : ∀ x y z : Rat,
   integerp x → «nonneg-int-gcd» y z = 1 →
-  x * y * «nonneg-int-gcd-multiplier1» y z + x * z * «nonneg-int-gcd-multiplier2» y z = x
+  x * (y * «nonneg-int-gcd-multiplier1» y z) + x * (z * «nonneg-int-gcd-multiplier2» y z) = x
 
 public axiom «Divisor-of-product-divides-factor» : ∀ x y z : Rat,
   «nonneg-int-mod» (x * y) z = 0 → «nonneg-int-gcd» y z = 1 →
