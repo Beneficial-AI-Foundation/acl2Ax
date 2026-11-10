@@ -286,7 +286,13 @@
   {
    "path": "arithmetic-3/pass1/basic-arithmetic-helper.lisp",
    "cert": true,
-   "status": "pending"
+   "status": "axioms generated, lake build passes",
+   "check": {
+    "requested": "1",
+    "passes": 1,
+    "hash": "2a28bea62623b50ea603010bf89bc17db2936981beae88259c2d71fe8d3705d5",
+    "result": "clean"
+   }
   },
   {
    "path": "arithmetic-3/pass1/basic-arithmetic.lisp",

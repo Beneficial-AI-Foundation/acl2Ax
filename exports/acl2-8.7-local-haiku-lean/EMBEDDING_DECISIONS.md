@@ -58,6 +58,7 @@ This file records every deviation from the ACL2 source in the Lean axioms.
 40. Rule-set bookkeeping forms are not generated. These are `in-theory`, `deftheory`, `theory-invariant`, and the `enable` and `disable` forms they contain. They select which rewrite rules the ACL2 prover uses, and they state no theorem about values. Each theorem they refer to is still generated as its own axiom.
 12. A reader conditional that excludes a form in standard ACL2 excludes its axiom, and the exclusion is recorded.
 55. arithmetic-3/bind-free/banner.lisp holds one `make-event` form, which prints an observation. It has no `include-book`, no `defun` and no theorem. Its module imports `ACL2.Base` only, and it has no axiom.
+56. arithmetic-3/pass1/basic-arithmetic-helper.lisp. The book has no include-book form, so the module imports only ACL2.Base. The statements range over CRat, because the ACL2 numbers of the book include complex values, as in the arithmetic-2 template. The book has six local theorems, inside encapsulate forms, and they are private axioms. It has seven exported theorems, and they are public axioms. No form is under non-standard-analysis, and the book has no defun, defmacro or block comment. The book is a revision of arithmetic-2. Its only textual change is the hypothesis (syntaxp (not (quotep y))) of functional-commutativity-of-minus-*-right, which is the type syntaxpW (decisions 25 and 27). All other statements keep the template phrasing.
 
 ## Excluded books: metaprogramming
 
