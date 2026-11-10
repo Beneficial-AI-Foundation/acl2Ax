@@ -66,6 +66,7 @@ This file records every deviation from the ACL2 source in the Lean axioms.
 61. arithmetic-3/pass1/expt.lisp. The book `arithmetic-3/pass1/expt` has four local includes, `basic-arithmetic`, `inequalities`, `prefer-times` and `expt-helper`, and no non-local include. Each is a plain `import`. The module has 26 axioms, 23 public and 3 private. The private axioms are `expt-minus`, `expt-minus-redux` and `stupid-hack`, which are local theorems. The macro `fc` is the identity and is inlined. The book has no `defun`, so no opaque constant is written. It has no `#+:non-standard-analysis` form and no `#| |#` block comment, so no form is excluded. The variables follow the arithmetic-2 template. A variable that may be complex ranges over `CRat`, and a variable that the statement constrains to the rationals ranges over `Rat`. The arithmetic-3 text replaces `real/rationalp` with `rationalp` in the hypotheses of several theorems. Those statements use `rationalp` on `Rat`, which `Base.lean` defines as `True`.
 62. arithmetic-3/pass1/mini-theories.lisp. The book mini-theories of arithmetic-3/pass1 is a revision of arithmetic-2/pass1/mini-theories. Its ACL2 text differs from the arithmetic-2 text only in the license header line and a blank line, so the module reuses the arithmetic-2 module without change. The variables of the statements range over `CRat` where ACL2 allows complex values, and over `Rat` for the integer exponents `i` and `j`. The book has four local includes, basic-arithmetic, inequalities, prefer-times and expt, which are plain imports. The local defthm `Uniqueness-of-*-inverses-lemma-2` is a private axiom. The forms `in-theory`, `theory-invariant` and the `:hints` of `Uniqueness-of-*-inverses` are not generated (decision 40). The book has no defun, no defmacro and no excluded form.
 63. Sums and products of three or more arguments. The ACL2 macros `+` (axioms.lisp, line 2308) and `*` (axioms.lisp, line 3918) expand through `xxxjoin` (axioms.lisp, line 2289) to the right-nested binary form, so `(* x y z)` is `(* x (* y z))`. The Lean operators `+` and `*` associate to the left, so each such term is written with explicit parentheses, `x * (y * z)`. The earlier axioms that wrote `x * y * z` are corrected: helper-1, helper-2, helper-5, helper-9 and helper-10 of arithmetic-2/meta/cancel-terms-helper, minus-cancellation-on-right, minus-cancellation-on-left, /-cancellation-on-right and /-cancellation-on-left of the basic-arithmetic books of arithmetic-2 and arithmetic-3, stupid-hack of the two expt books, and Linear-combination-gcd=1 of arithmetic-2/pass1/numerator-and-denominator-helper. The implication of equal-+-x-y-0 in arithmetic-2/pass1/basic-arithmetic now has its biconditional in parentheses, because `→` binds tighter than `↔` in Lean.
+64. arithmetic-3/pass1/non-linear.lisp. The book `arithmetic-3/pass1/non-linear` has two local includes, `basic-arithmetic` and `expt`, and no non-local include. The module imports both as plain imports, and they are not re-exported. The book has 30 `defthm` forms, all outside `local`, so all 30 are `public axiom`, and no `private axiom` is generated. No form is under `#+:non-standard-analysis`, so no form is excluded. The book has no `defun`, no `defmacro` and no `#| |#` block comment. The `local (in-theory ...)` form, the `in-theory` forms and `in-arithmetic-theory` are rule-set bookkeeping and are not generated (general decision 40). Variables that the statement leaves unconstrained range over `CRat`, and variables under `rationalp` range over `Rat` (general decisions 14, 17 and 23). Exponents are `Rat`, as in `expt.lean` and general decision 29. The `syntaxp` hypotheses are `syntaxpW` (general decision 25). The phrasing of the `expt` statements follows `arithmetic-2/pass1/expt.lean`. The arithmetic-2 template `arithmetic-2/meta/non-linear.lean` covers the `real/rationalp` monotonicity statements, which this book does not contain.
 
 ## Excluded books: metaprogramming
 
@@ -1177,3 +1178,123 @@ No deviation in the statement. The theorem is new with respect to the arithmetic
 ### expt-minus-redux
 
 New in arithmetic-3, absent from the template. It is local, so it is a `private axiom`. The ACL2 exponent `(* -1 i)` is written `-1 * i`. The `:hints` are dropped.
+
+### arith-associativity-of-*
+
+No deviation in the statement.
+
+### arith-commutativity-of-*
+
+No deviation in the statement.
+
+### arith-commutativity-2-of-*
+
+No deviation in the statement.
+
+### arith-unicity-of-1
+
+No deviation in the statement. `fix` on `CRat` is `fixC`.
+
+### arith-times-zero
+
+No deviation in the statement.
+
+### arith-inverse-of-*-1
+
+The variable `x` ranges over `Rat`, because `rationalp x` constrains it to the reals (general decision 17). The ACL2 `(/ x)` is `x⁻¹`.
+
+### arith-inverse-of-*-2
+
+The variable `x` ranges over `Rat` (general decision 17), and it is coerced with `↑` to `CRat` where the complex product occurs. The variable `y` ranges over `CRat`.
+
+### arith-inverse-of-*-3
+
+The variable `x` ranges over `Rat` (general decision 17), and it is coerced with `↑` to `CRat`. The variable `y` ranges over `CRat`.
+
+### arith-functional-self-inversion-of-/
+
+No deviation in the statement.
+
+### arith-distributivity-of-/-over-*
+
+No deviation in the statement.
+
+### arith-functional-commutativity-of-minus-*-right
+
+No deviation in the statement.
+
+### arith-functional-commutativity-of-minus-*-left
+
+No deviation in the statement.
+
+### arith-reciprocal-minusa
+
+No deviation in the statement.
+
+### arith-distributivity-1
+
+No deviation in the statement.
+
+### arith-distributivity-2
+
+No deviation in the statement.
+
+### arith-fold-consts-in-*
+
+Both `(syntaxp (quotep c))` and `(syntaxp (quotep d))` are represented as the hypothesis `syntaxpW` (general decision 25), so the `quotep` condition is not represented. The representation is deferred to the user.
+
+### arith-expt-0
+
+The exponent `i` ranges over `Rat`, as the template `expt.lean` states (general decision 29). The ACL2 variable `i` is unconstrained, so the Lean statement quantifies over fewer values than the ACL2 statement.
+
+### arith-expt-1
+
+The exponent `i` ranges over `Rat`, as in `arith-expt-0` (general decision 29).
+
+### arith-expt-minus-1
+
+No deviation in the statement. The exponent `-1` is a `Rat`, and `(/ x)` is `CRat.inv x`.
+
+### arith-functional-commutativity-of-expt-/
+
+The exponent `i` ranges over `Rat` (general decision 29). The sides follow the arithmetic-3 text, so the left side is `CRat.inv (exptC r i)`, which is the reverse of the template's `functional-commutativity-of-expt-/-base`.
+
+### arith-expt-minus-exponent
+
+The exponent `i` ranges over `Rat` (general decision 29).
+
+### arith-expt-negative-constant-exponent
+
+The hypothesis `(syntaxp (quotep i))` is represented as `syntaxpW` (general decision 25), so the `quotep` condition is not represented. The exponents `i` and `j` range over `Rat` (general decision 29).
+
+### arith-exponents-multiply
+
+The exponents `i` and `j` range over `Rat` (general decision 29). The hypotheses `integerp i` and `integerp j` are kept, and `integerp` on `Rat` is the Base interpretation.
+
+### arith-distributivity-of-expt-over-*
+
+The exponent `i` ranges over `Rat` (general decision 29).
+
+### arith-fix-revealed
+
+The hypothesis `acl2-numberp x` is `acl2NumberPC x`, which is constant `True` on `CRat`. No deviation otherwise.
+
+### arith-Rational-implies2
+
+The variable `x` ranges over `Rat`, because `rationalp x` constrains it to the rationals. The ACL2 `numerator` and `denominator` of a rational are written inline as the Lean projections `x.num` and `x.den` coerced to `Rat`, because `Base.lean` has `numeratorC` and `denominatorC` only for `CRat`. No primitive is added to Base.
+
+### arith-exponents-add-1
+
+The exponents `i` and `j` range over `Rat` (general decision 29). The `not equal` hypothesis is `¬ (i + j = 0)`, and the conclusion has no `if`, as the arithmetic-3 text has none.
+
+### arith-exponents-add-for-nonpos-exponentsa
+
+The exponents `i` and `j` range over `Rat` (general decision 29).
+
+### arith-exponents-add-for-nonneg-exponentsa
+
+The exponents `i` and `j` range over `Rat` (general decision 29).
+
+### arith-exponents-add-2
+
+The base `r` ranges over `CRat`, and the exponents `i` and `j` range over `Rat` (general decision 29).

@@ -352,7 +352,13 @@
   {
    "path": "arithmetic-3/pass1/non-linear.lisp",
    "cert": true,
-   "status": "pending"
+   "status": "axioms generated, lake build passes",
+   "check": {
+    "requested": "1",
+    "passes": 1,
+    "hash": "451deaef2d0b075abc699f54cc1b83aa6919f0b47d4d958c040537a57e88203a",
+    "result": "clean"
+   }
   },
   {
    "path": "arithmetic-3/pass1/num-and-denom-helper.lisp",
