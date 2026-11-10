@@ -341,7 +341,13 @@
   {
    "path": "arithmetic-3/pass1/mini-theories.lisp",
    "cert": true,
-   "status": "pending"
+   "status": "axioms generated, lake build passes",
+   "check": {
+    "requested": "1",
+    "passes": 1,
+    "hash": "db91cde6ed465eb4c845de3308fee5e56b049220244ea1df4f2f623cf701aa6a",
+    "result": "clean"
+   }
   },
   {
    "path": "arithmetic-3/pass1/non-linear.lisp",
