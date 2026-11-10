@@ -194,7 +194,13 @@
   {
    "path": "arithmetic-3/bind-free/default-hint.lisp",
    "cert": true,
-   "status": "pending"
+   "status": "excluded: metaprogramming",
+   "check": {
+    "requested": "1",
+    "passes": 1,
+    "hash": "a3429d1664d581de02dd57b4171727557ee412693255eaac4d383cecf38de5eb",
+    "result": "clean"
+   }
   },
   {
    "path": "arithmetic-3/bind-free/integerp-meta.lisp",
