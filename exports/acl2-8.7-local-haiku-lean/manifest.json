@@ -173,7 +173,13 @@
   {
    "path": "arithmetic-3/bind-free/building-blocks.lisp",
    "cert": true,
-   "status": "pending"
+   "status": "excluded: metaprogramming",
+   "check": {
+    "requested": "1",
+    "passes": 1,
+    "hash": "a5dd489350406ccee5cb52bf19d7f345035968546551b7b049e568bb1f4cbf96",
+    "result": "clean"
+   }
   },
   {
    "path": "arithmetic-3/bind-free/collect.lisp",
