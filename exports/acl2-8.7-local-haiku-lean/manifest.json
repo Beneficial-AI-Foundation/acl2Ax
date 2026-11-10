@@ -235,7 +235,13 @@
   {
    "path": "arithmetic-3/bind-free/remove-weak-inequalities.lisp",
    "cert": true,
-   "status": "pending"
+   "status": "excluded: metaprogramming",
+   "check": {
+    "requested": "1",
+    "passes": 1,
+    "hash": "35af75d649b3bad40623a430b9e1c5637ae70cc27dfff9a8586c944cc8341159",
+    "result": "clean"
+   }
   },
   {
    "path": "arithmetic-3/bind-free/simplify-helper.lisp",
