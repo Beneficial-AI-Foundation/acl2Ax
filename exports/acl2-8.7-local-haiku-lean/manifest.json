@@ -396,7 +396,13 @@
   {
    "path": "arithmetic-3/pass1/top.lisp",
    "cert": true,
-   "status": "pending"
+   "status": "no theorems outside comments; imports only, lake build passes",
+   "check": {
+    "requested": "1",
+    "passes": 1,
+    "hash": "948e9bd3f353adaaaf26a12ad570e5984f84862e60401fb953fc4a09d42ab33a",
+    "result": "clean"
+   }
   },
   {
    "path": "arithmetic-3/top.lisp",
