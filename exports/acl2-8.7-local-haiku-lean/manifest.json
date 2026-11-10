@@ -349,7 +349,13 @@
   {
    "path": "arithmetic-3/pass1/prefer-times.lisp",
    "cert": true,
-   "status": "pending"
+   "status": "axioms generated, lake build passes",
+   "check": {
+    "requested": "1",
+    "passes": 1,
+    "hash": "abdaf1226732538da68cd153f50450954440bf096604a8263bc223145dc5af29",
+    "result": "clean"
+   }
   },
   {
    "path": "arithmetic-3/pass1/top.lisp",
