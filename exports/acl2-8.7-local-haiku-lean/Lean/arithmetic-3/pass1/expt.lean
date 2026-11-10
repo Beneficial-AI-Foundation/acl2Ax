@@ -8,38 +8,38 @@ import «arithmetic-3».pass1.«expt-helper»
 
 namespace ACL2.«arithmetic-3».pass1.«expt»
 
--- expt.lisp, arithmetic-3 revision. `expt` is exptC, on complex rationals, with a rational exponent.
+-- expt.lisp, arithmetic-3 revision. `expt` is exptC, on complex rationals, with an exponent in CRat (decision 69).
 -- `fc` is the identity macro (expt.lisp, line 16), so `(fc e)` is written as `e`.
 -- The `(in-theory ...)`, `:rule-classes` and `:hints` are dropped.
 
-public axiom «expt-type-prescription-rationalp» : ∀ r : CRat, ∀ i : Rat,
+public axiom «expt-type-prescription-rationalp» : ∀ r i : CRat,
   realrationalpC r → realrationalpC (exptC r i)
 
-public axiom «expt-type-prescription-positive-1» : ∀ r i : Rat,
+public axiom «expt-type-prescription-positive-1» : ∀ r : Rat, ∀ i : CRat,
   0 < r → rationalp r → (0 : CRat) < exptC (↑r : CRat) i
 
-public axiom «expt-type-prescription-positive-2» : ∀ r i : Rat,
+public axiom «expt-type-prescription-positive-2» : ∀ r : Rat, ∀ i : CRat,
   0 ≤ r → rationalp r → acl2le 0 (exptC (↑r : CRat) i)
 
-public axiom «expt-type-prescription-nonzero» : ∀ r : CRat, ∀ i : Rat,
+public axiom «expt-type-prescription-nonzero» : ∀ r i : CRat,
   acl2NumberPC r → ¬ (r = 0) → ¬ (exptC r i = 0)
 
-public axiom «expt-type-prescription-integerp» : ∀ r i : Rat,
-  0 ≤ i → integerp r → integerpC (exptC (↑r : CRat) i)
+public axiom «expt-type-prescription-integerp» : ∀ r : Rat, ∀ i : CRat,
+  acl2le 0 i → integerp r → integerpC (exptC (↑r : CRat) i)
 
-public axiom «equal-expt-0» : ∀ x : CRat, ∀ i : Rat,
-  (exptC x i = 0) ↔ (fixC x = 0 ∧ ¬ (ifixR i = 0))
+public axiom «equal-expt-0» : ∀ x i : CRat,
+  (exptC x i = 0) ↔ (fixC x = 0 ∧ ¬ (ifixC i = 0))
 
-public axiom «expt-0» : ∀ x : CRat, ∀ i : Rat,
-  (exptC x 0 = 1) ∧ (exptC 0 i = (if zipR i then 1 else 0))
+public axiom «expt-0» : ∀ x i : CRat,
+  (exptC x 0 = 1) ∧ (exptC 0 i = (if zipC i then 1 else 0))
 
-public axiom «expt-1» : ∀ x : CRat, ∀ i : Rat,
+public axiom «expt-1» : ∀ x i : CRat,
   (exptC x 1 = fixC x) ∧ (exptC 1 i = 1)
 
-private axiom «expt-minus» : ∀ r : CRat, ∀ i : Rat,
+private axiom «expt-minus» : ∀ r i : CRat,
   exptC r (-i) = CRat.inv (exptC r i)
 
-private axiom «expt-minus-redux» : ∀ r : CRat, ∀ i : Rat,
+private axiom «expt-minus-redux» : ∀ r i : CRat,
   exptC r (-1 * i) = CRat.inv (exptC r i)
 
 public axiom «exponents-add-1» : ∀ r : CRat, ∀ i j : Rat,
@@ -58,10 +58,10 @@ public axiom «exponents-add-2» : ∀ r : CRat, ∀ i j : Rat,
   ¬ (0 = r) → acl2NumberPC r → integerp i → integerp j →
   exptC r (i + j) = exptC r i * exptC r j
 
-public axiom «distributivity-of-expt-over-*» : ∀ a b : CRat, ∀ i : Rat,
+public axiom «distributivity-of-expt-over-*» : ∀ a b i : CRat,
   exptC (a * b) i = exptC a i * exptC b i
 
-public axiom «functional-commutativity-of-expt-/-base» : ∀ r : CRat, ∀ i : Rat,
+public axiom «functional-commutativity-of-expt-/-base» : ∀ r i : CRat,
   exptC (CRat.inv r) i = CRat.inv (exptC r i)
 
 public axiom «Exponents-multiply» : ∀ r : CRat, ∀ i j : Rat,
@@ -84,7 +84,7 @@ public axiom «Expt-is-weakly-decreasing-for-pos-base<1» : ∀ r i j : Rat,
   acl2le (exptC (↑r : CRat) j) (exptC (↑r : CRat) i)
 
 -- stupid-hack (local)
-private axiom «stupid-hack» : ∀ x : Rat, ∀ a : CRat, ∀ b : Rat,
+private axiom «stupid-hack» : ∀ x : Rat, ∀ a b : CRat,
   rationalp x → ¬ (x = 0) →
   (↑x : CRat) * (CRat.inv (↑x : CRat) * exptC a b) = exptC a b
 

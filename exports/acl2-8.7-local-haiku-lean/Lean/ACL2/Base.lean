@@ -70,6 +70,8 @@ structure CRat where
   im : Rat
   deriving DecidableEq
 
+instance : Inhabited CRat := ⟨⟨0, 0⟩⟩
+
 namespace CRat
 
 instance : OfNat CRat n := ⟨⟨n, 0⟩⟩
@@ -163,16 +165,34 @@ def exptCInt (r : CRat) (i : Int) : CRat :=
 termination_by i.natAbs
 decreasing_by all_goals omega
 
-/-- ACL2 `expt` on complex rationals with a rational exponent: the integer case, and 1 for a
-non-integer exponent, because `zip` holds for it. -/
-def exptC (r : CRat) (i : Rat) : CRat := if integerp i then exptCInt r i.num else 1
+instance (c : CRat) : Decidable (integerpC c) :=
+  inferInstanceAs (Decidable (c.im = 0 ∧ c.re.den = 1))
+
+instance (x y : CRat) : Decidable (acl2le x y) :=
+  inferInstanceAs (Decidable (¬ (y < x)))
+
+/-- ACL2 `ifix` on complex rationals: `(if (integerp i) i 0)`. -/
+def ifixC (i : CRat) : CRat := if integerpC i then i else 0
+
+/-- ACL2 `zip` on complex rationals: `(if (integerp x) (= x 0) t)`, as a Prop. -/
+def zipC (i : CRat) : Prop := integerpC i → i = 0
+
+instance (i : CRat) : Decidable (zipC i) :=
+  inferInstanceAs (Decidable (integerpC i → i = 0))
+
+/-- ACL2 `nfix` on complex rationals: `(if (and (integerp x) (>= x 0)) x 0)`. -/
+def nfixC (x : CRat) : CRat := if integerpC x ∧ acl2le 0 x then x else 0
+
+/-- ACL2 `expt` on complex rationals. The exponent is any ACL2 number, so it ranges over `CRat`
+(decision 69): the integer case, and 1 for a non-integer exponent, because `zip` holds for it. -/
+def exptC (r : CRat) (i : CRat) : CRat := if integerpC i then exptCInt r i.re.num else 1
 
 /-- ACL2 `denominator` on complex rationals: `completion-of-denominator` (axioms.lisp, line 25561). -/
 def denominatorC (c : CRat) : Rat := if c.im = 0 then ((c.re.den : Int) : Rat) else 1
 
 /-- ACL2 `nonnegative-integer-quotient`, a system function (axioms.lisp, line 6889). Its
 signature only, as for book functions (decision 41). -/
-opaque «nonnegative-integer-quotient» : Rat → Rat → Rat
+opaque «nonnegative-integer-quotient» : CRat → CRat → CRat
 
 /-! ## Association lists
 

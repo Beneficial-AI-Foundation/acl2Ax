@@ -14,7 +14,7 @@ namespace ACL2.«arithmetic-3».pass1.«expt-helper»
 public axiom «expt-crock» : ∀ x : CRat,
   exptC x 1 = fixC x
 
-private opaque «Math-induction-start-at-k» : Rat → Rat → Prop
+private opaque «Math-induction-start-at-k» : CRat → CRat → Prop
 
 private axiom «justify-induction» : ∀ i r : Rat,
   integerp i → 1 < r → rationalp r →

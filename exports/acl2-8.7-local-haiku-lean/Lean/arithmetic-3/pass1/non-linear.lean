@@ -63,22 +63,22 @@ public axiom «arith-fold-consts-in-*» : ∀ c d x : CRat,
   syntaxpW → syntaxpW →
   c * (d * x) = (c * d) * x
 
-public axiom «arith-expt-0» : ∀ x : CRat, ∀ i : Rat,
-  (exptC x 0 = 1) ∧ (exptC 0 i = (if zipR i then 1 else 0))
+public axiom «arith-expt-0» : ∀ x i : CRat,
+  (exptC x 0 = 1) ∧ (exptC 0 i = (if zipC i then 1 else 0))
 
-public axiom «arith-expt-1» : ∀ x : CRat, ∀ i : Rat,
+public axiom «arith-expt-1» : ∀ x i : CRat,
   (exptC x 1 = fixC x) ∧ (exptC 1 i = 1)
 
 public axiom «arith-expt-minus-1» : ∀ x : CRat,
   exptC x (-1) = CRat.inv x
 
-public axiom «arith-functional-commutativity-of-expt-/» : ∀ r : CRat, ∀ i : Rat,
+public axiom «arith-functional-commutativity-of-expt-/» : ∀ r i : CRat,
   CRat.inv (exptC r i) = exptC (CRat.inv r) i
 
-public axiom «arith-expt-minus-exponent» : ∀ r : CRat, ∀ i : Rat,
+public axiom «arith-expt-minus-exponent» : ∀ r i : CRat,
   exptC r (-i) = exptC (CRat.inv r) i
 
-public axiom «arith-expt-negative-constant-exponent» : ∀ r : CRat, ∀ i j : Rat,
+public axiom «arith-expt-negative-constant-exponent» : ∀ r i j : CRat,
   syntaxpW →
   exptC (CRat.inv r) (i * j) = exptC r ((-i) * j)
 
@@ -86,7 +86,7 @@ public axiom «arith-exponents-multiply» : ∀ r : CRat, ∀ i j : Rat,
   integerp i → integerp j →
   exptC (exptC r i) j = exptC r (i * j)
 
-public axiom «arith-distributivity-of-expt-over-*» : ∀ a b : CRat, ∀ i : Rat,
+public axiom «arith-distributivity-of-expt-over-*» : ∀ a b i : CRat,
   exptC (a * b) i = exptC a i * exptC b i
 
 public axiom «arith-fix-revealed» : ∀ x : CRat,

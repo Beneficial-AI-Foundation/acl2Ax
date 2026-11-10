@@ -13,23 +13,23 @@ namespace ACL2.«arithmetic-2».pass1.«numerator-and-denominator-helper»
 -- The `:hints`, `in-theory` and `disable` forms are dropped (decision 40).
 -- The local defun induct-on-nonneg-int is generated as an opaque signature (decision 37, revised).
 
-public opaque «nonneg-int-mod» : Rat → Rat → Rat
+public opaque «nonneg-int-mod» : CRat → CRat → CRat
 
-private opaque «induct-on-nonneg-int» : Rat → Prop
+private opaque «induct-on-nonneg-int» : CRat → Prop
 
-public opaque «nonneg-int-gcd» : Rat → Rat → Rat
+public opaque «nonneg-int-gcd» : CRat → CRat → CRat
 
-public opaque «nonneg-int-gcd-multiplier1» : Rat → Rat → Rat
+public opaque «nonneg-int-gcd-multiplier1» : CRat → CRat → CRat
 
-public opaque «nonneg-int-gcd-multiplier2» : Rat → Rat → Rat
+public opaque «nonneg-int-gcd-multiplier2» : CRat → CRat → CRat
 
-public axiom «Nonneg-int-mod-<-divisor» : ∀ n d : Rat,
+public axiom «Nonneg-int-mod-<-divisor» : ∀ n : CRat, ∀ d : Rat,
   integerp d → 0 < d → «nonneg-int-mod» n d < d
 
-public axiom «Nonneg-int-mod-nonnegative-integer-quotient» : ∀ n d : Rat,
-  «nonneg-int-mod» n d + nfix d * «nonnegative-integer-quotient» n d = nfix n
+public axiom «Nonneg-int-mod-nonnegative-integer-quotient» : ∀ n d : CRat,
+  «nonneg-int-mod» n d + nfixC d * «nonnegative-integer-quotient» n d = nfixC n
 
-public axiom «Nonneg-int-mod-0» : ∀ d : Rat,
+public axiom «Nonneg-int-mod-0» : ∀ d : CRat,
   «nonneg-int-mod» 0 d = 0
 
 public axiom «Nonneg-int-mod-+-*» : ∀ j n x : Rat,
@@ -45,8 +45,8 @@ public axiom «Nonneg-int-mod-+-*-nonneg-int-mod-1» : ∀ j k n x : Rat,
   0 ≤ j → 0 ≤ k → 0 < n → 0 ≤ x → «nonneg-int-mod» k n = 0 →
   «nonneg-int-mod» (x + j * k) n = «nonneg-int-mod» x n
 
-public axiom «Divisor-nonnegative-integer-quotient» : ∀ n d : Rat,
-  «nonneg-int-mod» n d = 0 → nfix d * «nonnegative-integer-quotient» n d = nfix n
+public axiom «Divisor-nonnegative-integer-quotient» : ∀ n d : CRat,
+  «nonneg-int-mod» n d = 0 → nfixC d * «nonnegative-integer-quotient» n d = nfixC n
 
 public axiom «Left-nonneg-int-mod-*» : ∀ j n : Rat,
   integerp j → integerp n → 0 ≤ n → «nonneg-int-mod» (j * n) n = 0
@@ -54,58 +54,58 @@ public axiom «Left-nonneg-int-mod-*» : ∀ j n : Rat,
 public axiom «Right-nonneg-int-mod-*» : ∀ j n : Rat,
   integerp j → integerp n → 0 ≤ n → «nonneg-int-mod» (n * j) n = 0
 
-public axiom «Nonneg-int-mod-*-0» : ∀ j y n : Rat,
+public axiom «Nonneg-int-mod-*-0» : ∀ j y : Rat, ∀ n : CRat,
   integerp j → integerp y → 0 ≤ j → «nonneg-int-mod» j n = 0 →
   «nonneg-int-mod» (j * y) n = 0
 
-public axiom «Nonneg-Int-mod-+-0» : ∀ x y n : Rat,
-  integerp x → 0 ≤ x → 0 ≤ y → «nonneg-int-mod» x n = 0 → «nonneg-int-mod» y n = 0 →
+public axiom «Nonneg-Int-mod-+-0» : ∀ x : Rat, ∀ y n : CRat,
+  integerp x → 0 ≤ x → acl2le 0 y → «nonneg-int-mod» x n = 0 → «nonneg-int-mod» y n = 0 →
   «nonneg-int-mod» (x + y) n = 0
 
-public axiom «Nonneg-Int-mod-minus-0» : ∀ x y n : Rat,
+public axiom «Nonneg-Int-mod-minus-0» : ∀ x y : Rat, ∀ n : CRat,
   integerp x → integerp y → 0 ≤ y → «nonneg-int-mod» x n = 0 → «nonneg-int-mod» y n = 0 →
   «nonneg-int-mod» (x - y) n = 0
 
-public axiom «Linear-combination-nonneg-int-mod» : ∀ a b x y n : Rat,
+public axiom «Linear-combination-nonneg-int-mod» : ∀ a b x y : Rat, ∀ n : CRat,
   integerp a → integerp b → integerp x → integerp y → 0 ≤ a → 0 ≤ b →
   «nonneg-int-mod» a n = 0 → «nonneg-int-mod» b n = 0 →
   «nonneg-int-mod» (a * x + b * y) n = 0
 
-public axiom «Divisor-<=» : ∀ n d : Rat,
-  integerp n → 0 < n → «nonneg-int-mod» n d = 0 → d ≤ n
+public axiom «Divisor-<=» : ∀ n : Rat, ∀ d : CRat,
+  integerp n → 0 < n → «nonneg-int-mod» n d = 0 → acl2le d n
 
-public axiom «Nonneg-int-mod-1» : ∀ n : Rat,
+public axiom «Nonneg-int-mod-1» : ∀ n : CRat,
   «nonneg-int-mod» n 1 = 0
 
-public axiom «Nonneg-int-gcd->-0» : ∀ n d : Rat,
-  ((integerp d ∧ 0 < d) ∨ (integerp n ∧ 0 < n)) → 0 < «nonneg-int-gcd» n d
+public axiom «Nonneg-int-gcd->-0» : ∀ n d : CRat,
+  ((integerpC d ∧ 0 < d) ∨ (integerpC n ∧ 0 < n)) → 0 < «nonneg-int-gcd» n d
 
-public axiom «Nonneg-int-gcd-is-COMMON-divisor» : ∀ x y : Rat,
+public axiom «Nonneg-int-gcd-is-COMMON-divisor» : ∀ x y : CRat,
   «nonneg-int-mod» x («nonneg-int-gcd» x y) = 0 ∧ «nonneg-int-mod» y («nonneg-int-gcd» x y) = 0
 
-public axiom «Linear-combination-for-nonneg-int-gcd» : ∀ x y : Rat,
+public axiom «Linear-combination-for-nonneg-int-gcd» : ∀ x y : CRat,
   «nonneg-int-gcd» x y =
-    nfix x * «nonneg-int-gcd-multiplier1» x y + nfix y * «nonneg-int-gcd-multiplier2» x y
+    nfixC x * «nonneg-int-gcd-multiplier1» x y + nfixC y * «nonneg-int-gcd-multiplier2» x y
 
-public axiom «Nonneg-int-gcd-is-LARGEST-common-divisor-mod» : ∀ x y d : Rat,
+public axiom «Nonneg-int-gcd-is-LARGEST-common-divisor-mod» : ∀ x y d : CRat,
   «nonneg-int-mod» x d = 0 → «nonneg-int-mod» y d = 0 →
   «nonneg-int-mod» («nonneg-int-gcd» x y) d = 0
 
-public axiom «Nonneg-int-gcd-is-LARGEST-common-divisor-<=» : ∀ x y d : Rat,
-  ((integerp x ∧ 0 < x) ∨ (integerp y ∧ 0 < y)) →
+public axiom «Nonneg-int-gcd-is-LARGEST-common-divisor-<=» : ∀ x y d : CRat,
+  ((integerpC x ∧ 0 < x) ∨ (integerpC y ∧ 0 < y)) →
   «nonneg-int-mod» x d = 0 → «nonneg-int-mod» y d = 0 →
-  d ≤ «nonneg-int-gcd» x y
+  acl2le d («nonneg-int-gcd» x y)
 
 public axiom «Nonnegative-integer-quotient-gcd» : ∀ x y : Rat,
   integerp x → integerp y → 0 ≤ x → 0 ≤ y →
   («nonneg-int-gcd» x y * «nonnegative-integer-quotient» x («nonneg-int-gcd» x y) = x) ∧
   («nonneg-int-gcd» x y * «nonnegative-integer-quotient» y («nonneg-int-gcd» x y) = y)
 
-public axiom «Linear-combination-gcd=1» : ∀ x y z : Rat,
+public axiom «Linear-combination-gcd=1» : ∀ x : Rat, ∀ y z : CRat,
   integerp x → «nonneg-int-gcd» y z = 1 →
   x * (y * «nonneg-int-gcd-multiplier1» y z) + x * (z * «nonneg-int-gcd-multiplier2» y z) = x
 
-public axiom «Divisor-of-product-divides-factor» : ∀ x y z : Rat,
+public axiom «Divisor-of-product-divides-factor» : ∀ x y : Rat, ∀ z : CRat,
   «nonneg-int-mod» (x * y) z = 0 → «nonneg-int-gcd» y z = 1 →
   integerp x → integerp y → 0 ≤ x → 0 ≤ y →
   «nonneg-int-mod» x z = 0
@@ -116,7 +116,7 @@ public axiom «Nonneg-int-mod-abs-+-*» : ∀ j n x : Rat,
 
 public axiom «Nonneg-int-gcd-abs->=» : ∀ j n x : Rat,
   integerp j → integerp n → integerp x → 0 < n →
-  «nonneg-int-gcd» (abs x) n ≤ «nonneg-int-gcd» (abs (x + j * n)) n
+  acl2le («nonneg-int-gcd» (abs x) n) («nonneg-int-gcd» (abs (x + j * n)) n)
 
 public axiom «Nonneg-int-mod-abs» : ∀ j n x : Rat,
   integerp j → integerp n → integerp x → 0 < n →
@@ -124,7 +124,7 @@ public axiom «Nonneg-int-mod-abs» : ∀ j n x : Rat,
 
 public axiom «Nonneg-int-gcd-abs-<=» : ∀ j n x : Rat,
   integerp j → integerp n → integerp x → 0 < n →
-  «nonneg-int-gcd» (abs (x + j * n)) n ≤ «nonneg-int-gcd» (abs x) n
+  acl2le («nonneg-int-gcd» (abs (x + j * n)) n) («nonneg-int-gcd» (abs x) n)
 
 public axiom «Nonneg-int-gcd-abs» : ∀ j n x : Rat,
   integerp j → integerp n → integerp x → 0 < n →
@@ -140,7 +140,7 @@ public axiom «Cross-product-factor» : ∀ a b c d : Rat,
   0 ≤ a → 0 ≤ b → 0 ≤ c → 0 ≤ d →
   («nonneg-int-mod» c a = 0 ∧ «nonneg-int-mod» d b = 0)
 
-public axiom «Nonneg-int-gcd-1-right» : ∀ x : Rat,
+public axiom «Nonneg-int-gcd-1-right» : ∀ x : CRat,
   «nonneg-int-gcd» x 1 = 1
 
 public axiom «Nonneg-int-gcd-1-left» : ∀ x : Rat,
