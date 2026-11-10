@@ -5,11 +5,12 @@ import «arithmetic-2».pass1.«basic-arithmetic»
 
 namespace ACL2.«arithmetic-2».pass1.«inequalities»
 
--- inequalities.lisp. All variables are real, so they range over Rat. `(fc e)` is the identity
+-- inequalities.lisp. A variable under a rationalp or real/rationalp hypothesis ranges over Rat. An unconstrained
+-- variable ranges over CRat, with `<` as the lexicographic order (decisions 15 and 68). `(fc e)` is the identity
 -- macro (line 15) and is inlined. `cond` without a true clause is False (decision 19).
 -- The local include of basic-arithmetic is imported (decision 33).
 
-private axiom «iff-equal» : ∀ w x y z : Rat,
+private axiom «iff-equal» : ∀ w x y z : CRat,
   ((w < x) ↔ (y < z)) ↔ ((w < x) ↔ (y < z))
 
 public axiom «/-preserves-positive» : ∀ x : Rat,
@@ -18,19 +19,19 @@ public axiom «/-preserves-positive» : ∀ x : Rat,
 public axiom «/-preserves-negative» : ∀ x : Rat,
   realrationalp x → (x⁻¹ < 0 ↔ x < 0)
 
-public axiom «<-0-minus» : ∀ x : Rat, (0 < -x ↔ x < 0)
+public axiom «<-0-minus» : ∀ x : CRat, (0 < -x ↔ x < 0)
 
-public axiom «<-minus-zero» : ∀ x : Rat, (-x < 0 ↔ 0 < x)
+public axiom «<-minus-zero» : ∀ x : CRat, (-x < 0 ↔ 0 < x)
 
-public axiom «<-minus-minus» : ∀ x y : Rat, (-x < -y ↔ y < x)
+public axiom «<-minus-minus» : ∀ x y : CRat, (-x < -y ↔ y < x)
 
-public axiom «<-0-+-negative-1» : ∀ x y : Rat, (0 < -y + x ↔ y < x)
+public axiom «<-0-+-negative-1» : ∀ x y : CRat, (0 < -y + x ↔ y < x)
 
-public axiom «<-0-+-negative-2» : ∀ x y : Rat, (0 < x + -y ↔ y < x)
+public axiom «<-0-+-negative-2» : ∀ x y : CRat, (0 < x + -y ↔ y < x)
 
-public axiom «<-+-negative-0-1» : ∀ x y : Rat, (-y + x < 0 ↔ x < y)
+public axiom «<-+-negative-0-1» : ∀ x y : CRat, (-y + x < 0 ↔ x < y)
 
-public axiom «<-+-negative-0-2» : ∀ x y : Rat, (x + -y < 0 ↔ x < y)
+public axiom «<-+-negative-0-2» : ∀ x y : CRat, (x + -y < 0 ↔ x < y)
 
 public axiom «<-*-0» : ∀ x y : Rat,
   realrationalp x → realrationalp y →

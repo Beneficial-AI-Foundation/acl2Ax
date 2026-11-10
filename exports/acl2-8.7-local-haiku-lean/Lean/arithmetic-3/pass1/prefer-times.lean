@@ -12,7 +12,7 @@ namespace ACL2.«arithmetic-3».pass1.«prefer-times»
 -- The local includes basic-arithmetic and inequalities are imported (decision 33).
 -- The set-default-hints form, the in-arithmetic-theory form and the deftheory and in-theory forms are not generated.
 
-private axiom «iff-equal» : ∀ w x y z : Rat,
+private axiom «iff-equal» : ∀ w x y z : CRat,
   ((w < x) ↔ (y < z)) ↔ ((w < x) ↔ (y < z))
 
 public axiom «equal-*-/-1» : ∀ x y z : CRat,

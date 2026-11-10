@@ -12,7 +12,7 @@ namespace ACL2.«arithmetic-2».pass1.«mini-theories»
 -- bookkeeping and are not generated. `(fix x)` is fixC x, `(/ x)` is CRat.inv x, and `expt`
 -- is exptC (decision 29). The local includes are imported (decision 33).
 
-public axiom «rewrite-linear-equalities-to-iff» : ∀ w x y z : Rat,
+public axiom «rewrite-linear-equalities-to-iff» : ∀ w x y z : CRat,
   ((w < x) ↔ (y < z)) ↔ ((w < x) ↔ (y < z))
 
 private axiom «Uniqueness-of-*-inverses-lemma-2» : ∀ x y : CRat,

@@ -11,7 +11,7 @@ namespace ACL2.«arithmetic-2».pass1.«prefer-times»
 -- and `⁻¹` for Rat. `(fix x)` is fixC x. The `cond` without a true clause is False (decision 19).
 -- The local includes basic-arithmetic and inequalities are imported (decision 33).
 
-private axiom «iff-equal» : ∀ w x y z : Rat,
+private axiom «iff-equal» : ∀ w x y z : CRat,
   ((w < x) ↔ (y < z)) ↔ ((w < x) ↔ (y < z))
 
 public axiom «equal-*-/-1» : ∀ x y z : CRat,
