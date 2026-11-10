@@ -1,0 +1,639 @@
+<meta charset="utf-8">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>ACL2 building-blocks Blueprint</title>
+<style>/* Layout: a single column of nodes, each node a theorem with its ACL2 source and Lean statement. */
+:root {
+  --bg: #f5f4ef; --fg: #1c2230; --muted: #5d6578; --rule: #d9d6cc;
+  --panel: #ffffff; --accent: #1f6b67; --code-bg: #eceae2;
+  color-scheme: light;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121417; --fg: #e4e2dc; --muted: #9aa1b0; --rule: #2c313a;
+    --panel: #181b21; --accent: #7fd0c9; --code-bg: #20242c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121417; --fg: #e4e2dc; --muted: #9aa1b0; --rule: #2c313a;
+  --panel: #181b21; --accent: #7fd0c9; --code-bg: #20242c; color-scheme: dark;
+}
+html, body { margin: 0; }
+body {
+  background: var(--bg); color: var(--fg);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+  font-size: 14px;
+}
+main { max-width: 760px; margin: 0 auto; }
+h1 { font-size: 1.6rem; margin: 0 0 4px; text-wrap: balance; }
+h2 { font-size: 1.05rem; margin: 32px 0 12px; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0 0 20px; }
+.label { text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); }
+.status {
+  display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 12px 14px;
+  border: 1px solid var(--rule); border-radius: 6px; background: var(--panel);
+}
+.status div { min-width: 0; }
+.status b { display: block; font-weight: 600; font-variant-numeric: tabular-nums; }
+.ok { color: var(--accent); }
+.node {
+  background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+  padding: 12px 14px; margin: 0 0 12px; min-width: 0;
+}
+.node-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; align-items: baseline; }
+.node-name { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 600; overflow-wrap: anywhere; }
+.src { color: var(--muted); font-size: 0.8rem; white-space: nowrap; }
+pre {
+  background: var(--code-bg); color: var(--fg); border-radius: 4px;
+  padding: 8px 10px; margin: 10px 0 0; overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem;
+}
+.defs { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.def { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.def code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.85rem; }
+.def span { color: var(--muted); font-size: 0.85rem; }
+footer { margin-top: 32px; color: var(--muted); font-size: 0.8rem; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details.decisions { margin: 12px 0 0; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details.decisions { margin: 12px 0 0; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.acl2 { background: var(--code-bg); }
+.pair { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; margin-top: 10px; }
+.lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 2px; }
+.prose p, .prose li { font-size: 0.92rem; }
+.prose h3 { font-size: 0.98rem; margin: 18px 0 8px; }
+.prose ol { padding-left: 20px; margin: 6px 0; }
+.sub2 { margin: 2px 0 2px 20px; color: var(--muted); font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; margin: 8px 0; }
+table { border-collapse: collapse; font-size: 0.88rem; min-width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; }
+details.decisions { margin: 12px 0 0; }
+details { margin-top: 24px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+
+.bad { color: #b3261e; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bad { color: #ff8a80; } }
+:root[data-theme="dark"] .bad { color: #ff8a80; }
+</style>
+<style>
+:root {
+  --bg: #fafaf9; --panel: #ffffff; --ink: #1c1c1e; --muted: #6b6b70; --line: #e4e4e7;
+  --accent: #2f5bd3; --ok: #15803d; --bad: #b42318; --code: #f4f4f5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111114; --panel: #18181c; --ink: #ececf0; --muted: #9a9aa3; --line: #2a2a30;
+    --accent: #8ea8ff; --ok: #4ade80; --bad: #f97066; --code: #1f1f25;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111114; --panel: #18181c; --ink: #ececf0; --muted: #9a9aa3; --line: #2a2a30;
+  --accent: #8ea8ff; --ok: #4ade80; --bad: #f97066; --code: #1f1f25;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.layout { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; }
+.toc { position: sticky; top: 0; height: 100vh; overflow-y: auto; border-right: 1px solid var(--line);
+  background: var(--panel); padding: 20px 16px; }
+.toc h1 { font-size: 15px; margin: 0 0 4px; }
+.toc .sub { color: var(--muted); font-size: 12px; margin-bottom: 16px; }
+.toc input { width: 100%; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--bg); color: var(--ink); margin-bottom: 12px; }
+.toc a { color: var(--ink); text-decoration: none; display: block; padding: 4px 8px; border-radius: 6px; }
+.toc a:hover { background: var(--code); }
+.toc .group { margin-top: 10px; }
+.toc .group > a { font-weight: 600; }
+.toc .group ul { list-style: none; margin: 2px 0 0 10px; padding: 0; border-left: 1px solid var(--line); }
+.toc .group li a { font-size: 13px; color: var(--muted); padding: 2px 8px; }
+.toc .count { color: var(--muted); font-weight: 400; font-size: 12px; }
+
+.toc li.current a { background: var(--code); color: var(--accent); font-weight: 600; }
+.toc ul { list-style: none; margin: 2px 0 0 10px; padding: 0; border-left: 1px solid var(--line); }
+.layout main { min-width: 0; }
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .toc { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
+}
+</style>
+<style>
+:root {
+  --tk-kw: #7a2f8f; --tk-name: #1f6b67; --tk-const: #9a3412; --tk-type: #1d4f91;
+  --tk-num: #9a3412; --tk-str: #7a4a00; --tk-com: #6a7183; --tk-op: #4a5266; --tk-par: #8a8f9c;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+    --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+  }
+}
+:root[data-theme="dark"] {
+  --tk-kw: #c9a0e8; --tk-name: #7fd0c9; --tk-const: #f0a080; --tk-type: #8fb8f0;
+  --tk-num: #f0a080; --tk-str: #e0b070; --tk-com: #8a92a3; --tk-op: #b4bac8; --tk-par: #6f7686;
+}
+.tk-kw { color: var(--tk-kw); font-weight: 600; }
+.tk-name { color: var(--tk-name); font-weight: 600; }
+.tk-const { color: var(--tk-const); }
+.tk-type { color: var(--tk-type); }
+.tk-num { color: var(--tk-num); }
+.tk-str { color: var(--tk-str); }
+.tk-com { color: var(--tk-com); font-style: italic; }
+.tk-op { color: var(--tk-op); }
+.tk-par { color: var(--tk-par); }
+</style>
+<div class="layout">
+<aside class="toc"><h1>ACL2 to Lean blueprint</h1><div class="sub">56 modules, 439 axioms</div><input id="filter" type="search" placeholder="Filter books"><div><a href="index.html">Overview</a></div><div><a href="index.html#rules">Embedding rules</a></div><div class="group"><a href="index.html#d-acl2s">acl2s <span class="count">(1)</span></a><ul><li><a href="acl2s__portcullis-blueprint.html">portcullis</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic">arithmetic <span class="count">(3)</span></a><ul><li><a href="arithmetic__rational-listp-blueprint.html">rational-listp</a></li><li><a href="arithmetic__real-listp-blueprint.html">real-listp</a></li><li><a href="arithmetic__sumlist-blueprint.html">sumlist</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic-2">arithmetic-2 <span class="count">(12)</span></a><ul><li><a href="arithmetic-2__meta__cancel-terms-helper-blueprint.html">meta/cancel-terms-helper</a></li><li><a href="arithmetic-2__meta__non-linear-blueprint.html">meta/non-linear</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-helper-blueprint.html">pass1/basic-arithmetic-helper</a></li><li><a href="arithmetic-2__pass1__basic-arithmetic-blueprint.html">pass1/basic-arithmetic</a></li><li><a href="arithmetic-2__pass1__expt-helper-blueprint.html">pass1/expt-helper</a></li><li><a href="arithmetic-2__pass1__expt-blueprint.html">pass1/expt</a></li><li><a href="arithmetic-2__pass1__inequalities-blueprint.html">pass1/inequalities</a></li><li><a href="arithmetic-2__pass1__mini-theories-blueprint.html">pass1/mini-theories</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-helper-blueprint.html">pass1/numerator-and-denominator-helper</a></li><li><a href="arithmetic-2__pass1__numerator-and-denominator-blueprint.html">pass1/numerator-and-denominator</a></li><li><a href="arithmetic-2__pass1__prefer-times-blueprint.html">pass1/prefer-times</a></li><li><a href="arithmetic-2__pass1__top-blueprint.html">pass1/top</a></li></ul></div><div class="group"><a href="index.html#d-arithmetic-3">arithmetic-3 <span class="count">(14)</span></a><ul><li><a href="arithmetic-3__bind-free__banner-blueprint.html">bind-free/banner</a></li><li><a href="#">bind-free/building-blocks</a></li><li><a href="#">bind-free/default-hint</a></li><li><a href="#">bind-free/remove-weak-inequalities</a></li><li><a href="#">pass1/basic-arithmetic-helper</a></li><li><a href="#">pass1/basic-arithmetic</a></li><li><a href="#">pass1/expt-helper</a></li><li><a href="#">pass1/expt</a></li><li><a href="#">pass1/inequalities</a></li><li><a href="#">pass1/mini-theories</a></li><li><a href="#">pass1/non-linear</a></li><li><a href="#">pass1/num-and-denom-helper</a></li><li><a href="#">pass1/numerator-and-denominator</a></li><li><a href="#">pass1/prefer-times</a></li></ul></div><div class="group"><a href="index.html#d-kestrel">kestrel <span class="count">(5)</span></a><ul><li><a href="kestrel__strings-light__char-blueprint.html">strings-light/char</a></li><li><a href="kestrel__utilities__equal-of-booleans-blueprint.html">utilities/equal-of-booleans</a></li><li><a href="kestrel__utilities__map-symbol-name-blueprint.html">utilities/map-symbol-name</a></li><li><a href="kestrel__utilities__member-symbol-name-blueprint.html">utilities/member-symbol-name</a></li><li><a href="kestrel__utilities__update-acl2-oracle-blueprint.html">utilities/update-acl2-oracle</a></li></ul></div><div class="group"><a href="index.html#d-misc">misc <span class="count">(1)</span></a><ul><li><a href="misc__character-encoding-test-blueprint.html">character-encoding-test</a></li></ul></div><div class="group"><a href="index.html#d-std">std <span class="count">(20)</span></a><ul><li><a href="std__alists__assoc-blueprint.html">alists/assoc</a></li><li><a href="std__basic__code-char-char-code-with-force-blueprint.html">basic/code-char-char-code-with-force</a></li><li><a href="std__basic__fix-blueprint.html">basic/fix</a></li><li><a href="std__basic__ifix-blueprint.html">basic/ifix</a></li><li><a href="std__basic__member-symbol-name-blueprint.html">basic/member-symbol-name</a></li><li><a href="std__basic__nfix-blueprint.html">basic/nfix</a></li><li><a href="std__basic__realfix-blueprint.html">basic/realfix</a></li><li><a href="std__basic__rfix-blueprint.html">basic/rfix</a></li><li><a href="std__basic__symbol-name-lst-blueprint.html">basic/symbol-name-lst</a></li><li><a href="std__lists__add-to-set-blueprint.html">lists/add-to-set</a></li><li><a href="std__lists__union-blueprint.html">lists/union</a></li><li><a href="std__strings__digit-to-char-blueprint.html">strings/digit-to-char</a></li><li><a href="std__system__arglistp-blueprint.html">system/arglistp</a></li><li><a href="std__system__arity-blueprint.html">system/arity</a></li><li><a href="std__system__dumb-negate-lit-blueprint.html">system/dumb-negate-lit</a></li><li><a href="std__system__getprops-blueprint.html">system/getprops</a></li><li><a href="std__system__implicate-blueprint.html">system/implicate</a></li><li><a href="std__system__primitivep-blueprint.html">system/primitivep</a></li><li><a href="std__system__pseudo-event-form-listp-blueprint.html">system/pseudo-event-form-listp</a></li><li><a href="std__system__pseudo-event-formp-blueprint.html">system/pseudo-event-formp</a></li></ul></div></aside>
+<main>
+  <p class="label">Blueprint, arithmetic-3/bind-free/building-blocks</p>
+  <h1>ACL2 building-blocks, shallow embedding</h1>
+  <p class="sub">The theorems of the ACL2 book arithmetic-3/bind-free/building-blocks, each shown as the ACL2 source and as its Lean axiom.</p>
+  
+
+  <div class="status">
+    <div><span class="label">Book</span><b>arithmetic-3/bind-free/building-blocks.lisp</b></div>
+    <div><span class="label">Axioms</span><b>0</b></div>
+    <div><span class="label">Embedding</span><b>Shallow, Rat</b></div>
+    <div><span class="label">ACL2 certificate</span><b class="ok">building-blocks.cert present</b></div>
+    <div><span class="label">Lean build</span><b class="">not built: excluded: metaprogramming</b></div>
+  </div>
+
+  <details class="decisions">
+    <summary>Embedding decisions, general</summary>
+  <div class="prose">
+<p>Every deviation from the ACL2 source in the Lean axioms is listed here or under its element.</p>
+<h3>General decisions</h3>
+<ol>
+<li>The embedding is shallow. Each ACL2 theorem or lemma becomes a Lean proposition over Lean types, not over a deep syntax of ACL2 terms.</li>
+<li>Every ACL2 number is a <code>Rat</code>. Integer arguments are tested with <code>integerp</code>, which is <code>den = 1</code>.</li>
+<li>ACL2 truth values become Lean <code>Prop</code>. The connectives <code>implies</code>, <code>and</code>, <code>or</code>, <code>not</code> and <code>equal</code> become the corresponding Lean connectives.</li>
+<li>ACL2 primitives and definitions used in the books are interpreted by Lean functions, listed in the interpretation table. A definition of a book is a Lean <code>def</code> with the ACL2 name in guillemets.</li>
+<li>Quantified variables range over <code>Rat</code> or <code>List Rat</code>, not over all ACL2 objects. A theorem with no hypothesis therefore holds in Lean only for rational arguments.</li>
+<li>Support definitions live in <code>Lean/ACL2/Base.lean</code>, outside the mirror of the books directory tree.</li>
+<li>Hyphens in ACL2 names are kept with Lean guillemets, for example <code>«abs-*»</code>.</li>
+<li>Each ACL2 theorem is an <code>axiom</code>. The <code>:rule-classes</code>, hints and proofs are not represented.</li>
+<li>A module does not import the modules of a <code>local</code> <code>include-book</code>. Non-local includes are imported when their module exists.</li>
+<li>A recursive ACL2 definition is a Lean <code>def</code> on <code>Rat</code>, with <code>termination_by</code> on a natural measure. An integer argument is a <code>Rat</code> that satisfies <code>integerp</code>, and the measure is taken from its numerator, so no <code>Int</code> helper is used.</li>
+<li>Local theorems and lemmas are axioms too.</li>
+<li>ACL2 complex rationals are the Lean type <code>CRat</code>, pairs of <code>Rat</code> with the field operations. A real <code>Rat</code> embeds in <code>CRat</code> with imaginary part 0. Theorems over the reals keep <code>Rat</code>, and theorems over numbers that may be complex use <code>CRat</code>.</li>
+<li>The order <code>&lt;</code> on <code>CRat</code> is the lexicographic order of <code>completion-of-&lt;</code> (axioms.lisp, lines 25364 to 25374): <code>x &lt; y</code> holds when <code>realpart x &lt; realpart y</code>, or when the real parts are equal and <code>imagpart x &lt; imagpart y</code>. On real arguments it coincides with the order on <code>Rat</code>.</li>
+<li>No Mathlib dependency is used. The <code>CRat</code> type is defined in core Lean, so the shallow embedding needs no <code>require</code>.</li>
+<li>Unconstrained ACL2 variables of the cancel-terms-helper book range over <code>CRat</code>. A variable under <code>real/rationalp</code> ranges over <code>Rat</code>, and is coerced to <code>CRat</code> with <code>↑</code> when used with complex values.</li>
+<li><code>real/rationalp</code> of a complex rational is true exactly when its imaginary part is 0, because <code>(complex x 0)</code> is the rational <code>x</code>.</li>
+<li>A <code>cond</code> with no true clause returns <code>False</code>, as ACL2 returns <code>nil</code>.</li>
+<li><code>helper-9</code> in the <code>#| |#</code> block at the end of cancel-terms-helper.lisp is a comment, and no axiom is written for it.</li>
+<li>ACL2 <code>&lt;=</code> on complex rationals is <code>(not (&lt; y x))</code>, the definition of <code>&lt;=?</code> in axioms.lisp (lines 11614 to 11618). It is the Lean predicate <code>acl2le</code>. On real arguments it coincides with <code>≤</code> on <code>Rat</code>.</li>
+<li>A variable name that contains <code>+</code>, such as <code>y+</code>, is not a Lean identifier. It is renamed <code>yp</code> in the module. The renaming does not change the statement.</li>
+<li>Theorems of non-linear.lisp that state the property for real variables use <code>Rat</code>, and those that state it for numbers that may be complex use <code>CRat</code>.</li>
+<li><code>encapsulate</code> is transparent. The theorems inside it are axioms of the module, and the local ones are included (decision 11). The statements of basic-arithmetic-helper.lisp range over <code>CRat</code>, because ACL2 numbers there include complex values, and <code>(/ x)</code> is <code>CRat.inv x</code>.</li>
+<li><code>quotep</code> and <code>syntaxp</code> hypotheses are represented as always-inhabited types, <code>quotepC x : Type := PUnit</code> and <code>syntaxpW : Type := PUnit</code>. A hypothesis of this type imposes no condition, so an axiom with such a hypothesis is stated without a condition. The representation of <code>quotep</code> and <code>syntaxp</code> is DEFERRED: the user will decide how to represent them properly, for example in the deep embedding. Until then this is a deviation, because the ACL2 statements are conditional on properties of all objects.</li>
+<li><code>numerator</code> on a complex rational is <code>numeratorC</code>. It is the numerator of the real part when the imaginary part is 0, and 0 otherwise, as <code>completion-of-numerator</code> (axioms.lisp, line 25668) states.</li>
+<li><code>syntaxp</code> hypotheses are kept as <code>syntaxpW</code> (decision 25). <code>(syntaxp form)</code> expands to <code>(and form t)</code> (axioms.lisp, line 4558). The representation is deferred with decision 25.</li>
+<li>The macro <code>fc</code> in expt.lisp (line 15) is the identity, <code>(defmacro fc (x) x)</code>. Each <code>(fc e)</code> is written as <code>e</code>.</li>
+<li><code>expt</code> on complex rationals is <code>exptC r i</code>, with a rational exponent. It follows <code>expt</code> in axioms.lisp (line 9073): <code>exptCInt</code> for an integer exponent, and 1 for a non-integer exponent. The helpers <code>zipR</code>, <code>ifixR</code> and <code>integerpC</code> follow <code>zip</code>, <code>ifix</code> and <code>integerp</code> on complex values. <code>expt</code> on rationals keeps its earlier definition in <code>Base.lean</code>.</li>
+<li>Visibility follows ACL2. Each module uses the Lean module system. A non-local <code>include-book</code> is a <code>public import</code>, so its exported names reach the importers, as in ACL2. A <code>local</code> <code>include-book</code> is a plain <code>import</code>, which the module can use in its own declarations but does not re-export. An exported axiom is <code>public axiom</code>. A local axiom is <code>private axiom</code>, which is usable in the module and invisible to importers. <code>ACL2.Base</code> is a <code>public import</code>, and its declarations are public. Local includes are imported only when their module exists. Until then the module records them as pending in a comment. Tests with a scratch project confirmed each of these visibility rules.</li>
+<li>The modules cancel-terms-helper, non-linear, basic-arithmetic-helper, basic-arithmetic and expt were generated before decision 30. Their local includes are pending (the comment at the top of each module lists them). Their local imports must be added once those modules exist. The order file ORDER.txt now includes local edges, so these books come after their local dependencies.</li>
+<li>Each book&#x27;s declarations live in the namespace <code>ACL2.&lt;book path&gt;</code>, for example <code>ACL2.«arithmetic-2».pass1.«basic-arithmetic»</code>. A local include can bring in public names that share an ACL2 name with the book&#x27;s own axioms (for example <code>equal-/</code> in basic-arithmetic-helper and basic-arithmetic). The book namespace keeps the two apart, as the book namespaces of ACL2 do. The shared <code>Base.lean</code> stays in namespace <code>ACL2</code>.</li>
+<li>The local includes that exist are now imported: basic-arithmetic imports basic-arithmetic-helper, non-linear imports cancel-terms-helper, and expt imports basic-arithmetic. Pending local includes remain: ../pass1/top for cancel-terms-helper and non-linear, and inequalities, prefer-times and expt-helper for expt. Decision 31 still lists the modules generated before decision 30.</li>
+<li>inequalities.lisp is generated after basic-arithmetic, which it includes locally. Its local include is imported. Its <code>iff-equal</code> is a local theorem and is <code>private</code>. The <code>fc</code> macro is inlined (decision 28). All variables are real, so they range over <code>Rat</code>.</li>
+<li>Every module depends only on modules that exist. <code>scripts/check_deps.py</code> checks this: each include of the book must be an imported module, and each module must exist. A module with a missing dependency is moved to <code>staged/</code>, outside <code>Lean/</code>, and its manifest status says what it waits for. Staged modules are regenerated once their dependencies exist. Currently staged: cancel-terms-helper and non-linear (waiting for arithmetic-2/pass1/top), and expt (waiting for expt-helper and prefer-times). The import of inequalities was added to expt.</li>
+<li>prefer-times.lisp is generated after basic-arithmetic and inequalities, which it includes locally, and both are imported. The equalities over all numbers use <code>CRat</code> and <code>CRat.inv</code>, and the <code>&lt;</code> normalizations over reals use <code>Rat</code> and <code>⁻¹</code>. Its local theorems iff-equal, times-one and times-minus-one are <code>private</code>.</li>
+<li>The local defun <code>Math-induction-start-at-k</code> (expt-helper.lisp, line 22) is an induction scheme used only in hints. It is not a theorem, and no statement uses it, so it is not generated. The local theorem <code>justify-induction</code> is <code>private</code>.</li>
+<li>expt.lisp is restored from <code>staged/</code> once its local dependencies exist: expt-helper and prefer-times are generated. Its imports are basic-arithmetic, inequalities, prefer-times and expt-helper, all plain imports.</li>
+<li>mini-theories.lisp: its rule-set forms are not generated (decision 40). Its local lemma <code>Uniqueness-of-*-inverses-lemma-2</code> is <code>private</code>. Its local includes basic-arithmetic, inequalities, prefer-times and expt are imported.</li>
+<li>A function defined by a book (<code>defun</code>) is an opaque constant with its type signature and no body, for example <code>opaque nonneg-int-gcd : Rat → Rat → Rat</code>. The axioms about it are stated, not proved. Its name and namespace follow the same rules as the axioms (decisions 30 and 32), and its uses in statements refer to the constant. Functions of <code>Lean/ACL2/Base.lean</code> keep their interpretations, because they give the ACL2 primitives their meaning. Decision 37 is revised: the local defun <code>Math-induction-start-at-k</code> is generated as an opaque signature, with result type <code>Prop</code>.</li>
+<li><code>denominator</code> on a complex rational is <code>denominatorC</code>: the denominator of the real part when the imaginary part is 0, and 1 otherwise (<code>completion-of-denominator</code>, axioms.lisp, line 25561). The system function <code>nonnegative-integer-quotient</code> (axioms.lisp, line 6889) is an opaque signature in <code>Base.lean</code>, as decision 41 gives for book functions.</li>
+<li>numerator-and-denominator-helper.lisp: its functions <code>nonneg-int-mod</code>, <code>nonneg-int-gcd</code>, <code>nonneg-int-gcd-multiplier1</code>, <code>nonneg-int-gcd-multiplier2</code> and the local <code>induct-on-nonneg-int</code> are opaque signatures (decisions 37 and 41). It has no local includes that need a Lean import beyond basic-arithmetic, inequalities and prefer-times, which are imported as plain imports. Its statements over the integers use <code>Rat</code>, and <code>Nonneg-int-gcd-numerator-denominator</code> ranges over <code>CRat</code>, because its ACL2 statement has no integer hypothesis.</li>
+<li>numerator-and-denominator.lisp: its variables range over <code>CRat</code>, with <code>rationalp</code> as <code>realrationalpC</code>, <code>integerp</code> as <code>integerpC</code>, <code>numerator</code> as <code>numeratorC</code> and <code>denominator</code> as <code>denominatorC</code> (decisions 26 and 42). The local lemmas numerator-integerp-lemma-1 and numerator-integerp-lemma are <code>private</code>. Its local includes are imported as plain imports. Base.lean gains one decidability instance, for <code>realrationalpC</code>, which the <code>if</code> in <code>*-r-denominator-r</code> needs. <code>integerpC</code> needs no instance, because it occurs only in a disjunction.</li>
+<li>Decidability of the complex predicates in <code>if</code> expressions. The chosen representation is a computable instance, <code>Decidable (realrationalpC c)</code>, defined as <code>c.im = 0</code> (Base.lean). The alternative is to axiomatize decidability, either as <code>axiom</code> of type <code>∀ c : CRat, Decidable (realrationalpC c)</code> or through <code>Classical.propDecidable</code>. The two alternatives are logically equivalent to the chosen one, and they do not change any statement. They are not chosen, because they make the <code>if</code> depend on a non-computable choice, which ACL2&#x27;s <code>real/rationalp</code> test does not have. The alternative is recorded for the user&#x27;s decision.</li>
+<li>pass1/top.lisp has no theorem outside a <code>#| |#</code> block comment. Its module imports its non-local includes as <code>public import</code>, and it has no axioms. Its statements are not generated, because the book has none.</li>
+<li>cancel-terms-helper and non-linear are restored from <code>staged/</code>, now that <code>pass1/top</code> exists. Their local imports are plain imports: <code>pass1/top</code> for both, and <code>cancel-terms-helper</code> for non-linear.</li>
+<li>Block comments of the ACL2 book (<code>#| |#</code>) are recorded verbatim as Lean <code>--</code> comments at the end of the module, before the namespace closes. They state no axiom. This keeps the removed material, such as the commented-out theorems of pass1/top, visible next to the module.</li>
+<li>Alists. An ACL2 alist is a list of pairs, the key as the first component and the value as the second. The Lean type is <code>AList α β := List (α × β)</code> (ACL2.Base). The predicate <code>alistp</code> (axioms.lisp, line 2515) holds of every element of this type, because each element is a pair, so <code>alistp</code> is <code>True</code> on <code>AList</code>. <code>assoc-equal</code> is <code>assocEqual</code>, which returns the first pair with the given key, or <code>none</code> for <code>nil</code>. Keys and values are type parameters, not <code>Rat</code>, because ACL2 objects are untyped (a deviation from the shallow <code>Rat</code> domain, recorded here). The alist is not a <code>Finmap</code>, because <code>alistp</code> does not require unique keys. The finite-map view is the first-match lookup, and no axiom uses a <code>Finmap</code>.</li>
+<li>Shared primitives of ACL2.Base, merged from the pilot fragments. There is one symbol type, <code>ACLSymbol</code>, a structure with the <code>symbol-name</code> as field <code>name</code> (axioms.lisp, lines 5615 to 5697). <code>memberSymbolName</code> is <code>member-symbol-name</code> (axioms.lisp, line 5717). <code>trueListp</code> is <code>True</code>, because every Lean list is a true list. <code>arglistp</code> is an opaque signature, because it is defined in the ACL2 system (basis-a.lisp, line 856) and not in a book. <code>stringp</code> is <code>True</code> on <code>String</code>, and <code>length</code> on a string is its character count. <code>char</code> returns <code>Option Char</code> (deviation D1: <code>nil</code> for an index out of range, so the value may be <code>nil</code>). <code>characterp</code> takes <code>Option Char</code>, true for <code>some</code> (deviation D1). <code>code-char</code> is total, <code>Char.ofNat</code>, so for a code outside the range of ACL2 characters it differs from ACL2 (deviation D2, not resolved by the user). <code>char-code</code> is the code of the character as a rational.</li>
+<li>Why <code>characterp</code> takes <code>Option Char</code>. ACL2 <code>characterp</code> is a predicate on every object, and <code>char</code> returns <code>nil</code> for an index out of range. The statement <code>characterp-of-char</code>, <code>(characterp (char s n))</code> equivalent to <code>(stringp s ∧ nfix n &lt; length s)</code>, requires <code>characterp</code> to be false on that <code>nil</code>. A <code>characterp</code> on <code>Char</code> alone has no value for <code>char</code> to return, so <code>Option Char</code> is the carrier, with <code>none</code> for <code>nil</code>. This is the consequence of deviation D1 in decision 50, and it is open for the user&#x27;s decision together with D1.</li>
+<li>Batch primitives merged into ACL2.Base. <code>natp</code>, <code>realfix</code>, <code>rfix</code>, <code>stringListp</code>, <code>addToSetEqual</code>, <code>consp</code>, <code>function-symbolp</code> and <code>arity</code> (opaque, basis-b.lisp line 2255), <code>symbolp</code> (abbrev, <code>True</code>, deviation D3) and <code>primitivep</code> (opaque) are declared once in Base.lean. The module files of the batch keep only their own axioms. <code>arity-iff</code> ranges over symbols, so the cons case is excluded (deviation). <code>rfix</code> and <code>realfix</code> axioms sit in their book namespaces, as decision 32 requires. The <code>arithmetic/real-listp</code> book has no axioms, because both theorems sit under <code>#+:non-standard-analysis</code> (decision 12).</li>
+<li>Deviations from the untyped ACL2 domain in the batch modules. Each of the following is a recorded deviation, and each is a faithful statement over the stated type. (a) List and alist variables range over <code>List α</code> with <code>α</code> a type parameter, and <code>rationalListp</code> is <code>True</code>, so statements over <code>List Rat</code> have no content in Lean (<code>arithmetic/rational-listp</code>, <code>arithmetic/sumlist</code>). (b) <code>booleanp</code> is <code>True</code> on <code>Prop</code>, which is a larger carrier than the ACL2 truth values (D4, <code>equal-of-booleans</code>). (c) <code>update-acl2-oracle</code> takes an oracle over <code>List α</code>, and <code>State</code>, <code>InputChannels</code>, <code>w</code> and <code>open-input-channels</code> are opaque types with a <code>Nonempty</code> placeholder, because Lean&#x27;s <code>opaque</code> needs an inhabitant. The placeholders are <code>Prop</code> axioms that assert nonemptiness only. (d) <code>test-2</code> is an opaque <code>String</code>, because its value depends on the file encoding, which this embedding does not represent. (e) Variables of <code>digit-to-char</code> and <code>zero-digit-to-char</code> range over <code>Rat</code>, not over every ACL2 object. (f) <code>unionEqual</code>, <code>symbolNameLst</code> and <code>len</code> are declared in <code>Base.lean</code> as the ACL2 functions on lists.</li>
+<li><code>car</code> on a nonempty list is <code>x.headD 0</code>. ACL2 <code>car</code> of <code>nil</code> is <code>nil</code>, and the hypothesis <code>x</code> (non-nil) excludes that case, so the statement is unaffected. A <code>car</code> declaration in <code>Base.lean</code> would replace the inline <code>headD</code>, and it is proposed, not added.</li>
+<li>Rule-set bookkeeping forms are not generated. These are <code>in-theory</code>, <code>deftheory</code>, <code>theory-invariant</code>, and the <code>enable</code> and <code>disable</code> forms they contain. They select which rewrite rules the ACL2 prover uses, and they state no theorem about values. Each theorem they refer to is still generated as its own axiom.</li>
+<li>A reader conditional that excludes a form in standard ACL2 excludes its axiom, and the exclusion is recorded.</li>
+<li>arithmetic-3/bind-free/banner.lisp holds one <code>make-event</code> form, which prints an observation. It has no <code>include-book</code>, no <code>defun</code> and no theorem. Its module imports <code>ACL2.Base</code> only, and it has no axiom.</li>
+</ol>
+<h3>Excluded books: metaprogramming</h3>
+<p>Interpretation rows: <code>std/system/dumb-negate-lit</code> and <code>std/system/implicate</code> are excluded as metaprogramming, with status <code>excluded: metaprogramming</code> in <code>manifest.json</code>. Both books state properties of ACL2 terms as data (<code>pseudo-termp</code>, <code>dumb-negate-lit</code>, <code>implicate</code>). No module is written.</p>
+<p><code>arithmetic-3/bind-free/building-blocks</code>, <code>arithmetic-3/bind-free/default-hint</code> and <code>arithmetic-3/bind-free/remove-weak-inequalities</code> are excluded as metaprogramming, with status <code>excluded: metaprogramming</code> in <code>manifest.json</code>. The functions of building-blocks take ACL2 terms as data, or the metafunction context <code>mfc</code> with <code>state</code>. The function <code>nonlinearp-default-hint</code> of default-hint is a computed hint over the prover history <code>hist</code> and the prover variable <code>pspv</code>. The functions of remove-weak-inequalities take ACL2 terms, the goal clause and <code>mfc</code> as data. Each of the three modules is a stub that declares no axiom. The two theorems of remove-weak-inequalities, <code>remove-weak-inequalities-one</code> and <code>remove-weak-inequalities-two</code>, state <code>(&lt;= x y)</code> implies <code>(&lt;= x y)</code> and <code>(&lt; x y)</code> implies <code>(&lt; x y)</code> under two <code>syntaxp</code> hypotheses that call these functions. The exclusion of these two theorems follows the Scope rule of SKILL.md, and it is open for the user&#x27;s decision, because decisions 25 and 27 give a representation of <code>syntaxp</code> hypotheses.</p>
+<h3>Interpretation table</h3>
+<div class="tablewrap"><table>
+<tr><th>ACL2</th><th>Lean (<code>ACL2</code> namespace)</th></tr>
+<tr><td><code>CRat (ACL2 complex rational)</code></td><td><code>structure CRat with re, im : Rat, field operations, Coe from Rat</code></td></tr>
+<tr><td><code>realpart, imagpart</code></td><td><code>CRat.realpart, CRat.imagpart</code></td></tr>
+<tr><td><code>&lt; on complex arguments</code></td><td><code>CRat.lt: lexicographic on (realpart, imagpart), from completion-of-&lt; (axioms.lisp 25364 to 25374)</code></td></tr>
+<tr><td><code>acl2-numberp on CRat</code></td><td><code>acl2NumberPC, constant True</code></td></tr>
+<tr><td><code>/ on CRat</code></td><td><code>CRat.inv and Div, 0 for a zero argument, as (/ 0) in ACL2</code></td></tr>
+<tr><td><code>complex</code></td><td><code>complex x y, the value ⟨x, y⟩ of CRat</code></td></tr>
+<tr><td><code>real/rationalp on CRat</code></td><td><code>realrationalpC c, c.im = 0</code></td></tr>
+<tr><td><code>fix on CRat</code></td><td><code>fixC, identity</code></td></tr>
+<tr><td><code>cond without a true clause</code></td><td><code>False</code></td></tr>
+<tr><td><code>&lt;= on CRat</code></td><td><code>acl2le x y, ¬ (y &lt; x)</code></td></tr>
+<tr><td><code>quotep on CRat</code></td><td><code>quotepC, always-inhabited Type (decision 25, deferred)</code></td></tr>
+<tr><td><code>syntaxp</code></td><td><code>syntaxpW, always-inhabited Type (decision 25, deferred)</code></td></tr>
+<tr><td><code>numerator on CRat</code></td><td><code>numeratorC (decision 26)</code></td></tr>
+<tr><td><code>expt on CRat</code></td><td><code>exptC r i, exptCInt for an integer exponent, else 1 (decision 29)</code></td></tr>
+<tr><td><code>fc</code></td><td><code>identity, inlined (decision 28)</code></td></tr>
+<tr><td><code>zip, ifix, integerp on CRat</code></td><td><code>zipR, ifixR, integerpC (decision 29)</code></td></tr>
+<tr><td><code>alistp on an alist</code></td><td><code>alistp, constant True on AList (decision 49)</code></td></tr>
+<tr><td><code>assoc-equal</code></td><td><code>assocEqual, first match, none for nil (decision 49)</code></td></tr>
+<tr><td><code>getprops</code></td><td><code>opaque «getprops» over ACLSymbol, World, result AList ACLSymbol β (decision 41)</code></td></tr>
+</table></div>
+  </div>
+  </details>
+
+
+
+  <h2>Theorems and axioms</h2>
+
+
+  <details open>
+    <summary>Certificate building-blocks.cert</summary>
+    <table class="certinfo">
+      <tr><td>File</td><td><a href="file:///Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/books/arithmetic-3/bind-free/building-blocks.cert">/Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/books/arithmetic-3/bind-free/building-blocks.cert</a></td></tr>
+      <tr><td>Size</td><td>4151 bytes</td></tr>
+      <tr><td>SHA-256</td><td><code>932a29764bb9a9629a0341b66bdb3c8c1e8475248b14596b3e8905dc1c79e61a</code></td></tr>
+      <tr><td>ACL2 version</td><td>8.7</td></tr>
+      <tr><td>Book paths named in the certificate</td><td><ul><li><code>building-blocksVarithmetic-3/bind-free/building-blocks.lisp</code></li></ul></td></tr>
+    </table>
+    <details>
+      <summary>Hex dump of the certificate (4151 bytes)</summary>
+      <pre class="acl2">00000000: 0a23 5aac 120b c905 0000 0000 0108 4143  .#Z...........AC
+00000010: 4c32 0116 434f 4d4d 4f4e 2d4c 4953 5001  L2..COMMON-LISP.
+00000020: 1449 4e2d 5041 434b 4147 4502 0400 0604  .IN-PACKAGE.....
+00000030: 00ac 120b c90a 235a ac12 0bc9 0200 0000  ......#Z........
+00000040: 0001 2041 434c 3220 5665 7273 696f 6e20  .. ACL2 Version 
+00000050: 382e 3700 0000 ac12 0bc9 0a23 5aac 120b  8.7........#Z...
+00000060: c902 0000 0000 0001 0e4b 4559 574f 5244  .........KEYWORD
+00000070: 012a 4245 4749 4e2d 504f 5254 4355 4c4c  .*BEGIN-PORTCULL
+00000080: 4953 2d43 4d44 5300 00ac 120b c90a 235a  IS-CMDS.......#Z
+00000090: ac12 0bc9 0200 0000 0000 010e 4b45 5957  ............KEYW
+000000a0: 4f52 4401 2645 4e44 2d50 4f52 5443 554c  ORD.&amp;END-PORTCUL
+000000b0: 4c49 532d 434d 4453 0000 ac12 0bc9 0a23  LIS-CMDS.......#
+000000c0: 5aac 120b c902 0000 0000 0001 0e4b 4559  Z............KEY
+000000d0: 574f 5244 0112 4345 5254 2d44 4154 4100  WORD..CERT-DATA.
+000000e0: 00ac 120b c90a 235a ac12 0bc9 bd08 0d00  ......#Z........
+000000f0: 972c 942c 912c 8e2c 8b2c 882c 852c 812c  .,.,.,.,.,.,.,.,
+00000100: fd2b fa2b f72b 8003 0000 0000 0316 434f  .+.+.+........CO
+00000110: 4d4d 4f4e 2d4c 4953 500e 0a43 4f4e 5350  MMON-LISP..CONSP
+00000120: 023c 0643 4452 084e 554c 4c10 494e 5445  .&lt;.CDR.NULL.INTE
+00000130: 4745 5250 1252 4154 494f 4e41 4c50 0843  GERP.RATIONALP.C
+00000140: 4f4e 5306 4e4f 5406 4341 5204 4551 0841  ONS.NOT.CAR.EQ.A
+00000150: 544f 4d0a 5155 4f54 450a 4551 5541 4c04  TOM.QUOTE.EQUAL.
+00000160: 4946 0841 434c 3216 1841 434c 322d 4e55  IF.ACL2..ACL2-NU
+00000170: 4d42 4552 5010 4249 4e41 5259 2d2b 0e46  MBERP.BINARY-+.F
+00000180: 4e2d 5359 4d42 1042 494e 4152 592d 2a0e  N-SYMB.BINARY-*.
+00000190: 554e 4152 592d 2d1a 4d46 432d 414e 4345  UNARY--.MFC-ANCE
+000001a0: 5354 4f52 5306 4649 5812 4d46 432d 5257  STORS.FIX.MFC-RW
+000001b0: 2d46 4e36 5052 4f56 4541 424c 592d 4e4f  -FN6PROVEABLY-NO
+000001c0: 4e2d 5a45 524f 2d52 4154 494f 4e41 4c38  N-ZERO-RATIONAL8
+000001d0: 5052 4f56 4541 424c 592d 4e4f 4e2d 5a45  PROVEABLY-NON-ZE
+000001e0: 524f 2d52 4154 494f 4e41 4c31 2450 524f  RO-RATIONAL1$PRO
+000001f0: 5645 4142 4c59 2d4e 4f4e 2d5a 4552 4f26  VEABLY-NON-ZERO&amp;
+00000200: 5052 4f56 4541 424c 592d 4e4f 4e2d 5a45  PROVEABLY-NON-ZE
+00000210: 524f 3124 5052 4f56 4541 424c 592d 5241  RO1$PROVEABLY-RA
+00000220: 5449 4f4e 414c 2250 524f 5645 4142 4c59  TIONAL&quot;PROVEABLY
+00000230: 2d49 4e54 4547 4552 0a53 5441 5445 064d  -INTEGER.STATE.M
+00000240: 4643 2c52 4557 5249 5449 4e47 2d47 4f41  FC,REWRITING-GOA
+00000250: 4c2d 4c49 5445 5241 4c2e 5745 414b 2d4e  L-LITERAL.WEAK-N
+00000260: 4547 4154 4956 452d 4144 4445 4e44 532d  EGATIVE-ADDENDS-
+00000270: 5024 4e45 4741 5449 5645 2d41 4444 454e  P$NEGATIVE-ADDEN
+00000280: 4453 2d50 2652 4154 494f 4e41 4c2d 434f  DS-P&amp;RATIONAL-CO
+00000290: 4e53 5441 4e54 2d50 0258 244e 554d 4552  NSTANT-P.X$NUMER
+000002a0: 4943 2d43 4f4e 5354 414e 542d 500e 4b45  IC-CONSTANT-P.KE
+000002b0: 5957 4f52 4404 0853 414d 4520 5452 414e  YWORD..SAME TRAN
+000002c0: 534c 4154 452d 424f 4449 4553 1254 5241  SLATE-BODIES.TRA
+000002d0: 4e53 4c41 5445 2254 5950 452d 5052 4553  NSLATE&quot;TYPE-PRES
+000002e0: 4352 4950 5449 4f4e 8708 6200 6437 1a38  CRIPTION..b.d7.8
+000002f0: 0000 6400 6c3b 003c 0200 343e 7e00 7040  ..d.l;.&lt;..4&gt;~.p@
+00000300: 3641 0200 3443 0000 3445 8c01 0070 4736  6A..4C..4E...pG6
+00000310: 4892 0100 8801 4a84 014b 384c 7a4d 744e  H.....J..K8LzMtN
+00000320: 724f 1c50 6451 6200 6053 1854 0000 6000  rO.PdQb.`S.T..`.
+00000330: 6c57 0058 7e00 a801 5a36 5b8c 0100 a801  lW.X~...Z6[.....
+00000340: 5d36 5ebe 0100 8801 60b8 0161 3862 b201  ]6^.....`..a8b..
+00000350: 63ac 0164 aa01 651c 6660 6762 005e 6916  c..d..e.f`gb.^i.
+00000360: 6a00 005e 006c 6d00 6e7e 00d4 0170 3671  j..^.lm.n~...p6q
+00000370: 8c01 00d4 0173 3674 ea01 0088 0176 e401  .....s6t.....v..
+00000380: 7738 78de 0179 d801 7ad6 017b 1c7c 5e7d  w8x..y..z..{.|^}
+00000390: 6200 5c7f 1480 0100 005c 006c 8301 0084  b.\......\.l....
+000003a0: 017e 0080 0286 0136 8701 8c01 0080 0289  .~.....6........
+000003b0: 0136 8a01 9602 0088 018c 0190 028d 0138  .6.............8
+000003c0: 8e01 8a02 8f01 8402 9001 8202 9101 1c92  ................
+000003d0: 015c 9301 5600 5895 0162 9601 5a97 0112  .\..V.X..b..Z...
+000003e0: 9801 0000 5a00 6c9b 0100 9c01 7e00 b002  ....Z.l.....~...
+000003f0: 9e01 369f 018c 0100 b002 a101 36a2 01c6  ..6.........6...
+00000400: 0200 8801 a401 c002 a501 38a6 01ba 02a7  ..........8.....
+00000410: 01b4 02a8 01b2 02a9 011c aa01 5aab 0156  ............Z..V
+00000420: 0058 ad01 62ae 0154 af01 10b0 0100 0054  .X..b..T.......T
+00000430: 006c b301 00b4 017e 00e0 02b6 0136 b701  .l.....~.....6..
+00000440: 8c01 00e0 02b9 0136 ba01 f602 0088 01bc  .......6........
+00000450: 01f0 02bd 0138 be01 ea02 bf01 e402 c001  .....8..........
+00000460: e202 c101 1cc2 0154 c301 5600 58c5 0162  .......T..V.X..b
+00000470: c601 52c7 010e c801 0000 5200 6ccb 0100  ..R.......R.l...
+00000480: cc01 7e00 9003 ce01 36cf 018c 0100 9003  ..~.....6.......
+00000490: d101 36d2 01a6 0300 8801 d401 a003 d501  ..6.............
+000004a0: 38d6 019a 03d7 0194 03d8 0192 03d9 011c  8...............
+000004b0: da01 52db 0156 0058 dd01 62de 0150 df01  ..R..V.X..b..P..
+000004c0: 0ce0 0100 0050 006c e301 00e4 017e 00c0  .....P.l.....~..
+000004d0: 03e6 0136 e701 8c01 00c0 03e9 0136 ea01  ...6.........6..
+000004e0: d603 0088 01ec 01d0 03ed 0138 ee01 ca03  ...........8....
+000004f0: ef01 c403 f001 c203 f101 1cf2 0150 f301  .............P..
+00000500: 5600 58f5 0162 f601 4ef7 010a f801 0000  V.X..b..N.......
+00000510: 4e00 6cfb 0100 fc01 7e00 f003 fe01 36ff  N.l.....~.....6.
+00000520: 018c 0100 f003 8102 3682 0286 0400 8801  ........6.......
+00000530: 8402 8004 8502 3886 02fa 0387 02f4 0388  ......8.........
+00000540: 02f2 0389 021c 8a02 4e8b 0256 0058 8d02  ........N..V.X..
+00000550: 628e 024c 8f02 0890 0200 004c 006c 9302  b..L.......L.l..
+00000560: 0094 027e 00a0 0496 0236 9702 8c01 00a0  ...~.....6......
+00000570: 0499 0236 9a02 b604 0088 019c 02b0 049d  ...6............
+00000580: 0238 9e02 aa04 9f02 a404 a002 a204 a102  .8..............
+00000590: 1ca2 024c a302 5600 58a5 0262 a602 4aa7  ...L..V.X..b..J.
+000005a0: 0206 a802 0000 4a00 6cab 0200 ac02 7e00  ......J.l.....~.
+000005b0: d004 ae02 36af 028c 0100 d004 b102 36b2  ....6.........6.
+000005c0: 02e6 0400 8801 b402 e004 b502 38b6 02da  ............8...
+000005d0: 04b7 02d4 04b8 02d2 04b9 021c ba02 4abb  ..............J.
+000005e0: 02f8 0400 c804 bd02 9804 be02 e803 bf02  ................
+000005f0: b803 c002 8803 c102 d802 c202 a802 c302  ................
+00000600: fc01 c402 d001 c502 a401 c602 6cc7 024a  ............l..J
+00000610: 0068 c902 6200 32cb 0256 0058 cd02 62ce  .h..b.2..V.X..b.
+00000620: 0250 cf02 3400 34d1 0262 002e d302 a805  .P..4.4..b......
+00000630: 00a4 05d5 0230 d602 6200 60d8 0204 0034  .....0..b.`....4
+00000640: da02 b605 0034 dc02 ba05 0062 de02 36df  .....4.....b..6.
+00000650: 02c0 0500 2ce1 0200 0034 e302 c805 00c4  ....,....4......
+00000660: 05e5 02b2 05e6 0238 e702 6200 2ee9 0238  .......8..b....8
+00000670: 0034 eb02 d805 00d4 05ed 0230 ee02 5600  .4.........0..V.
+00000680: 58f0 0262 f102 50f2 02e6 0500 c805 f402  X..b..P.........
+00000690: de05 f502 38f6 02ee 0500 d005 f802 ae05  ....8...........
+000006a0: f902 38fa 02f6 0500 a005 fc02 9805 fd02  ..8.............
+000006b0: 38fe 02fe 0500 0000 4a81 034a 2586 0600  8.......J..J%...
+000006c0: 8406 8403 8006 8503 3800 5087 0330 8803  ........8.P..0..
+000006d0: 2e89 032c 8a03 368b 0360 8c03 328d 039c  ...,..6..`..2...
+000006e0: 0600 8c06 8f03 9405 9003 a206 004a 9203  .............J..
+000006f0: 4c00 6894 032c 0034 9603 3600 3498 0346  L.h..,.4..6.4..F
+00000700: 0034 9a03 0000 349c 03ba 0600 629e 032a  .4....4.....b..*
+00000710: 9f03 c006 00b6 06a1 032a a203 0400 34a4  .........*....4.
+00000720: 03ca 0600 cc06 0034 a703 d006 00c6 06a9  .......4........
+00000730: 032a aa03 d606 00b2 06ac 032a ad03 0000  .*.........*....
+00000740: 34af 03e0 0600 dc06 b103 2ab2 03e6 0600  4.........*.....
+00000750: ae06 b403 2ab5 0302 0034 b703 6600 34b9  ....*....4..f.4.
+00000760: 03f4 0600 56bb 0358 bc03 f006 bd03 f006  ....V..X........
+00000770: be03 ec06 bf03 48c0 03f0 0600 34c2 0386  ......H.....4...
+00000780: 0700 8207 c403 36c5 038c 0700 4c81 034c  ......6.....L..L
+00000790: 2692 0700 9007 ca03 8e07 cb03 3600 48cd  &amp;...........6.H.
+000007a0: 032a ce03 9e07 0098 07d0 03aa 06d1 03a4  .*..............
+000007b0: 0700 4cd3 034e 0068 d503 6200 32d7 0356  ..L..N.h..b.2..V
+000007c0: 0058 d903 62da 0350 db03 6200 2edd 03bc  .X..b..P..b.....
+000007d0: 0700 a405 df03 30e0 0362 0064 e203 0400  ......0..b.d....
+000007e0: 34e4 03ca 0700 34e6 03ce 0700 62e8 0336  4.....4.....b..6
+000007f0: e903 d407 002c eb03 c805 00d8 07ed 03c6  .....,..........
+00000800: 07ee 0338 ef03 6200 2ef1 0338 0034 f303  ...8..b....8.4..
+00000810: e807 00e4 07f5 0330 f603 5600 58f8 0362  .......0..V.X..b
+00000820: f903 50fa 03f6 0700 c805 fc03 ee07 fd03  ..P.............
+00000830: 38fe 03fe 0700 e007 8004 c207 8104 3882  8.............8.
+00000840: 0486 0800 b807 8404 b007 8504 3886 048e  ............8...
+00000850: 0800 4e81 034e 2794 0800 9208 8b04 9008  ..N..N&#x27;.........
+00000860: 8c04 3800 508e 0430 8f04 2e90 042c 9104  ..8.P..0.....,..
+00000870: 3692 0464 9304 3294 04aa 0800 9a08 9604  6..d..2.........
+00000880: ac07 9704 b008 004e 9904 5000 689b 042c  .......N..P.h..,
+00000890: 0034 9d04 3600 349f 0446 0034 a104 0000  .4..6.4..F.4....
+000008a0: 34a3 04c8 0800 62a5 042a a604 ce08 00c4  4.....b..*......
+000008b0: 08a8 042a a904 0400 34ab 04d8 0800 da08  ...*....4.......
+000008c0: 0034 ae04 de08 00d4 08b0 042a b104 e408  .4.........*....
+000008d0: 00c0 08b3 042a b404 0000 34b6 04ee 0800  .....*....4.....
+000008e0: ea08 b804 2ab9 04f4 0800 bc08 bb04 2abc  ....*.........*.
+000008f0: 0466 0034 be04 fe08 0056 c004 58c1 04f0  .f.4.....V..X...
+00000900: 06c2 04f0 06c3 04fa 08c4 0448 c504 8607  ...........H....
+00000910: 008c 09c7 0436 c804 9209 0050 8103 5028  .....6.....P..P(
+00000920: 9809 0096 09cd 0494 09ce 0436 0048 d004  ...........6.H..
+00000930: 2ad1 04a4 0900 9e09 d304 b808 d404 aa09  *...............
+00000940: 0050 d604 5200 68d8 0428 0034 da04 0000  .P..R.h..(.4....
+00000950: 34dc 04ba 0900 62de 042a df04 c009 00b6  4.....b..*......
+00000960: 09e1 042a e204 6600 34e4 04ca 0900 56e6  ...*..f.4.....V.
+00000970: 0458 e704 f006 e804 f006 e904 c609 ea04  .X..............
+00000980: 48eb 0486 0700 d809 ed04 36ee 04de 0900  H.........6.....
+00000990: 5281 0352 29e4 0900 e209 f304 e009 f404  R..R)...........
+000009a0: 3600 48f6 042a f704 f009 00ea 09f9 04b2  6.H..*..........
+000009b0: 09fa 04f6 0900 52fc 0454 0068 fe04 2600  ......R..T.h..&amp;.
+000009c0: 3480 0500 0034 8205 860a 0062 8405 2a85  4....4.....b..*.
+000009d0: 058c 0a00 820a 8705 2a88 0566 0034 8a05  ........*..f.4..
+000009e0: 960a 0056 8c05 588d 05f0 068e 05f0 068f  ...V..X.........
+000009f0: 0592 0a90 0548 9105 8607 00a4 0a93 0536  .....H.........6
+00000a00: 9405 aa0a 0054 8103 542a b00a 00ae 0a99  .....T..T*......
+00000a10: 05ac 0a9a 0536 0048 9c05 2a9d 05bc 0a00  .....6.H..*.....
+00000a20: b60a 9f05 fe09 a005 c20a 0054 a205 5a00  ...........T..Z.
+00000a30: 68a4 0558 0044 a605 ce0a 0024 a805 d20a  h..X.D.....$....
+00000a40: 005a 8103 5a2d d80a 00d6 0aad 05d4 0aae  .Z..Z-..........
+00000a50: 0524 0044 b005 e20a 00de 0ab2 05ca 0ab3  .$.D............
+00000a60: 05e8 0a00 5ab5 055c 0068 b705 6200 32b9  ....Z..\.h..b.2.
+00000a70: 0562 002e bb05 f80a 00a4 05bd 0530 be05  .b...........0..
+00000a80: 6200 60c0 0562 002e c205 4200 34c4 058a  b.`..b....B.4...
+00000a90: 0b00 860b c605 30c7 0562 0022 c905 940b  ......0..b.&quot;....
+00000aa0: 002e cb05 980b 0032 cd05 6200 22cf 05a0  .......2..b.&quot;...
+00000ab0: 0b00 2ed1 05a4 0b00 32d3 0562 0022 d505  ........2..b.&quot;..
+00000ac0: ac0b 002e d705 b00b 002e d905 4200 34db  ............B.4.
+00000ad0: 05b8 0b00 b40b dd05 30de 05be 0b00 2ce0  ........0.....,.
+00000ae0: 05c2 0b00 a80b e205 9c0b e305 38e4 0562  ............8..b
+00000af0: 002e e605 4000 34e8 05d2 0b00 ce0b ea05  ....@.4.........
+00000b00: 30eb 0562 0022 ed05 dc0b 002e ef05 e00b  0..b.&quot;..........
+00000b10: 0060 f105 6200 22f3 05e8 0b00 2ef5 05ec  .`..b.&quot;.........
+00000b20: 0b00 22f7 05f0 0b00 2ef9 0504 0034 fb05  ..&quot;..........4..
+00000b30: f80b 00f4 0bfd 0520 fe05 c805 00fe 0b80  ....... ........
+00000b40: 06e4 0b81 0638 8206 6200 3e84 063c 0034  .....8..b.&gt;..&lt;.4
+00000b50: 8606 8e0c 008a 0c88 0630 8906 6200 228b  .........0..b.&quot;.
+00000b60: 0698 0c00 2e8d 069c 0c00 5c8f 0662 0022  ..........\..b.&quot;
+00000b70: 9106 a40c 0022 9306 a80c 002e 9506 ac0c  .....&quot;..........
+00000b80: 005c 9706 c805 00b0 0c99 06a0 0c9a 0638  .\.............8
+00000b90: 9b06 c805 00b8 0c9d 0694 0c9e 0638 9f06  .............8..
+00000ba0: c00c 0086 0ca1 06d8 0ba2 0638 a306 c80c  ...........8....
+00000bb0: 00ca 0ba5 0690 0ba6 0638 a706 d00c 0082  .........8......
+00000bc0: 0ba9 06fe 0aaa 0638 ab06 d80c 00c8 05ad  .......8........
+00000bd0: 06f4 0aae 0638 af06 e00c 0000 005c b206  .....8.......\..
+00000be0: 5c2e e80c 00e6 0cb5 06e2 0cb6 0638 005c  \............8.\
+00000bf0: b806 2eb9 0622 ba06 30bb 063e bc06 20bd  .....&quot;..0..&gt;.. .
+00000c00: 0660 be06 2cbf 0632 c006 820d 00ee 0cc2  .`..,..2........
+00000c10: 06f0 0ac3 0688 0d00 5cc5 065e 0068 c706  ........\..^.h..
+00000c20: 6200 32c9 0662 002e cb06 980d 00a4 05cd  b.2..b..........
+00000c30: 0630 ce06 6200 60d0 0662 0022 d206 a60d  .0..b.`..b.&quot;....
+00000c40: 002e d406 f80b 00aa 0dd6 0620 d706 c805  ........... ....
+00000c50: 00b0 0dd9 06a2 0dda 0638 db06 6200 2edd  .........8..b...
+00000c60: 0642 0034 df06 c00d 00bc 0de1 0630 e206  .B.4.........0..
+00000c70: 6200 22e4 06ca 0d00 2ee6 06ce 0d00 32e8  b.&quot;...........2.
+00000c80: 0662 0022 ea06 d60d 002e ec06 da0d 0032  .b.&quot;...........2
+00000c90: ee06 6200 22f0 06e2 0d00 2ef2 06e6 0d00  ..b.&quot;...........
+00000ca0: 2ef4 0642 0034 f606 ee0d 00ea 0df8 0630  ...B.4.........0
+00000cb0: f906 f40d 002c fb06 f80d 00de 0dfd 06d2  .....,..........
+00000cc0: 0dfe 0638 ff06 6200 2e81 0740 0034 8307  ...8..b....@.4..
+00000cd0: 880e 0084 0e85 0730 8607 6200 2288 0792  .......0..b.&quot;...
+00000ce0: 0e00 2e8a 0796 0e00 608c 0762 0022 8e07  ........`..b.&quot;..
+00000cf0: 9e0e 002e 9007 a20e 0022 9207 a60e 002e  .........&quot;......
+00000d00: 9407 f80b 00aa 0e96 0720 9707 c805 00b0  ......... ......
+00000d10: 0e99 079a 0e9a 0738 9b07 6200 3e9d 073c  .......8..b.&gt;..&lt;
+00000d20: 0034 9f07 c00e 00bc 0ea1 0730 a207 6200  .4.........0..b.
+00000d30: 22a4 07ca 0e00 2ea6 07ce 0e00 5ea8 0762  &quot;...........^..b
+00000d40: 0022 aa07 d60e 0022 ac07 da0e 002e ae07  .&quot;.....&quot;........
+00000d50: de0e 005e b007 c805 00e2 0eb2 07d2 0eb3  ...^............
+00000d60: 0738 b407 c805 00ea 0eb6 07c6 0eb7 0738  .8.............8
+00000d70: b807 f20e 00b8 0eba 078e 0ebb 0738 bc07  .............8..
+00000d80: fa0e 0080 0ebe 07c6 0dbf 0738 c007 820f  ...........8....
+00000d90: 00b8 0dc2 079e 0dc3 0738 c407 8a0f 00c8  .........8......
+00000da0: 05c6 0794 0dc7 0738 c807 920f 0000 005e  .......8.......^
+00000db0: cb07 5e2f 9a0f 0098 0fce 0794 0fcf 0738  ..^/...........8
+00000dc0: 005e d107 2ed2 0722 d307 30d4 073e d507  .^.....&quot;..0..&gt;..
+00000dd0: 20d6 0760 d707 2cd8 0732 d907 b40f 00a0   ..`..,..2......
+00000de0: 0fdb 0790 0ddc 07ba 0f00 5ede 0760 0068  ..........^..`.h
+00000df0: e007 6200 1ee2 0762 002e e407 ca0f 00a4  ..b....b........
+00000e00: 05e6 0730 e707 6200 22e9 07d4 0f00 2eeb  ...0..b.&quot;.......
+00000e10: 07d8 0f00 28ed 07c8 0500 dc0f ef07 d00f  ....(...........
+00000e20: f007 38f1 07c8 0500 e40f f307 c60f f407  ..8.............
+00000e30: 38f5 07ec 0f00 6081 0360 30f2 0f00 f00f  8.....`..`0.....
+00000e40: fa07 ee0f fb07 3800 28fd 072e fe07 22ff  ......8.(.....&quot;.
+00000e50: 0730 8008 1e81 0884 1000 f80f 8308 c20f  .0..............
+00000e60: 8408 8a10 0060 8608 6400 6888 0862 001e  .....`..d.h..b..
+00000e70: 8a08 6200 2e8c 089a 1000 a405 8e08 308f  ..b...........0.
+00000e80: 0862 0022 9108 a410 002e 9308 a810 003a  .b.&quot;...........:
+00000e90: 9508 c805 00ac 1097 08a0 1098 0838 9908  .............8..
+00000ea0: c805 00b4 109b 0896 109c 0838 9d08 bc10  ...........8....
+00000eb0: 0064 8103 6432 c210 00c0 10a2 08be 10a3  .d..d2..........
+00000ec0: 0838 003a a508 2ea6 0822 a708 30a8 081e  .8.:.....&quot;..0...
+00000ed0: a908 d410 00c8 10ab 0892 10ac 08da 1000  ................
+00000ee0: 64ae 08de 1000 8e10 b008 be0f b108 8c0d  d...............
+00000ef0: b208 ec0a b308 c60a b408 fa09 b508 ae09  ................
+00000f00: b608 b408 b708 a807 b808 a606 b908 6aba  ..............j.
+00000f10: 08f6 1000 9005 bc08 ba08 0bc7 020b 00ac  ................
+00000f20: 120b c90a 235a ac12 0bc9 0000 0000 0000  ....#Z..........
+00000f30: 0000 00ac 120b c90a 235a ac12 0bc9 1c02  ........#Z......
+00000f40: 9c99 afeb 0ee5 2f00 0000 031e 6275 696c  ....../.....buil
+00000f50: 6469 6e67 2d62 6c6f 636b 731e 6275 696c  ding-blocks.buil
+00000f60: 6469 6e67 2d62 6c6f 636b 7356 6172 6974  ding-blocksVarit
+00000f70: 686d 6574 6963 2d33 2f62 696e 642d 6672  hmetic-3/bind-fr
+00000f80: 6565 2f62 7569 6c64 696e 672d 626c 6f63  ee/building-bloc
+00000f90: 6b73 2e6c 6973 7001 0e4b 4559 574f 5244  ks.lisp..KEYWORD
+00000fa0: 061e 424f 4f4b 2d57 5249 5445 2d44 4154  ..BOOK-WRITE-DAT
+00000fb0: 4516 424f 4f4b 2d4c 454e 4754 480a 5454  E.BOOK-LENGTH.TT
+00000fc0: 4147 530e 4158 494f 4d53 501e 534b 4950  AGS.AXIOMSP.SKIP
+00000fd0: 5045 442d 5052 4f4f 4653 500c 5359 5354  PED-PROOFSP.SYST
+00000fe0: 454d 1018 0616 0014 0012 0020 001e 111c  EM......... ....
+00000ff0: 1210 030e 022a 0028 1626 1708 180a 191a  .....*.(.&amp;......
+00001000: 1a36 0000 ac12 0bc9 0a23 5aac 120b c902  .6.......#Z.....
+00001010: 0000 0000 0001 0e4b 4559 574f 5244 0122  .......KEYWORD.&quot;
+00001020: 5452 4956 4941 4c2d 424f 4f4b 2d48 4153  TRIVIAL-BOOK-HAS
+00001030: 4800 00ac 120b c9                        H......</pre>
+    </details>
+  </details>
+</main>
+</div>
+<script>
+const q = document.getElementById('filter');
+q.addEventListener('input', () => {
+  const v = q.value.toLowerCase();
+  document.querySelectorAll('.toc li').forEach(li => {
+    li.style.display = li.textContent.toLowerCase().includes(v) ? '' : 'none';
+  });
+});
+</script>
