@@ -374,7 +374,13 @@
   {
    "path": "arithmetic-3/pass1/numerator-and-denominator.lisp",
    "cert": true,
-   "status": "pending"
+   "status": "axioms generated, lake build passes",
+   "check": {
+    "requested": "1",
+    "passes": 1,
+    "hash": "7cb68b6c0408deb0ade038f4d30bbe04d55e228f1eae0938c7a72a351f4b5c19",
+    "result": "clean"
+   }
   },
   {
    "path": "arithmetic-3/pass1/prefer-times.lisp",
