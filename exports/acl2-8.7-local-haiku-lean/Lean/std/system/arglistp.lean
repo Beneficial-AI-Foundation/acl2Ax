@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2024 Kestrel Institute (http://www.kestrel.edu)
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book std/system/arglistp.lisp.
+-/
+
+/-
 Translation of the ACL2 book `std/system/arglistp.lisp` (acl2-8.7 books tree).
 
 Pending import: `include-book "xdoc/top" :dir :system` has no module yet

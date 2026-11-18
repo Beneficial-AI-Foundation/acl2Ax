@@ -28,7 +28,7 @@ Run from the repository root.
 - Build the Lean project at the root (the four pilot books): `lake build`. It does not build the export. The toolchain is pinned in `lean-toolchain` (v4.34.0, installed through elan). Do not run `lake update`.
 - Build the export: `(cd exports/acl2-8.7-local-haiku-lean && lake build)`.
 - Check one module: `lake env lean Lean/arithmetic/abs.lean`.
-- Regenerate the blueprint for abs: `python3 tools/blueprint/build_blueprint.py abs`. It writes `tools/blueprint/abs-blueprint.html`. It reads the books from the path in `ACL2_BOOKS` at the top of the script, so set that path for the machine first.
+- Regenerate the blueprint for abs: `python3 tools/blueprint/build_blueprint.py abs`. It writes `tools/blueprint/abs-blueprint.html`. It reads the books from the path in `ACL2_BOOKS` at the top of the script, so set that path for the machine first. It does not write the license notice, so add it afterwards: `python3 skills/acl2-to-lean-ax/scripts/licenses.py page BOOKS arithmetic/abs tools/blueprint/abs-blueprint.html --lean Lean/arithmetic/abs.lean`.
 - Load a certificate read-only, to check that it matches its source: `(include-book "BOOKS/arithmetic/abs" :load-compiled-file nil)`, with `BOOKS` written out as an absolute path, piped into `ACL2/saved_acl2`, followed by `(good-bye)`. Run it from a scratch directory. This check does not replay proofs.
 - Recertify a book, which replays proofs and overwrites the `.cert` file: `(certify-book "abs" ? t)` piped into `ACL2/saved_acl2` from inside `BOOKS/arithmetic`. Back up the `.cert` first. A copy of the books directory fails, because ACL2 requires the book at its installed path.
 
@@ -54,6 +54,7 @@ Run from the repository root.
 - `manifest.json` lists the 1452 certified books with a status for each. Update the status of a book after its axioms build.
 - `mappings/arithmetic.json` records, for each arithmetic book, its package, its Lean namespace, its Lean file, and its `include-book` targets with the `local` flag. The package of every arithmetic book is `ACL2`, so the Lean namespace is `ACL2`.
 - `tools/cert-checker/` and `tools/cert-checker-js/` hold integrity checkers for `.cert` files. Their READMEs give their status.
+- `LICENSE` (BSD 3-Clause, Beneficial AI Foundation) covers acl2Ax's own files. The modules and the blueprint pages also keep the copyright and license of their ACL2 book: `NOTICE.md` lists them, `LICENSES/acl2/` holds the license texts, and `skills/acl2-to-lean-ax/scripts/licenses.py` writes both. The export has its own `NOTICE.md` and `LICENSES/`. `skills/acl2-to-lean-ax/LICENSE` is a copy of `LICENSE`; keep the two identical.
 - `EMBEDDING_DECISIONS.md` is the record of deviations. It has three parts: general decisions, an interpretation table, and element decisions keyed by the ACL2 theorem name in `### name` headings.
 
 ## Conventions for the Lean axioms
@@ -61,6 +62,7 @@ Run from the repository root.
 These are the pilot's conventions. The export follows `skills/acl2-to-lean-ax/SKILL.md`.
 
 - Each `defthm` becomes one `axiom`, in the file for its book, inside `namespace ACL2`.
+- Each module starts with the comment that `python3 skills/acl2-to-lean-ax/scripts/licenses.py apply . --books BOOKS --copyright "Copyright (c) 2026, Beneficial AI Foundation"` writes: the book's copyright, the Foundation's line, and the license file. Run `licenses.py check BOOKS <book>` before translating a book, and stop if it exits with 2. Edit the comment by hand only to remove a line.
 - ACL2 names are kept verbatim, with guillemets, for example `«abs-*»`.
 - Variables range over `Rat`. Hypotheses such as `real/rationalp x` stay in the statement, and `realrationalp` is `True` on `Rat`.
 - An ACL2 theorem without hypotheses is stated over `Rat` only, and `EMBEDDING_DECISIONS.md` records this.

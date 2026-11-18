@@ -29,6 +29,9 @@ HTML blueprint. The ACL2 tree is an input. Nothing in this skill depends on wher
 7. `--check N|converge`, the number of checking passes for each generated module. It takes the same
    form as `--cert yes|no`. `N` is a positive integer. `converge` runs passes until a pass makes no
    change. Default: `--check 1`.
+8. `COPYRIGHT`, optional. The copyright line of the translator, for example
+   `Copyright (c) 2026, Beneficial AI Foundation`. Each module and blueprint page then carries it
+   next to the copyright of its book. Without it, they carry only the book's notice.
 
 `SKILL_DIR` is the directory that contains this SKILL.md. Run the scripts with `python3`. They use only the standard library.
 
@@ -75,6 +78,17 @@ HTML blueprint. The ACL2 tree is an input. Nothing in this skill depends on wher
    book that has no module yet records that import as pending, in a comment at the top of the module.
 
 4. For each book, in that order:
+   - Check the book's license:
+
+     ```
+     python3 SKILL_DIR/scripts/licenses.py check BOOKS <book-path>
+     ```
+
+     It prints the book's copyright and license file. If it exits with 2, the license is not
+     identified: the book names no license the script recognises, or its license file is not one of
+     the reviewed 3-clause BSD texts in `KNOWN_LICENSES` of `licenses.py`. Stop, and ask the user
+     before translating that book. A new license text is accepted only after the user reviews it and
+     adds the key that the script prints.
    - Read the `.lisp` file. List every `defun`, `defthm`, `defthmd`, `defaxiom` and `defmacro`,
      including those inside `local` and `encapsulate`.
    - Add the Lean interpretation of each primitive or definition the book uses to `Lean/ACL2/Base.lean`
@@ -91,6 +105,17 @@ HTML blueprint. The ACL2 tree is an input. Nothing in this skill depends on wher
      Fix every error before the next book.
    - Run the checking passes with the value of `--check`.
    - Set the book's status in `manifest.json` to `axioms generated, lake build passes`.
+   - Add the book's copyright and license:
+
+     ```
+     python3 SKILL_DIR/scripts/licenses.py apply PROJECT --books BOOKS [--copyright COPYRIGHT] <book-path>
+     ```
+
+     This writes a comment above `module` with the copyright of the book (and `COPYRIGHT`), the
+     license file and the book's path. It copies the license text to `PROJECT/LICENSES/acl2/`, at
+     its path in the ACL2 source tree, copies the license of acl2Ax to `PROJECT/LICENSES/acl2Ax/`,
+     and rewrites `PROJECT/NOTICE.md`. A rerun keeps every copyright line already in the comment.
+     Edit the comment by hand only to remove a line. If any file cannot be written, nothing changes.
 
 5. Generate the blueprint for each book.
 
@@ -101,7 +126,9 @@ HTML blueprint. The ACL2 tree is an input. Nothing in this skill depends on wher
    Add `--no-build` to skip the build step. The page is written to `PROJECT/blueprint/<book>-blueprint.html`.
    The page lists the ACL2 source, the Lean axiom and the element decisions of each theorem.
    The status row says whether `<book>.cert` is present. When it is absent, the page says the book
-   is not certified, and it omits the certificate dump.
+   is not certified, and it omits the certificate dump. Below the status row, the page shows the
+   copyright lines of the module's comment and the text of the book's license. If the book's license
+   is not identified, the script exits with 2 and writes no page.
 
 6. Report what was done. Give the count of axioms per book, the books not yet generated, and every
    deviation that needs the user's decision.

@@ -1,3 +1,10 @@
+/-
+Copyright (C) 1998  John R. Cowles, University of Wyoming
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book arithmetic-2/pass1/numerator-and-denominator-helper.lisp.
+-/
+
 module
 
 public import ACL2.Base

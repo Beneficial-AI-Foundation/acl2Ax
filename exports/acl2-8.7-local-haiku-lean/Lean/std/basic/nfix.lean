@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2024 Kestrel Institute (http://www.kestrel.edu)
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book std/basic/nfix.lisp.
+-/
+
+/-
 Translation of the ACL2 book `std/basic/nfix.lisp` (ACL2 8.7 books).
 Shallow embedding. The function `nfix` is the ACL2.Base declaration (decision 50).
 The predicate `natp` is not in ACL2.Base, so it is declared here (see the fragment file).

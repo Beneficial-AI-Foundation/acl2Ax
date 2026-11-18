@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2014, University of Wyoming
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book arithmetic/sumlist.lisp.
+-/
+
+/-
 Shallow embedding of the ACL2 book `arithmetic/sumlist.lisp`.
 The book has no include-book forms, so it has no imports beyond `ACL2.Base`.
 The defun `sumlist` is declared in `ACL2.Base` (the signature only), and the
