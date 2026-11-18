@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This project is a prototype that creates Lean axioms for every theorem in ACL2.
 
-- ACL2 source: /Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/books.
+- ACL2 source: the `books` directory of ACL2 8.7, called `BOOKS` below. `ACL2` below is the ACL2 directory that holds `saved_acl2`. Both can be anywhere.
 - There must be created the same directory structure that is used in the ACL2 source books directory.
 - A book is a .lisp file with a matching .cert file. Use the .acl2 files only for settings, includes and namespacing.
 - The Verso/Blueprint may link to the source .lisp files. The Lean axioms must represent the ACL2 code.
@@ -17,24 +17,25 @@ This project is a prototype that creates Lean axioms for every theorem in ACL2.
 
 ## Scope and status
 
-- Scope so far: the 16 certified books in `books/arithmetic`. The other books are not started.
-- Done for `arithmetic/abs`: the Lean axioms, the embedding decisions, the blueprint page, and the lake build.
-- Pending: step 4 for the other 15 arithmetic books, then the blueprint for each.
-- Pending: the cert integrity checker, which a background agent was writing into `tools/cert-checker/`. Check that directory before starting work on it.
+- The repository holds two Lean projects. The pilot is the project at the repository root: four books from `books/arithmetic`, written with the conventions in this file. The export is the project in `exports/acl2-8.7-local-haiku-lean/`, made by the skill in `skills/acl2-to-lean-ax/`. `README.md` compares the two.
+- The status is kept in one place, the "Current scope" section of `README.md`. Update it there when a book is added.
+- Planned work is tracked in [issue 1](https://github.com/Beneficial-AI-Foundation/acl2Ax/issues/1).
 
 ## Commands
 
-Run from `/Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/acl2Ax`.
+Run from the repository root.
 
-- Build the Lean project: `lake build`. The toolchain is pinned in `lean-toolchain` (v4.34.0, installed through elan). Do not run `lake update`.
+- Build the Lean project at the root (the four pilot books): `lake build`. It does not build the export. The toolchain is pinned in `lean-toolchain` (v4.34.0, installed through elan). Do not run `lake update`.
+- Build the export: `(cd exports/acl2-8.7-local-haiku-lean && lake build)`.
 - Check one module: `lake env lean Lean/arithmetic/abs.lean`.
-- Regenerate the blueprint for abs: `python3 tools/blueprint/build_blueprint.py abs`. It writes `tools/blueprint/abs-blueprint.html`.
-- Load a certificate read-only, to check that it matches its source: `(include-book "/Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/books/arithmetic/abs" :load-compiled-file nil)` piped into `/Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/ACL2/acl2-8.7/saved_acl2`, followed by `(good-bye)`. Run it from a scratch directory. This check does not replay proofs.
-- Recertify a book, which replays proofs and overwrites the `.cert` file: `(certify-book "abs" ? t)` piped into `saved_acl2` from inside the books directory. Back up the `.cert` first. A copy of the books directory fails, because ACL2 requires the book at its installed path.
+- Regenerate the blueprint for abs: `python3 tools/blueprint/build_blueprint.py abs`. It writes `tools/blueprint/abs-blueprint.html`. It reads the books from the path in `ACL2_BOOKS` at the top of the script, so set that path for the machine first.
+- Load a certificate read-only, to check that it matches its source: `(include-book "BOOKS/arithmetic/abs" :load-compiled-file nil)`, with `BOOKS` written out as an absolute path, piped into `ACL2/saved_acl2`, followed by `(good-bye)`. Run it from a scratch directory. This check does not replay proofs.
+- Recertify a book, which replays proofs and overwrites the `.cert` file: `(certify-book "abs" ? t)` piped into `ACL2/saved_acl2` from inside `BOOKS/arithmetic`. Back up the `.cert` first. A copy of the books directory fails, because ACL2 requires the book at its installed path.
 
 ## Blueprint page
 
-- The blueprint is published as an Artifact at `https://claude.ai/artifact/Y2aghL3pVRjDJKuGbVKiAw`. Publish the same file path again to update that URL, and never create a new artifact for it.
+- These rules are for the pilot's pages in `tools/blueprint/`. The export's pages are in `exports/acl2-8.7-local-haiku-lean/blueprint/`, made by `skills/acl2-to-lean-ax/scripts/blueprint.py`, and `.github/workflows/pages.yml` publishes them to https://beneficial-ai-foundation.github.io/acl2Ax/ on each push to `main` that changes them.
+- The pilot's abs blueprint is published as an Artifact at `https://claude.ai/artifact/Y2aghL3pVRjDJKuGbVKiAw`. Publish the same file path again to update that URL, and never create a new artifact for it.
 - The page has these parts, in this order:
   1. A status row with the book, the axiom count, the embedding, the ACL2 certification and the Lean build.
   2. A collapsible general embedding decisions section, taken from `EMBEDDING_DECISIONS.md`.
@@ -46,14 +47,18 @@ Run from `/Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/acl2Ax`.
 
 ## Architecture
 
-- `Lean/ACL2/Base.lean` holds the shallow interpretation of the ACL2 primitives used by the books. It defines `realrationalp`, `acl2NumberP`, `fix` and `abs` over `Rat`. It sits outside the mirror of the books tree, and `EMBEDDING_DECISIONS.md` records this.
-- `Lean/<book dir>/<book>.lean` holds the axioms for one ACL2 book. The directory structure mirrors `books/arithmetic`, and the directories exist for all 78 book directories in the manifest. Only `Lean/arithmetic/abs.lean` has content so far.
-- `lakefile.toml` defines the library `ACL2Ax` with `srcDir = "Lean"` and the roots `ACL2.Base` and `arithmetic.abs`. Add each new module to `roots`, or `lake build` does not build it.
+- The export is a separate Lake project. It follows `skills/acl2-to-lean-ax/SKILL.md` and its own `EMBEDDING_DECISIONS.md`, not the conventions below.
+- `Lean/ACL2/Base.lean` holds the shallow interpretation of the ACL2 primitives used by the pilot books. It defines `realrationalp`, `acl2NumberP`, `rationalp`, `rationalListp`, `integerp`, `zp`, `fix`, `nfix`, `abs`, `exptInt` and `expt` over `Rat`. It sits outside the mirror of the books tree, and `EMBEDDING_DECISIONS.md` records this.
+- `Lean/<book dir>/<book>.lean` holds the axioms for one ACL2 book, at the same path as the book under `BOOKS`. The pilot has four modules: `abs`, `binomial`, `factorial` and `sumlist`, in `Lean/arithmetic/`.
+- `lakefile.toml` defines the library `ACL2Ax` with `srcDir = "Lean"` and the roots `ACL2.Base`, `arithmetic.abs`, `arithmetic.factorial`, `arithmetic.sumlist` and `arithmetic.binomial`. Add each new module to `roots`, or `lake build` does not build it.
 - `manifest.json` lists the 1452 certified books with a status for each. Update the status of a book after its axioms build.
 - `mappings/arithmetic.json` records, for each arithmetic book, its package, its Lean namespace, its Lean file, and its `include-book` targets with the `local` flag. The package of every arithmetic book is `ACL2`, so the Lean namespace is `ACL2`.
+- `tools/cert-checker/` and `tools/cert-checker-js/` hold integrity checkers for `.cert` files. Their READMEs give their status.
 - `EMBEDDING_DECISIONS.md` is the record of deviations. It has three parts: general decisions, an interpretation table, and element decisions keyed by the ACL2 theorem name in `### name` headings.
 
 ## Conventions for the Lean axioms
+
+These are the pilot's conventions. The export follows `skills/acl2-to-lean-ax/SKILL.md`.
 
 - Each `defthm` becomes one `axiom`, in the file for its book, inside `namespace ACL2`.
 - ACL2 names are kept verbatim, with guillemets, for example `«abs-*»`.
@@ -75,7 +80,7 @@ Run from `/Users/cbraga/Dropbox/BAIF/SVIL2006-SFO/acl2Ax`.
 3. Namespaces: read the `in-package` and `include-book` forms of each book, skipping forms inside block comments and escaped strings. Write `mappings/<dir>.json`.
 4. Axioms: for each book, emit one `axiom` per `defthm`, add the interpretations to `Lean/ACL2/Base.lean`, record the deviations, then run `lake build`.
 
-The steps 3 and 4 for abs were written by hand after reading the source. No script for steps 3 and 4 exists yet. A new book must follow the same pattern, and the mapping and the axiom file must be checked against the ACL2 source.
+The steps 3 and 4 for abs were written by hand after reading the source. The skill in `skills/acl2-to-lean-ax/` now has scripts for the inventory, the dependency order, the lakefile roots and the checks, and a model writes the axioms of step 4 by following `SKILL.md`. A new book must follow the same pattern, and the mapping and the axiom file must be checked against the ACL2 source.
 
 ## Models
 
