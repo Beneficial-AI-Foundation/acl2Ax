@@ -73,6 +73,7 @@ This file records every deviation from the ACL2 source in the Lean axioms.
 68. Unconstrained variables of order statements range over `CRat`. A variable ranges over `Rat` only when a `rationalp`, `real/rationalp` or `integerp` hypothesis of the ACL2 statement constrains it (decisions 14 and 17). The following axioms had `Rat` variables with no such hypothesis, and they now range over `CRat`, with the statement unchanged: rewrite-linear-equalities-to-iff of the two mini-theories books, the local iff-equal of the inequalities and prefer-times books, and <-0-minus, <-minus-zero, <-minus-minus, <-0-+-negative-1, <-0-+-negative-2, <-+-negative-0-1 and <-+-negative-0-2 of the inequalities books, in arithmetic-2 and arithmetic-3. This revises the sentence of decision 34 that says all variables of inequalities.lisp are real. Two groups of `Rat` variables without such a hypothesis remain, and they are open for the user's decision. The exponent of `expt` is a `Rat` in every statement, because `exptC` takes a rational exponent (decision 29). The arguments of `nonneg-int-mod`, `nonneg-int-gcd`, `nonneg-int-gcd-multiplier1` and `nonneg-int-gcd-multiplier2` are `Rat`, because their opaque signatures are over `Rat` (decision 43).
 69. The exponent of `expt` ranges over `CRat`. The ACL2 definition of `expt` (axioms.lisp, line 9073) takes any object as exponent, and `zip` makes a non-integer exponent give 1. `exptC r i` now takes `i : CRat`, with `integerpC i` as the test, and it revises decision 29. The helpers `ifixC`, `zipC` and `nfixC` follow `ifix`, `zip` and `nfix` on complex values, and `Base.lean` gains decidability instances for `integerpC` and `acl2le`. An exponent variable with no `integerp` hypothesis in the ACL2 statement is a `CRat` variable. An exponent variable under an `integerp` hypothesis stays a `Rat` variable, and Lean coerces it to `CRat` at the application (decision 17). The retyped axioms are in the expt books of arithmetic-2 and arithmetic-3 and in arithmetic-3/pass1/non-linear. The hypothesis `(<= 0 i)` of expt-type-prescription-integerp is `acl2le 0 i`.
 70. The functions `nonneg-int-mod`, `nonneg-int-gcd`, `nonneg-int-gcd-multiplier1` and `nonneg-int-gcd-multiplier2`, and the system function `nonnegative-integer-quotient`, are opaque constants of type `CRat → CRat → CRat`. This revises decisions 42 and 43. A variable with no `integerp` hypothesis in the ACL2 statement is a `CRat` variable, its `integerp` test inside a disjunction is `integerpC`, its `nfix` is `nfixC`, and `<=` on it is `acl2le`. A variable under an `integerp` hypothesis stays a `Rat` variable, coerced to `CRat` at the application (decision 17). The local induction schemes `induct-on-nonneg-int` and `Math-induction-start-at-k` take `CRat` arguments. `Base.lean` gains an `Inhabited CRat` instance, which Lean's `opaque` needs for these signatures. Decision 68 no longer lists open groups.
+71. The `CRat` rule of decision 68 applies to the `std` books `std/basic/fix`, `std/basic/ifix`, `std/basic/nfix`, `std/basic/realfix`, `std/basic/rfix` and `std/strings/digit-to-char`. A variable ranges over `Rat` only when a hypothesis of the ACL2 statement makes it rational: `rationalp`, `real/rationalp`, `integerp`, or `natp` and `integer-range-p`, which imply `integerp`. Seven axioms of these books had a `Rat` variable with no such hypothesis, and they now range over `CRat`: fix-when-acl2-numberp, acl2-numberp-of-fix, integerp-of-ifix, natp-of-nfix, real/rationalp-of-realfix, rationalp-of-rfix and zero-digit-to-char. Over `Rat` they held of the rationals only, and over `CRat` they hold of every ACL2 number. The other five axioms of these books, ifix-when-integerp, nfix-when-natp, realfix-when-real/rationalp, rfix-when-rationalp and digit-to-char-injective, keep their `Rat` variables. `Base.lean` gains `natpC`, `realfixC`, `rfixC` and `digitToCharC`, which follow `natp` (axioms.lisp, line 5010), `realfix` (line 4988), `rfix` (line 4973) and `digit-to-char` (line 7364) on complex values. `rationalp` on `CRat` is `realrationalpC`, as in decision 67. On a rational, each new definition agrees with its `Rat` version. The blueprint pages of these books show the earlier statements until the pages are regenerated.
 
 ## Excluded books: metaprogramming
 
@@ -105,6 +106,10 @@ Interpretation rows: `std/system/dumb-negate-lit` and `std/system/implicate` are
 | `alistp` on an alist | `alistp`, constant `True` on `AList` (decision 49) |
 | `assoc-equal` | `assocEqual`, first match, `none` for `nil` (decision 49) |
 | `getprops` | opaque `«getprops»` over `ACLSymbol`, `World`, result `AList ACLSymbol β` (decision 41) |
+| `natp` on `CRat` | `natpC x`, `integerpC x ∧ acl2le 0 x` (decision 71) |
+| `realfix` on `CRat` | `realfixC x`, `x` when `realrationalpC x`, else `0` (decision 71) |
+| `rfix` on `CRat` | `rfixC x`, `x` when `realrationalpC x`, else `0` (decision 71) |
+| `digit-to-char` on `CRat` | `digitToCharC x`, `«digit-to-char»` of the real part of an integer, else `#\0` (decision 71) |
 | --- | --- |
 
 ## Element decisions
@@ -996,11 +1001,11 @@ Decision 50. The hypothesis `(atom symbols)` is `symbols = []`. `memberSymbolNam
 
 ### fix-when-acl2-numberp
 
-Decision 52. `fix` is the ACL2.Base definition (identity on `Rat`). The hypothesis `acl2-numberp x` is `True`.
+Decisions 52 and 71. `acl2-numberp` does not make `x` rational, so `x` ranges over `CRat`. `fix` is `fixC`, the identity on `CRat`. The hypothesis `acl2-numberp x` is `acl2NumberPC x`, which is `True`.
 
 ### acl2-numberp-of-fix
 
-Decision 52. A `defthmd`, exported as a public axiom. The conclusion is `acl2NumberP (fix x)`, which is `True`.
+Decisions 52 and 71. A `defthmd`, exported as a public axiom. `x` ranges over `CRat`. The conclusion is `acl2NumberPC (fixC x)`, which is `True`.
 
 ### ifix-when-integerp
 
@@ -1008,7 +1013,7 @@ Decision 52. `ifix` is `ifixR` of ACL2.Base (decision 29).
 
 ### integerp-of-ifix
 
-Decision 52. A `defthmd`, exported as a public axiom, using `ifixR`.
+Decisions 52 and 71. A `defthmd`, exported as a public axiom. `x` ranges over `CRat`. `ifix` is `ifixC` (decision 69), and `integerp` is `integerpC`.
 
 ### nfix-when-natp
 
@@ -1016,7 +1021,7 @@ Decision 52. `natp` is the ACL2.Base definition, `integerp x ∧ 0 ≤ x`.
 
 ### natp-of-nfix
 
-Decision 52. A `defthmd`, exported as a public axiom. `nfix` is the ACL2.Base definition.
+Decisions 52 and 71. A `defthmd`, exported as a public axiom. `x` ranges over `CRat`. `nfix` is `nfixC` (decision 69), and `natp` is `natpC`.
 
 ### realfix-when-real/rationalp
 
@@ -1024,7 +1029,7 @@ Decision 52. `realfix` is the ACL2.Base identity. The hypothesis `real/rationalp
 
 ### real/rationalp-of-realfix
 
-Decision 52. A `defthmd`, exported as a public axiom.
+Decisions 52 and 71. A `defthmd`, exported as a public axiom. `x` ranges over `CRat`. `realfix` is `realfixC`, and `real/rationalp` is `realrationalpC`.
 
 ### rfix-when-rationalp
 
@@ -1032,7 +1037,7 @@ Decision 52. `rfix` is the ACL2.Base identity. The hypothesis `rationalp x` is `
 
 ### rationalp-of-rfix
 
-Decision 52. A `defthmd`, exported as a public axiom.
+Decisions 52 and 71. A `defthmd`, exported as a public axiom. `x` ranges over `CRat`. `rfix` is `rfixC`, and `rationalp` is `realrationalpC`.
 
 ### string-listp-of-map-symbol-name
 
@@ -1126,9 +1131,13 @@ Result: no metaprogramming, so the book is generated.
 
 ### zero-digit-to-char
 
-Decision 53. The variable `x` ranges over `Rat`. ACL2 `x` may be any object, and for a non-rational object the
-ACL2 right side is true by `(not (integerp x))`. The Lean statement does not quantify over those objects, so
-the statement covers the rationals only. The statement text follows the ACL2 `defthmd` as printed.
+Decisions 53 and 71. The variable `x` ranges over `CRat`. `digit-to-char` is `digitToCharC`, `integerp` is
+`integerpC`, `(<= x 0)` is `acl2le x 0` (decision 21), and `(< 15 x)` is `15 < x` in the order of
+`completion-of-<` (decision 15). ACL2 `x` may be any object, and for an object that is not a number the ACL2
+right side is true by `(not (integerp x))`. The Lean statement does not quantify over those objects, so the
+statement covers the ACL2 numbers only. For an `x` with a nonzero imaginary part, `digitToCharC x` is `#\0` and
+`¬ integerpC x` makes the right side true, so the order on such values does not affect the statement. The
+statement text follows the ACL2 `defthmd` as printed.
 
 
 ### digit-to-char-injective

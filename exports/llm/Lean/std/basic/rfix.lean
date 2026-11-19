@@ -20,7 +20,9 @@ namespace ACL2.std.basic.rfix
 /-- `rfix-when-rationalp`, `std/basic/rfix.lisp`, defthm, inside `defsection std/basic/rfix`. -/
 public axiom «rfix-when-rationalp» : ∀ (x : Rat), rationalp x → rfix x = x
 
-/-- `rationalp-of-rfix`, `std/basic/rfix.lisp`, defthmd, inside `defsection std/basic/rfix`. -/
-public axiom «rationalp-of-rfix» : ∀ (x : Rat), rationalp (rfix x)
+/-- `rationalp-of-rfix`, `std/basic/rfix.lisp`, defthmd, inside `defsection std/basic/rfix`.
+No hypothesis makes `x` rational, so `x` ranges over `CRat`, with `rfix` read as `rfixC` and
+`rationalp` as `realrationalpC` (decision 71). -/
+public axiom «rationalp-of-rfix» : ∀ x : CRat, realrationalpC (rfixC x)
 
 end ACL2.std.basic.rfix
