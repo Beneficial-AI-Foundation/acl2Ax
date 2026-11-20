@@ -21,6 +21,9 @@ acl2Ax is a prototype. The blueprint pages are published at
 - It checks each module: the axiom names must match the theorem names of the book, and
   `lake build` must pass.
 - It writes one blueprint page per book.
+- It keeps the copyright and license of each book. Before it translates a book, it checks that the
+  book is under a 3-clause BSD license, and it stops otherwise. Each module and each blueprint page
+  then carries the book's copyright line.
 
 For example, the book `std/basic/nfix.lisp` has, at line 21:
 
@@ -104,6 +107,7 @@ The repository holds two Lean projects with different conventions.
 
 Other files:
 
+- `LICENSE`, `NOTICE.md` and `LICENSES/`: see [License](#license).
 - `skills/acl2-to-lean-ax/`: the Claude Code skill that made the export. It holds `SKILL.md`, the
   scripts, and the templates for a new project.
 - `tools/blueprint/`: the pilot's blueprint generator and pages. `blueprint/` at the root holds
@@ -136,8 +140,7 @@ The export was made with the skill in `skills/acl2-to-lean-ax/`. To run it, you 
 - Claude Code;
 - an ACL2 books tree with `.cert` files, that is, certified books (a git clone of ACL2 has none
   until its books are certified);
-- Python 3.12 or later for `blueprint.py`, which uses f-string syntax that earlier versions
-  reject (the other scripts also run on Python 3.10, and all use only the standard library);
+- Python 3.10 or later (the scripts use only the standard library);
 - elan.
 
 Make the skill available to Claude Code by linking it into your skills directory, from the
@@ -157,6 +160,7 @@ ln -s "$PWD/skills/acl2-to-lean-ax" ~/.claude/skills/acl2-to-lean-ax
 | `--model` | Optional. The model that writes the axioms: `sonnet`, `opus`, `haiku` or `fable`. By default, the model of the session. |
 | `--check N\|converge` | The number of checking passes per module. Default: 1. |
 | `--cert yes\|no` | Certified books only (the default), or every `.lisp` file. |
+| `COPYRIGHT` | Optional. The translator's copyright line, which each module and page carries next to the book's. acl2Ax uses `Copyright (c) 2026, Beneficial AI Foundation`. |
 
 The skill writes into `PROJECT`:
 
@@ -166,7 +170,9 @@ The skill writes into `PROJECT`:
 - `manifest.json`, with every book and its status;
 - `ORDER.txt`, the books in dependency order;
 - `EMBEDDING_DECISIONS.md`, with every deviation from the ACL2 source;
-- `blueprint/`, with one page per book and an `index.html`.
+- `blueprint/`, with one page per book and an `index.html`;
+- `NOTICE.md`, with the copyright and license file of each book, and `LICENSES/`, with the
+  license texts of the books and of acl2Ax.
 
 The export also keeps a run log, `RUN_LOG.md`. It records only the first run, which stopped at the
 second book, with the model and the token use of that run.
@@ -178,7 +184,7 @@ The scripts are in `skills/acl2-to-lean-ax/scripts/`, and each one can also be r
 | 1 | `inventory.py` | Lists the books, writes `manifest.json`, and creates the module directories. |
 | 2 | `scaffold.py` | Copies `Base.lean` and `EMBEDDING_DECISIONS.md` for the chosen embedding. |
 | 3 | `order.py` | Writes the dependency order, `ORDER.txt`. |
-| 4 | the model, then `roots.py`, `check_axioms.py`, `check_deps.py` | The model writes each module. The scripts update `lakefile.toml`, compare axiom names with the book, and check the module's imports. |
+| 4 | `licenses.py check`, the model, then `roots.py`, `check_axioms.py`, `check_deps.py`, `licenses.py apply` | The first script checks the book's license. The model writes each module. The scripts update `lakefile.toml`, compare axiom names with the book, check the module's imports, and add the book's copyright to the module and to `NOTICE.md`. |
 | 5 | `blueprint.py`, `landing.py` | Write the blueprint pages and the index. |
 | after | `usage.py` | Sums the token use of the run. |
 
@@ -203,4 +209,24 @@ easier to use and to prove.
 
 ## License
 
-The repository has no license yet. [Issue 1](https://github.com/Beneficial-AI-Foundation/acl2Ax/issues/1), item 2, proposes one.
+acl2Ax is under the BSD 3-Clause license in `LICENSE`, Copyright (c) 2026, Beneficial AI Foundation.
+
+The Lean modules and the blueprint pages translate or quote ACL2 books, so each keeps the copyright
+and the license of its book. Every book translated so far is under a 3-clause BSD license. Each
+module starts with a comment that gives the book's copyright line, the Beneficial AI Foundation's
+line for the translation, and the license file. Each blueprint page shows the same lines and the
+license text.
+
+- `exports/acl2-8.7-local-haiku-lean/NOTICE.md` lists the books of the export, and `NOTICE.md` at
+  the root the books of the pilot. `skills/acl2-to-lean-ax/scripts/licenses.py` writes both.
+- `LICENSES/acl2/` holds copies of the ACL2 license files that these books use, at their paths in
+  the ACL2 source tree. The export has its own copy, and also a copy of acl2Ax's license, because it
+  starts from the skill's templates. `skills/acl2-to-lean-ax/LICENSE` is a copy of `LICENSE`, so the
+  skill keeps its license when it is copied on its own.
+- `tools/cert-checker/cl_symbols.h` lists Common Lisp symbols taken from ACL2's `axioms.lisp`, which
+  is under the ACL2 license in `LICENSES/acl2/LICENSE`.
+
+ACL2 sets licenses per directory and per file, and some ACL2 books are under other licenses, such as
+the GPL. The skill therefore checks each book before it translates it. It accepts only the five
+license texts reviewed so far, which `KNOWN_LICENSES` in `licenses.py` lists; a book under any other
+text stops the run until someone reviews that text.

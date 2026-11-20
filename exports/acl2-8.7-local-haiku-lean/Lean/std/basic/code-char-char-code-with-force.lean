@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2023, Regents of the University of Texas
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book std/basic/code-char-char-code-with-force.lisp.
+-/
+
+/-
 Translation of the ACL2 book `std/basic/code-char-char-code-with-force.lisp`.
 
 The two `defthm`s state `code-char` and `char-code` on the shallow domain. The hypothesis

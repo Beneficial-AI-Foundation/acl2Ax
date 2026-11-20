@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2019 Kestrel Institute (http://www.kestrel.edu)
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book std/lists/union.lisp.
+-/
+
+/-
 Translation of std/lists/union.lisp (ACL2 8.7 books).
 Shallow embedding. The primitive `union-equal` (axioms.lisp, line 7476) is declared in
 `Lean/ACL2/Base.lean` as `unionEqual` (decision 53, fragment file), so this module does not declare it.

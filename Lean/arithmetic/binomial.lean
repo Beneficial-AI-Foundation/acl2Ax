@@ -1,3 +1,10 @@
+/-
+Copyright (C) 2014, University of Wyoming
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book arithmetic/binomial.lisp.
+-/
+
 import ACL2.Base
 import arithmetic.factorial
 import arithmetic.sumlist

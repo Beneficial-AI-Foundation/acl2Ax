@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2024 Kestrel Institute (http://www.kestrel.edu)
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book std/basic/rfix.lisp.
+-/
+
+/-
 Translation of ACL2 book `std/basic/rfix` (Standard Basic Library, Kestrel Institute).
 The book includes `xdoc/constructors` from the system directory, which is not in the
 books tree, so it has no module and is not imported here.

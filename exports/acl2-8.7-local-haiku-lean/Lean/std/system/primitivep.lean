@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2024 Kestrel Institute (http://www.kestrel.edu)
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book std/system/primitivep.lisp.
+-/
+
+/-
 Translation of the ACL2 book `std/system/primitivep.lisp` (acl2-8.7 books tree).
 
 Pending imports: `include-book "std/util/define" :dir :system` and

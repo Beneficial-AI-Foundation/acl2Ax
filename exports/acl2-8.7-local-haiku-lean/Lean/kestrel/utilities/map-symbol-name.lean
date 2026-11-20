@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2020-2024 Kestrel Institute
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/books/3BSD-mod.txt.
+Translated from the ACL2 book kestrel/utilities/map-symbol-name.lisp.
+-/
+
+/-
 Translation of the ACL2 book `kestrel/utilities/map-symbol-name.lisp`
 (Kestrel Institute, 3-clause BSD license).
 

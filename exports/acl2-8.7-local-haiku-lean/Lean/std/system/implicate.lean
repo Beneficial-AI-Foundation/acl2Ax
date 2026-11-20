@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2025 Kestrel Institute (http://www.kestrel.edu)
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book std/system/implicate.lisp.
+-/
+
+/-
 Stub for ACL2 `std/system/implicate.lisp`. Excluded: metaprogramming (SKILL.md Scope).
 
 The book is not translated. Its statement is about its theorem concerns `pseudo-termp` and `implicate` on ACL2 terms as data. Metaprogramming is out of scope

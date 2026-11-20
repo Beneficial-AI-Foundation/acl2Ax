@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2024 Kestrel Institute (http://www.kestrel.edu)
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book std/basic/ifix.lisp.
+-/
+
+/-
 Translation of std/basic/ifix.lisp (ACL2 8.7 books).
 Shallow embedding. The ACL2 function `ifix` is the ACL2.Base declaration `ifixR` (decision 29),
 so this module declares no function.

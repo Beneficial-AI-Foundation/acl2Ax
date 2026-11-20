@@ -1,3 +1,10 @@
+/-
+Copyright (C) 2004, Regents of the University of Texas
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/books/arithmetic-3/LICENSE.
+Translated from the ACL2 book arithmetic-3/pass1/prefer-times.lisp.
+-/
+
 module
 
 public import ACL2.Base

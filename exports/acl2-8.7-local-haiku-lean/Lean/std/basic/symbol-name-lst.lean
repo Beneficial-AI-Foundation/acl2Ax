@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2021 Kestrel Institute (http://www.kestrel.edu)
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book std/basic/symbol-name-lst.lisp.
+-/
+
+/-
 Translation of std/basic/symbol-name-lst.lisp (ACL2 8.7 books).
 Shallow embedding. The symbol type `ACLSymbol`, the functions `symbolNameLst` and `len`, and
 `stringListp` are the ACL2.Base declarations, so this module declares none of them.

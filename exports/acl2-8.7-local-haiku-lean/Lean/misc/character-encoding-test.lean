@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2013, Regents of the University of Texas
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book misc/character-encoding-test.lisp.
+-/
+
+/-
 Shallow embedding of the ACL2 book `misc/character-encoding-test.lisp`.
 The book has one `defun`, `test-2`, declared in `Lean/ACL2/Base.lean` as an opaque
 `String` constant, and one `defthm`, `len-test-2`.

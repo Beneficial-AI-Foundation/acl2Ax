@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2013-2022 Kestrel Institute
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/books/3BSD-mod.txt.
+Translated from the ACL2 book kestrel/utilities/update-acl2-oracle.lisp.
+-/
+
+/-
 Translation of the ACL2 book `kestrel/utilities/update-acl2-oracle.lisp` (Kestrel Institute,
 3-clause BSD license). Shallow embedding.
 
