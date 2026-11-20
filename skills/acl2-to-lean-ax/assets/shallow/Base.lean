@@ -1,7 +1,7 @@
 /-
 Shallow interpretation of the ACL2 primitives used by the arithmetic books.
-The domain is `Rat`, which corresponds to the ACL2 rationals. Each ACL2
-function is interpreted on `Rat`. Deviations are recorded in EMBEDDING_DECISIONS.md.
+The domain is `Rat`, which corresponds to the ACL2 rationals, and `CRat` for numbers that may be
+complex. Deviations are recorded in EMBEDDING_DECISIONS.md.
 -/
 
 module
@@ -69,6 +69,9 @@ structure CRat where
   re : Rat
   im : Rat
   deriving DecidableEq
+
+/-- A default value, which an `opaque` declaration over `CRat` needs. -/
+instance : Inhabited CRat := ⟨⟨0, 0⟩⟩
 
 namespace CRat
 
@@ -140,6 +143,9 @@ def syntaxpW : Type := PUnit
 /-- ACL2 `integerp` on complex rationals: a real integer, that is imaginary part 0 and denominator 1. -/
 def integerpC (c : CRat) : Prop := c.im = 0 ∧ c.re.den = 1
 
+instance (c : CRat) : Decidable (integerpC c) :=
+  inferInstanceAs (Decidable (c.im = 0 ∧ c.re.den = 1))
+
 /-- ACL2 `ifix` on rationals: `(if (integerp i) i 0)`. -/
 def ifixR (i : Rat) : Rat := if integerp i then i else 0
 
@@ -160,9 +166,10 @@ def exptCInt (r : CRat) (i : Int) : CRat :=
 termination_by i.natAbs
 decreasing_by all_goals omega
 
-/-- ACL2 `expt` on complex rationals with a rational exponent: the integer case, and 1 for a
-non-integer exponent, because `zip` holds for it. -/
-def exptC (r : CRat) (i : Rat) : CRat := if integerp i then exptCInt r i.num else 1
+/-- ACL2 `expt` on complex rationals. The exponent is any ACL2 number, so it ranges over `CRat`
+(a `Rat` exponent is coerced): the integer case, and 1 for a non-integer exponent, because `zip`
+holds for it. -/
+def exptC (r : CRat) (i : CRat) : CRat := if integerpC i then exptCInt r i.re.num else 1
 
 end
 

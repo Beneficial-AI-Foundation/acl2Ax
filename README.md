@@ -14,8 +14,8 @@ acl2Ax is a prototype. The blueprint pages are published at
 - It mirrors the ACL2 books tree. For example, the book `std/basic/nfix.lisp` becomes the Lean
   module `Lean/std/basic/nfix.lean`.
 - It writes one Lean `axiom` per `defthm`, `defthmd` or `defaxiom` in the book.
-- It gives each ACL2 primitive and function that a book uses a Lean meaning, in
-  `Lean/ACL2/Base.lean` or in the book's module.
+- It gives each ACL2 primitive that a book uses a Lean definition, and each function that the book
+  defines an opaque Lean constant with its type, in `Lean/ACL2/Base.lean` or in the book's module.
 - It records every place where a Lean statement departs from its ACL2 source, in
   `EMBEDDING_DECISIONS.md`.
 - It checks each module: the axiom names must match the theorem names of the book, and
@@ -155,7 +155,7 @@ ln -s "$PWD/skills/acl2-to-lean-ax" ~/.claude/skills/acl2-to-lean-ax
 | --- | --- |
 | `BOOKS` | The ACL2 books directory. |
 | `PROJECT` | The Lean project to create. It must not be inside `BOOKS`. |
-| `GITHUB` | The web address of the same books, for the blueprint's source links, for example `https://github.com/acl2/acl2/blob/8.7/books`. `SKILL.md` calls it optional, but `blueprint.py` requires it. |
+| `GITHUB` | The web address of the same books, for the blueprint's source links, for example `https://github.com/acl2/acl2/blob/8.7/books`. Required. |
 | `--embedding shallow\|deep` | Required. `shallow`: ACL2 values become Lean values such as `Rat`, `CRat` (complex rationals), `Prop`, `List Rat` and `String`. `deep`: every ACL2 value is a value of one Lean type, `ACL2.V`. |
 | `--model` | Optional. The model that writes the axioms: `sonnet`, `opus`, `haiku` or `fable`. By default, the model of the session. |
 | `--check N\|converge` | The number of checking passes per module. Default: 1. |

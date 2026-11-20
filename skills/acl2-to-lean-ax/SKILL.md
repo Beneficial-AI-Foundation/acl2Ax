@@ -1,6 +1,6 @@
 ---
 name: acl2-to-lean-ax
-description: Export an ACL2 books tree to Lean 4 axioms, one Lean module per certified book, with an HTML blueprint per book. Use when the user wants to translate ACL2 books, theorems or lemmas into Lean axioms, with a shallow (Rat-valued) or deep (ACL2 value) embedding, produce a Lean module structure mirroring ACL2 book directories, or generate a Verso or HTML blueprint of an ACL2 formalization.
+description: Export an ACL2 books tree to Lean 4 axioms, one Lean module per certified book, with an HTML blueprint per book. Use when the user wants to translate ACL2 books, theorems or lemmas into Lean axioms, with a shallow (Lean types such as Rat and CRat) or deep (ACL2 value) embedding, produce a Lean module structure mirroring ACL2 book directories, or generate a Verso or HTML blueprint of an ACL2 formalization.
 ---
 
 # acl2-to-lean-ax
@@ -13,7 +13,7 @@ HTML blueprint. The ACL2 tree is an input. Nothing in this skill depends on wher
 
 1. `BOOKS`, the ACL2 books directory. Pass it as a path. Any location works.
 2. `PROJECT`, the new Lean project directory. It must not be inside `BOOKS`.
-3. `GITHUB`, optional. The web prefix of the same tree, for example `https://github.com/acl2/acl2/blob/8.7/books`. Without it, the blueprint links are omitted.
+3. `GITHUB`, required. The web prefix of the same tree, for example `https://github.com/acl2/acl2/blob/8.7/books`. `blueprint.py` builds the source link of each theorem from it.
 4. The Lean toolchain. Use the one installed through elan. Write it to `PROJECT/lean-toolchain`.
 5. `--model sonnet|opus|haiku|fable`, the model that runs the generation. It is optional. When it is
    omitted, the run uses the model of the session that starts it. The model is chosen when the
@@ -21,7 +21,8 @@ HTML blueprint. The ACL2 tree is an input. Nothing in this skill depends on wher
    After the run, `scripts/usage.py` reports the models that appear in the agent transcript.
    Record that model in the run log, not the model assumed beforehand.
 6. `--embedding shallow|deep`, the kind of embedding. It is required, and it is fixed for the project:
-   - `shallow`: each ACL2 statement is a Lean proposition over `Rat` and `List Rat`. Mathlib may be
+   - `shallow`: each ACL2 statement is a Lean proposition over Lean types such as `Rat`, `CRat`,
+     `List Rat` and `String` (see "Datatype mapping"). Mathlib may be
      used for the number types. To use it, add a `[[require]]` block to `PROJECT/lakefile.toml` before
      the first build. `roots.py` keeps that block.
    - `deep`: each ACL2 object is a value of `ACL2.V`, and each primitive is a Lean function on `V`.
@@ -96,8 +97,8 @@ HTML blueprint. The ACL2 tree is an input. Nothing in this skill depends on wher
    - Write `PROJECT/Lean/<book-dir>/<book>.lean`. Start it with `module`, then `public import ACL2.Base`.
      Add `public import <module>` for each non-local include whose module exists, and `import <module>`
      for each local include whose module exists. A module that does not exist yet is listed in a
-     comment. Then write one axiom per theorem inside `namespace ACL2`: `public axiom` for an exported
-     theorem, and `private axiom` for a theorem inside `local`.
+     comment. Then write one axiom per theorem inside `namespace ACL2.<book path>`: `public axiom` for an
+     exported theorem, and `private axiom` for a theorem inside `local`.
    - Run the checking passes, as described under "Checking passes" below.
    - Record every deviation in `PROJECT/EMBEDDING_DECISIONS.md`: a general decision in the first
      part, the interpretation in the table, and an element decision under `### <theorem-name>`.
@@ -160,6 +161,8 @@ mapping in `EMBEDDING_DECISIONS.md`.
 
 Rules for the mapping:
 
+- A number variable is a `Rat` in the shallow embedding only when the statement constrains it to the
+  rationals, and a `CRat` otherwise (see the shallow conventions).
 - A list of numbers in the books is `List Rat` in the shallow embedding, with `nil` as `[]`. Do not use a
   general `V` for it when `List Rat` is the type the theorem uses.
 - A value that is used both as a number and as a symbol, such as the result of `fix` on a non-number,
@@ -207,7 +210,8 @@ Each pass must end with `lake build` passing before the next pass is called.
 
 ## Visibility of local events (summary of the module rules)
 
-- The module starts with `module`. A non-local `include-book` is `public import <module>`.
+- The module starts with the license comment of step 4, then `module`. A non-local `include-book` is
+  `public import <module>`.
 - A `local` `include-book` is a plain `import`. The module can use it, and it is not re-exported.
 - An exported `defthm` or `defaxiom` is `public axiom`. A `local` one is `private axiom`.
 - Each book's declarations are in the namespace `ACL2.<book path>`, for example `namespace ACL2.«arithmetic-2».pass1.«basic-arithmetic»`. The shared `Base.lean` stays in `ACL2`.
@@ -215,22 +219,31 @@ Each pass must end with `lake build` passing before the next pass is called.
   A local include must be generated before the book that includes it, so its module can be imported.
 - The shallow and deep `Base.lean` templates are modules, with `public section`, so their declarations are public.
 
-## Conventions for the Lean axioms, shallow embedding
+## Conventions for the Lean axioms, both embeddings
 
 - Statements follow the ACL2 `defthm` text exactly. Never change a statement to suit a proof or a
   Lean convenience. If a statement cannot be expressed faithfully, record the gap and ask.
-- Variables range over `Rat`. An ACL2 `integerp` test becomes `integerp` on `Rat`. Hypotheses stay.
-- Interpret `real/rationalp`, `rationalp`, `acl2-numberp` as `True` on `Rat`, and record that.
-- A `defun` becomes a `def` whose name is the ACL2 name in guillemets. A recursion on an integer
-  becomes a helper on `Int` plus a wrapper that applies `integerp` and the numerator.
-- Use `termination_by` on a natural measure taken from the ACL2 `:measure` or from the recursion.
 - Keep `:rule-classes`, `:hints`, `:in-theory` and proofs out of the Lean code.
 - A reader conditional that excludes a form in standard ACL2 excludes its axiom, and the exclusion is recorded.
+- Do not invent theorems. Each axiom corresponds to one ACL2 `defthm`, `defthmd` or `defaxiom`.
+
+## Conventions for the Lean axioms, shallow embedding
+
+- A number variable ranges over `Rat` when a hypothesis of the ACL2 statement makes it rational, such
+  as `rationalp`, `real/rationalp`, `integerp`, `natp` or `posp`, and over `CRat` otherwise, because an
+  unconstrained ACL2 variable may hold a complex rational. A `Rat` is coerced to `CRat` where it meets
+  a `CRat`. Hypotheses stay.
+- An ACL2 `integerp` test is `integerp` on `Rat` and `integerpC` on `CRat`.
+- On `Rat`, `real/rationalp`, `rationalp` and `acl2-numberp` are `True`. On `CRat`, `real/rationalp`
+  and `rationalp` are both `realrationalpC` (the imaginary part is 0), and `acl2-numberp` is
+  `acl2NumberPC` (`True`). A test inside the statement, such as `(not (rationalp x))`, uses the
+  interpretation of its variable's type. Record each interpretation.
+- A `defun` of a book is an opaque constant with its type signature and no body, for example
+  `opaque «nonneg-int-gcd» : CRat → CRat → CRat`. Its axioms are stated, not proved. The ACL2
+  primitives in `Lean/ACL2/Base.lean` keep their definitions.
 - The complex numbers of ACL2 are `CRat`. Its `<` is the lexicographic order, `<=` is `acl2le`, and `(/ x)` is `CRat.inv`.
 - `numerator` of a complex rational is `numeratorC`. `expt` on complex rationals is `exptC`, and `fc` is the identity, so it is inlined.
 - A `syntaxp` or `quotep` hypothesis is represented as an always-inhabited type, `PUnit`, as in `Lean/ACL2/Base.lean`. Its representation is deferred to the user, and the decisions file records the deferral.
-- A `defun` of a book is an opaque constant with its type signature and no body. Its axioms are stated, not proved.
-- Do not invent theorems. Each axiom corresponds to one ACL2 `defthm` or `defaxiom`.
 
 ## Conventions for the Lean axioms, deep embedding
 
@@ -241,26 +254,13 @@ Each pass must end with `lake build` passing before the next pass is called.
 - A statement is `axiom «name» : truthy (formula)`. Connectives return `T` or `NIL`, using `ofProp`
   for a Lean proposition.
 - Variables range over `V`. Hypotheses are conjuncts of the formula, as in ACL2.
-- A `defun` becomes a Lean `def` on `V`, with `termination_by` taken from the ACL2 `:measure` or from the recursion.
-- Keep `:rule-classes`, `:hints`, `:in-theory` and proofs out of the Lean code.
-- A reader conditional that excludes a form in standard ACL2 excludes its axiom, and the exclusion is recorded.
-- Do not invent theorems. Each axiom corresponds to one ACL2 `defthm` or `defaxiom`.
-
-- Statements follow the ACL2 `defthm` text exactly. Never change a statement to suit a proof or a
-  Lean convenience. If a statement cannot be expressed faithfully, record the gap and ask.
-- Variables range over `Rat`. An ACL2 `integerp` test becomes `integerp` on `Rat`. Hypotheses stay.
-- Interpret `real/rationalp`, `rationalp`, `acl2-numberp` as `True` on `Rat`, and record that.
-- A `defun` becomes a `def` whose name is the ACL2 name in guillemets. A recursion on an integer
-  becomes a helper on `Int` plus a wrapper that applies `integerp` and the numerator.
-- Use `termination_by` on a natural measure taken from the ACL2 `:measure` or from the recursion.
-- Keep `:rule-classes`, `:hints`, `:in-theory` and proofs out of the Lean code.
-- A reader conditional that excludes a form in standard ACL2 excludes its axiom, and the exclusion is recorded.
-- Do not invent theorems. Each axiom corresponds to one ACL2 `defthm` or `defaxiom`.
+- A `defun` of a book is an opaque constant of type `V → … → V` with no body, as in the shallow
+  embedding. Its axioms are stated, not proved. The ACL2 primitives in `Lean/ACL2/Base.lean` keep
+  their definitions.
 
 ## Limits
 
 - A module imports only the modules that exist. A pending import is recorded, and it is added when the module is generated.
-
 - `lake build` checks that the axioms compile. It does not check that they are true in the interpretation.
 - The ACL2 certificate is not checked by this skill. Use the ACL2 system to certify the books.
 - A `.cert` file is a build artifact. A source checkout without certificates, such as a git clone, has no certified books until the books are certified.
