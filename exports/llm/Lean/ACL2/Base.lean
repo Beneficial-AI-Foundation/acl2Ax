@@ -337,6 +337,26 @@ def «digit-to-char» (n : Rat) : Char :=
     | _ => '0'
   else '0'
 
+/-! ## Primitives of the `std` books on complex rationals (decision 71)
+
+The statements of `std/basic` and `std/strings/digit-to-char` whose variable no hypothesis makes
+rational range over `CRat`. Each definition below follows its ACL2 definition on complex values, and
+on a rational it agrees with the `Rat` version above. -/
+
+/-- ACL2 `natp` on complex rationals (axioms.lisp, line 5010): `(and (integerp x) (<= 0 x))`. -/
+def natpC (c : CRat) : Prop := integerpC c ∧ acl2le 0 c
+
+/-- ACL2 `realfix` on complex rationals (axioms.lisp, line 4988): `(if (real/rationalp x) x 0)`. -/
+def realfixC (c : CRat) : CRat := if realrationalpC c then c else 0
+
+/-- ACL2 `rfix` on complex rationals (axioms.lisp, line 4973): `(if (rationalp x) x 0)`. On a
+complex rational, `rationalp` is `realrationalpC`. -/
+def rfixC (c : CRat) : CRat := if realrationalpC c then c else 0
+
+/-- ACL2 `digit-to-char` on complex rationals (axioms.lisp, line 7364). Its `case` compares the
+argument with the integers 1 to 15, so a value that is not an integer gives `#\0`. -/
+def digitToCharC (c : CRat) : Char := if integerpC c then «digit-to-char» c.re else '0'
+
 /-- ACL2 `sumlist` (arithmetic/sumlist.lisp, line 15). Opaque signature, because it is a defun of a
 book (decision 41). -/
 opaque «sumlist» : List Rat → Rat
