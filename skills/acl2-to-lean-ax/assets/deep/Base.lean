@@ -24,6 +24,9 @@ inductive V where
 /-- ACL2 `nil`. -/
 def NIL : V := .sym "NIL"
 
+/-- A default value, which an `opaque` declaration over `V` needs. -/
+instance : Inhabited V := ⟨NIL⟩
+
 /-- ACL2 `t`. -/
 def T : V := .sym "T"
 
