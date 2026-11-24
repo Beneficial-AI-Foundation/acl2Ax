@@ -20,6 +20,8 @@ Output:
   <project-dir>/blueprint/<book>-blueprint.html
 The stylesheet is read from assets/style.css next to this skill.
 The module highlight.py colours the ACL2 source and the Lean axiom of each theorem.
+The module licenses.py writes the copyright and license notice of the book below the status row.
+If the book's license is not identified (see licenses.py), the script exits with 2 and writes nothing.
 """
 import argparse
 import hashlib
@@ -34,6 +36,7 @@ SKILL = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import landing  # noqa: E402  shared table of contents
 import highlight  # noqa: E402  ACL2 and Lean syntax highlighting
+import licenses  # noqa: E402  copyright and license notice of the book
 
 
 def thm_source(lines, name):
@@ -128,6 +131,10 @@ def main():
     cert_path = books / f"{book_rel}.cert"
     lean_path = project / "Lean" / (book_dir if book_dir != "." else "") / f"{book_name}.lean"
     out_path = project / "blueprint" / f"{book_rel.replace('/', '__')}-blueprint.html"
+    lic = licenses.book_license(books, book_rel)
+    if not lic["bsd3"]:
+        print(f"{lic['book']}: license not identified: {lic['note']}", file=sys.stderr)
+        sys.exit(2)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     lines = lisp_path.read_text(encoding="utf-8").split("\n")
@@ -224,6 +231,8 @@ def main():
   </details>"""
 
     modules_all, _status = landing.collect(project)
+    notice = licenses.notice_html(books, book_rel, lean_path)
+    defs_section = ("  <h2>Interpretations of ACL2 primitives and definitions</h2>\n  <div class=\"defs\">\n" + defs_html + "\n  </div>") if defs_html else ""
     toc = landing.toc_html(modules_all, current=out_path.name)
     page = f"""<meta charset="utf-8">
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -247,6 +256,7 @@ def main():
     <div><span class="label">Lean build</span><b class="{build_cls}">{build_note}</b></div>
   </div>
 
+{notice}
   <details class="decisions">
     <summary>Embedding decisions, general</summary>
   <div class="prose">
@@ -254,7 +264,7 @@ def main():
   </div>
   </details>
 
-{("  <h2>Interpretations of ACL2 primitives and definitions</h2>\n  <div class=\"defs\">\n" + defs_html + "\n  </div>") if defs_html else ""}
+{defs_section}
 
   <h2>Theorems and axioms</h2>
 {chr(10).join(nodes)}

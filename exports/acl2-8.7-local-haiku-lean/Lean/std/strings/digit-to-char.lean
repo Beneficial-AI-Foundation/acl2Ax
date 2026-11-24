@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2020 Kestrel Institute (http://www.kestrel.edu)
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/LICENSE.
+Translated from the ACL2 book std/strings/digit-to-char.lisp.
+-/
+
+/-
 Translation of the ACL2 book `std/strings/digit-to-char.lisp` (acl2-8.7 books tree).
 
 The two theorems are about the ACL2 system functions `digit-to-char` (axioms.lisp, line 7364)

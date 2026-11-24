@@ -1,4 +1,11 @@
 /-
+Copyright (C) 2024 Kestrel Institute (http://www.kestrel.edu)
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/books/3BSD-mod.txt.
+Translated from the ACL2 book std/system/getprops.lisp.
+-/
+
+/-
 Translation of the ACL2 book `std/system/getprops.lisp` (Standard System Library,
 Kestrel Institute, 3-clause BSD license).
 

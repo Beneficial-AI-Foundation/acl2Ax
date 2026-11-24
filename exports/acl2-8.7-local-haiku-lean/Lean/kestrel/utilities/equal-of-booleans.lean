@@ -1,3 +1,11 @@
+/-
+Copyright (C) 2008-2011 Eric Smith and Stanford University
+Copyright (C) 2013-2019 Kestrel Institute
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/books/3BSD-mod.txt.
+Translated from the ACL2 book kestrel/utilities/equal-of-booleans.lisp.
+-/
+
 module
 
 public import ACL2.Base

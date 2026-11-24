@@ -1,3 +1,10 @@
+/-
+Copyright (C) 2021  Northeastern University
+Copyright (c) 2026, Beneficial AI Foundation
+License: 3-clause BSD, see LICENSES/acl2/books/acl2s/LICENSE.
+Translated from the ACL2 book acl2s/portcullis.lisp.
+-/
+
 module
 
 public import ACL2.Base
