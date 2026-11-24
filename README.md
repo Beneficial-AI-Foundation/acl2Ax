@@ -33,7 +33,7 @@ For example, the book `std/basic/nfix.lisp` has, at line 21:
            (equal (nfix x) x)))
 ```
 
-The export states it in `exports/acl2-8.7-local-haiku-lean/Lean/std/basic/nfix.lean` as:
+The export states it in `exports/llm/Lean/std/basic/nfix.lean` as:
 
 ```lean
 public axiom «nfix-when-natp» : ∀ x : Rat, natp x → nfix x = x
@@ -80,8 +80,8 @@ An axiom of acl2Ax is only as good as three assumptions:
    `.cert` file with its book, without replaying proofs.
 2. **The Lean statement says what the ACL2 theorem says.** A language model writes the statements.
    They are checked by name and by re-reading the source, but nothing proves them equivalent.
-3. **The Lean definitions of the ACL2 primitives match ACL2.** They are in `Lean/ACL2/Base.lean`
-   and in some modules. Where they differ from ACL2, the difference is recorded in
+3. **The Lean definitions of the ACL2 primitives match ACL2.** They are in
+   `exports/llm/Lean/ACL2/Base.lean` and in some modules. Where they differ from ACL2, the difference is recorded in
    `EMBEDDING_DECISIONS.md`.
 
 The export's `Base.lean` also has three technical axioms, `worldNonempty`, `stateNonempty` and
@@ -93,44 +93,46 @@ under these assumptions. `#print axioms <theorem>` lists the axioms that a theor
 
 ## Repository layout
 
-The repository holds two Lean projects with different conventions.
+Each Lean project of the repository is a directory under `exports/`, named by how its Lean is
+produced. There is one today, the export in `exports/llm/`, whose axioms a language model writes by
+following the skill in `skills/acl2-to-lean-ax/`. A project made another way, for example with
+ACL2Lean, would sit beside it, as `exports/acl2lean/`, so that the two can be compared.
 
-| | Pilot | Export |
-| --- | --- | --- |
-| Location | the repository root (`Lean/`, `lakefile.toml`) | `exports/acl2-8.7-local-haiku-lean/` |
-| Books | 4 from `books/arithmetic`: `abs`, `binomial`, `factorial`, `sumlist` | 57, see [Current scope](#current-scope) |
-| A book's `defun` | a `def` with a body | an `opaque` constant with no body |
-| Lean library | `ACL2Ax` | `AcL2LocalHaiku` |
-| Namespace | `ACL2` | `ACL2.<book path>` |
-| Conventions | `CLAUDE.md` and the root `EMBEDDING_DECISIONS.md` | `skills/acl2-to-lean-ax/SKILL.md` and the export's `EMBEDDING_DECISIONS.md` |
-| Blueprint | `tools/blueprint/<book>-blueprint.html` | `blueprint/` in the export, published at <https://beneficial-ai-foundation.github.io/acl2Ax/> |
+| | The export |
+| --- | --- |
+| Location | `exports/llm/` |
+| Books | 57, see [Current scope](#current-scope) |
+| A book's `defun` | an `opaque` constant with no body |
+| Lean library | `ACL2AxLLM` |
+| Namespace | `ACL2.<book path>` |
+| Conventions | `skills/acl2-to-lean-ax/SKILL.md` and `exports/llm/EMBEDDING_DECISIONS.md` |
+| Book status | `exports/llm/manifest.json`, with each of the 1452 books certified in the ACL2 8.7 tree used here |
+| Blueprint | `exports/llm/blueprint/`, published at <https://beneficial-ai-foundation.github.io/acl2Ax/> |
+
+An earlier pilot at the repository root translated four books of `books/arithmetic`. It was not
+made with the skill, and it was removed. It is in the git history at commit 9eaa817. Of its books,
+`sumlist` is in the export, and `abs`, `binomial` and `factorial` are pending in the export's
+manifest.
 
 Other files:
 
-- `LICENSE`, `NOTICE.md` and `LICENSES/`: see [License](#license).
+- `LICENSE` and `LICENSES/`: see [License](#license).
 - `skills/acl2-to-lean-ax/`: the Claude Code skill that made the export. It holds `SKILL.md`, the
   scripts, and the templates for a new project.
-- `tools/blueprint/`: the pilot's blueprint generator and pages. `blueprint/` at the root holds
-  another version of the pilot's `abs` page.
 - `tools/cert-checker/` and `tools/cert-checker-js/`: certificate checkers in C and in Node.js.
   Their READMEs give their status and use.
-- `mappings/arithmetic.json`: the package, Lean namespace and includes of each `books/arithmetic`
-  book, for the pilot.
-- `manifest.json`: the 1452 books that were certified in the ACL2 8.7 tree used here, with the
-  pilot's status for each. The export has its own `manifest.json`.
 - `.github/workflows/pages.yml`: publishes the export's blueprint to GitHub Pages on each push to
   `main` that changes it.
 
 ## Building
 
-Both projects need [elan](https://github.com/leanprover/elan), which installs the Lean version
-pinned in `lean-toolchain` (v4.34.0). Neither uses Mathlib.
+The export needs [elan](https://github.com/leanprover/elan), which installs the Lean version pinned
+in `exports/llm/lean-toolchain` (v4.34.0). It does not use Mathlib.
 
-Run both from the repository root:
+From the repository root:
 
 ```sh
-lake build                                              # the pilot
-(cd exports/acl2-8.7-local-haiku-lean && lake build)    # the export
+(cd exports/llm && lake build)
 ```
 
 ## Running the skill
@@ -192,13 +194,11 @@ The scripts are in `skills/acl2-to-lean-ax/scripts/`, and each one can also be r
 
 ## Current scope
 
-As of November 2026 (commit a4e1961), with the ACL2 8.7 books and the shallow embedding:
-
-- **Export.** 57 of the 1452 books in its manifest have a module: 46 with axioms, 3 that only import
-  other books, and 8 for excluded books (7 metaprogramming, 1 non-standard analysis). Together they
-  have 439 axioms. The books come from `arithmetic-2`, `arithmetic-3`, `std`, `kestrel`,
-  `arithmetic`, `acl2s` and `misc`.
-- **Pilot.** 38 axioms in 4 books from `books/arithmetic`.
+As of November 2026 (commit a4e1961), with the ACL2 8.7 books and the shallow embedding, 57 of the
+1452 books in the export's manifest have a module: 45 with axioms, 3 that only import other books,
+1 with no event (`acl2s/portcullis`, which only sets its package), and 8 for excluded books (7
+metaprogramming, 1 non-standard analysis). Together they have 439 axioms. The books come from `arithmetic-2`, `arithmetic-3`, `std`, `kestrel`, `arithmetic`, `acl2s`
+and `misc`.
 
 ## Planned work
 
@@ -217,14 +217,14 @@ module starts with a comment that gives the book's copyright line, the Beneficia
 line for the translation, and the license file. Each blueprint page shows the same lines and the
 license text.
 
-- `exports/acl2-8.7-local-haiku-lean/NOTICE.md` lists the books of the export, and `NOTICE.md` at
-  the root the books of the pilot. `skills/acl2-to-lean-ax/scripts/licenses.py` writes both.
-- `LICENSES/acl2/` holds copies of the ACL2 license files that these books use, at their paths in
-  the ACL2 source tree. The export has its own copy, and also a copy of acl2Ax's license, because it
-  starts from the skill's templates. `skills/acl2-to-lean-ax/LICENSE` is a copy of `LICENSE`, so the
-  skill keeps its license when it is copied on its own.
+- `exports/llm/NOTICE.md` lists the books of the export, with the copyright and license file of
+  each. `skills/acl2-to-lean-ax/scripts/licenses.py` writes it.
+- `exports/llm/LICENSES/acl2/` holds copies of the ACL2 license files that these books use, at their
+  paths in the ACL2 source tree. `exports/llm/LICENSES/acl2Ax/` holds a copy of acl2Ax's license,
+  because the export starts from the skill's templates. `skills/acl2-to-lean-ax/LICENSE` is a copy
+  of `LICENSE`, so the skill keeps its license when it is copied on its own.
 - `tools/cert-checker/cl_symbols.h` lists Common Lisp symbols taken from ACL2's `axioms.lisp`, which
-  is under the ACL2 license in `LICENSES/acl2/LICENSE`.
+  is under the ACL2 license. `LICENSES/acl2/LICENSE` at the repository root holds that license.
 
 ACL2 sets licenses per directory and per file, and some ACL2 books are under other licenses, such as
 the GPL. The skill therefore checks each book before it translates it. It accepts only the five
