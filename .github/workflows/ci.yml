@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lean:
+    name: build ACL2AxLLM
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # The Lean project lives in exports/llm/ (library ACL2AxLLM). It has no
+      # dependencies — in particular no Mathlib — so `lake build` only needs the
+      # toolchain pinned in exports/llm/lean-toolchain. The build type-checks
+      # every axiom and definition in the export; it does not prove them (the
+      # theorems are taken from ACL2 as axioms).
+      - name: Build the axiom library
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: "exports/llm"
+          auto-config: false
+          build: true
+          build-args: "ACL2AxLLM"
+          use-mathlib-cache: false
+          use-github-cache: true
